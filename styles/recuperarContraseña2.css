@@ -1,11 +1,3 @@
-/* Fondo general */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', 'Segoe UI', sans-serif;
-}
-
 body{
     background: #EFFBF9;
 background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 251, 1) 100%);
@@ -15,7 +7,7 @@ body {
   background-color: #eef9fc;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,8 +79,21 @@ body {
 
 .recovery-box h2 {
   text-align: center;
-  margin: 0;
+  margin: 0 0 0 0;
   font-size: 1.4rem;
+  font-weight: 600;
+}
+.recovery-box h2 {
+  text-align: center;
+  margin: 0 0 0 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.recovery-box h3 {
+  
+  margin: 0 0 0 0;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
@@ -128,49 +133,69 @@ body {
   background-color: white;
   border-color: #0ea769;
 }
-
-/* Botón enviar código */
 .submit-button {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem;
+  width: 100%;
   background: linear-gradient(to right, #10b981, #3b82f6);
   color: white;
-  border-radius: 0.5rem;
-  text-decoration: none;
+  border-radius: 0.75rem;
+  border: none;
+  font-size: 1rem;
   font-weight: 600;
-  transition: background 0.3s;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.submit-button svg {
+  stroke: white;
 }
 
 .submit-button:hover {
-  opacity: 0.95;
+  opacity: 0.9;
 }
 
-/* Volver al login */
+/* Enlace "Reenviar código" para que parezca botón secundario */
+.resend-link {
+  display: inline-block;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #10b981;
+  text-decoration: none;
+  margin-top: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.resend-link:hover {
+  color: #0ea769;
+  text-decoration: underline;
+}
+
+/* Botón/enlace "Cambiar email" con flecha */
 .back-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0.5rem;
   gap: 0.4rem;
-  font-size: 0.9rem;
-  color: #10b981;
+  font-size: 0.95rem;
+  color: #6b7280;
   text-decoration: none;
   font-weight: 500;
+  margin-top: 0.75rem;
+}
+
+.back-link svg {
+  stroke: #6b7280;
 }
 
 .back-link:hover {
   text-decoration: underline;
 }
 
-.icon-back {
-  height: 18px;
-  width: 18px;
-}
-
-/* Footer */
 footer {
   margin-top: auto;
   padding: 1.5rem;

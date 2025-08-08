@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMART PLANNER - TAREAS</title>
-    <link rel="icon" href="../img/Logo.png">
+    <title>SMART PLANNER - FINANZAS</title>
+     <link rel="icon" href="../img/Logo.png">
     <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/tareas.css">
+    <link rel="stylesheet" href="../styles/body.css">
+    <link rel="stylesheet" href="../styles/finanzas.css">
 </head>
 <body>
     <header>
@@ -30,6 +31,8 @@
                 <img class="usuario" src="" width="40" height="40" border-radius="100%">
             </div>
         </nav>
+        <a href="../views/login.html">Login</a>
+        <a href="../views/registro.html">Registro</a>
     </header>
     <main>
         <div id="menu" class="navegacion">
@@ -38,12 +41,12 @@
                     <img src="../img/estadistica.png" width="20" height="20">
                     <a href="../index.html"><p>Dashboard</p></a>
                 </li>
-                <li>
-                    <img src="../img/calendario.png" width="20" height="20">
+                <li class="active">
+                    <img src="../img/calendario-blanco.png" width="20" height="20">
                     <a href="calendario.html"><p>Calendario</p></a>
                 </li>
-                <li class="active">
-                    <img src="../img/check-blanco.png" width="20" height="20">
+                <li>
+                    <img src="../img/check.png" width="20" height="20">
                     <a href="tareas.html"><p>Tareas</p></a>
                 </li>
                 <li>
@@ -60,42 +63,43 @@
                 <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
             </div>
             
-        <a href="views/login.html">Login</a>
-        <a href="views/registro.html">Registro</a>
-        <a href="views/recuperarContraseña.html">Recuperar Contraseña</a>
+            <a href="login.html">Login</a>
+            <a href="registro.html">Registro</a>
+            <a href="recuperarContraseña.html">Recuperar Contraseña</a>
         </div>
+        
         <div class="container">
             <div class="titulo">
-                <h1>Gestión de Tareas</h1>
+                <h1>Finanzas Personales</h1>
                 <button><img src="../img/plus-pequeno.png" width="20" height="20">Nueva tarea</button>
             </div>
             <div class="resumen">
                 <ul>
                     <li>
                         <div class="izquierda">
-                            <h2>Total de tareas</h2>
-                            <h1>5</h1>
+                            <h2>Ingresos del Mes</h2>
+                            <h1 class="green">$2800.00</h1>
                         </div>
                         <div class="derecha1">
-                            <img src="../img/controlar.png" width="40" height="40">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-white"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
                         </div>
                     </li>
                     <li>
                         <div class="izquierda">
-                            <h2>Completadas</h2>
-                            <h1>3</h1>
+                            <h2>Gastos del mes</h2>
+                            <h1 class="red">$250.50</h1>
                         </div>
                         <div class="derecha2">
-                            <img src="../img/comprobado.png" width="40" height="40">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-6 w-6 text-white"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
                         </div>
                     </li>
                     <li>
                         <div class="izquierda">
-                            <h2>Alta prioridad</h2>
-                            <h1>0</h1>
+                            <h2>Balance</h2>
+                            <h1 class="green">$2549.50</h1>
                         </div>
                         <div class="derecha3">
-                            <img src="../img/calendario-blanco.png" width="40" height="40">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-6 w-6 text-white"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                         </div>
                     </li>
                 </ul>
@@ -103,27 +107,27 @@
             <div class="buscadores">
                 <div class="buscador">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-                    <input type="text" placeholder="Buscar tareas...">
+                    <input type="text" placeholder="Buscar transacciones...">
                 </div>
                 <select name="" id="">
-                    <option value="" selected>Todas las prioridades</option>
+                    <option value="" selected>Todas los tipos</option>
                     <option value="">Alta</option>
                     <option value="">Media</option>
                     <option value="">Baja</option>
                 </select>
                 <select name="" id="">
-                    <option value="" selected>Todos los estados</option>
+                    <option value="" selected>Todos las categorias</option>
                     <option value="">Pendientes</option>
                     <option value="">Completadas</option>
                 </select>
             </div>
             <div class="filtros">
                 <a href="">Todas (5)</a>
-                <a href="">Pendientes (2)</a>
-                <a href="">Completadas (3)</a>
+                <a href="">Ingresos (2)</a>
+                <a href="">Gastos (3)</a>
             </div>
             <div class="tareas">
-                <h1>Todas las tareas</h1>
+                <h1>Historial de transacciones</h1>
                 <ul id="lista-tareas">
                     <li>
                         <div class="informacion">
@@ -196,9 +200,12 @@
             </div>
         </div>
     </main>
+
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
     </footer>
     <script src="../js/funcionalidadMenu.js"></script>
+</body>
+        
 </body>
 </html>

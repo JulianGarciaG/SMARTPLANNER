@@ -14,6 +14,14 @@ main {
     display: flex;
 }
 
+h1.green {
+    color:rgb(5, 150, 105) 
+}
+
+h1.red {
+    color: rgb(220, 38, 38)
+
+}
 .container {
     display: flex;
     flex-direction: column;
@@ -68,7 +76,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 400px;
+    width: 100%;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -79,7 +87,9 @@ main {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    width: 250px;
 }
+
 
 .izquierda h2 {
     font-size: 13px;
@@ -96,18 +106,21 @@ main {
 }
 
 .derecha1 {
-    background: #38CFA1;
-    background: linear-gradient(120deg, rgba(56, 207, 161, 1) 0%, rgba(92, 169, 242, 1) 100%);
+    background: #48DD82;
+    background: linear-gradient(120deg, rgba(72, 221, 130, 1) 0%, rgba(54, 212, 151, 1) 100%);
+    color: white;
 }
 
 .derecha2 {
-    background: #48DD82;
-    background: linear-gradient(120deg, rgba(72, 221, 130, 1) 0%, rgba(54, 212, 151, 1) 100%);
+    color: white;
+    background: #F87177;
+    background: linear-gradient(120deg, rgba(248, 113, 119, 1) 0%, rgba(244, 114, 176, 1) 100%);
 }
 
 .derecha3 {
-    background: #F87177;
-    background: linear-gradient(120deg, rgba(248, 113, 119, 1) 0%, rgba(244, 114, 176, 1) 100%);
+    color: white;
+    background: #38CFA1;
+    background: linear-gradient(120deg, rgba(56, 207, 161, 1) 0%, rgba(92, 169, 242, 1) 100%);
 }
 
 .buscadores {
