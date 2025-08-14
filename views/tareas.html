@@ -7,6 +7,7 @@
     <link rel="icon" href="../img/Logo.png">
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/tareas.css">
+    <link rel="stylesheet" href="../styles/agregar-registro.css">
 </head>
 <body>
     <header>
@@ -31,6 +32,47 @@
             </div>
         </nav>
     </header>
+    <div class="agregar-registro">
+        <div class="container">
+            <img src="/img/cerrar.png" width="20" height="20">
+            <div class="titulo">
+                <h1>Titulo *</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Título de la tarea">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Descripción</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Descripción de la tarea">
+                </div>
+            </div>
+            <div class="prioridad">
+                <h1>Prioridad</h1>
+                <select name="" id="">
+                    <option value="">Baja</option>
+                    <option value="" selected>Media</option>
+                    <option value="">Alta</option>
+                </select>
+            </div>
+            <div class="fecha-limite">
+                <h1>Fecha límite</h1>
+                <div class="espacio-input">
+                    <input type="date">
+                </div>
+            </div>
+            <div class="check-box">
+                <input type="checkbox">
+                <h1>Asociar con un gasto</h1>
+            </div>
+            <div class="asociar-gasto">
+                <h1>Seleccionar gasto</h1>
+                <select name="" id="">
+                    <option value="" selected>Seleccionar gasto...</option>
+                </select>
+            </div>
+        </div>
+    </div>
     <main>
         <div id="menu" class="navegacion">
             <ul>
