@@ -32,9 +32,13 @@
             </div>
         </nav>
     </header>
-    <div class="agregar-registro">
-        <div class="container">
-            <img src="/img/cerrar.png" width="20" height="20">
+
+    <!-- ------------- HTML DE AGREGAR TAREA ------------- -->
+
+    <div id="agregarRegistro" class="agregar-registro">
+        <div id="containerRegistro" class="container-registro">
+            <img id="cerrarMenuRegistros" src="../img/cerrar.png" width="20" height="20">
+            <h1>Nueva Tarea</h1>
             <div class="titulo">
                 <h1>Titulo *</h1>
                 <div class="espacio-input">
@@ -62,17 +66,24 @@
                 </div>
             </div>
             <div class="check-box">
-                <input type="checkbox">
+                <input id="abrirAsociarGasto" type="checkbox">
                 <h1>Asociar con un gasto</h1>
             </div>
-            <div class="asociar-gasto">
+            <div id="asociarGasto" class="asociar-gasto">
                 <h1>Seleccionar gasto</h1>
                 <select name="" id="">
                     <option value="" selected>Seleccionar gasto...</option>
                 </select>
             </div>
+            <div class="botones-registro">
+                <button id="Cancelar-registro" class="Cancelar-registro">Cancelar</button>
+                <button id="Crear-registro" class="Crear-registro">Crear</button>
+            </div>
         </div>
     </div>
+
+    <!-- ------------- CONTENIDO PRINCIPAL ------------- -->
+
     <main>
         <div id="menu" class="navegacion">
             <ul>
@@ -101,15 +112,11 @@
                 <h1><img src="../img/bombilla.png" width="20" height="20">Tip del día</h1>
                 <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
             </div>
-            
-        <a href="views/login.html">Login</a>
-        <a href="views/registro.html">Registro</a>
-        <a href="views/recuperarContraseña.html">Recuperar Contraseña</a>
         </div>
         <div class="container">
             <div class="titulo">
                 <h1>Gestión de Tareas</h1>
-                <button><img src="../img/plus-pequeno.png" width="20" height="20">Nueva tarea</button>
+                <button id="abrirMenuRegistro"><img src="../img/plus-pequeno.png" width="20" height="20">Nueva tarea</button>
             </div>
             <div class="resumen">
                 <ul>
@@ -242,5 +249,6 @@
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
     </footer>
     <script src="../js/funcionalidadMenu.js"></script>
+    <script src="../js/agregarResgitros.js"></script>
 </body>
 </html>
