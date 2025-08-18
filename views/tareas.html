@@ -7,6 +7,7 @@
     <link rel="icon" href="../img/Logo.png">
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/tareas.css">
+    <link rel="stylesheet" href="../styles/agregar-registro.css">
 </head>
 <body>
     <header>
@@ -31,6 +32,54 @@
             </div>
         </nav>
     </header>
+     <!-- Menu de registro para agregar una nueva tarea -->
+     <div id="agregarRegistro" class="agregar-registro">
+        <div id="containerRegistro" class="container-registro">
+            <img id="cerrarMenuRegistros" src="../img/cerrar.png" width="20" height="20">
+            <h1>Nueva Tarea</h1>
+            <div class="titulo">
+                <h1>Titulo *</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Título de la tarea">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Descripción</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Descripción de la tarea">
+                </div>
+            </div>
+            <div class="prioridad">
+                <h1>Prioridad</h1>
+                <select name="" id="">
+                    <option value="">Baja</option>
+                    <option value="" selected>Media</option>
+                    <option value="">Alta</option>
+                </select>
+            </div>
+            <div class="fecha-limite">
+                <h1>Fecha límite</h1>
+                <div class="espacio-input">
+                    <input type="date">
+                </div>
+            </div>
+            <div class="check-box">
+                <input id="abrirAsociarGasto" type="checkbox">
+                <h1>Asociar con un gasto</h1>
+            </div>
+            <div id="asociarGasto" class="asociar-gasto">
+                <h1>Seleccionar gasto</h1>
+                <select name="" id="">
+                    <option value="" selected>Seleccionar gasto...</option>
+                </select>
+            </div>
+            <div class="botones-registro">
+                <button id="cancelarRegistro" class="Cancelar-registro">Cancelar</button>
+                <button id="Crear-registro" class="Crear-registro">Crear</button>
+            </div>
+        </div>
+    </div>
+    <!-- Menu de navegación lateral -->
     <main>
         <div id="menu" class="navegacion">
             <ul>
@@ -52,7 +101,7 @@
                 </li>
                 <li>
                     <img src="../img/estadistica.png" width="20" height="20">
-                    <a href=""><p>Estadísticas</p></a>
+                    <a href="estadisticas.html"><p>Estadísticas</p></a>
                 </li>
             </ul>
             <div class="tips">
@@ -64,10 +113,11 @@
         <a href="views/registro.html">Registro</a>
         <a href="views/recuperarContraseña.html">Recuperar Contraseña</a>
         </div>
+        <!-- Contenido principal de la página -->
         <div class="container">
             <div class="titulo">
                 <h1>Gestión de Tareas</h1>
-                <button><img src="../img/plus-pequeno.png" width="20" height="20">Nueva tarea</button>
+                <button id="abrirMenuRegistro"><img src="../img/plus-pequeno.png" width="20" height="20">Nueva tarea</button>
             </div>
             <div class="resumen">
                 <ul>
@@ -125,14 +175,14 @@
             <div class="tareas">
                 <h1>Todas las tareas</h1>
                 <ul id="lista-tareas">
-                    <li>
-                        <div class="informacion">
+                    <li id="informacion1">
+                        <div  class="informacion">
                             <div class="container-input">
                                 <img src="../img/controlar.png" width="10px" height="10px">
-                                <input type="checkbox">
+                                <input id="input-informacion1" type="checkbox">
                             </div>
                             <div class="texto">
-                                <h1>Comprar ingredientes para la cena</h1>
+                                <h1 id="texto1">Comprar ingredientes para la cena</h1>
                                 <h2>Ir al supermercado y comprar todo lo necesario</h2>
                                 <p><img src="../img/calendario.png" width="15" height="15"> 2024-01-20</p>
                             </div>
@@ -148,14 +198,14 @@
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="informacion">
+                    <li id="informacion2">
+                        <div  class="informacion">
                             <div class="container-input">
                                 <img src="../img/controlar.png" width="10px" height="10px">
-                                <input type="checkbox">
+                                <input id="input-informacion2" type="checkbox">
                             </div>
-                            <div class="texto">
-                                <h1>Reunión con el equipo</h1>
+                            <div  class="texto">
+                                <h1 id="texto2">Reunión con el equipo</h1>
                                 <h2>Revisar el progreso del proyecto</h2>
                                 <p><img src="../img/calendario.png" width="15" height="15"> 2024-01-18</p>
                             </div>
@@ -170,14 +220,14 @@
                             </div>
                         </div>
                     </li>
-                    <li>
+                    <li id="informacion3">
                         <div class="informacion">
                             <div class="container-input">
                                 <img src="../img/controlar.png" width="10px" height="10px">
-                                <input type="checkbox">
+                                <input id="input-informacion3" type="checkbox">
                             </div>
-                            <div class="texto">
-                                <h1>Ejercicio matutino</h1>
+                            <div  class="texto">
+                                <h1 id="texto3">Ejercicio matutino</h1>
                                 <h2>30 minutos de cardio</h2>
                                 <p><img src="../img/calendario.png" width="15" height="15"> 2024-01-17</p>
                             </div>  
@@ -200,5 +250,7 @@
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
     </footer>
     <script src="../js/funcionalidadMenu.js"></script>
+    <script src="../js/input-check.js"></script>
+    <script src="../js/agregarRegistro.js"></script>
 </body>
 </html>

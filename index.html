@@ -27,7 +27,23 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
                     <input type="text" placeholder="Buscar tareas, eventos...">
                 </div>
-                <img class="notificaciones" src="img/notificacion.png" width="18" height="18">
+                <div class="panel-notificaciones">
+                    <img src="img/notificacion.png" width="18" height="18">
+                    <div class="notificaciones">
+                        <h1>Notificaciones</h1>
+                        <div class="tabla-notificaciones">
+                            <div class="notificacion">
+                                <img src="" alt="">
+                                <img src="" alt="">
+                                <h1></h1>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="marcar-leido">
+                            <h1>Marcar todas como leídas</h1>
+                        </div>
+                    </div>
+                </div>
                 <img class="usuario" src="" width="40" height="40" border-radius="100%">
             </div>
         </nav>
@@ -53,16 +69,13 @@
                 </li>
                 <li>
                     <img src="img/estadistica.png" width="20" height="20">
-                    <a href=""><p>Estadísticas</p></a>
+                    <a href="views/estadisticas.html"><p>Estadísticas</p></a>
                 </li>
             </ul>
             <div class="tips">
                 <h1><img src="img/bombilla.png" width="20" height="20">Tip del día</h1>
                 <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
             </div>
-            <a href="views/login.html">Login</a>
-            <a href="views/registro.html">Registro</a>
-            <a href="views/recuperarContraseña.html">Recuperar Contraseña</a>
         </div>
         <div class="container">
             <div class="encabezado-dashboard">
@@ -73,7 +86,6 @@
             </div>
             <p>Aquí tienes un resumen de tu progreso</p>
         <div class="tarjetas-resumen">
-
             <div class="tarjeta tareas-completadas">
                 <div class="texto">
                 <p class="titulo">Tareas completadas hoy</p>

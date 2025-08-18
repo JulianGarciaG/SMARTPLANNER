@@ -45,8 +45,8 @@ background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 25
     justify-content: space-between;
     align-items: center;
     padding-right: 20px;
-    padding-left: 20px;
 }
+
 
 .nuevaTarea-wrapper {
     display: flex;
@@ -156,10 +156,9 @@ background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 25
 
 .seccion-listas {
     display: flex;
-    flex-wrap: wrap;
+    width: 100%;
     gap: 20px;
     margin-top: 40px;
-    padding: 0 20px;
 }
 
 .bloque {
@@ -168,7 +167,7 @@ background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 25
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     flex: 1 1 45%;
-    min-width: 470px;
+    min-width: 50%;
 }
 
 
@@ -241,14 +240,39 @@ background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 25
     gap: 10px;
 }
 
-.lista-tareas input[type="checkbox"] {
-
-    accent-color: #1097b9;
-    color: #ffffff;
-    width: 18px;
-    height: 18px;
+/* Estilo para los checkboxes */
+.lista-tareas li input[type="checkbox"] {
+    -webkit-appearance: none;  /* Elimina la apariencia predeterminada del checkbox */
+    -moz-appearance: none;     /* Elimina la apariencia predeterminada del checkbox */
+    appearance: none;          /* Elimina la apariencia predeterminada del checkbox */
+    
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;        /* Hace el checkbox circular */
+    border: 2px solid #34D399; /* Bordes azules */
+    background-color: #fff;    /* Fondo blanco */
     cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease; /* Transición suave */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.lista-tareas li input[type="checkbox"]:checked {
+    background-color: #34D399;  /* Fondo azul cuando está marcado */
+    border-color: #34D399;      /* Borde azul cuando está marcado */
+}
+
+.lista-tareas li input[type="checkbox"]:checked::before {
+    content: '✔';                 /* Crear contenido vacío */
+    position: absolute;
+    color: white;
+}
+
+/* Estilo al pasar el cursor sobre el checkbox */
+.lista-tareas li input[type="checkbox"]:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Sombra suave al pasar el cursor */
 }
 
 .prioridad {

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/body.css">
     <link rel="stylesheet" href="../styles/finanzas.css">
+    <link rel="stylesheet" href="../styles/agregar-finanza.css">
 </head>
 <body>
     <header>
@@ -32,6 +33,69 @@
             </div>
         </nav>
     </header>
+    <!-- Menu de registro para agregar una nueva finanza -->
+    <div id="agregarRegistro" class="agregar-finanza">
+        <div id="containerRegistro" class="container-finanza">
+            <img id="cerrarMenuRegistros" src="../img/cerrar.png" width="20" height="20">
+            <h1>Nueva transaccion</h1>
+            <div class="titulo">
+                <h1>Tipo</h1>
+    
+                    <select name="Tipo" id="Tipo">
+                        <option value="ingreso">Ingreso</option>
+                        <option value="egreso">Egreso</option>
+                    </select>
+            </div>
+            <div class="Descripción">
+                <h1>Descripción</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Descripción de la transaccion">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Monto</h1>
+                <div class="espacio-input">
+                    <input type="number" placeholder="0.00">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Categoria</h1>
+                <Select>
+                    <option value="">Seleccionar Categoria</option>
+                    <option value="">Alimentación</option>
+                    <option value="">Transporte</option>
+                    <option value="">Entretenimiento</option>
+                    <option value="">Salud</option>
+                    <option value="">Hogar</option>
+                    <option value="">Educacion</option>
+                    <option value="">Otros</option>
+                </Select>
+            </div>
+            <div class="fecha-limite">
+                <h1>Fecha</h1>
+                <div class="espacio-input">
+                    <input type="date">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Asociar a Tarea(opcional)</h1>
+                <Select>
+                    <option value="">Sin asociar</option>
+                    <option value="">Comprar ingredientes para la cena</option>
+                    <option value="">Reunion con el equipo</option>
+                    <option value="">Entretenimiento</option>
+                    <option value="">Ejercicio matutino</option>
+                    <option value="">Revisar propuestas de proyecto</option>
+                    <option value="">Llamar al dentista</option>
+                </Select>
+            </div>
+            <div class="botones-finanza">
+                <button id="cancelarRegistro" class="Cancelar-finanza">Cancelar</button>
+                <button id="Crear-registro" class="Crear-finanza">Crear</button>
+            </div>
+        </div>
+    </div>
+    <!-- Menu de navegación lateral -->
     <main>
         <div id="menu" class="navegacion">
             <ul>
@@ -53,7 +117,7 @@
                 </li>
                 <li>
                     <img src="../img/estadistica.png" width="20" height="20">
-                    <a href=""><p>Estadísticas</p></a>
+                    <a href="estadisticas.html"><p>Estadísticas</p></a>
                 </li>
             </ul>
             <div class="tips">
@@ -65,11 +129,11 @@
             <a href="registro.html">Registro</a>
             <a href="recuperarContraseña.html">Recuperar Contraseña</a>
         </div>
-        
+        <!-- Contenido principal de la página -->
         <div class="container">
             <div class="titulo">
                 <h1>Finanzas Personales</h1>
-                <button><img src="../img/plus-pequeno.png" width="20" height="20">Nueva tarea</button>
+                <button id="abrirMenuRegistro"><img src="../img/plus-pequeno.png" width="20" height="20">Nueva transaccion</button>
             </div>
             <div class="resumen">
                 <ul>
@@ -129,9 +193,8 @@
                 <ul id="lista-tareas">
                     <li>
                         <div class="informacion">
-                            <div class="container-input">
-                                <img src="../img/controlar.png" width="10px" height="10px">
-                                <input type="checkbox">
+                            <div class="egreso">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-6 w-6 text-white"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
                             </div>
                             <div class="texto">
                                 <h1>Gasolina</h1>
@@ -140,8 +203,8 @@
                         </div>
                         <div class="derecha">
                             <div class="estados">
-                                <p class="red">$85.500</p>
-                                <p class="media">media</p>
+                                <p class="media">Transporte</p>
+                                 <p class="red">-$15.00</p>
                             </div>
                             <div class="crud">
                                 <img src="../img/editar.png" width="20" height="20">
@@ -151,19 +214,18 @@
                     </li>
                     <li>
                         <div class="informacion">
-                            <div class="container-input">
-                                <img src="../img/controlar.png" width="10px" height="10px">
-                                <input type="checkbox">
+                            <div class="egreso">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-6 w-6 text-white"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
                             </div>
                             <div class="texto">
-                                <h1>Reunión con el equipo</h1>
-                                <h2>Revisar el progreso del proyecto</h2>
-                                <p><img src="../img/calendario.png" width="15" height="15"> 2024-01-18</p>
+                                <h1>Supermercado</h1>
+                                <h2>Alimentación 2024-01-20</h2>
                             </div>
                         </div>
                         <div class="derecha">
                             <div class="estados">
-                                <p class="alta">alta</p>
+                                <p class="alta">Alimentación</p>
+                                <p class="red">-$85.50</p>
                             </div>
                             <div class="crud">
                                 <img src="../img/editar.png" width="20" height="20">
@@ -173,19 +235,18 @@
                     </li>
                     <li>
                         <div class="informacion">
-                            <div class="container-input">
-                                <img src="../img/controlar.png" width="10px" height="10px">
-                                <input type="checkbox">
+                            <div class="ingreso">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-white"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
                             </div>
                             <div class="texto">
-                                <h1>Ejercicio matutino</h1>
-                                <h2>30 minutos de cardio</h2>
-                                <p><img src="../img/calendario.png" width="15" height="15"> 2024-01-17</p>
+                                <h1>Pago Menusal</h1>
+                                <h2>Salario 2024-01-15</h2>
                             </div>  
                         </div>
                         <div class="derecha">
                             <div class="estados">
-                                <p class="baja">baja</p>
+                                <p class="baja">Salario</p>
+                                <p class="green">+$250.00</p>
                             </div>
                             <div class="crud">
                                 <img src="../img/editar.png" width="20" height="20">
@@ -217,14 +278,13 @@
                 <h3>Entretenimiento <span class="badge badge-rosa">1</span></h3>
                 <p class="red">$120.00</p>
   </div>
-</div>
-</div>
+  </div>
     </main>
-
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
     </footer>
     <script src="../js/funcionalidadMenu.js"></script>
+    <script src="../js/agregarFinanza.js"></script>
 </body>
         
 </body>

@@ -251,8 +251,7 @@ main {
 
 .tareas .informacion h1 {
     font-size: 14px;
-    color: #1e293b;
-    font-weight: lighter;
+    font-weight: bold;
 }
 
 .tareas .informacion h2 {

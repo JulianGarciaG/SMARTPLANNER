@@ -109,6 +109,7 @@ main {
     background: #48DD82;
     background: linear-gradient(120deg, rgba(72, 221, 130, 1) 0%, rgba(54, 212, 151, 1) 100%);
     color: white;
+    border-radius: 10px;
 }
 
 .derecha2 {
@@ -121,6 +122,28 @@ main {
     color: white;
     background: #38CFA1;
     background: linear-gradient(120deg, rgba(56, 207, 161, 1) 0%, rgba(92, 169, 242, 1) 100%);
+}
+
+.ingreso {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #48DD82;
+    background: linear-gradient(120deg, rgba(72, 221, 130, 1) 0%, rgba(54, 212, 151, 1) 100%);
+    color: white;
+    border-radius: 10px;
+}
+
+.egreso {
+    color: white;
+    background: #F87177;
+    background: linear-gradient(120deg, rgba(248, 113, 119, 1) 0%, rgba(244, 114, 176, 1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .buscadores {
@@ -240,23 +263,6 @@ main {
     width: 18px;
     height: 18px;
     pointer-events: none;
-}
-
-.informacion input {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 15px;
-    height: 15px;
-    border: 2px solid #13ba82;
-    border-radius: 50%;
-    outline: none;
-    cursor: pointer;
-    background-color: transparent;
-    transition: background-color 0.2s;
-}
-
-.informacion input:checked {
-    background-color: #13ba82;
 }
 
 .tareas .informacion .texto {
@@ -427,3 +433,4 @@ main {
   background-color: #dcfce7;
   color: #16a34a;
 }
+
