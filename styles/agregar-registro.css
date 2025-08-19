@@ -177,7 +177,7 @@
     gap: 5px;
 }
 
-.agregar-registro .titulo h1, .Descripción h1, .prioridad h1, .fecha-limite h1, .check-box h1, .asociar-gasto h1 {
+.agregar-registro .titulo h1, .descripcion h1, .prioridad h1, .fecha-limite h1, .check-box h1, .asociar-gasto h1 {
     font-size: 16px;
     color: #1e293b;
     margin-bottom: 0;

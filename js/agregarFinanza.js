@@ -1,30 +1,32 @@
-const cerrarMenuRegistros = document.getElementById('cerrarMenuRegistros');
-const abrirMenuRegistro = document.getElementById('abrirMenuRegistro');
-const agregarRegistro = document.getElementById('agregarRegistro');
-const containerRegistro = document.getElementById('containerRegistro');
-const cancelarRegistro = document.getElementById('cancelarRegistro');
+const cerrarMenuFinanzas = document.getElementById('cerrarMenuFinanzas');
+const abrirMenuFinanza = document.getElementById('abrirMenuFinanza'); 
+const agregarFinanza = document.getElementById('agregarFinanza');
+const containerFinanza = document.getElementById('containerFinanza');
+const cancelarFinanza = document.getElementById('cancelarFinanza');
 
 const abrirAsociarGasto = document.getElementById('abrirAsociarGasto');
 const asociarGasto = document.getElementById('asociarGasto');
 
-abrirMenuRegistro.addEventListener('click', () => {
-    agregarRegistro.style.display = 'flex';
+abrirMenuFinanza.addEventListener('click', () => {
+    agregarFinanza.style.display = 'flex';
 });
 
-cerrarMenuRegistros.addEventListener('click', () => {
-    agregarRegistro.style.display = 'none';
+cerrarMenuFinanzas.addEventListener('click', () => {
+    agregarFinanza.style.display = 'none';
 });
 
-cancelarRegistro.addEventListener('click', () => {
-    agregarRegistro.style.display = 'none';
+cancelarFinanza.addEventListener('click', () => {
+    agregarFinanza.style.display = 'none';
 });
 
-abrirAsociarGasto.addEventListener('click', () => {
-    if (abrirAsociarGasto.checked) {
-        asociarGasto.style.display = 'flex';
-        containerRegistro.style.height = 'auto';
-    } else {
-        asociarGasto.style.display = 'none';
-        containerRegistro.style.height = '500px';
-    }
-});
+if (abrirAsociarGasto) {
+    abrirAsociarGasto.addEventListener('click', () => {
+        if (abrirAsociarGasto.checked) {
+            asociarGasto.style.display = 'flex';
+            containerFinanza.style.height = 'auto';
+        } else {
+            asociarGasto.style.display = 'none';
+            containerFinanza.style.height = '500px';
+        }
+    });
+}

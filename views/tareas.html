@@ -10,11 +10,65 @@
     <link rel="stylesheet" href="../styles/agregar-registro.css">
 </head>
 <body>
+    <!-- FORMULARIO AGREGAR REGISTRO -->
+    <div id="agregarRegistro" class="agregar-registro">
+        <div id="containerRegistro" class="container-registro">
+            <img id="cerrarMenuRegistros" src="../img/cerrar.png" width="20" height="20">
+            <h1>Nueva Tarea</h1>
+
+            <div class="titulo">
+                <h1>Titulo *</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Título de la tarea">
+                </div>
+            </div>
+
+            <div class="descripcion">
+                <h1>Descripción</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Descripción de la tarea">
+                </div>
+            </div>
+
+            <div class="prioridad">
+                <h1>Prioridad</h1>
+                <select>
+                    <option value="baja">Baja</option>
+                    <option value="media" selected>Media</option>
+                    <option value="alta">Alta</option>
+                </select>
+            </div>
+
+            <div class="fecha-limite">
+                <h1>Fecha límite</h1>
+                <div class="espacio-input">
+                    <input type="date">
+                </div>
+            </div>
+
+            <div class="check-box">
+                <input id="abrirAsociarGasto" type="checkbox">
+                <h1>Asociar con un gasto</h1>
+            </div>
+            <div id="asociarGasto" class="asociar-gasto">
+                <h2>Seleccionar gasto</h2>
+                <select>
+                    <option value="" selected>Seleccionar gasto...</option>
+                </select>
+            </div>
+            <div class="botones-registro">
+                <button id="Cancelar-registro" class="Cancelar-registro">Cancelar</button>
+                <button id="Crear-registro" class="Crear-registro">Crear</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
     <header>
         <nav>
             <div class="izquierda-nav">
                 <div id="abrir-menu" class="menu">
-                    <img  class="abrir-menu" src="../img/menu.png" width="18" height="18">
+                    <img class="abrir-menu" src="../img/menu.png" width="18" height="18">
                 </div>
                 <img class="logo-nav" src="../img/Logo.png" width="40" height="40">
                 <div class="nombre-descripcion">
@@ -24,14 +78,16 @@
             </div>
             <div class="derecha-nav">
                 <div class="buscador-nav">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
                     <input type="text" placeholder="Buscar tareas, eventos...">
                 </div>
                 <img class="notificaciones" src="../img/notificacion.png" width="18" height="18">
-                <img class="usuario" src="" width="40" height="40" border-radius="100%">
+                <img class="usuario" src="" width="40" height="40" style="border-radius: 100%;">
             </div>
         </nav>
     </header>
+
+    <!-- MAIN -->
     <main>
         <div id="menu" class="navegacion">
             <ul>
@@ -57,16 +113,20 @@
                 </li>
             </ul>
             <div class="tips">
-                <h1><img src="../img/bombilla.png" width="20" height="20">Tip del día</h1>
+                <h1><img src="../img/bombilla.png" width="20" height="20"> Tip del día</h1>
                 <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
             </div>
         </div>
-        <!-- Contenido principal de la página -->
+
+        <!-- Contenido principal -->
         <div class="container">
             <div class="titulo">
                 <h1>Gestión de Tareas</h1>
-                <button id="abrirMenuRegistro"><img src="../img/plus-pequeno.png" width="20" height="20">Nueva tarea</button>
+                <button id="abrirMenuRegistro">
+                    <img src="../img/plus-pequeno.png" width="20" height="20"> Nueva tarea
+                </button>
             </div>
+
             <div class="resumen">
                 <ul>
                     <li>
@@ -98,35 +158,38 @@
                     </li>
                 </ul>
             </div>
+
             <div class="buscadores">
                 <div class="buscador">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
                     <input type="text" placeholder="Buscar tareas...">
                 </div>
-                <select name="" id="">
-                    <option value="" selected>Todas las prioridades</option>
-                    <option value="">Alta</option>
-                    <option value="">Media</option>
-                    <option value="">Baja</option>
+                <select>
+                    <option selected>Todas las prioridades</option>
+                    <option>Alta</option>
+                    <option>Media</option>
+                    <option>Baja</option>
                 </select>
-                <select name="" id="">
-                    <option value="" selected>Todos los estados</option>
-                    <option value="">Pendientes</option>
-                    <option value="">Completadas</option>
+                <select>
+                    <option selected>Todos los estados</option>
+                    <option>Pendientes</option>
+                    <option>Completadas</option>
                 </select>
             </div>
+
             <div class="filtros">
                 <a href="">Todas (5)</a>
                 <a href="">Pendientes (2)</a>
                 <a href="">Completadas (3)</a>
             </div>
+
             <div class="tareas">
                 <h1>Todas las tareas</h1>
                 <ul id="lista-tareas">
                     <li id="informacion1">
-                        <div  class="informacion">
+                        <div class="informacion">
                             <div class="container-input">
-                                <img src="../img/controlar.png" width="10px" height="10px">
+                                <img src="../img/controlar.png" width="10" height="10">
                                 <input id="input-informacion1" type="checkbox">
                             </div>
                             <div class="texto">
@@ -146,13 +209,14 @@
                             </div>
                         </div>
                     </li>
+
                     <li id="informacion2">
-                        <div  class="informacion">
+                        <div class="informacion">
                             <div class="container-input">
-                                <img src="../img/controlar.png" width="10px" height="10px">
+                                <img src="../img/controlar.png" width="10" height="10">
                                 <input id="input-informacion2" type="checkbox">
                             </div>
-                            <div  class="texto">
+                            <div class="texto">
                                 <h1 id="texto2">Reunión con el equipo</h1>
                                 <h2>Revisar el progreso del proyecto</h2>
                                 <p><img src="../img/calendario.png" width="15" height="15"> 2024-01-18</p>
@@ -168,13 +232,14 @@
                             </div>
                         </div>
                     </li>
+
                     <li id="informacion3">
                         <div class="informacion">
                             <div class="container-input">
-                                <img src="../img/controlar.png" width="10px" height="10px">
+                                <img src="../img/controlar.png" width="10" height="10">
                                 <input id="input-informacion3" type="checkbox">
                             </div>
-                            <div  class="texto">
+                            <div class="texto">
                                 <h1 id="texto3">Ejercicio matutino</h1>
                                 <h2>30 minutos de cardio</h2>
                                 <p><img src="../img/calendario.png" width="15" height="15"> 2024-01-17</p>
@@ -194,9 +259,14 @@
             </div>
         </div>
     </main>
+
     <footer>
-        <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
+        <!-- Pie de página -->
     </footer>
+
+    <!-- Scripts -->
     <script src="../js/funcionalidadMenu.js"></script>
+    <script src="../js/agregarRegistro.js"></script>
+    <script src="../js/input-check.js"></script>
 </body>
 </html>

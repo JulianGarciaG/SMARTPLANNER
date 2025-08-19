@@ -353,7 +353,7 @@ main {
 }
 
 /* Tarjetas individuales */
-.categoria {
+.resumen-categorias .categoria {
   flex: 1 1 200px;
   background: #fff;
   padding: 1rem 1.5rem;
@@ -374,25 +374,26 @@ main {
     color: #1e293b;
 }
 
-.categoria:hover {
+.resumen-categorias .categoria:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.categoria h1{
+.resumen-categorias .categoria h1{
     font-size: 0.8rem;
     color: #1f2937;
     margin: 0;
     font-weight: bold;
+    font-weight: 400;
     
 }
-.categoria h3 {
+.resumen-categorias .categoria h3 {
   font-size: 0.9rem;
   color: #1f2937;
   margin: 0;
   font-weight: normal;
 }
 
-.categoria p {
+.resumen-categorias .categoria p {
   font-size: 1.2rem;
   font-weight: bold;
   margin-top: 0.5rem;

@@ -8,8 +8,47 @@
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/body.css">
     <link rel="stylesheet" href="../styles/calendario.css">
+    <link rel="stylesheet" href="../styles/agregar-evento.css">
 </head>
 <body>
+    <!-- formulario para agregar un nuevo evento -->
+        <div id="agregarEvento" class="agregar-evento">
+        <div id="containerEvento" class="container-evento">
+            <img id="cerrarMenuEventos" src="../img/cerrar.png" width="20" height="20">
+            <h1>Nuevo Evento</h1>
+
+            <div class="titulo">
+                <h1>Titulo *</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Título del evento">
+                </div>
+            </div>
+
+            <div class="descripcion">
+                <h1>Descripción</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Descripción del evento">
+                </div>
+            </div>
+            <div class="fecha-limite">
+                <h1>Fecha límite</h1>
+                <div class="espacio-input">
+                    <input type="date-time-local" placeholder="Fecha y hora del evento">
+                </div>
+            </div>   
+            <div class="descripcion">
+                <h1>Lugar</h1>
+                <div class="espacio-input">
+                    <input type="text"placeholder="Lugar del evento">
+                </div>
+            </div>
+            <div class="botones-evento">
+                <button id="cancelarEvento" class="cancelar-evento">Cancelar</button>
+                <button id="crearEvento" class="crear-evento">Crear</button>
+            </div>
+        </div>
+    </div>
+    <!-- header de la pagina -->
     <header>
         <nav>
             <div class="izquierda-nav">
@@ -32,6 +71,7 @@
             </div>
         </nav>
     </header>
+    <!-- barra de navegacion lateral -->
     <main>
         <div id="menu" class="navegacion">
             <ul>
@@ -66,11 +106,13 @@
             <a href="registro.html">Registro</a>
             <a href="recuperarContraseña.html">Recuperar Contraseña</a>
         </div>
-        
+        <!-- contenido de la pagina -->
         <div class="container">
             <div class="calendar-container">
             <h1>Calendario</h1>
-            <button id="crearEventoBtn">+ Nuevo Evento</button>
+            <button id="abrirMenuEvento">
+                    <img src="../img/plus-pequeno.png" width="20" height="20"> Nueva evento
+            </button>
             </div>
             <div id="calendar"></div>
             <h1></h1>
@@ -110,5 +152,6 @@
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
     </footer>
     <script src="../js/funcionalidadMenu.js"></script>
+    <script src="../js/agregarEventos.js"></script>
 </body>
 </html>
