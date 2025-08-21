@@ -33,7 +33,7 @@
             <div class="fecha-limite">
                 <h1>Fecha límite</h1>
                 <div class="espacio-input">
-                    <input type="date-time-local" placeholder="Fecha y hora del evento">
+                    <input type="datetime-local" placeholder="Fecha y hora del evento">
                 </div>
             </div>   
             <div class="descripcion">
@@ -109,11 +109,22 @@
         <!-- contenido de la pagina -->
         <div class="container">
             <div class="calendar-container">
-            <h1>Calendario</h1>
-            <button id="abrirMenuEvento">
-                    <img src="../img/plus-pequeno.png" width="20" height="20"> Nueva evento
-            </button>
+            <h1>Mis Calendario</h1>
+                <button id="abrirMenuEvento"><img src="../img/plus-pequeno.png" width="20" height="20"> Nueva evento</button>
             </div>
+
+            <div class="selec-calendario">
+                <h2>Selecciona un calendario para ver: </h2>
+                <div class="elep-calendario">
+                    <h2>Personal</h2>
+                    <h3>Eventos</h3>
+                </div>
+                <div> </div>
+                <div> </div>
+                <div> </div>
+                <div> </div>
+            </div>
+            
             <div id="calendar"></div>
             <h1></h1>
             <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>

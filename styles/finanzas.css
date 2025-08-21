@@ -435,3 +435,90 @@ main {
   color: #16a34a;
 }
 
+.containerButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.containerButtons #abrirPlanAhorro {
+  background: white;
+  color: black;
+  border: 2px solid transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  box-shadow: 0 0 12px rgb(0, 0, 0, 0.2);
+}
+
+.containerButtons #abrirPlanAhorro svg {
+  color: black;
+}
+
+.containerButtons #abrirPlanAhorro:hover {
+    background: #f59e0b;
+    color: white;
+}
+
+.containerButtons #abrirPlanAhorro:hover svg {
+    color: white;
+}
+
+.progresoAhorro {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background-color: #f9fcff;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.progresoAhorro h1 {
+    font-size: 24px;
+}
+
+.progresoAhorro .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.progresoAhorro .stat h1 {
+    margin-bottom: 0;
+    font-size: 18px;
+}
+
+.progresoAhorro progress {
+    width: 100%;
+    height: 12px;
+    border-radius: 20px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #d9eaf1; /* Color más suave para el fondo */
+    overflow: hidden;
+    border: none;
+    margin-top: 0;
+}
+
+/* WebKit (Chrome, Safari) */
+.progresoAhorro progress::-webkit-progress-bar {
+    background-color: #d9eaf1;
+    border-radius: 20px;
+}
+
+.progresoAhorro progress::-webkit-progress-value {
+    background: linear-gradient(90deg, rgba(52, 210, 153, 1) 0%, rgba(96, 165, 250, 1) 100%);
+    border-radius: 20px;
+}
+
+/* Firefox */
+.progresoAhorro progress::-moz-progress-bar {
+    background: linear-gradient(90deg, rgba(52, 210, 153, 1) 0%, rgba(96, 165, 250, 1) 100%);
+    border-radius: 20px;
+}

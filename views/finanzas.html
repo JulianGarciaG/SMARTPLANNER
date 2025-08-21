@@ -133,7 +133,10 @@
         <div class="container">
             <div class="titulo">
                 <h1>Finanzas Personales</h1>
-                <button id="abrirMenuFinanza"><img src="../img/plus-pequeno.png" width="20" height="20">Nueva transaccion</button>
+                <div class="containerButtons">
+                    <button id="abrirMenuFinanza"><img src="../img/plus-pequeno.png" width="20" height="20">Nueva transaccion</button>
+                    <button id="abrirPlanAhorro" id="abrirMenuEvento"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank h-4 w-4 mr-2"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2h0V5z"></path><path d="M2 9v1c0 1.1.9 2 2 2h1"></path><path d="M16 11h0"></path></svg> Nueva Plan de Ahorro</button>
+                </div>
             </div>
             <div class="resumen">
                 <ul>
@@ -278,7 +281,34 @@
                     <h3>Entretenimiento <span class="badge badge-rosa">1</span></h3>
                     <p class="red">$120.00</p>
                 </div>
+            </div>
+            <div class="progresoAhorro">
+                <h1>Progerso de Ahorros</h1>
+                <div class="stat">
+                    <div class="titulo">
+                        <h1>Vacaciones</h1>
+                        <p>$2300 / $5000</p>
+                    </div>
+                    <progress value="0.46"></progress>
+                    <p>46.0% completado</p>
                 </div>
+                <div class="stat">
+                    <div class="titulo">
+                        <h1>Fondo de emergencia</h1>
+                        <p>$6500 / $10000</p>
+                    </div>
+                    <progress value="0.65"></progress>
+                    <p>65.0% completado</p>
+                </div>
+                <div class="stat">
+                    <div class="titulo">
+                        <h1>Nuevo auto</h1>
+                        <p>$8900 / $25000</p>
+                    </div>
+                    <progress value="0.356"></progress>
+                    <p>35.6% completado</p>
+                </div>
+            </div>
     </main>
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartPlanner - Estadisticas</title>
+    <title>SMART PLANNER - ESTADISTICAS</title>
     <link rel="icon" href="../img/Logo.png" />
     <link rel="stylesheet" href="../styles/estadisticas.css  " />
     <link rel="stylesheet" href="../styles/header.css">
@@ -217,101 +217,121 @@
             </div>
         </div>
 
-         <div class="card">
-    <h2>Hábitos</h2>
-    <div class="habit">
-      <span>Ejercicio diario</span>
-      <div class="habit-progress">
-        <div class="habit-bar green" style="width: 70%"></div>
-      </div>
-      <small>7 días • 23/30</small>
-    </div>
+          <div class="seguimientosHabitosContent">
+            <h1>Seguimiento de hábitos</h1>
 
-    <div class="habit">
-      <span>Meditación</span>
-      <div class="habit-progress">
-        <div class="habit-bar green" style="width: 90%"></div>
-      </div>
-      <small>5 días • 36/14</small>
-    </div>
+            <div class="contentProgress">
+                <div class="textProgress">
+                    <h2>Ejercicio Matutino</h2>
+                    <div class="diasHabitos">
+                        <h3>7 dias</h3>
+                    </div>
+                    <p>23/30</p>
+                </div>
+                <progress value="0.30"></progress>
+            </div>
 
-    <div class="habit">
-      <span>Beber agua</span>
-      <div class="habit-progress">
-        <div class="habit-bar green" style="width: 100%"></div>
-      </div>
-      <small>15 días • 50/30</small>
-    </div>
-  </div>
+            <div class="contentProgress">
+                <div class="textProgress">
+                    <h2>Lectura diaria</h2>
+                    <div class="diasHabitos">
+                        <h3>12 días</h3>
+                    </div>
+                    <p>57/21</p>
+                </div>
+                <progress value="0.30"></progress>
+            </div>
 
-  
+            <div class="contentProgress">
+                <div class="textProgress">
+                    <h2>Meditación</h2>
+                    <div class="diasHabitos">
+                        <h3>5 días</h3>
+                    </div>
+                    <p>36/14</p>
+                </div>
+                <progress value="0.50"></progress>
+            </div>
 
-          <!-- Rendimiento por categoría -->
-  <div class="card">
-    <h2>Rendimiento por categoría</h2>
-<div class="grid">
-<div class="category">
-<div class="category-header">
-<span>Trabajo <b>1/2</b></span>
-</div>
-<div class="progress-container">
-<div class="progress">
-<div class="progress-bar blue" style="width: 50%"></div>
-</div>
-<span class="progress-label">50%</span>
-</div>
-</div>
-
-
-<div class="category">
-<div class="category-header">
-<span>Personal <b>0/2</b></span>
-</div>
-<div class="progress-container">
-<div class="progress">
-<div class="progress-bar gray" style="width: 0%"></div>
-</div>
-<span class="progress-label">0%</span>
-</div>
-</div>
-
-
-<div class="category">
-<div class="category-header">
-<span>Salud <b>1/1</b></span>
-</div>
-<div class="progress-container">
-<div class="progress">
-<div class="progress-bar purple" style="width: 100%"></div>
-</div>
-<span class="progress-label">100%</span>
-</div>
-</div>
-
-
-<div class="category">
-<div class="category-header">
-<span>Finanzas <b>1/5</b></span>
-</div>
-<div class="progress-container">
-<div class="progress">
-<div class="progress-bar orange" style="width: 20%"></div>
-</div>
-<span class="progress-label">20%</span>
-</div>
-</div>
-</div>
-
-</div>
-  <!-- Distribución de gastos -->
-  <div class="card">
-    <h2>Distribución de gastos</h2>
-    <div class="expenses">
-      <div class="expense"><span>Entretenimiento</span><span>$120.00</span></div>
-      <div class="expense"><span>Alimentación</span><span>$85.50</span></div>
-      <div class="expense"><span>Transporte</span><span>$45.00</span></div>
-    </div>
-  </div>
+            <div class="contentProgress">
+                <div class="textProgress">
+                    <h2>Beber agua</h2>
+                    <div class="diasHabitos">
+                        <h3>15 días</h3>
+                    </div>
+                    <p>50/30</p>
+                </div>
+                <progress value="100"></progress>
+            </div>
+        </div>
+        <div class="rendimientos">
+            <h1>Rendimiento por categoría</h1>
+            <ul>
+                <li>
+                    <div class="header">
+                        <span class="descripcion">Trabajo</span>
+                        <span class="cantidad">1/2</span>
+                    </div>
+                    <div class="progress-wrapper">
+                        <progress value="50" max="100"></progress>
+                        <span class="progreso">50%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="header">
+                        <span class="descripcion">Salud</span>
+                        <span class="cantidad">1/1</span>
+                    </div>
+                    <div class="progress-wrapper">
+                        <progress value="100" max="100"></progress>
+                        <span class="progreso">100%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="header">
+                        <span class="descripcion">Personal</span>
+                        <span class="cantidad">0/2</span>
+                    </div>
+                    <div class="progress-wrapper">
+                        <progress value="0" max="100"></progress>
+                        <span class="progreso">0%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="header">
+                        <span class="descripcion">Finanzas</span>
+                        <span class="cantidad">1/5</span>
+                    </div>
+                    <div class="progress-wrapper">
+                        <progress value="20" max="100"></progress>
+                        <span class="progreso">20%</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="distribucion">
+            <h1>Distribicion de gastos</h1>
+            <ul>
+                <li>
+                    <div class="distribucion">
+                        <span class="descripcion">Entretenimiento</span>
+                    </div>
+                    <span class="valor">$120.00</span>
+                </li>
+                <li>
+                    <div class="distribucion">
+                        <span class="descripcion">Alimentación</span>
+                    </div>
+                    <span class="valor">$85.00</span>
+                </li>
+                <li>
+                    <div class="distribucion">
+                        <span class="descripcion">Transporte</span>
+                    </div>
+                    <span class="valor">$45.00</span>
+                </li>
+            </ul>
+        </div>
     </main>
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
