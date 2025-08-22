@@ -105,6 +105,28 @@ body {
 }
 
 /* Input con ícono */
+/* Inputs */
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  background-color: #f9fafb;
+}
+
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+  border-color: #3b82f6;
+  background-color: #fff;
+}
+
+/* Icono en los inputs */
+
+
+/* Contenedor relativo para input con ícono */
 .input-icon {
   position: relative;
   display: flex;
@@ -121,18 +143,29 @@ body {
 
 .input-icon input {
   width: 100%;
-  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
-  border: 2px solid #10b981;
+  padding: 0.75rem 2.5rem 0.75rem 2.5rem; 
+  border: 1px solid #d1d5db;
   border-radius: 0.5rem;
   font-size: 1rem;
-  background-color: #f9fafb;
   outline: none;
+  background-color: #f9fafb;
 }
 
-.input-icon input:focus {
-  background-color: white;
-  border-color: #0ea769;
+.toggle-password {
+  position: absolute;
+  right: 3rem;   
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .submit-button {
   display: flex;
   justify-content: center;

@@ -209,6 +209,14 @@ background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 25
     background-color: #34D399;
 }
 
+.punto.morado {
+    background-color: #9934d3;
+}
+
+.punto.naranja {
+    background-color: rgb(255, 146, 83);
+}
+
 .punto.azul {
     background-color: #60A5FA;
 }
@@ -239,6 +247,7 @@ background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 25
     border-radius: 12px;
     gap: 10px;
 }
+
 
 /* Estilo para los checkboxes */
 .lista-tareas li input[type="checkbox"] {

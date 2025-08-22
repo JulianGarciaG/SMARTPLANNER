@@ -165,24 +165,74 @@
             <a href="registro.html">Registro</a>
             <a href="recuperarContraseña.html">Recuperar Contraseña</a>
         </div>
-        <!-- contenido de la pagina -->
-        <div class="container">
-            <div class="calendar-container">
-            <h1>Mis Calendario</h1>
-                <button id="abrirMenuEvento"><img src="../img/plus-pequeno.png" width="20" height="20"> Nueva evento</button>
-            </div>
+<!-- contenido de la pagina -->
+<div class="container">
+    <div class="calendar-container">
+        <h1>Mis Calendario</h1>
+        <button id="abrirMenuEvento"><img src="../img/plus-pequeno.png" width="20" height="20"> Nueva Calendario</button>
+    </div>
 
-            <div class="selec-calendario">
-                <h2>Selecciona un calendario para ver: </h2>
-                <div class="elep-calendario">
-                    <h2>Personal</h2>
-                    <h3>Eventos</h3>
-                </div>
-                <div> </div>
-                <div> </div>
-                <div> </div>
-                <div> </div>
+    <div class="selec-calendario">
+        <h2>Selecciona un calendario para ver:</h2>
+
+        <!-- Ejemplo de un calendario -->
+         <div class="calendarios">
+        <div class="elep-calendario">
+            <span class="punto azul"></span>
+            <h2>Personal</h2>
+            <h3>Eventos</h3>
+            <h4>12 eventos</h4>
+            <div class="contenedor-botones">
+            <button class="boton toggle-ocultar">Ocultar</button>
+            <button class="boton toggle-compartir">Compartir</button>
             </div>
+        </div>
+        <div class="elep-calendario">
+            <span class="punto verde"></span>
+            <h2>Trabajo</h2>
+            <h3>Eventos</h3>
+            <h4>8 eventos</h4>
+            <div class="contenedor-botones">
+            <button class="boton toggle-ocultar">Ocultar</button>
+            <button class="boton toggle-compartir">Compartir</button>
+            </div>
+        </div>
+
+        <div class="elep-calendario">
+            <span class="punto morado"></span>
+            <h2>Familia</h2>
+            <h3>Eventos</h3>
+            <h4>5 eventos</h4>
+            <div class="contenedor-botones">
+            <button class="boton toggle-ocultar">Ocultar</button>
+            <button class="boton toggle-compartir">Compartir</button>
+            </div>
+        </div>
+
+        <div class="elep-calendario">
+            <span class="punto naranja"></span>
+            <h2>Proyectos</h2>
+            <h3>Eventos</h3>
+            <h4>15 eventos</h4>
+            <div class="contenedor-botones">
+            <button class="boton toggle-ocultar">Ocultar</button>
+            <button class="boton toggle-compartir">Compartir</button>
+            </div>
+        </div>
+         <div class="elep-calendario">
+            <span class="punto naranja"></span>
+            <h2>Proyectos</h2>
+            <h3>Eventos</h3>
+            <h4>15 eventos</h4>
+            <div class="contenedor-botones">
+            <button class="boton toggle-ocultar">Ocultar</button>
+            <button class="boton toggle-compartir">Compartir</button>
+            </div>
+        </div>
+        </div>
+    </div>
+            <button id="abrirMenuEvento"><img src="../img/plus-pequeno.png" width="20" height="20"> Nueva evento</button>
+            
             
             <div id="calendar"></div>
             <h1></h1>
@@ -215,7 +265,7 @@
             <span class="etiqueta salud">Salud</span>
             </li>
         </ul>
-    </div>
+</div>
         
     </main>
     <footer>
@@ -224,5 +274,6 @@
     <script src="../js/funcionalidadMenu.js"></script>
     <script src="../js/agregarEventos.js"></script>
     <script src="../js/notificaciones.js"></script>
+    <script src="../js/modificarBotones.js"></script>
 </body>
 </html>

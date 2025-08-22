@@ -496,7 +496,7 @@ body{
 }
 
 
-/*  Juan Jose */
+/* Rnedimientos por categoria */
 
 .rendimientos {
     background-color: white;
@@ -505,84 +505,16 @@ body{
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);
     margin-bottom: 5%;
 }
-.rendimientos .header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-}
-
-.rendimientos .progress-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 .rendimientos h1{
-    background: #f7f9fc;
-    padding: 1rem;
-    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 500;
+}
+.bar-container{
+    display: flex;
+    background-color: red;
 }
 
-.rendimientos ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  
-}
-
-.rendimientos li {
-  background: #f7f9fc;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: background 0.3s ease;
-  width: 50%;
-}
-.rendimientos .descripcion {
-    font-weight: bold;
-    color: #1e293b;
-    font-size: 1rem;
-}
-.rendimientos .cantidad {
-    justify-content: right;
-    font-weight: 500;
-    color: #1e293b;
-    font-size: 1rem;
-}
-
-.rendimientos .progreso{
-    font-weight: bold;
-    color: #1e293b;
-    font-size: 1rem;
-}
-
-.rendimientos progress {
-    flex: 1;
-    height: 10px;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-progress::-webkit-progress-bar {
-    background-color: #e5e7eb;
-    border-radius: 5px;
-}
-
-progress::-webkit-progress-value {
-    background-color: #3b82f6; /* Azul por defecto */
-    border-radius: 5px;
-}
-
-progress::-moz-progress-bar {
-    background-color: #3b82f6;
-    border-radius: 5px;
-}
-
+/*Distribucion de Gastos*/
 .distribucion{
     background-color: white;
     border-radius: 15px;
