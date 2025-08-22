@@ -129,9 +129,6 @@ footer{
   justify-content: center;
 }
 
-.toggle-password:hover {
-  color: #10b981;
-}
 
 /* Errores */
 .error-text {
