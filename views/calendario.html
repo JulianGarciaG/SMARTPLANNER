@@ -10,8 +10,70 @@
     <link rel="stylesheet" href="../styles/calendario.css">
     <link rel="stylesheet" href="../styles/agregar-evento.css">
     <link rel="stylesheet" href="../styles/notificaciones.css">
+    <link rel="stylesheet" href="../styles/agregar-calendario.css">
 </head>
 <body>
+    <!-- formulario para agrega un nuevo calendario-->
+        <div id="agregarCalendario" class="agregar-calendario">
+        <div id="containerCalendario" class="container-calendario">
+            <img id="cerrarMenuCalendarios" src="../img/cerrar.png" width="20" height="20">
+            <h1>Nuevo Calendario</h1>
+            <h2></h2>
+            <div class="titulo">
+                <h1>Nombre</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Nombre del calendario">
+                </div>
+            </div>
+
+            <div class="descripcion">
+                <h1>Color del calendario</h1>
+                <div class="color-options">
+                <span class="color-circle" data-color="#34a853" style="background:#34a853"></span>
+                <span class="color-circle" data-color="#4285f4" style="background:#4285f4"></span>
+                <span class="color-circle" data-color="#fbbc05" style="background:#fbbc05"></span>
+                <span class="color-circle" data-color="#ea4335" style="background:#ea4335"></span>
+                <span class="color-circle" data-color="#a142f4" style="background:#a142f4"></span>
+                <span class="color-circle" data-color="#f442ce" style="background:#f442ce"></span>
+                </div>
+            <!-- Input oculto para guardar el valor del color elegido -->
+            <input type="hidden" id="colorSeleccionado" name="colorSeleccionado">
+            </div>
+
+            <div class="fecha-limite">
+                <h1>Tipo Calendario</h1>
+                <select id="tipoCalendario">
+                    <option value="personal">Personal</option>
+                    <option value="trabajo">Trabajo</option>
+                    <option value="otro">Otro</option> 
+                </select>
+            </div>   
+            <div >
+                <div class="compartir-opcion">
+                <input type="checkbox" id="compartirCalendario" />
+                <h2>Compartir calendario</h2>
+                </div>
+                </div>
+
+                <div id="permisosCompartir" style="display:none; margin-top:10px;">
+                <p>Permisos de compartir</p>
+                <div class="opciones-permisos">
+                    <input type="radio" name="permiso" value="soloVer" checked />
+                    <p>Solo ver - Otros pueden ver eventos pero no editarlos</p>
+                </div>
+                <div class="opciones-permisos">
+                    <input type="radio" name="permiso" value="verEditar" />
+                    <p>Ver y editar - Otros pueden agregar y editar eventos</p>
+                </div>
+            </div>
+
+            <div class="botones-calendario">
+                <button id="cancelarCalendario" class="cancelar-calendario">Cancelar</button>
+                <button id="crearCalendario" class="crear-calendario">Crear</button>
+            </div>
+        </div>
+    </div>
+
     <!-- formulario para agregar un nuevo evento -->
         <div id="agregarEvento" class="agregar-evento">
         <div id="containerEvento" class="container-evento">
@@ -169,7 +231,7 @@
 <div class="container">
     <div class="calendar-container">
         <h1>Mis Calendario</h1>
-        <button id="abrirMenuEvento"><img src="../img/plus-pequeno.png" width="20" height="20"> Nueva Calendario</button>
+        <button id="abrirMenuCalendario"><img src="../img/plus-pequeno.png" width="20" height="20"> Nuevo Calendario</button>
     </div>
 
     <div class="selec-calendario">
@@ -185,6 +247,7 @@
             <div class="contenedor-botones">
             <button class="boton toggle-ocultar">Ocultar</button>
             <button class="boton toggle-compartir">Compartir</button>
+            <span class="badge-compartido">Compartido</span>
             </div>
         </div>
         <div class="elep-calendario">
@@ -195,6 +258,7 @@
             <div class="contenedor-botones">
             <button class="boton toggle-ocultar">Ocultar</button>
             <button class="boton toggle-compartir">Compartir</button>
+            <span class="badge-compartido">Compartido</span>
             </div>
         </div>
 
@@ -206,6 +270,7 @@
             <div class="contenedor-botones">
             <button class="boton toggle-ocultar">Ocultar</button>
             <button class="boton toggle-compartir">Compartir</button>
+            <span class="badge-compartido">Compartido</span>
             </div>
         </div>
 
@@ -217,6 +282,7 @@
             <div class="contenedor-botones">
             <button class="boton toggle-ocultar">Ocultar</button>
             <button class="boton toggle-compartir">Compartir</button>
+            <span class="badge-compartido">Compartido</span>
             </div>
         </div>
          <div class="elep-calendario">
@@ -227,12 +293,16 @@
             <div class="contenedor-botones">
             <button class="boton toggle-ocultar">Ocultar</button>
             <button class="boton toggle-compartir">Compartir</button>
+            <span class="badge-compartido">Compartido</span>
             </div>
         </div>
         </div>
     </div>
+    <div class="vistas-calendario">
+        <span class="punto azul"></span>
+        <h1>Viendo: Trabajo</h1>
             <button id="abrirMenuEvento"><img src="../img/plus-pequeno.png" width="20" height="20"> Nueva evento</button>
-            
+    </div>    
             
             <div id="calendar"></div>
             <h1></h1>
@@ -275,5 +345,6 @@
     <script src="../js/agregarEventos.js"></script>
     <script src="../js/notificaciones.js"></script>
     <script src="../js/modificarBotones.js"></script>
+    <script src="../js/agregarCalendario.js"></script>
 </body>
 </html>
