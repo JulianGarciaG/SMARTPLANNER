@@ -22,6 +22,7 @@ main {
 }
 
 .container .titulo {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,6 +52,7 @@ main {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    width: 100%;
 }
 
 .resumen h1 {
@@ -62,13 +64,14 @@ main {
     display: flex;
     list-style: none;
     gap: 20px;
+    width: 100%;
 }
 
 .resumen li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 400px;
+    width: 60%;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
