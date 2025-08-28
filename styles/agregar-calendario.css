@@ -70,7 +70,6 @@
     justify-content: left;
     background-color: #f8fdfd;
     padding: 10px;
-    padding-top: 18px;
     border: 2px solid #a7f3d0;
     border-radius: 10px;
     margin-top: 5px;
@@ -189,14 +188,14 @@ label {
   display: block;
 }
 
-input[type="text"], select {
+/* input[type="text"], select {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 6px;
-}
+} */
 
 .color-options {
   display: flex;

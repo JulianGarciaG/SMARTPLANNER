@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMART PLANNER - PERFIL</title>
+  <link rel="stylesheet" href="../styles/perfil.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="back" onclick="history.back()">←</button>
+    <div class="top-title">
+      <h1>Mi Perfil</h1>
+      <h4>Gestiona tu información de perfil</h4>
+    </div>
+  </header>
+
+  <main class="profile-wrap">
+    <!-- LADO IZQUIERDO PERFIL -->
+    <aside class="profile-card">
+      <div class="avatar">JH 
+        <button class="avatar-btn" title="Cambiar foto">✎</button>
+      </div>
+      <h2 class="name">Luis Fernando</h2>
+      <div class="email">luisfer@gigq.com</div>
+    </aside>
+
+    <!-- LADO DERECHO INFORMACIÓN -->
+    <section class="info-card">
+      <div class="info-header">
+        <h3>Información Personal</h3>
+      </div>
+      <form id="profileForm" class="info-form">
+        <div class="grid-2">
+          <label> Nombre Completo
+            <input type="text" id="nombre" value="Juan Diego Hurtado" readonly>
+          </label>
+          <label> Correo Electrónico
+            <input type="email" id="correo" value="juan.hurtado@gigq.com" readonly>
+          </label>
+        </div>
+        <div class="grid-2">
+          <label> Nueva Contraseña
+            <input type="password" id="nuevaPass" placeholder="Ingresa tu nueva contraseña">
+          </label>
+          <label> Confirmar Contraseña
+            <input type="password" id="confirmPass" placeholder="Confirma tu nueva contraseña">
+          </label>
+        </div>
+
+        <!-- Requisitos contraseña -->
+        <div class="password-rules">
+          <h4>Requisitos de la contraseña:</h4>
+          <ul>
+            <li>Mínimo 8 caracteres</li>
+            <li>Al menos una letra mayúscula</li>
+            <li>Al menos un número</li>
+            <li>Al menos un carácter especial</li>
+          </ul>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="logoutBtn" class="btn secondary">Cerrar Sesión</button>
+          <button type="submit" class="btn primary">Guardar Cambios</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

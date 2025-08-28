@@ -10,8 +10,113 @@
     <link rel="stylesheet" href="../styles/finanzas.css">
     <link rel="stylesheet" href="../styles/agregar-finanza.css">
     <link rel="stylesheet" href="../styles/notificaciones.css">
+    <link rel="stylesheet" href="../styles/agregar-plan-ahorro.css">
 </head>
 <body>
+    <!-- FORMULARIO PARA AGREGA PLAN DE AHORROS -->
+     <div id="agregarPlanAhorro" class="agregar-planAhorro">
+    <div id="containerPlanAhorro" class="container-planAhorro">
+        <img id="cerrarMenuPlanAhorro" src="../img/cerrar.png" width="20" height="20">
+        <h1>Nuevo Plan de Ahorro</h1>
+        <div class="Descripción">
+            <h1>Nombre del plan</h1>
+            <div class="espacio-input">
+                <input type="text" placeholder="ej. Vacaciones, Auto nuevo">
+            </div>
+        </div>
+
+        <div class="Descripción">
+            <h1>Meta de Ahorro</h1>
+            <div class="espacio-input">
+                <input type="number" placeholder="0.00">
+            </div>
+        </div>
+
+        <div class="Descripción">
+            <h1>Cantidad Actual</h1>
+            <div class="espacio-input">
+                <input type="number" placeholder="0.00">
+            </div>
+        </div>
+
+        <div class="fecha-limite">
+            <h1>Fecha Límite</h1>
+            <div class="espacio-input">
+                <input type="date">
+            </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="botones-planAhorro">
+            <button id="cancelarPlanAhorro" class="Cancelar-planAhorro">Cancelar</button>
+            <button id="guardarPlanAhorro" class="Crear-planAhorro">Guardar</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Menu de finanzas para agregar una nueva finanza -->
+    <div id="agregarFinanza" class="agregar-finanza">
+        <div id="containerFinanza" class="container-finanza">
+            <img id="cerrarMenuFinanzas" src="../img/cerrar.png" width="20" height="20">
+            <h1>Nueva transaccion</h1>
+            <div class="titulo">
+                <h1>Tipo</h1>
+    
+                    <select name="Tipo" id="Tipo">
+                        <option value="ingreso">Ingreso</option>
+                        <option value="egreso">Egreso</option>
+                    </select>
+            </div>
+            <div class="Descripción">
+                <h1>Descripción</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Descripción de la transaccion">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Monto</h1>
+                <div class="espacio-input">
+                    <input type="number" placeholder="0.00">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Categoria</h1>
+                <Select>
+                    <option value="">Seleccionar Categoria</option>
+                    <option value="">Alimentación</option>
+                    <option value="">Transporte</option>
+                    <option value="">Entretenimiento</option>
+                    <option value="">Salud</option>
+                    <option value="">Hogar</option>
+                    <option value="">Educacion</option>
+                    <option value="">Otros</option>
+                </Select>
+            </div>
+            <div class="fecha-limite">
+                <h1>Fecha</h1>
+                <div class="espacio-input">
+                    <input type="date">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Asociar a Tarea(opcional)</h1>
+                <Select>
+                    <option value="">Sin asociar</option>
+                    <option value="">Comprar ingredientes para la cena</option>
+                    <option value="">Reunion con el equipo</option>
+                    <option value="">Entretenimiento</option>
+                    <option value="">Ejercicio matutino</option>
+                    <option value="">Revisar propuestas de proyecto</option>
+                    <option value="">Llamar al dentista</option>
+                </Select>
+            </div>
+            <div class="botones-finanza">
+                <button id="cancelarFinanza" class="Cancelar-finanza">Cancelar</button>
+                <button id="crearFinanza" class="Crear-finanza">Crear</button>
+            </div>
+        </div>
+    </div>
+    <!-- header de la pagina -->
     <header>
         <nav>
             <div class="izquierda-nav">
@@ -88,72 +193,12 @@
                         </div>
                     </div>
                 </div>
-                <img class="usuario" src="" width="40" height="40" border-radius="100%">
+                <a href="../views/perfil.html">
+                    <img class="usuario" src="../img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;">
+                </a>
             </div>
         </nav>
     </header>
-    <!-- Menu de finanzas para agregar una nueva finanza -->
-    <div id="agregarFinanza" class="agregar-finanza">
-        <div id="containerFinanza" class="container-finanza">
-            <img id="cerrarMenuFinanzas" src="../img/cerrar.png" width="20" height="20">
-            <h1>Nueva transaccion</h1>
-            <div class="titulo">
-                <h1>Tipo</h1>
-    
-                    <select name="Tipo" id="Tipo">
-                        <option value="ingreso">Ingreso</option>
-                        <option value="egreso">Egreso</option>
-                    </select>
-            </div>
-            <div class="Descripción">
-                <h1>Descripción</h1>
-                <div class="espacio-input">
-                    <input type="text" placeholder="Descripción de la transaccion">
-                </div>
-            </div>
-            <div class="Descripción">
-                <h1>Monto</h1>
-                <div class="espacio-input">
-                    <input type="number" placeholder="0.00">
-                </div>
-            </div>
-            <div class="Descripción">
-                <h1>Categoria</h1>
-                <Select>
-                    <option value="">Seleccionar Categoria</option>
-                    <option value="">Alimentación</option>
-                    <option value="">Transporte</option>
-                    <option value="">Entretenimiento</option>
-                    <option value="">Salud</option>
-                    <option value="">Hogar</option>
-                    <option value="">Educacion</option>
-                    <option value="">Otros</option>
-                </Select>
-            </div>
-            <div class="fecha-limite">
-                <h1>Fecha</h1>
-                <div class="espacio-input">
-                    <input type="date">
-                </div>
-            </div>
-            <div class="Descripción">
-                <h1>Asociar a Tarea(opcional)</h1>
-                <Select>
-                    <option value="">Sin asociar</option>
-                    <option value="">Comprar ingredientes para la cena</option>
-                    <option value="">Reunion con el equipo</option>
-                    <option value="">Entretenimiento</option>
-                    <option value="">Ejercicio matutino</option>
-                    <option value="">Revisar propuestas de proyecto</option>
-                    <option value="">Llamar al dentista</option>
-                </Select>
-            </div>
-            <div class="botones-finanza">
-                <button id="cancelarFinanza" class="Cancelar-finanza">Cancelar</button>
-                <button id="crearFinanza" class="Crear-finanza">Crear</button>
-            </div>
-        </div>
-    </div>
     <!-- Menu de navegación lateral -->
     <main>
         <div id="menu" class="navegacion">
@@ -194,7 +239,7 @@
                 <h1>Finanzas Personales</h1>
                 <div class="containerButtons">
                     <button id="abrirMenuFinanza"><img src="../img/plus-pequeno.png" width="20" height="20">Nueva transaccion</button>
-                    <button id="abrirPlanAhorro" id="abrirMenuEvento"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank h-4 w-4 mr-2"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2h0V5z"></path><path d="M2 9v1c0 1.1.9 2 2 2h1"></path><path d="M16 11h0"></path></svg> Nueva Plan de Ahorro</button>
+                    <button id="abrirMenuPlanAhorro"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank h-4 w-4 mr-2"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2h0V5z"></path><path d="M2 9v1c0 1.1.9 2 2 2h1"></path><path d="M16 11h0"></path></svg> Nueva Plan de Ahorro</button>
                 </div>
             </div>
             <div class="resumen">
@@ -342,7 +387,7 @@
                 </div>
             </div>
             <div class="progresoAhorro">
-                <h1>Progerso de Ahorros</h1>
+                <h1>Progreso de Ahorros</h1>
                 <div class="stat">
                     <div class="titulo">
                         <h1>Vacaciones</h1>
@@ -375,6 +420,7 @@
     <script src="../js/funcionalidadMenu.js"></script>
     <script src="../js/agregarFinanza.js"></script>
     <script src="../js/notificaciones.js"></script>
+    <script src="../js/agregarPlanAhorro.js"></script>
 </body>
         
 </body>

@@ -87,7 +87,9 @@
                         </div>
                     </div>
                 </div>
-                <img class="usuario" src="" width="40" height="40" border-radius="100%">
+                <a href="../views/perfil.html">
+                    <img class="usuario" src="../img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;">
+                </a>
             </div>
         </nav>
     </header>
@@ -326,40 +328,73 @@
 
 
         <div class="rendimientos">
-            <h1>Rendimiento por categoría</h1>
+        <h1>Rendimiento por categoría</h1>
+        <div class="categorias-grid">
+
+            <!-- Trabajo -->
             <div class="bar-container">
                 <div class="content">
-                    <h1>Trabajo</h1>
+                    <h2>Trabajo</h2>
                     <p>1/2</p>
                 </div>
                 <div class="bar-progress">
-                    <progress value="50"></progress>
-                    <p>50%</p> 
+                    <progress value="50" max="100" class="trabajo"></progress>
+                    <p>50%</p>
                 </div>
-
             </div>
+
+            <!-- Personal -->
+            <div class="bar-container">
+                <div class="content">
+                    <h2>Personal</h2>
+                    <p>0/2</p>
+                </div>
+                <div class="bar-progress">
+                    <progress value="0" max="100" class="personal"></progress>
+                    <p>0%</p>
+                </div>
+            </div>
+
+            <!-- Salud -->
+            <div class="bar-container">
+                <div class="content">
+                    <h2>Salud</h2>
+                    <p>1/1</p>
+                </div>
+                <div class="bar-progress">
+                    <progress value="100" max="100" class="salud"></progress>
+                    <p>100%</p>
+                </div>
+            </div>
+
+            <!-- Finanzas -->
+            <div class="bar-container">
+                <div class="content">
+                    <h2>Finanzas</h2>
+                    <p>1/5</p>
+                </div>
+                <div class="bar-progress">
+                    <progress value="20" max="100" class="finanzas"></progress>
+                    <p>20%</p>
+                </div>
+            </div>
+
+        </div>
         </div>
 
-
-        <div class="distribucion">
-            <h1>Distribicion de gastos</h1>
+        <div class="distribucion-gastos">
+            <h1>Distribución de gastos</h1> 
             <ul>
                 <li>
-                    <div class="distribucion">
-                        <span class="descripcion">Entretenimiento</span>
-                    </div>
+                    <span class="descripcion">Entretenimiento</span>
                     <span class="valor">$120.00</span>
                 </li>
                 <li>
-                    <div class="distribucion">
-                        <span class="descripcion">Alimentación</span>
-                    </div>
-                    <span class="valor">$85.00</span>
+                    <span class="descripcion">Alimentación</span>
+                    <span class="valor">$85.50</span>
                 </li>
                 <li>
-                    <div class="distribucion">
-                        <span class="descripcion">Transporte</span>
-                    </div>
+                    <span class="descripcion">Transporte</span>
                     <span class="valor">$45.00</span>
                 </li>
             </ul>

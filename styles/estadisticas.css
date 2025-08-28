@@ -475,7 +475,7 @@ body{
 
 .contentProgress progress{
     width: 97%;
-    height: 12px;
+    height: 8px;
     border-radius: 10px;
     overflow: hidden; /* para que el degradado siga el radio */
     -webkit-appearance: none;
@@ -496,39 +496,122 @@ body{
 }
 
 
-/* Rnedimientos por categoria */
-
+/* Rendimientos por categoría */
 .rendimientos {
-    background-color: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);
-    margin-bottom: 5%;
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 5%;
 }
-.rendimientos h1{
-    font-weight: 600;
-    font-size: 500;
+
+.rendimientos h1 {
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: #111827;
+  margin-bottom: 20px;
 }
-.bar-container{
-    display: flex;
-    background-color: red;
+
+/* Grid 2 columnas */
+.categorias-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
 }
+
+.bar-container {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.content p {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.bar-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bar-progress progress {
+  flex: 1;
+  height: 10px;
+  border-radius: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Fondo */
+.bar-progress progress::-webkit-progress-bar {
+  background-color: #e5e7eb;
+  border-radius: 10px;
+}
+
+/* Barras de colores */
+progress.trabajo::-webkit-progress-value {
+  background: #3b82f6; /* azul */
+  border-radius: 10px;
+}
+progress.personal::-webkit-progress-value {
+  background: #a268ff; /* morado */
+  border-radius: 10px;
+}
+progress.salud::-webkit-progress-value {
+  background: #a759f0; /* violeta */
+  border-radius: 10px;
+}
+progress.finanzas::-webkit-progress-value {
+  background: #f97316; /* naranja */
+  border-radius: 10px;
+}
+
+.bar-progress p {
+  font-size: 0.85rem;
+  color: #374151;
+  min-width: 40px;
+  text-align: right;
+}
+
+
+
 
 /*Distribucion de Gastos*/
-.distribucion{
-    background-color: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);
+.distribucion-gastos {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);
 }
-.distribucion h1{
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 20px;
-    margin-left: 20px;
+
+.distribucion-gastos h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 20px;
+  margin-left: 8px;
 }
-.distribucion ul {
+
+/* Lista */
+.distribucion-gastos ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -537,9 +620,9 @@ body{
   gap: 0.75rem;
 }
 
-.distribucion li {
+.distribucion-gastos li {
   background: #f7f9fc;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1rem;
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
@@ -547,24 +630,19 @@ body{
   transition: background 0.3s ease;
 }
 
-.distribucion li:hover {
+.distribucion-gastos li:hover {
   background: #eef2f7;
 }
 
-.distribucion .descripcion {
-    font-weight: 500;
-    color: #1e293b;
-    font-size: 1rem;
+/* Texto */
+.distribucion-gastos .descripcion {
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 1rem;
 }
 
-.distribucion .valor {
-    font-weight: bold;
-    color: #1e293b;
-    font-size: 1rem;
-}
-
-li .distribucion {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.distribucion-gastos .valor {
+  font-weight: bold;
+  color: #1e293b;
+  font-size: 1rem;
 }
