@@ -7,18 +7,18 @@
 }
 
 body{
+  width: 100%;
   background: #EFFBF9;
   background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 251, 1) 100%);
 }
 
 main {
+  width: 100%;
   display: flex;
 }
 
 /* ----------------------------------------------------------------------------------------------- */
-*{
-    font-family: 'Poppins', 'Segoe UI', sans-serif;
-}
+
 h1{
     font-size: 27px;
     color: #1e293b;
@@ -381,4 +381,169 @@ h1{
   height: 80%;
   margin-right: 10px;
 }
+
+.container {
+  width: 100%;
+}
+
+/* ---------------------------- RESPONSIVE DESIGN ---------------------------- */
+@media (max-width: 1024px) {
+  .calendar-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .selec-calendario .elep-calendario {
+    width: 100%;
+  }
+
+  .calendarios {
+    flex-direction: column;
+  }
+
+  .vistas-calendario {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .vistas-calendario button {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  .calendar-container {
+    padding: 0 10px;
+  }
+
+  .fc-toolbar-title {
+    font-size: 20px;
+  }
+
+  .fc-daygrid-day-frame {
+    padding: 2px;
+  }
+
+  #crearEventoBtn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .selec-calendario {
+    padding: 15px;
+  }
+
+  .selec-calendario h2 {
+    font-size: 16px;
+  }
+
+  .selec-calendario .elep-calendario h2,
+  .selec-calendario .elep-calendario h3,
+  .selec-calendario .elep-calendario h4 {
+    font-size: 13px;
+  }
+
+  .boton {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .vistas-calendario h1 {
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+
+  .eventos li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fc-toolbar-title {
+    font-size: 18px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  #crearEventoBtn {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .eventos .descripcion {
+    font-size: 0.85rem;
+  }
+
+  .eventos .hora {
+    font-size: 0.85rem;
+  }
+
+  .etiqueta {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .punto {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Estilos base para todos los tamaños */
+.container {
+  width: 100%;
+  padding: 0 20px;
+  margin: 50px auto;
+}
+
+.calendarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.elep-calendario {
+  flex: 1 1 220px;
+  max-width: 280px;
+  min-width: 200px;
+}
+
+/* Media Query para pantallas mayores a 1440px */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    padding: 0 40px;
+  }
+
+  main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .calendarios {
+    max-width: 100%;
+    justify-content: flex-start;
+  }
+
+  .elep-calendario {
+    flex: 1 1 250px;
+    max-width: 280px;
+    min-width: 220px;
+  }
+}
+
 
