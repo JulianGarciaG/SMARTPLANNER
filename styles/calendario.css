@@ -437,6 +437,7 @@ h1{
 
   .selec-calendario {
     padding: 15px;
+    overflow: auto;
   }
 
   .selec-calendario h2 {
@@ -499,51 +500,5 @@ h1{
   }
 }
 
-/* Estilos base para todos los tamaños */
-.container {
-  width: 100%;
-  padding: 0 20px;
-  margin: 50px auto;
-}
-
-.calendarios {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: flex-start;
-}
-
-.elep-calendario {
-  flex: 1 1 220px;
-  max-width: 280px;
-  min-width: 200px;
-}
-
-/* Media Query para pantallas mayores a 1440px */
-@media (min-width: 1440px) {
-  .container {
-    max-width: 1440px;
-    padding: 0 40px;
-  }
-
-  main {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .calendarios {
-    max-width: 100%;
-    justify-content: flex-start;
-  }
-
-  .elep-calendario {
-    flex: 1 1 250px;
-    max-width: 280px;
-    min-width: 220px;
-  }
-}
 
 

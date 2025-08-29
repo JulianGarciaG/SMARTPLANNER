@@ -195,6 +195,51 @@ body {
   background: #f13131;
   color: #fff;
 }
+
+/* Diseño de ojo en la contraseña */
+.input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon input {
+  width: 100%;
+  padding-right: 40px; /* espacio para el ícono */
+  box-sizing: border-box;
+}
+
+.input-icon svg {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #666;
+  transition: 0.3s;
+}
+
+.input-icon svg:hover {
+  color: #000;
+}
+
+.toggle-password {
+  position: absolute;      /* Se posiciona dentro del input */
+  right: 0.5rem;             /* Se ubica al extremo derecho del input */
+  top: 56%;                /* Centrado vertical */
+  transform: translateY(-50%); /* Corrección para centrar el ícono */
+  
+  background: none;        /* Sin fondo */
+  border: none;            /* Sin borde */
+  cursor: pointer;         /* Cursor tipo "mano" */
+  padding: 0;              /* Quita espacios extra */
+  
+  color: #6b7280;          /* Color gris del ícono */
+  display: flex;           /* Para alinear el SVG */
+  align-items: center;
+  justify-content: center;
+}
+
+
+
 /* responsive */
 @media (max-width: 768px) {
   .profile-wrap {

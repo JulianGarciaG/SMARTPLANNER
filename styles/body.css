@@ -191,11 +191,69 @@ body{
 
 .evento {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
     background-color: rgb(230, 255, 229);
     padding: 18px 14px;
     border-radius: 12px;
+    position: relative;
+}
+
+.evento .detalles {
+    position: absolute;
+    right: 5%;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.evento .opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 10px;
+    height: auto;
+    width: 120px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.evento .opciones ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    justify-content: center;
+    gap: 10px;
+}
+
+.evento .opciones ul li {
+    display: flex;
+    align-items: center;
+}
+
+.evento .opciones li button {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    color: #555;
+    font-size: 14px;
+}
+
+.evento .opciones li button:hover {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.evento .opciones li .red {
+    color: red;
+}
+
+
+.evento .detalles:hover {
+    background-color: #E5E7EB;
+    border-radius: 20%;
+    cursor: pointer;
 }
 
 .punto {
@@ -205,7 +263,6 @@ body{
     margin-top: 6px;
     flex-shrink: 0;
 }
-
 .punto.verde {
     background-color: #34D399;
 }
