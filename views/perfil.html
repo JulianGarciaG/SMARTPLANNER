@@ -8,7 +8,7 @@
 </head>
 <body>
   <header class="topbar">
-    <button class="back" onclick="history.back()">←</button>
+    <button class="back" onclick="history.back()"><img src="../img/flecha-volver.png" width="25" height="25" alt=""></button>
     <div class="top-title">
       <h1>Mi Perfil</h1>
       <h4>Gestiona tu información de perfil</h4>
@@ -17,13 +17,13 @@
 
   <main class="profile-wrap">
     <!-- LADO IZQUIERDO PERFIL -->
-    <aside class="profile-card">
-      <div class="avatar">JH 
+    <div class="profile-card">
+      <div class="avatar"> <img src="/img/usuario-perfil.png" alt=""> 
         <button class="avatar-btn" title="Cambiar foto">✎</button>
       </div>
-      <h2 class="name">Luis Fernando</h2>
-      <div class="email">luisfer@gigq.com</div>
-    </aside>
+      <h2 class="name">Name User</h2>
+      <div class="email">nameuser@example.com</div>
+    </div>
 
     <!-- LADO DERECHO INFORMACIÓN -->
     <section class="info-card">
@@ -33,11 +33,11 @@
       <form id="profileForm" class="info-form">
         <div class="grid-2">
           <label> Nombre Completo
-            <input type="text" id="nombre" value="Juan Diego Hurtado" readonly>
+            <input type="text" id="nombre" value="" placeholder="Ingresa tu nuevo nombre de usuario" required>
           </label>
-          <label> Correo Electrónico
-            <input type="email" id="correo" value="juan.hurtado@gigq.com" readonly>
-          </label>
+          <!-- <label> Correo Electrónico
+            <input type="email" id="correo" value=""  readonly>
+          </label> -->
         </div>
         <div class="grid-2">
           <label> Nueva Contraseña
