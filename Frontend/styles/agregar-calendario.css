@@ -1,0 +1,307 @@
+.agregar-calendario {
+    display: none;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    background-color: #00000064;
+    width: 100%;
+    height: 100%;
+    z-index: 999; 
+    justify-content: center;
+    align-items: center;
+}
+
+.agregar-calendario .container-calendario {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fbfbfb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    height: auto; 
+    max-height: 105vh; 
+    overflow-y: auto; 
+}
+
+.agregar-calendario .container-calendario img {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.container-calendario h1 {
+    font-size: 25px;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.agregar-calendario .titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.agregar-calendario .check-box {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+.agregar-calendario .titulo h1, 
+.descripcion h1, 
+.prioridad h1, 
+.fecha-limite h1, 
+.check-box h1, 
+.asociar-gasto h1 {
+    font-size: 16px;
+    color: #1e293b;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.agregar-calendario .espacio-input {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: #f8fdfd;
+    padding: 10px;
+    border: 2px solid #a7f3d0;
+    border-radius: 10px;
+    margin-top: 5px;
+    height: 40px;
+    
+}
+
+.agregar-calendario select {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #a7f3d0;
+    background-color: #f8fdfd;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #545454;
+    font-size: 13px;
+}
+
+.agregar-calendario .asociar-gasto {
+    display: none;
+    flex-direction: column;
+}
+
+.agregar-calendario .espacio-input input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: bold;
+    color: #545454;
+    font-size: 13px;
+}
+
+.agregar-calendario .botones-calendario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.agregar-calendario .botones-calendario button {
+    height: 40px;
+    width: 50%;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.agregar-calendario .botones-calendario .cancelar-calendario {
+    background-color: white;
+}
+
+.agregar-calendario .botones-calendario .crear-calendario {
+    background: linear-gradient(90deg, rgba(52, 210, 153, 1) 0%, rgba(96, 165, 250, 1) 100%);
+    color: white;
+    border: none;
+}
+
+#abrirMenuCalendario {
+    background: linear-gradient(90deg, rgba(52, 210, 153, 1) 0%, rgba(96, 165, 250, 1) 100%);
+    border-radius: 12px;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 16px;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+#abrirMenuCalendario:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.subtext {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: 500;
+  margin-top: 10px;
+  display: block;
+}
+
+/* input[type="text"], select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+} */
+
+.color-options {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.color-circle {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.color-circle:hover {
+  border: 2px solid #333;
+}
+
+.compartir {
+  margin: 15px 0;
+}
+
+.permisos {
+  margin-left: 20px;
+  font-size: 14px;
+  color: #444;
+}
+
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-cancelar {
+  background: #f0f0f0;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-crear {
+  background: #00aaff;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cerrar {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.compartir-opcion {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 0%;
+}
+.compartir-opcion h2{
+    font-size: 14px;
+    color: #1e293b;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+#permisosCompartir p{
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.opciones-permisos{
+    display: flex;
+    gap: 5px;
+}
+.opciones-permisos input{
+   color: green;
+   margin-bottom: 6px;
+}
+
+.color-options {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease, border 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.color-circle:hover {
+  transform: scale(1.1);
+}
+
+.color-circle.selected {
+  border: 3px solid #fff; 
+  box-shadow: 0 0 5px rgba(0,0,0,0.4);
+}

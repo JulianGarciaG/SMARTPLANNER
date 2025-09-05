@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART PLANNER - CALENDARIO</title>
+    <link rel="icon" href="../img/Logo.png">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/body.css">
+    <link rel="stylesheet" href="../styles/calendario.css">
+    <link rel="stylesheet" href="../styles/agregar-evento.css">
+    <link rel="stylesheet" href="../styles/notificaciones.css">
+    <link rel="stylesheet" href="../styles/agregar-calendario.css">
+</head>
+<body>
+    <!-- formulario para agrega un nuevo calendario-->
+        <div id="agregarCalendario" class="agregar-calendario">
+        <div id="containerCalendario" class="container-calendario">
+            <img id="cerrarMenuCalendarios" src="../img/cerrar.png" width="20" height="20">
+            <h1>Nuevo Calendario</h1>
+            <h2></h2>
+            <div class="titulo">
+                <h1>Nombre</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Nombre del calendario">
+                </div>
+            </div>
+
+            <div class="descripcion">
+                <h1>Color del calendario</h1>
+                <div class="color-options">
+                <span class="color-circle" data-color="#34a853" style="background:#34a853"></span>
+                <span class="color-circle" data-color="#4285f4" style="background:#4285f4"></span>
+                <span class="color-circle" data-color="#fbbc05" style="background:#fbbc05"></span>
+                <span class="color-circle" data-color="#ea4335" style="background:#ea4335"></span>
+                <span class="color-circle" data-color="#a142f4" style="background:#a142f4"></span>
+                <span class="color-circle" data-color="#f442ce" style="background:#f442ce"></span>
+                </div>
+            <!-- Input oculto para guardar el valor del color elegido -->
+            <input type="hidden" id="colorSeleccionado" name="colorSeleccionado">
+            </div>
+
+            <div class="fecha-limite">
+                <h1>Tipo Calendario</h1>
+                <select id="tipoCalendario">
+                    <option value="personal">Personal</option>
+                    <option value="trabajo">Trabajo</option>
+                    <option value="otro">Otro</option> 
+                </select>
+            </div>   
+            <div >
+                <div class="compartir-opcion">
+                <input type="checkbox" id="compartirCalendario" />
+                <h2>Compartir calendario</h2>
+                </div>
+                </div>
+
+                <div id="permisosCompartir" style="display:none; margin-top:10px;">
+                <p>Permisos de compartir</p>
+                <div class="opciones-permisos">
+                    <input type="radio" name="permiso" value="soloVer" checked />
+                    <p>Solo ver - Otros pueden ver eventos pero no editarlos</p>
+                </div>
+                <div class="opciones-permisos">
+                    <input type="radio" name="permiso" value="verEditar" />
+                    <p>Ver y editar - Otros pueden agregar y editar eventos</p>
+                </div>
+            </div>
+
+            <div class="botones-calendario">
+                <button id="cancelarCalendario" class="cancelar-calendario">Cancelar</button>
+                <button id="crearCalendario" class="crear-calendario">Crear</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- formulario para agregar un nuevo evento -->
+        <div id="agregarEvento" class="agregar-evento">
+        <div id="containerEvento" class="container-evento">
+            <img id="cerrarMenuEventos" src="../img/cerrar.png" width="20" height="20">
+            <h1>Nuevo Evento</h1>
+
+            <div class="titulo">
+                <h1>Titulo *</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Título del evento">
+                </div>
+            </div>
+
+            <div class="descripcion">
+                <h1>Descripción</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Descripción del evento">
+                </div>
+            </div>
+            <div class="fecha-limite">
+                <h1>Fecha inicio</h1>
+                <div class="espacio-input">
+                    <input type="datetime-local" placeholder="Fecha y hora del evento">
+                </div>
+            </div>
+            <div class="fecha-limite">
+                <h1>Fecha fin</h1>
+                <div class="espacio-input">
+                    <input type="datetime-local" placeholder="Fecha y hora del evento">
+                </div>
+            </div>    
+            <div class="descripcion">
+                <h1>Lugar</h1>
+                <div class="espacio-input">
+                    <input type="text"placeholder="Lugar del evento">
+                </div>
+            </div>
+            <div class="botones-evento">
+                <button id="cancelarEvento" class="cancelar-evento">Cancelar</button>
+                <button id="crearEvento" class="crear-evento">Crear</button>
+            </div>
+        </div>
+    </div>
+    <!-- header de la pagina -->
+    <header>
+        <nav>
+            <div class="izquierda-nav">
+                <div id="abrir-menu" class="menu">
+                    <img  class="abrir-menu" src="../img/menu.png" width="18" height="18">
+                </div>
+                <img class="logo-nav" src="../img/Logo.png" width="40" height="40">
+                <div class="nombre-descripcion">
+                    <h1>SMART PLANNER</h1>
+                    <p>Organiza tu tiempo y dinero</p>
+                </div>
+            </div>
+            <div class="derecha-nav">
+                <div class="buscador-nav">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    <input type="text" placeholder="Buscar tareas, eventos...">
+                </div>
+                <div class="panel-notificaciones">
+                    <img id="abrirNotificacion" src="../img/notificacion.png" width="18" height="18">
+                    <div id="notificaciones" class="notificaciones">
+                        <h1>Notificaciones</h1>
+                        <div class="tabla-notificaciones">
+                            <div class="notificacion nueva">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/cheque.png" width="18" height="18">
+                                    <h1 class="estado">Tarea vencida</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                            <div class="notificacion nueva">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/calendario-verde.png" width="18" height="18">
+                                    <h1 class="estado">Proximo evento</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                            <div class="notificacion leida">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/dolar-morado.png" width="18" height="18">
+                                    <h1 class="estado">Tarea vencida</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                            <div class="notificacion leida">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/cheque.png" width="18" height="18">
+                                    <h1 class="estado">Tarea vencida</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                        </div>
+                        <div class="marcar-leido">
+                            <p id="marcarLeida2">Marcar todas como leídas</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="../views/perfil.html">
+                    <img class="usuario" src="../img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;">
+                </a>
+            </div>
+        </nav>
+    </header>
+    <!-- barra de navegacion lateral -->
+    <main>
+        <div id="menu" class="navegacion">
+            <ul>
+                <li>
+                    <img src="../img/estadistica.png" width="20" height="20">
+                    <a href="../index.html"><p>Dashboard</p></a>
+                </li>
+                <li class="active">
+                    <img src="../img/calendario-blanco.png" width="20" height="20">
+                    <a href="calendario.html"><p>Calendario</p></a>
+                </li>
+                <li>
+                    <img src="../img/check.png" width="20" height="20">
+                    <a href="tareas.html"><p>Tareas</p></a>
+                </li>
+                <li>
+                    <img src="../img/dolar.png" width="20" height="20">
+                    <a href="finanzas.html"><p>Finanzas</p></a>
+                </li>
+                <li>
+                    <img src="../img/estadistica.png" width="20" height="20">
+                    <a href="estadisticas.html"><p>Estadísticas</p></a>
+                </li>
+
+            </ul>
+            <div class="tips">
+                <h1><img src="../img/bombilla.png" width="20" height="20">Tip del día</h1>
+                <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
+            </div>
+            
+            <a href="login.html">Login</a>
+            <a href="registro.html">Registro</a>
+            <a href="recuperarContraseña.html">Recuperar Contraseña</a>
+        </div>
+<!-- contenido de la pagina -->
+<div class="container">
+    <div class="calendar-container">
+        <h1>Mis Calendario</h1>
+        <button id="abrirMenuCalendario"><img src="../img/plus-pequeno.png" width="20" height="20"> Nuevo Calendario</button>
+    </div>
+
+    <div class="selec-calendario">
+        <h2>Selecciona un calendario para ver:</h2>
+
+        <!-- Ejemplo de un calendario -->
+         <div class="calendarios">
+        <div class="elep-calendario">
+            <span class="punto azul"></span>
+            <h2>Personal</h2>
+            <h3>Eventos</h3>
+            <h4>12 eventos</h4>
+            <div class="contenedor-botones">
+            <button class="boton toggle-ocultar">Ocultar</button>
+            <button class="boton toggle-compartir">Compartir</button>
+            <span class="badge-compartido">Compartido</span>
+            </div>
+        </div>
+        <div class="elep-calendario">
+            <span class="punto verde"></span>
+            <h2>Trabajo</h2>
+            <h3>Eventos</h3>
+            <h4>8 eventos</h4>
+            <div class="contenedor-botones">
+            <button class="boton toggle-ocultar">Ocultar</button>
+            <button class="boton toggle-compartir">Compartir</button>
+            <span class="badge-compartido">Compartido</span>
+            </div>
+        </div>
+
+        <div class="elep-calendario">
+            <span class="punto morado"></span>
+            <h2>Familia</h2>
+            <h3>Eventos</h3>
+            <h4>5 eventos</h4>
+            <div class="contenedor-botones">
+            <button class="boton toggle-ocultar">Ocultar</button>
+            <button class="boton toggle-compartir">Compartir</button>
+            <span class="badge-compartido">Compartido</span>
+            </div>
+        </div>
+
+        <div class="elep-calendario">
+            <span class="punto naranja"></span>
+            <h2>Proyectos</h2>
+            <h3>Eventos</h3>
+            <h4>15 eventos</h4>
+            <div class="contenedor-botones">
+            <button class="boton toggle-ocultar">Ocultar</button>
+            <button class="boton toggle-compartir">Compartir</button>
+            <span class="badge-compartido">Compartido</span>
+            </div>
+        </div>
+         <div class="elep-calendario">
+            <span class="punto naranja"></span>
+            <h2>Proyectos</h2>
+            <h3>Eventos</h3>
+            <h4>15 eventos</h4>
+            <div class="contenedor-botones">
+            <button class="boton toggle-ocultar">Ocultar</button>
+            <button class="boton toggle-compartir">Compartir</button>
+            <span class="badge-compartido">Compartido</span>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="vistas-calendario">
+        <span class="punto azul"></span>
+        <h1>Viendo: Trabajo</h1>
+            <button id="abrirMenuEvento"><img src="../img/plus-pequeno.png" width="20" height="20"> Nueva evento</button>
+    </div>    
+            
+            <div id="calendar"></div>
+            <h1></h1>
+            <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+            <script src="../js/calendario.js"></script>
+        <div class="eventos">
+            <h1>Eventos de hoy</h1>
+                <ul>
+            <li>
+            <div class="evento">
+                <span class="hora">10:00</span>
+                <span class="descripcion">Reunion de equipo</span>
+            </div>
+            <span class="etiqueta trabajo">Trabajo</span>
+            </li>
+
+            <li>
+            <div class="evento">
+                <span class="hora">15:00</span>
+                <span class="descripcion">Cita medica</span>
+            </div>
+            <span class="etiqueta personal">Personal</span>
+            </li>
+
+            <li>
+            <div class="evento">
+                <span class="hora">18:00</span>
+                <span class="descripcion">Gimnasio</span>
+            </div>
+            <span class="etiqueta salud">Salud</span>
+            </li>
+        </ul>
+</div>
+        
+    </main>
+    <footer>
+        <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
+    </footer>
+    <script src="../js/funcionalidadMenu.js"></script>
+    <script src="../js/agregarEventos.js"></script>
+    <script src="../js/notificaciones.js"></script>
+    <script src="../js/modificarBotones.js"></script>
+    <script src="../js/agregarCalendario.js"></script>
+</body>
+</html>

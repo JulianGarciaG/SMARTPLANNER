@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART PLANNER - ESTADISTICAS</title>
+    <link rel="icon" href="../img/Logo.png" />
+    <link rel="stylesheet" href="../styles/estadisticas.css  " />
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/body.css">
+    <link rel="stylesheet" href="../styles/notificaciones.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="izquierda-nav">
+                <div id="abrir-menu" class="menu">
+                    <img  class="abrir-menu" src="../img/menu.png" width="18" height="18">
+                </div>
+                <img class="logo-nav" src="../img/Logo.png" width="40" height="40">
+                <div class="nombre-descripcion">
+                    <h1>SMART PLANNER</h1>
+                    <p>Organiza tu tiempo y dinero</p>
+                </div>
+            </div>
+            <div class="derecha-nav">
+                <div class="buscador-nav">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    <input type="text" placeholder="Buscar tareas, eventos...">
+                </div>
+                <div class="panel-notificaciones">
+                    <img id="abrirNotificacion" src="../img/notificacion.png" width="18" height="18">
+                    <div id="notificaciones" class="notificaciones">
+                        <h1>Notificaciones</h1>
+                        <div class="tabla-notificaciones">
+                            <div class="notificacion nueva">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/cheque.png" width="18" height="18">
+                                    <h1 class="estado">Tarea vencida</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                            <div class="notificacion nueva">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/calendario-verde.png" width="18" height="18">
+                                    <h1 class="estado">Proximo evento</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                            <div class="notificacion leida">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/dolar-morado.png" width="18" height="18">
+                                    <h1 class="estado">Tarea vencida</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                            <div class="notificacion leida">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/cheque.png" width="18" height="18">
+                                    <h1 class="estado">Tarea vencida</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                        </div>
+                        <div class="marcar-leido">
+                            <p id="marcarLeida2">Marcar todas como leídas</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="../views/perfil.html">
+                    <img class="usuario" src="../img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;">
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="menu" class="navegacion">
+            <ul>
+                <li>
+                    <img src="../img/estadistica.png" width="20" height="20">
+                    <a href="../index.html"><p>Dashboard</p></a>
+                </li>
+                <li>
+                    <img src="../img/calendario.png" width="20" height="20">
+                    <a href="calendario.html"><p>Calendario</p></a>
+                </li>
+                <li>
+                    <img src="../img/check.png" width="20" height="20">
+                    <a href="tareas.html"><p>Tareas</p></a>
+                </li>
+                <li>
+                    <img src="../img/dolar.png" width="20" height="20">
+                    <a href="finanzas.html"><p>Finanzas</p></a>
+                </li>
+                <li class="active">
+                    <img src="../img/estadistica-blanco.png" width="20" height="20">
+                    <a href="estadisticas.html"><p>Estadísticas</p></a>
+                </li>
+            </ul>
+            <div class="tips">
+                <h1><img src="../img/bombilla.png" width="20" height="20">Tip del día</h1>
+                <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
+            </div>
+            <a href="login.html">Login</a>
+            <a href="registro.html">Registro</a>
+            <a href="recuperarContraseña.html">Recuperar Contraseña</a>
+        </div>
+        <div class="container">
+        <div class="encabezado-dashboard">
+            <h2>Estadísticas y Progreso</h2>
+    </div>
+    <div>
+        <div class="tarjetas-resumen">
+            <div class="tarjeta tareas-completadas">
+                <div class="texto">
+                    <p class="titulo">Productividad</p>
+                    <p class="cantidad">40 %</p>
+                </div>
+                <div class="etiqueta-tareas">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-white"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg></div>
+                </div>
+                <div class="tarjeta tiempo-enfocado">
+                    <div class="texto">
+                        <p class="titulo">Tiempo Atacante</p>
+                        <p class="cantidad">6,2 horas</p>
+                    </div>
+                    <div class="etiqueta-tiempo"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock h-6 w-6 text-white"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                </div>
+                <div class="tarjeta gastos">
+                    <div class="texto">
+                        <p class="titulo">Balance</p>
+                        <p class="cantidad">$ 2549.50</p>
+                    </div>
+                    <div class="etiqueta-gastos"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target h-6 w-6 text-white"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> </div>
+                </div>
+                <div class="tarjeta balance">
+                    <div class="texto">
+                        <p class="titulo">Tareas completadas</p>
+                        <p class="cantidad">2 / 5</p>
+                    </div>
+                    <div class="etiqueta-balance"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-6 w-6 text-white"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg></div>
+                </div>
+            </div>
+            <div class="content-progresoSemanal">
+                <div class="Progreso-semanal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-5 w-5 text-emerald-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+                    <h1>Progreso Semanal</h1>
+                </div>
+                <div class="dias">
+                    <div class="apartado-dias"> 
+                        <div class="numero-tareasEspecial">
+                            <h3>8</h3>
+                        </div>
+                        <div class="progreso">
+                            <h2>Lun</h2>
+                            <p> 8/10 </p>
+                        </div>
+                    </div>
+                    <div class="apartado-dias"> 
+                        <div class="numero-tareas">
+                            <h3>6</h3>
+                        </div>
+                        <div class="progreso">
+                            <h2>Mar</h2>
+                            <p> 6/8 </p>
+                        </div>
+                    </div>
+                    <div class="apartado-dias">
+                        <div class="numero-tareas">
+                            <h3>9</h3>
+                        </div>
+                        <div class="progreso">
+                            <h2>Mier</h2>
+                            <p> 9/12 </p>
+                        </div>    
+                    </div>
+                    <div class="apartado-dias">
+                        <div class="numero-tareas">
+                            <h3>7</h3>
+                        </div>
+                        <div class="progreso">
+                            <h2>Jue</h2>
+                            <p> 7/9 </p>
+                        </div>
+                        
+                    </div>
+                    <div class="apartado-dias">
+                        <div class="numero-tareas">
+                            <h3>5</h3>
+                        </div>
+                        <div class="progreso">
+                            <h2>Vier</h2>
+                            <p> 5/7 </p>
+                        </div>
+                        
+                    </div>
+                    <div class="apartado-dias">
+                        <div class="numero-tareas">
+                            <h3>3</h3>
+                        </div>
+                        <div class="progreso">
+                            <h2>Sab</h2>
+                            <p> 3/4 </p>
+                        </div>    
+                    </div>
+                    <div class="apartado-dias">
+                        <div class="numero-tareas">
+                            <h3>2</h3>
+                        </div>
+                        <div class="progreso">
+                            <h2>Dom</h2>
+                            <p> 2/3 </p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contentComun-progresos">
+            <div class="progresoTareas">
+                <h1>Progreso de tareas</h1>
+                <div class= "tareasCompletadas">
+                    <h2>Completadas</h2>
+                    <p>3</p>
+                </div>
+                <div class="tareasPendientes">
+                    <h2>Pendientes</h2>
+                    <p>3</p>
+                </div>
+                <div class="progresoGeneral">
+
+                    <h2>Progreso general</h2>
+                    <p>40%</p>
+
+                </div>
+                <progress value="0.4"></progress>
+            </div>
+
+            <div class="resumenFinanciero">
+                <h1>Resumen Financiero</h1>   
+                <div class="rfIngresos">
+                    <h2>Ingresos</h2>
+                    <p><strong>$2800.00</strong></p>
+                </div>
+                <div class="rfGastos">
+                    <h2>Gastos</h2>
+                    <p><strong>$250.50</strong></p>
+                </div>
+                <div class="rfBalance">
+                    <h2>Balance</h2>
+                    <p><strong>$2549.50</strong></p>
+                </div>
+                
+                <div class="comparacionMensual">
+                    
+                </div>
+            </div>
+        </div>
+
+          <div class="seguimientosHabitosContent">
+            <h1>Seguimiento de hábitos</h1>
+
+            <div class="contentProgress">
+                <div class="textProgress">
+                    <h2>Ejercicio Matutino</h2>
+                    <div class="diasHabitos">
+                        <h3>7 dias</h3>
+                    </div>
+                    <p>23/30</p>
+                </div>
+                <progress value="0.30"></progress>
+            </div>
+
+            <div class="contentProgress">
+                <div class="textProgress">
+                    <h2>Lectura diaria</h2>
+                    <div class="diasHabitos">
+                        <h3>12 días</h3>
+                    </div>
+                    <p>57/21</p>
+                </div>
+                <progress value="0.30"></progress>
+            </div>
+
+            <div class="contentProgress">
+                <div class="textProgress">
+                    <h2>Meditación</h2>
+                    <div class="diasHabitos">
+                        <h3>5 días</h3>
+                    </div>
+                    <p>36/14</p>
+                </div>
+                <progress value="0.50"></progress>
+            </div>
+
+            <div class="contentProgress">
+                <div class="textProgress">
+                    <h2>Beber agua</h2>
+                    <div class="diasHabitos">
+                        <h3>15 días</h3>
+                    </div>
+                    <p>50/30</p>
+                </div>
+                <progress value="100"></progress>
+            </div>
+        </div>
+
+
+        <div class="rendimientos">
+        <h1>Rendimiento por categoría</h1>
+        <div class="categorias-grid">
+
+            <!-- Trabajo -->
+            <div class="bar-container">
+                <div class="content">
+                    <h2>Trabajo</h2>
+                    <p>1/2</p>
+                </div>
+                <div class="bar-progress">
+                    <progress value="50" max="100" class="trabajo"></progress>
+                    <p>50%</p>
+                </div>
+            </div>
+
+            <!-- Personal -->
+            <div class="bar-container">
+                <div class="content">
+                    <h2>Personal</h2>
+                    <p>0/2</p>
+                </div>
+                <div class="bar-progress">
+                    <progress value="0" max="100" class="personal"></progress>
+                    <p>0%</p>
+                </div>
+            </div>
+
+            <!-- Salud -->
+            <div class="bar-container">
+                <div class="content">
+                    <h2>Salud</h2>
+                    <p>1/1</p>
+                </div>
+                <div class="bar-progress">
+                    <progress value="100" max="100" class="salud"></progress>
+                    <p>100%</p>
+                </div>
+            </div>
+
+            <!-- Finanzas -->
+            <div class="bar-container">
+                <div class="content">
+                    <h2>Finanzas</h2>
+                    <p>1/5</p>
+                </div>
+                <div class="bar-progress">
+                    <progress value="20" max="100" class="finanzas"></progress>
+                    <p>20%</p>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+        <div class="distribucion-gastos">
+            <h1>Distribución de gastos</h1> 
+            <ul>
+                <li>
+                    <span class="descripcion">Entretenimiento</span>
+                    <span class="valor">$120.00</span>
+                </li>
+                <li>
+                    <span class="descripcion">Alimentación</span>
+                    <span class="valor">$85.50</span>
+                </li>
+                <li>
+                    <span class="descripcion">Transporte</span>
+                    <span class="valor">$45.00</span>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
+    </footer>
+    <script src="../js/funcionalidadMenu.js"></script>
+    <script src="../js/notificaciones.js"></script>
+</body>
+</body>
+</html>

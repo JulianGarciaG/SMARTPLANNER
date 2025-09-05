@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMART PLANNER - PERFIL</title>
+  <link rel="stylesheet" href="../styles/perfil.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="back" onclick="history.back()"><img src="../img/flecha-volver.png" width="25" height="25" alt=""></button>
+    <div class="top-title">
+      <h1>Mi Perfil</h1>
+      <h4>Gestiona tu información de perfil</h4>
+    </div>
+  </header>
+
+  <main class="profile-wrap">
+    <!-- LADO IZQUIERDO PERFIL -->
+    <div class="profile-card">
+      <div class="avatar"> <img src="/img/usuario-perfil.png" alt=""> 
+        <button class="avatar-btn" title="Cambiar foto">✎</button>
+      </div>
+      <h2 class="name">Name User</h2>
+      <div class="email">nameuser@example.com</div>
+    </div>
+
+    <!-- LADO DERECHO INFORMACIÓN -->
+    <section class="info-card">
+      <div class="info-header">
+        <h3>Información Personal</h3>
+      </div>
+      <form id="profileForm" class="info-form">
+        <div class="grid-2">
+          <label> Nombre Completo
+            <input type="text" id="nombre" value="" placeholder="Ingresa tu nuevo nombre de usuario" required>
+          </label>
+
+        </div>
+
+        <div class="grid-2">
+          <label> Nueva Contraseña
+            <div class="input-icon">
+              <input type="password" id="nuevaPass" placeholder="Ingresa tu nueva contraseña">
+              <!-- Botón del ojo -->
+              <button type="button" class="toggle-password" onclick="togglePassword('nuevaPass', this)">
+                  <!-- Ojo abierto -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                      fill="currentColor" viewBox="0 0 24 24" class="eye-open" display="none">
+                  <path d="M12 5c-7 0-11 7-11 7s4 7 11 7 
+                          11-7 11-7-4-7-11-7zm0 
+                          12c-2.8 0-5-2.2-5-5s2.2-5 
+                          5-5 5 2.2 5 5-2.2 5-5 
+                          5zm0-8a3 3 0 1 0 0 6 
+                          3 3 0 0 0 0-6z"/>
+                  </svg>
+                  <!-- Ojo tachado -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                      fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 5c-7 0-11 7-11 7s4 7 
+                            11 7 11-7 11-7-4-7-11-7zM12 
+                            17c-2.8 0-5-2.2-5-5 0-.8.2-1.6.6-2.3l6.7 
+                            6.7c-.7.4-1.5.6-2.3.6zM12 
+                            7c2.8 0 5 2.2 5 5 0 .8-.2 
+                            1.6-.6 2.3l-6.7-6.7C10.4 
+                            7.2 11.2 7 12 7z"/>
+                    <line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" stroke-width="2"  class="eye-closed"/>
+                  </svg>
+            </div>
+          </label>
+
+          <label> Confirmar Contraseña
+            <div class="input-icon">
+              <input type="password" id="confirmPass" placeholder="Confirma tu nueva contraseña">
+            <!-- Botón del ojo -->
+              <button type="button" class="toggle-password" onclick="togglePassword('confirmPass', this)">
+                  <!-- Ojo abierto -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                      fill="currentColor" viewBox="0 0 24 24" class="eye-open" display="none">
+                  <path d="M12 5c-7 0-11 7-11 7s4 7 11 7 
+                          11-7 11-7-4-7-11-7zm0 
+                          12c-2.8 0-5-2.2-5-5s2.2-5 
+                          5-5 5 2.2 5 5-2.2 5-5 
+                          5zm0-8a3 3 0 1 0 0 6 
+                          3 3 0 0 0 0-6z"/>
+                  </svg>
+                  <!-- Ojo tachado -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                      fill="currentColor" viewBox="0 0 24 24" >
+                    <path d="M12 5c-7 0-11 7-11 7s4 7 
+                            11 7 11-7 11-7-4-7-11-7zM12 
+                            17c-2.8 0-5-2.2-5-5 0-.8.2-1.6.6-2.3l6.7 
+                            6.7c-.7.4-1.5.6-2.3.6zM12 
+                            7c2.8 0 5 2.2 5 5 0 .8-.2 
+                            1.6-.6 2.3l-6.7-6.7C10.4 
+                            7.2 11.2 7 12 7z"/>
+                    <line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" stroke-width="2"  class="eye-closed"/>
+                  </svg>
+            </div>
+          </label>
+        </div>
+
+
+        <!-- Requisitos contraseña -->
+        <div class="password-rules">
+          <h4>Requisitos de la contraseña:</h4>
+          <ul>
+            <li>Mínimo 8 caracteres</li>
+            <li>Al menos una letra mayúscula</li>
+            <li>Al menos un número</li>
+            <li>Al menos un carácter especial</li>
+          </ul>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="logoutBtn" class="btn secondary">Cerrar Sesión</button>
+          <button type="submit" class="btn primary">Guardar Cambios</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="../js/mostrarContraseña.js"></script>
+</body>
+</html>

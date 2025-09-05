@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART PLANNER - FINANZAS</title>
+     <link rel="icon" href="../img/Logo.png">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/body.css">
+    <link rel="stylesheet" href="../styles/finanzas.css">
+    <link rel="stylesheet" href="../styles/agregar-finanza.css">
+    <link rel="stylesheet" href="../styles/notificaciones.css">
+    <link rel="stylesheet" href="../styles/agregar-plan-ahorro.css">
+</head>
+<body>
+    <!-- FORMULARIO PARA AGREGA PLAN DE AHORROS -->
+     <div id="agregarPlanAhorro" class="agregar-planAhorro">
+    <div id="containerPlanAhorro" class="container-planAhorro">
+        <img id="cerrarMenuPlanAhorro" src="../img/cerrar.png" width="20" height="20">
+        <h1>Nuevo Plan de Ahorro</h1>
+        <div class="Descripción">
+            <h1>Nombre del plan</h1>
+            <div class="espacio-input">
+                <input type="text" placeholder="ej. Vacaciones, Auto nuevo">
+            </div>
+        </div>
+
+        <div class="Descripción">
+            <h1>Meta de Ahorro</h1>
+            <div class="espacio-input">
+                <input type="number" placeholder="0.00">
+            </div>
+        </div>
+
+        <div class="Descripción">
+            <h1>Cantidad Actual</h1>
+            <div class="espacio-input">
+                <input type="number" placeholder="0.00">
+            </div>
+        </div>
+
+        <div class="fecha-limite">
+            <h1>Fecha Límite</h1>
+            <div class="espacio-input">
+                <input type="date">
+            </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="botones-planAhorro">
+            <button id="cancelarPlanAhorro" class="Cancelar-planAhorro">Cancelar</button>
+            <button id="guardarPlanAhorro" class="Crear-planAhorro">Guardar</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Menu de finanzas para agregar una nueva finanza -->
+    <div id="agregarFinanza" class="agregar-finanza">
+        <div id="containerFinanza" class="container-finanza">
+            <img id="cerrarMenuFinanzas" src="../img/cerrar.png" width="20" height="20">
+            <h1>Nueva transaccion</h1>
+            <div class="titulo">
+                <h1>Tipo</h1>
+    
+                    <select name="Tipo" id="Tipo">
+                        <option value="ingreso">Ingreso</option>
+                        <option value="egreso">Egreso</option>
+                    </select>
+            </div>
+            <div class="Descripción">
+                <h1>Descripción</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="Descripción de la transaccion">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Monto</h1>
+                <div class="espacio-input">
+                    <input type="number" placeholder="0.00">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Categoria</h1>
+                <Select>
+                    <option value="">Seleccionar Categoria</option>
+                    <option value="">Alimentación</option>
+                    <option value="">Transporte</option>
+                    <option value="">Entretenimiento</option>
+                    <option value="">Salud</option>
+                    <option value="">Hogar</option>
+                    <option value="">Educacion</option>
+                    <option value="">Otros</option>
+                </Select>
+            </div>
+            <div class="fecha-limite">
+                <h1>Fecha</h1>
+                <div class="espacio-input">
+                    <input type="date">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Asociar a Tarea(opcional)</h1>
+                <Select>
+                    <option value="">Sin asociar</option>
+                    <option value="">Comprar ingredientes para la cena</option>
+                    <option value="">Reunion con el equipo</option>
+                    <option value="">Entretenimiento</option>
+                    <option value="">Ejercicio matutino</option>
+                    <option value="">Revisar propuestas de proyecto</option>
+                    <option value="">Llamar al dentista</option>
+                </Select>
+            </div>
+            <div class="botones-finanza">
+                <button id="cancelarFinanza" class="Cancelar-finanza">Cancelar</button>
+                <button id="crearFinanza" class="Crear-finanza">Crear</button>
+            </div>
+        </div>
+    </div>
+    <!-- header de la pagina -->
+    <header>
+        <nav>
+            <div class="izquierda-nav">
+                <div id="abrir-menu" class="menu">
+                    <img  class="abrir-menu" src="../img/menu.png" width="18" height="18">
+                </div>
+                <img class="logo-nav" src="../img/Logo.png" width="40" height="40">
+                <div class="nombre-descripcion">
+                    <h1>SMART PLANNER</h1>
+                    <p>Organiza tu tiempo y dinero</p>
+                </div>
+            </div>
+            <div class="derecha-nav">
+                <div class="buscador-nav">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    <input type="text" placeholder="Buscar tareas, eventos...">
+                </div>
+                <div class="panel-notificaciones">
+                    <img id="abrirNotificacion" src="../img/notificacion.png" width="18" height="18">
+                    <div id="notificaciones" class="notificaciones">
+                        <h1>Notificaciones</h1>
+                        <div class="tabla-notificaciones">
+                            <div class="notificacion nueva">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/cheque.png" width="18" height="18">
+                                    <h1 class="estado">Tarea vencida</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                            <div class="notificacion nueva">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/calendario-verde.png" width="18" height="18">
+                                    <h1 class="estado">Proximo evento</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                            <div class="notificacion leida">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/dolar-morado.png" width="18" height="18">
+                                    <h1 class="estado">Tarea vencida</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                            <div class="notificacion leida">
+                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
+                                <div class="estado">
+                                    <img class="tipoNoficicacion" src="../img/cheque.png" width="18" height="18">
+                                    <h1 class="estado">Tarea vencida</h1>
+                                    <p class="tiempo">2 h</p>
+                                </div>
+                                <div class="informacion">
+                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                </div>
+                                <p id="marcarLeida1">Marcar como leída</p>
+                            </div>
+                        </div>
+                        <div class="marcar-leido">
+                            <p id="marcarLeida2">Marcar todas como leídas</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="../views/perfil.html">
+                    <img class="usuario" src="../img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;">
+                </a>
+            </div>
+        </nav>
+    </header>
+    <!-- Menu de navegación lateral -->
+    <main>
+        <div id="menu" class="navegacion">
+            <ul>
+                <li>
+                    <img src="../img/estadistica.png" width="20" height="20">
+                    <a href="../index.html"><p>Dashboard</p></a>
+                </li>
+                <li class="">
+                    <img src="../img/calendario.png" width="20" height="20">
+                    <a href="calendario.html"><p>Calendario</p></a>
+                </li>
+                <li>
+                    <img src="../img/check.png" width="20" height="20">
+                    <a href="tareas.html"><p>Tareas</p></a>
+                </li>
+                <li class="active">
+                    <img src="../img/dolar-blanco.png" width="20" height="20">
+                    <a href="finanzas.html"><p>Finanzas</p></a>
+                </li>
+                <li>
+                    <img src="../img/estadistica.png" width="20" height="20">
+                    <a href="estadisticas.html"><p>Estadísticas</p></a>
+                </li>
+            </ul>
+            <div class="tips">
+                <h1><img src="../img/bombilla.png" width="20" height="20">Tip del día</h1>
+                <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
+            </div>
+            
+            <a href="login.html">Login</a>
+            <a href="registro.html">Registro</a>
+            <a href="recuperarContraseña.html">Recuperar Contraseña</a>
+        </div>
+        <!-- Contenido principal de la página -->
+        <div class="container">
+            <div class="titulo">
+                <h1>Finanzas Personales</h1>
+                <div class="containerButtons">
+                    <button id="abrirMenuFinanza"><img src="../img/plus-pequeno.png" width="20" height="20">Nueva transaccion</button>
+                    <button id="abrirMenuPlanAhorro"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank h-4 w-4 mr-2"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2h0V5z"></path><path d="M2 9v1c0 1.1.9 2 2 2h1"></path><path d="M16 11h0"></path></svg> Nueva Plan de Ahorro</button>
+                </div>
+            </div>
+            <div class="resumen">
+                <ul>
+                    <li>
+                        <div class="izquierda">
+                            <h2>Ingresos del Mes</h2>
+                            <h1 class="green">$2800.00</h1>
+                        </div>
+                        <div class="derecha1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-white"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="izquierda">
+                            <h2>Gastos del mes</h2>
+                            <h1 class="red">$250.50</h1>
+                        </div>
+                        <div class="derecha2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-6 w-6 text-white"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="izquierda">
+                            <h2>Balance</h2>
+                            <h1 class="green">$2549.50</h1>
+                        </div>
+                        <div class="derecha3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-6 w-6 text-white"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="buscadores">
+                <div class="buscador">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    <input type="text" placeholder="Buscar transacciones...">
+                </div>
+                <select name="" id="">
+                    <option value="" selected>Todas los tipos</option>
+                    <option value="">Alta</option>
+                    <option value="">Media</option>
+                    <option value="">Baja</option>
+                </select>
+                <select name="" id="">
+                    <option value="" selected>Todos las categorias</option>
+                    <option value="">Pendientes</option>
+                    <option value="">Completadas</option>
+                </select>
+            </div>
+            <div class="filtros">
+                <a href="">Todas (5)</a>
+                <a href="">Ingresos (2)</a>
+                <a href="">Gastos (3)</a>
+            </div>
+            <div class="tareas">
+                <h1>Historial de transacciones</h1>
+                <ul id="lista-tareas">
+                    <li>
+                        <div class="informacion">
+                            <div class="egreso">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-6 w-6 text-white"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
+                            </div>
+                            <div class="texto">
+                                <h1>Gasolina</h1>
+                                <h2>transporte 2024-01-17</h2>
+                            </div>
+                        </div>
+                        <div class="derecha">
+                            <div class="estados">
+                                <p class="media">Transporte</p>
+                                 <p class="red">-$15.00</p>
+                            </div>
+                            <div class="crud">
+                                <img src="../img/editar.png" width="20" height="20">
+                                <img src="../img/eliminar.png" width="20" height="20">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="informacion">
+                            <div class="egreso">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-6 w-6 text-white"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
+                            </div>
+                            <div class="texto">
+                                <h1>Supermercado</h1>
+                                <h2>Alimentación 2024-01-20</h2>
+                            </div>
+                        </div>
+                        <div class="derecha">
+                            <div class="estados">
+                                <p class="alta">Alimentación</p>
+                                <p class="red">-$85.50</p>
+                            </div>
+                            <div class="crud">
+                                <img src="../img/editar.png" width="20" height="20">
+                                <img src="../img/eliminar.png" width="20" height="20">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="informacion">
+                            <div class="ingreso">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-white"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                            </div>
+                            <div class="texto">
+                                <h1>Pago Menusal</h1>
+                                <h2>Salario 2024-01-15</h2>
+                            </div>  
+                        </div>
+                        <div class="derecha">
+                            <div class="estados">
+                                <p class="baja">Salario</p>
+                                <p class="green">+$250.00</p>
+                            </div>
+                            <div class="crud">
+                                <img src="../img/editar.png" width="20" height="20">
+                                <img src="../img/eliminar.png" width="20" height="20">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="resumen-categorias">
+                <h1>Resumen por categorías</h1>
+                <div class="categoria">
+                    <h3>Salario <span class="badge badge-azul">1</span></h3>
+                    <p class="green">$2500.00</p>
+                </div>
+                <div class="categoria">
+                    <h3>Alimentación <span class="badge badge-naranja">1</span></h3>
+                    <p class="red">$85.50</p>
+                </div>
+                <div class="categoria">
+                    <h3>Transporte <span class="badge badge-morado">1</span></h3>
+                    <p class="red">$45.00</p>
+                </div>
+                <div class="categoria">
+                    <h3>Freelance <span class="badge badge-verde">1</span></h3>
+                    <p class="green">$300.00</p>
+                </div>
+                <div class="categoria">
+                    <h3>Entretenimiento <span class="badge badge-rosa">1</span></h3>
+                    <p class="red">$120.00</p>
+                </div>
+            </div>
+            <div class="progresoAhorro">
+                <h1>Progreso de Ahorros</h1>
+                <div class="stat">
+                    <div class="encabezado">
+                        <h1>Vacaciones</h1>
+                        <p>$2300 / $5000</p>
+                        <button id="abrirEditarProgresoAhorro"><img src="../img/editar.png" width="15" height="15"></button>
+                    </div>
+                    <progress value="0.46"></progress>
+                    <p>46.0% completado</p>
+                </div>
+                <div class="stat">
+                    <div class="encabezado">
+                        <h1>Fondo de emergencia</h1>
+                        <p>$6500 / $10000</p>
+                        <button id="abrirEditarProgresoAhorro"><img src="../img/editar.png" width="15" height="15"></button>
+                    </div>
+                    <progress value="0.65"></progress>
+                    <p>65.0% completado</p>
+                </div>
+                <div class="stat">
+                    <div class="encabezado">
+                        <h1>Nuevo auto</h1>
+                        <p>$8900 / $25000</p>
+                        <button id="abrirEditarProgresoAhorro"><img src="../img/editar.png" width="15" height="15"></button>
+                    </div>
+                    <progress value="0.356"></progress>
+                    <p>35.6% completado</p>
+                </div>
+                <div id="editarProgresoAhorro" class="editarProgresoAhorro">
+                    <img id="cerrarEditarProgresoAhorro" src="../img/cerrar.png" width="15" height="15">
+                    <h1>Editas progreso ahorro</h1>
+                    <label for="montoAporte">Monto aporte</label>
+                    <div class="espacio-input">
+                        <input type="text" name="montoAporte" id="" placeholder="Monto aporte">
+                    </div>
+                    <label for="">Fecha del aporte</label>
+                    <div class="espacio-input">
+                        <input type="text" name="fechaAporte" id="" placeholder="Fecha del aporte">
+                    </div>
+                    <div class="botones">
+                        <button id="cancelar">Cancelar</button>
+                        <button id="Actualizar">Actualizar</button>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <footer>
+        <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
+    </footer>
+    <script src="../js/funcionalidadMenu.js"></script>
+    <script src="../js/agregarFinanza.js"></script>
+    <script src="../js/notificaciones.js"></script>
+    <script src="../js/agregarPlanAhorro.js"></script>
+    <script src="../js/abrirEditarProgresoAhorro.js"></script>
+</body>
+</html>

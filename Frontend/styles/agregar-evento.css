@@ -1,0 +1,147 @@
+.agregar-evento {
+    display: none;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    background-color: #00000064;
+    width: 100%;
+    height: 100%;
+    z-index: 999; 
+    justify-content: center;
+    align-items: center;
+}
+
+.agregar-evento .container-evento {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fbfbfb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    height: auto; 
+    max-height: 105vh; 
+    overflow-y: auto; 
+}
+.agregar-evento .container-evento img {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.container-evento h1 {
+    font-size: 25px;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.agregar-evento .titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.agregar-evento .check-box {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+.agregar-evento .titulo h1, .descripcion h1, .prioridad h1, .fecha-limite h1, .check-box h1, .asociar-gasto h1 {
+    font-size: 16px;
+    color: #1e293b;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.agregar-evento .espacio-input {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: #f8fdfd;
+    padding: 10px;
+    border: 2px solid #a7f3d0;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.agregar-evento select {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #a7f3d0;
+    background-color: #f8fdfd;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #545454;
+    font-size: 13px;
+}
+
+.agregar-evento .asociar-gasto {
+    display: none;
+    flex-direction: column;
+}
+
+.agregar-evento .espacio-input input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: bold;
+    color: #545454;
+    font-size: 13px;
+}
+
+.agregar-evento .botones-evento {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.agregar-evento .botones-evento button {
+    height: 40px;
+    width: 50%;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.agregar-evento .botones-evento .cancelar-evento {
+    background-color: white;
+}
+
+.agregar-evento .botones-evento .crear-evento {
+    background: linear-gradient(90deg, rgba(52, 210, 153, 1) 0%, rgba(96, 165, 250, 1) 100%);
+    color: white;
+    border: none;
+}
+
+#abrirMenuEvento {
+    background: linear-gradient(90deg, rgba(52, 210, 153, 1) 0%, rgba(96, 165, 250, 1) 100%);
+    border-radius: 12px;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 16px;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+#abrirMenuEvento:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+
