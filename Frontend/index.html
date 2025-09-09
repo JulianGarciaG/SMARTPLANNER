@@ -3,330 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMART PLANNER - INDEX</title>
-    <link rel="icon" href="img/Logo.png">
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/body.css">
-    <link rel="stylesheet" href="styles/index.css">
-    <link rel="stylesheet" href="styles/notificaciones.css">
+    <title>SMART PLANNER - LOGIN</title>
+    <link rel="icon" href="../img/Logo.png">
+    <link rel="stylesheet" href="../styles/login.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="izquierda-nav">
-                <div id="abrir-menu" class="menu">
-                    <img  class="abrir-menu" src="img/menu.png" width="18" height="18">
-                </div>
-                <img class="logo-nav" src="img/Logo.png" width="40" height="40">
-                <div class="nombre-descripcion">
-                    <h1>SMART PLANNER</h1>
-                    <p>Organiza tu tiempo y dinero</p>
-                </div>
+    <section class="logo">
+        <img src="../img/Logo.png" alt="" width="100" height="100">
+    </section>
+
+    <form class="login-form">
+        <h2>Iniciar Sesión</h2>
+        <p>Accede a tu cuenta para continuar</p>
+
+        <section>
+            <h3>Email</h3>
+            <div class="input-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <input type="email" id="correoElectronico" placeholder="tu@email.com" required>
             </div>
-            <div class="derecha-nav">
-                <div class="buscador-nav">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-                    <input type="text" placeholder="Buscar tareas, eventos...">
-                </div>
+        </section>
+        <section>
+            <h3>Contraseña</h3>
+            <div class="input-icon">
+                <!-- Icono de candado -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="20" height="20" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
 
-                <!-- ----- APARTADO DE LAS NOTIFICACIONES ----- -->
-
-                <div class="panel-notificaciones">
-                    <img id="abrirNotificacion" src="img/notificacion.png" width="18" height="18">
-                    <div id="notificaciones" class="notificaciones">
-                        <h1>Notificaciones</h1>
-                        <div class="tabla-notificaciones">
-                            <div class="notificacion nueva">
-                                <img class="cerraNotificacion" src="img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="img/cheque.png" width="18" height="18">
-                                    <h1 class="estado">Tarea vencida</h1>
-                                    <p class="tiempo">2 h</p>
-                                </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
-                            </div>
-                            <div class="notificacion nueva">
-                                <img class="cerraNotificacion" src="img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="img/calendario-verde.png" width="18" height="18">
-                                    <h1 class="estado">Proximo evento</h1>
-                                    <p class="tiempo">2 h</p>
-                                </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
-                            </div>
-                            <div class="notificacion leida">
-                                <img class="cerraNotificacion" src="img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="img/dolar-morado.png" width="18" height="18">
-                                    <h1 class="estado">Tarea vencida</h1>
-                                    <p class="tiempo">2 h</p>
-                                </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
-                            </div>
-                            <div class="notificacion leida">
-                                <img class="cerraNotificacion" src="img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="img/cheque.png" width="18" height="18">
-                                    <h1 class="estado">Tarea vencida</h1>
-                                    <p class="tiempo">2 h</p>
-                                </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
-                            </div>
-                        </div>
-                        <div class="marcar-leido">
-                            <p id="marcarLeida2">Marcar todas como leídas</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ----- CONTINUACION DEL HEADER ----- -->
-
-                <a href="../views/perfil.html">
-                    <img class="usuario" src="img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;">
-                </a>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <div id="menu" class="navegacion">
-            <ul>
-                <li class="active">
-                    <img src="img/estadistica-blanco.png" width="20" height="20">
-                    <a href="index.html"><p>Dashboard</p></a>
-                </li>
-                <li>
-                    <img src="img/calendario.png" width="20" height="20">
-                    <a href="views/calendario.html"><p>Calendario</p></a>
-                </li>
-                <li>
-                    <img src="img/check.png" width="20" height="20">
-                    <a href="views/tareas.html"><p>Tareas</p></a>
-                </li>
-                <li>
-                    <img src="img/dolar.png" width="20" height="20">
-                    <a href="views/finanzas.html"><p>Finanzas</p></a>
-                </li>
-                <li>
-                    <img src="img/estadistica.png" width="20" height="20">
-                    <a href="views/estadisticas.html"><p>Estadísticas</p></a>
-                </li>
-            </ul>
-            <div class="tips">
-                <h1><img src="img/bombilla.png" width="20" height="20">Tip del día</h1>
-                <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
-            </div>
-        </div>
-        <div class="container">
-            <div class="encabezado-dashboard">
-                <h2>¡Buen día! 👋</h2>
+                <!-- Input -->
+                <input type="password" id="password" placeholder="********" required>
                 
-            </div>
-            <p>Aquí tienes un resumen de tu progreso</p>
-        <div class="tarjetas-resumen">
-            <div class="tarjeta tareas-completadas">
-                <div class="texto">
-                <p class="titulo">Tareas completadas hoy</p>
-                <p class="cantidad">2/5</p>
-                </div>
-                <div class="etiqueta-tareas">Hoy</div>
-            </div>
+                <!-- Botón mostrar/ocultar contraseña -->
+                <button type="button" class="toggle-password" onclick="togglePassword('password', this)">
 
-            <div class="tarjeta tiempo-enfocado">
-                <div class="texto">
-                <p class="titulo">Tiempo enfocado</p>
-                <p class="cantidad">4.5h</p>
-                </div>
-                <div class="etiqueta-tiempo">Hoy</div>
-            </div>
+                    <!-- Ojo tachado -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                        fill="currentColor" viewBox="0 0 24 24" class="eye-closed">
+                    <path d="M12 5c-7 0-11 7-11 7s4 7 
+                            11 7 11-7 11-7-4-7-11-7zM12 
+                            17c-2.8 0-5-2.2-5-5 0-.8.2-1.6.6-2.3l6.7 
+                            6.7c-.7.4-1.5.6-2.3.6zM12 
+                            7c2.8 0 5 2.2 5 5 0 .8-.2 
+                            1.6-.6 2.3l-6.7-6.7C10.4 
+                            7.2 11.2 7 12 7z"/>
+                    <line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" stroke-width="2"/>
+                    </svg>
 
-            <div class="tarjeta gastos">
-                <div class="texto">
-                <p class="titulo">Gastos del día</p>
-                <p class="cantidad">$45.000</p>
-                </div>
-                <div class="etiqueta-gastos">Hoy</div>
-            </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                        fill="currentColor" viewBox="0 0 24 24" class="eye-open" display="none">
+                    <path d="M12 5c-7 0-11 7-11 7s4 7 11 7 
+                            11-7 11-7-4-7-11-7zm0 
+                            12c-2.8 0-5-2.2-5-5s2.2-5 
+                            5-5 5 2.2 5 5-2.2 5-5 
+                            5zm0-8a3 3 0 1 0 0 6 
+                            3 3 0 0 0 0-6z"/>
+                    </svg>
 
-            <div class="tarjeta balance">
-                <div class="texto">
-                <p class="titulo">Balance mensual</p>
-                <p class="cantidad">$320.000</p>
-                </div>
-                <div class="etiqueta-balance">Hoy</div>
+                </button>
             </div>
+        </section>
 
-        <div class="seccion-listas">
-            <div class="bloque calendarios">
-               <h3><img src="img/calendario-verde.png" width="20"> Mis calendarios</h3> 
-                <ul class="lista-eventos">
-                        <li class="evento">
-                            <span class="punto verde"></span>
-                            <div>
-                                <p class="evento-nombre">Personal</p>
-                                <p class="evento-hora">3 Eventos</p>
-                            </div>
-                            <div class="detalles">
-                                <img src="img/tres-puntos.png" width="20" height="20">
-                            </div>
-                            <div class="opciones">
-                                <ul>
-                                    <li>
-                                        <button><img src="img/compartir.png" width="15" height="15">Compartir</button>
-                                    </li>
-                                    <li>
-                                        <button>Editar</button>
-                                    </li>
-                                    <li>
-                                        <button>Exportar</button>
-                                    </li>
-                                    <li>
-                                        <button class="red">Eliminar</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    <li class="evento">
-                        <span class="punto azul"></span>
-                        <div>
-                        <p class="evento-nombre">Trabajo</p>
-                        <p class="evento-hora">5 Eventos</p>
-                        </div>
-                        <div class="detalles">
-                            <img src="img/tres-puntos.png" width="20" height="20">
-                        </div>
-                        <div class="opciones">
-                            <ul>
-                                <li>
-                                    <button><img src="img/compartir.png" width="15" height="15">Compartir</button>
-                                </li>
-                                <li>
-                                    <button>Editar</button>
-                                </li>
-                                <li>
-                                    <button>Exportar</button>
-                                </li>
-                                <li>
-                                    <button class="red">Eliminar</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="evento">
-                        <span class="punto morado"></span>
-                        <div>
-                        <p class="evento-nombre">Familiar</p>
-                        <p class="evento-hora">2 Eventos</p>
-                        </div>
-                        <div class="detalles">
-                            <img src="img/tres-puntos.png" width="20" height="20">
-                        </div>
-                        <div class="opciones">
-                            <ul>
-                                <li>
-                                    <button><img src="img/compartir.png" width="15" height="15">Compartir</button>
-                                </li>
-                                <li>
-                                    <button>Editar</button>
-                                </li>
-                                <li>
-                                    <button>Exportar</button>
-                                </li>
-                                <li>
-                                    <button class="red">Eliminar</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="evento">
-                        <span class="punto naranja"></span>
-                        <div>
-                        <p class="evento-nombre">Proyecto</p>
-                        <p class="evento-hora">4 Eventos</p>
-                        </div>
-                        <div class="detalles">
-                            <img src="img/tres-puntos.png" width="20" height="20">
-                        </div>
-                        <div class="opciones">
-                            <ul>
-                                <li>
-                                    <button><img src="img/compartir.png" width="15" height="15">Compartir</button>
-                                </li>
-                                <li>
-                                    <button>Editar</button>
-                                </li>
-                                <li>
-                                    <button>Exportar</button>
-                                </li>
-                                <li>
-                                    <button class="red">Eliminar</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </div>
-                <div class="bloque eventos">
-                    <h3><img src="img/calendario-verde.png" width="20"> Próximos eventos</h3>
-                    <ul class="lista-eventos">
-                    <li class="evento">
-                        <span class="punto verde"></span>
-                        <div>
-                        <p class="evento-nombre">Reunión de equipo</p>
-                        <p class="evento-hora">10:00 AM - 11:00 AM</p>
-                        </div>
-                    </li>
-                    <li class="evento">
-                        <span class="punto azul"></span>
-                        <div>
-                        <p class="evento-nombre">Cita médica</p>
-                        <p class="evento-hora">3:00 PM - 4:00 PM</p>
-                        </div>
-                    </li>
-                    </ul>
-                </div>
-                
-            </div>
-            <div class="bloque tareas">
-                <h3><img src="img/comprobado-azul.png" width="20"> Tareas pendientes</h3>
-                    <ul class="lista-tareas">
-                        <li>
-                            <input type="checkbox">
-                            <span>Comprar ingredientes para la cena</span>
-                            <h5 class="prioridad media">Media</h5>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <span>Revisar propuesta de proyecto</span>
-                            <h5 class="prioridad alta">Alta</h5>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <span>Llamar al dentista</span>
-                            <h5 class="prioridad media">Media</h5>
-                        </li>
-                    </ul>
-            </div>
-        </div>
-        </div>
+        <section class="options">
+            <label><input type="checkbox"> Recordarme</label>
+            <a href="recuperarContraseña.html">¿Olvidaste tu contraseña?</a>
+        </section>
+
         
-        </div>
-    </main>
+        <button type="submit">
+            Iniciar Sesión
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+        </button>
+        
+
+        <p class="divider">o continúa con</p>
+
+        <section class="social-buttons">
+            <button><img src="../img/google.png" alt="Google"> Google</button>
+            <button><img src="../img/facebook.png" alt="Facebook"> Facebook</button>
+        </section>
+
+        <p class="register-text">
+            ¿No tienes una cuenta? <a href="registro.html">Regístrate aquí</a>
+        </p>
+    </form>
+
     <footer>
-        <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
+        <p>© 2024 SmartPlanner. Todos los derechos reservados.</p>
     </footer>
-    <script src="js/funcionalidadMenu.js"></script>
-    <script src="js/notificaciones.js"></script>
-    <script src="js/abrirDetallesMisCalendarios.js"></script>
+
+    <script src="../js/mostrarContraseña.js"></script>
+    <script src="../js/api/login.js"></script>
+
 </body>
 </html>
