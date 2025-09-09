@@ -1,3 +1,6 @@
+*{
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
 .agregar-evento {
     display: none;
     position: fixed; 

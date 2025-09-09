@@ -1,3 +1,6 @@
+*{
+    font-family: 'Poppins', 'Segoe UI', sans-serif;;
+}
 .agregar-registro {
     display: none;
     position: absolute;

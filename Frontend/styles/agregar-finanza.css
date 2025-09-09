@@ -1,3 +1,6 @@
+*{
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
 .agregar-finanza {
     display: none;
     position: fixed; 

@@ -1,3 +1,7 @@
+*{
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
 .agregar-calendario {
     display: none;
     position: fixed; 

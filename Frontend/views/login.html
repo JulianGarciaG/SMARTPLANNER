@@ -12,7 +12,7 @@
         <img src="../img/Logo.png" alt="" width="100" height="100">
     </section>
 
-    <section class="login-form">
+    <form class="login-form">
         <h2>Iniciar Sesión</h2>
         <p>Accede a tu cuenta para continuar</p>
 
@@ -24,7 +24,7 @@
                 <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
             </svg>
-            <input type="email" placeholder="tu@email.com" required>
+            <input type="email" id="correoElectronico" placeholder="tu@email.com" required>
             </div>
         </section>
         <section>
@@ -75,16 +75,16 @@
             <a href="recuperarContraseña.html">¿Olvidaste tu contraseña?</a>
         </section>
 
-        <form action="../index.html">
-            <button type="submit">
-                Iniciar Sesión
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
-                viewBox="0 0 24 24">
+        
+        <button type="submit">
+            Iniciar Sesión
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
                 <path d="M5 12h14"></path>
                 <path d="m12 5 7 7-7 7"></path>
-                </svg>
-            </button>
-        </form>
+            </svg>
+        </button>
+        
 
         <p class="divider">o continúa con</p>
 
@@ -96,7 +96,7 @@
         <p class="register-text">
             ¿No tienes una cuenta? <a href="registro.html">Regístrate aquí</a>
         </p>
-    </section>
+    </form>
 
     <footer>
         <p>© 2024 SmartPlanner. Todos los derechos reservados.</p>
