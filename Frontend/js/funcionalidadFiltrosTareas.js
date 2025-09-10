@@ -53,4 +53,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
+  const selectPrioridad = document.querySelector(".buscadores select");
+
+  selectPrioridad.addEventListener("change", function () {
+    const opcionSeleccionada = this.options[this.selectedIndex];
+    const idSeleccionado = opcionSeleccionada.id; 
+    tareas.forEach((tarea) => {
+      if (idSeleccionado === "") {
+        tarea.style.display = "flex";
+      } else {
+        const prioridad = tarea.querySelector(`.${idSeleccionado}`);
+        tarea.style.display = prioridad ? "flex" : "none";
+      }
+    });
+  });
 });

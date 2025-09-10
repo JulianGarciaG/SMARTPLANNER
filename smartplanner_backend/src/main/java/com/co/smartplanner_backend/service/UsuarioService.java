@@ -3,6 +3,7 @@ package com.co.smartplanner_backend.service;
 import com.co.smartplanner_backend.dto.LoginDto;
 import com.co.smartplanner_backend.dto.UsuarioDto;
 import com.co.smartplanner_backend.model.Usuario;
+import com.co.smartplanner_backend.dto.UsuarioUpdateDto;
 import com.co.smartplanner_backend.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -59,6 +60,26 @@ public class UsuarioService {
     public Usuario obtenerPorId(Integer id) {
         return usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    }
+
+    public Usuario actualizarUsuario(Integer idUsuario, UsuarioUpdateDto updateDTO) throws Exception {
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(idUsuario);
+        if (optionalUsuario.isEmpty()) {
+            throw new Exception("Usuario no encontrado");
+        }
+
+        Usuario usuario = optionalUsuario.get();
+        if (updateDTO.getNombre() != null && !updateDTO.getNombre().isEmpty()) {
+            usuario.setNombre(updateDTO.getNombre());
+        }
+        if (updateDTO.getContrasena() != null && !updateDTO.getContrasena().isEmpty()) {
+            usuario.setContrasena(passwordEncoder.encode(updateDTO.getContrasena()));
+        }
+        if (updateDTO.getFoto() != null && !updateDTO.getFoto().isEmpty()) {
+            usuario.setFoto(updateDTO.getFoto());
+        }
+
+        return usuarioRepository.save(usuario);
     }
 
 }

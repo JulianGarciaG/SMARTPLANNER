@@ -259,7 +259,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
+    width: 100%;
     gap: 10px;
     padding: 8px;
     background-color: #f8fdfd;
