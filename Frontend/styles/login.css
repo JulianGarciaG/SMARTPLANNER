@@ -8,7 +8,7 @@
 
 body{
     background: #EFFBF9;
-background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 251, 1) 100%);
+  background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 251, 1) 100%);
 }
 
 body {
@@ -20,6 +20,8 @@ body {
   align-items: center;
   flex-direction: column;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .logo{
