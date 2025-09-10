@@ -3,10 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const tareas = document.querySelectorAll(".tarea");
   const checkboxes = document.querySelectorAll(".input-tarea");
 
-  // 1️⃣ Inicializar todas como pendientes
   tareas.forEach((tarea) => tarea.classList.add("pendientes"));
 
-  // 2️⃣ Marcar tareas como completadas o pendientes
   checkboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", function () {
       const li = this.closest(".tarea");
@@ -17,11 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
         li.classList.remove("completadas");
         li.classList.add("pendientes");
       }
-      console.log("Clase actual:", li.className); // 👈 debug
+      console.log("Clase actual:", li.className);
     });
   });
 
-  // 3️⃣ Filtrar tareas
   botonesFiltro.forEach((boton) => {
     boton.addEventListener("click", function (e) {
       e.preventDefault();
