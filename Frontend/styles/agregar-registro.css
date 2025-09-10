@@ -31,6 +31,10 @@
     top: 20px;
 }
 
+.agregar-registro .container-registro img:hover {
+    cursor: pointer;
+}
+
 .container-registro h1 {
     font-size: 25px;
     color: #1e293b;
@@ -118,6 +122,10 @@
 
 .agregar-registro .botones-registro .Cancelar-registro {
     background-color: white;
+}
+
+.agregar-registro .botones-registro .Cancelar-registro:hover {
+    cursor: pointer;
 }
 
 .agregar-registro .botones-registro .Crear-registro {
