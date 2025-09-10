@@ -172,17 +172,19 @@ main {
     display: flex;
     list-style: none;
     gap: 20px;
+    width: 100%;
 }
 
 .resumen li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     background-color: white;
+    width: 100%;
+    height: 100px;
 }
 
 .resumen li .izquierda {
@@ -198,12 +200,11 @@ main {
     color: #000000;
 }
 
-
 .resumen li .derecha1, .derecha2, .derecha3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
 }
 
@@ -292,19 +293,21 @@ main {
     margin-top: 20px;
     background-color: #f8fdfd;
     padding: 5px;
-    width: 335px;
+    width: fit-content;
     border-radius: 10px;
 }
 
-.filtros a {
+.filtros button {
     font-size: 13px;
     font-weight: bold;
     padding: 10px;
+    border: none;
+    background-color: transparent;
     text-decoration: none;
-    color: #000000;
+    color: #545454;
 }
 
-.filtros a:hover {
+.filtros button:hover {
     background-color: #fbfbfb;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
