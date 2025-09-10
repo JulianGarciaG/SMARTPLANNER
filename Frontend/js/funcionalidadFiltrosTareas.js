@@ -3,7 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const tareas = document.querySelectorAll(".tarea");
   const checkboxes = document.querySelectorAll(".input-tarea");
 
+  function actualizarContadores() {
+    const total = tareas.length;
+    const pendientes = document.querySelectorAll(".tarea.pendientes").length;
+    const completadas = document.querySelectorAll(".tarea.completadas").length;
+
+    document.getElementById("todas").textContent = `Todas (${total})`;
+    document.getElementById("pendientes").textContent = `Pendientes (${pendientes})`;
+    document.getElementById("completadas").textContent = `Completadas (${completadas})`;
+  }
+
   tareas.forEach((tarea) => tarea.classList.add("pendientes"));
+  
+  actualizarContadores();
 
   checkboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", function () {
@@ -15,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         li.classList.remove("completadas");
         li.classList.add("pendientes");
       }
+      actualizarContadores();
       console.log("Clase actual:", li.className);
     });
   });
