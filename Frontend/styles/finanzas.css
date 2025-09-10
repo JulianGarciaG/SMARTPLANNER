@@ -1,3 +1,105 @@
+/* 📱 Ajustes responsivos */
+@media (max-width: 1024px) {
+  .resumen ul {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .resumen li {
+    flex: 1 1 45%; /* Se ajustan dos por fila */
+  }
+
+  .buscadores {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .buscador {
+    width: 100%;
+  }
+
+  .filtros {
+    width: 100%;
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  .container {
+    margin: 10px;
+  }
+
+  .resumen ul {
+    flex-direction: column;
+  }
+
+  .resumen li {
+    width: 100%;
+  }
+
+  .resumen-categorias {
+    flex-direction: column;
+  }
+
+  .buscadores {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filtros {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tareas ul li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .derecha {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container .titulo h1 {
+    font-size: 18px;
+  }
+
+  .container .titulo button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .resumen h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .resumen li .izquierda {
+    width: 100%;
+  }
+
+  .resumen-categorias .categoria {
+    flex: 1 1 100%;
+  }
+
+  .progresoAhorro .editarProgresoAhorro {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+  }
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -38,6 +140,7 @@ main {
 .container .titulo h1 {
     font-size: 24px;
     font-weight: bold;
+    color: #0e0e0e;
 }
 .container .titulo button {
     background: linear-gradient(90deg, rgba(52, 210, 153, 1) 0%, rgba(96, 165, 250, 1) 100%);
@@ -92,7 +195,7 @@ main {
 
 .izquierda h2 {
     font-size: 13px;
-    color: #545454;
+    color: #000000;
 }
 
 
@@ -165,7 +268,7 @@ main {
 
 .buscador svg {
     height: 20px;
-    color: rgb(132, 132, 132);
+    color: rgb(0, 0, 0);
 }
 
 .buscador input {
@@ -198,7 +301,7 @@ main {
     font-weight: bold;
     padding: 10px;
     text-decoration: none;
-    color: #545454;
+    color: #000000;
 }
 
 .filtros a:hover {
