@@ -1,4 +1,5 @@
 package com.co.smartplanner_backend.model;
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -54,7 +55,4 @@ public class Tarea {
 
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
-
-    public enum Prioridad { baja, media, alta }
-    public enum Categoria { asociada, sin_asociar }
 }
