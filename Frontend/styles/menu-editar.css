@@ -10,6 +10,16 @@
     align-items: center;
 }
 
+.menu-crud {
+  display: none; /* overlay oculto */
+}
+.editar-tarea {
+  display: none; /* modal oculto */
+}
+.menu-eliminar {
+  display: none; /* modal oculto */
+}
+
 .menu-crud .menu-eliminar {
     display: none;
     flex-direction: column;
