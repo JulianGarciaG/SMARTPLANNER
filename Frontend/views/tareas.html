@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../styles/tareas.css">
     <link rel="stylesheet" href="../styles/agregar-registro.css">
     <link rel="stylesheet" href="../styles/notificaciones.css">
+    <link rel="stylesheet" href="../styles/menu-editar.css">
 </head>
 <body>
     <!-- FORMULARIO AGREGAR REGISTRO -->
@@ -261,8 +262,8 @@
                                 <p class="valor">$85.500</p>
                             </div>
                             <div class="crud">
-                                <img src="../img/editar.png" width="20" height="20">
-                                <img src="../img/eliminar.png" width="20" height="20">
+                                <img class="editar" src="../img/editar.png" width="20" height="20">
+                                <img class="eliminar" src="../img/eliminar.png" width="20" height="20">
                             </div>
                         </div>
                     </li>
@@ -284,8 +285,8 @@
                                 <p class="alta">alta</p>
                             </div>
                             <div class="crud">
-                                <img src="../img/editar.png" width="20" height="20">
-                                <img src="../img/eliminar.png" width="20" height="20">
+                                <img class="editar" src="../img/editar.png" width="20" height="20">
+                                <img class="eliminar" src="../img/eliminar.png" width="20" height="20">
                             </div>
                         </div>
                     </li>
@@ -307,12 +308,72 @@
                                 <p class="baja">baja</p>
                             </div>
                             <div class="crud">
-                                <img src="../img/editar.png" width="20" height="20">
-                                <img src="../img/eliminar.png" width="20" height="20">
+                                <img class="editar" src="../img/editar.png" width="20" height="20">
+                                <img class="eliminar" src="../img/eliminar.png" width="20" height="20">
                             </div>
                         </div>
                     </li>
                 </ul>
+                <div id="menuCrud" class="menu-crud">
+                    <div id="menuEliminar" class="menu-eliminar">
+                        <h1>Estas eliminando una tarea</h1>
+                        <div class="botones">
+                            <button id="cancelarEliminar">Cancelar</button>
+                            <button id="confirmarEliminar">Confirmar</button>
+                        </div>
+                    </div>
+                    <div class="editar-tarea">
+                        <form id="containerEditar" class="container-editar">
+                            <img id="cerrarMenuEditar" src="../img/cerrar.png" width="20" height="20">
+                            <h1>Editar Tarea</h1>
+
+                            <div class="titulo">
+                                <h1>Titulo *</h1>
+                                <div class="espacio-input">
+                                    <input type="text" placeholder="Título de la tarea">
+                                </div>
+                            </div>
+
+                            <div class="descripcion">
+                                <h1>Descripción</h1>
+                                <div class="espacio-input">
+                                    <input type="text" placeholder="Descripción de la tarea">
+                                </div>
+                            </div>
+
+                            <div class="prioridad">
+                                <h1>Prioridad</h1>
+                                <select>
+                                    <option value="baja">Baja</option>
+                                    <option value="media" selected>Media</option>
+                                    <option value="alta">Alta</option>
+                                </select>
+                            </div>
+
+                            <div class="fecha-limite">
+                                <h1>Fecha límite</h1>
+                                <div class="espacio-input">
+                                    <input type="datetime-local" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="check-box">
+                                <input id="abrirAsociarGasto" type="checkbox">
+                                <h1>Asociar con un gasto</h1>
+                            </div>
+                            <div id="asociarGasto" class="asociar-gasto">
+                                <h2>Seleccionar gasto</h2>
+                                <select>
+                                    <option value="" selected>Seleccionar gasto...</option>
+                                </select>
+                            </div>
+                            <div class="botones-registro">
+                                <button id="CancelarEditar">Cancelar</button>
+                                <button id="ConfirmarEditar">Crear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -327,5 +388,6 @@
     <script src="../js/input-check.js"></script>
     <script src="../js/notificaciones.js"></script>
     <script src="../js/funcionalidadFiltrosTareas.js"></script>
+    <script src="../js/funcionalidadCrud.js"></script>
 </body>
 </html>

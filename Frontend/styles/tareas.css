@@ -8,6 +8,7 @@
 body{
     background: #EFFBF9;
 background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 251, 1) 100%);
+margin-bottom: 50px;
 }
 
 main {
