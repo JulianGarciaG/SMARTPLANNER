@@ -77,7 +77,7 @@ CREATE TABLE Tarea (
     descripcion VARCHAR(255),
     estado_de_tarea BOOLEAN DEFAULT FALSE,
     prioridad ENUM('baja','media','alta'),
-    categoria ENUM('asociada','sin asociar'),
+    categoria ENUM('asociada','sin_asociar'),
     id_usuario INT,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );

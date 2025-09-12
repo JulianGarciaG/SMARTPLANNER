@@ -1,5 +1,6 @@
 package com.co.smartplanner_backend.controller;
 
+import com.co.smartplanner_backend.dto.TareaDto;
 import com.co.smartplanner_backend.model.Tarea;
 import com.co.smartplanner_backend.service.TareaService;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tareas")
-@CrossOrigin(origins = "*") 
+@CrossOrigin(origins = "*") // Permitir peticiones desde el front
 public class TareaController {
 
     private final TareaService tareaService;
@@ -19,11 +20,11 @@ public class TareaController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<Tarea> crearTarea(@RequestBody Tarea tarea) {
-        return ResponseEntity.ok(tareaService.crearTarea(tarea));
+    public ResponseEntity<Tarea> crearTarea(@RequestBody TareaDto tareaDto) {
+        return ResponseEntity.ok(tareaService.crearTarea(tareaDto));
     }
 
-    @GetMapping("/listar")
+    @GetMapping
     public ResponseEntity<List<Tarea>> listarTareas() {
         return ResponseEntity.ok(tareaService.listarTareas());
     }

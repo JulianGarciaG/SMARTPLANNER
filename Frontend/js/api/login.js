@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const correoElectronico = document.getElementById("correoElectronico").value.trim();
     const contrasena = document.getElementById("password").value.trim();
 
@@ -15,20 +16,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(errorText || "Credenciales inválidas");
+        throw new Error(errorText || "Credenciales invalidas");
       }
 
+      // ✅ aquí solo una vez
       const data = await response.json();
-
-      localStorage.setItem("usuario", JSON.stringify(data));
-
-      alert("Inicio de sesión exitoso, Bienvenido ✅");
-
-      window.location.href = "./views/home.html";
+      alert("Inicio sesion exitoso,Bienvenido ✅");
+      window.location.href = "login.html";
 
     } catch (error) {
       console.error("Error:", error);
-      alert("Error al iniciar sesión: " + error.message);
+      alert("Error al iniciar: " + error.message);
     }
   });
 });
