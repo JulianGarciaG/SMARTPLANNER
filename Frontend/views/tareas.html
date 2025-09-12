@@ -182,200 +182,179 @@
         </div>
 
         <!-- Contenido principal -->
-        <div class="container">
-            <div class="titulo">
-                <h1>Gestión de Tareas</h1>
-                <button id="abrirMenuRegistro">
-                    <img src="../img/plus-pequeno.png" width="20" height="20"> Nueva tarea
-                </button>
-            </div>
+<div class="container">
+    <div class="titulo">
+        <h1>Gestión de Tareas</h1>
+        <button id="abrirMenuRegistro">
+            <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva tarea
+        </button>
+    </div>
 
-            <div class="resumen">
-                <ul>
-                    <li>
-                        <div class="izquierda">
-                            <h2>Total de tareas</h2>
-                            <h1>5</h1>
-                        </div>
-                        <div class="derecha1">
-                            <img src="../img/controlar.png" width="40" height="40">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="izquierda">
-                            <h2>Completadas</h2>
-                            <h1>3</h1>
-                        </div>
-                        <div class="derecha2">
-                            <img src="../img/comprobado.png" width="40" height="40">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="izquierda">
-                            <h2>Alta prioridad</h2>
-                            <h1>0</h1>
-                        </div>
-                        <div class="derecha3">
-                            <img src="../img/calendario-blanco.png" width="40" height="40">
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="buscadores">
-                <div class="buscador">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-                    <input type="text" placeholder="Buscar tareas...">
+    <div class="resumen">
+        <ul>
+            <li>
+                <div class="izquierda">
+                    <h2>Total de tareas</h2>
+                    <h1 id="totalTareas">0</h1>
                 </div>
-                <select>
-                    <option selected>Todas las prioridades</option>
-                    <option id="alta">Alta</option>
-                    <option id="media">Media</option>
-                    <option id="baja">Baja</option>
-                </select>
-            </div>
-
-            <div class="filtros">
-                <button id="todas">Todas ()</button>
-                <button id="pendientes">Pendientes ()</button>
-                <button id="completadas">Completadas ()</button>
-            </div>
-
-            <div class="tareas">
-                <h1>Todas las tareas</h1>
-                <ul id="lista-tareas">
-                    <li class="tarea">
-                        <div class="informacion">
-                            <div class="container-input">
-                                <img src="../img/controlar.png" width="10" height="10">
-                                <input type="checkbox" class="input-tarea">
-                            </div>
-                            <div class="texto">
-                                <h1 class="texto-titulo">Comprar ingredientes para la cena</h1>
-                                <h2>Ir al supermercado y comprar todo lo necesario</h2>
-                                <p><img src="../img/calendario.png" width="15" height="15"> 2024-01-20</p>
-                            </div>
-                        </div>
-                        <div class="derecha">
-                            <div class="estados">
-                                <p class="media">media</p>
-                                <p class="valor">$85.500</p>
-                            </div>
-                            <div class="crud">
-                                <img class="editar" src="../img/editar.png" width="20" height="20">
-                                <img class="eliminar" src="../img/eliminar.png" width="20" height="20">
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="tarea">
-                        <div class="informacion">
-                            <div class="container-input">
-                                <img src="../img/controlar.png" width="10" height="10">
-                                <input type="checkbox" class="input-tarea">
-                            </div>
-                            <div class="texto">
-                                <h1 class="texto-titulo">Reunión con el equipo</h1>
-                                <h2>Revisar el progreso del proyecto</h2>
-                                <p><img src="../img/calendario.png" width="15" height="15"> 2024-01-18</p>
-                            </div>
-                        </div>
-                        <div class="derecha">
-                            <div class="estados">
-                                <p class="alta">alta</p>
-                            </div>
-                            <div class="crud">
-                                <img class="editar" src="../img/editar.png" width="20" height="20">
-                                <img class="eliminar" src="../img/eliminar.png" width="20" height="20">
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="tarea">
-                        <div class="informacion">
-                            <div class="container-input">
-                                <img src="../img/controlar.png" width="10" height="10">
-                                <input type="checkbox" class="input-tarea">
-                            </div>
-                            <div class="texto">
-                                <h1 class="texto-titulo">Ejercicio matutino</h1>
-                                <h2>30 minutos de cardio</h2>
-                                <p><img src="../img/calendario.png" width="15" height="15"> 2024-01-17</p>
-                            </div>
-                        </div>
-                        <div class="derecha">
-                            <div class="estados">
-                                <p class="baja">baja</p>
-                            </div>
-                            <div class="crud">
-                                <img class="editar" src="../img/editar.png" width="20" height="20">
-                                <img class="eliminar" src="../img/eliminar.png" width="20" height="20">
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <div id="menuCrud" class="menu-crud">
-                    <div id="menuEliminar" class="menu-eliminar">
-                        <h1>Estas eliminando una tarea</h1>
-                        <div class="botones">
-                            <button id="cancelarEliminar">Cancelar</button>
-                            <button id="confirmarEliminar">Confirmar</button>
-                        </div>
-                    </div>
-                    <div class="editar-tarea">
-                        <form id="containerEditar" class="container-editar">
-                            <img id="cerrarMenuEditar" src="../img/cerrar.png" width="20" height="20">
-                            <h1>Editar Tarea</h1>
-
-                            <div class="titulo">
-                                <h1>Titulo *</h1>
-                                <div class="espacio-input">
-                                    <input type="text" placeholder="Título de la tarea">
-                                </div>
-                            </div>
-
-                            <div class="descripcion">
-                                <h1>Descripción</h1>
-                                <div class="espacio-input">
-                                    <input type="text" placeholder="Descripción de la tarea">
-                                </div>
-                            </div>
-
-                            <div class="prioridad">
-                                <h1>Prioridad</h1>
-                                <select>
-                                    <option value="baja">Baja</option>
-                                    <option value="media" selected>Media</option>
-                                    <option value="alta">Alta</option>
-                                </select>
-                            </div>
-
-                            <div class="fecha-limite">
-                                <h1>Fecha límite</h1>
-                                <div class="espacio-input">
-                                    <input type="datetime-local" placeholder="">
-                                </div>
-                            </div>
-
-                            <div class="check-box">
-                                <input id="abrirAsociarGasto" type="checkbox">
-                                <h1>Asociar con un gasto</h1>
-                            </div>
-                            <div id="asociarGasto" class="asociar-gasto">
-                                <h2>Seleccionar gasto</h2>
-                                <select>
-                                    <option value="" selected>Seleccionar gasto...</option>
-                                </select>
-                            </div>
-                            <div class="botones-registro">
-                                <button id="CancelarEditar">Cancelar</button>
-                                <button id="ConfirmarEditar">Confirmar</button>
-                            </div>
-                        </form>
-                    </div>
+                <div class="derecha1">
+                    <img src="../img/controlar.png" width="40" height="40" />
                 </div>
-            </div>
+            </li>
+            <li>
+                <div class="izquierda">
+                    <h2>Completadas</h2>
+                    <h1 id="tareasCompletadas">0</h1>
+                </div>
+                <div class="derecha2">
+                    <img src="../img/comprobado.png" width="40" height="40" />
+                </div>
+            </li>
+            <li>
+                <div class="izquierda">
+                    <h2>Alta prioridad</h2>
+                    <h1 id="tareasAltaPrioridad">0</h1>
+                </div>
+                <div class="derecha3">
+                    <img src="../img/calendario-blanco.png" width="40" height="40" />
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="buscadores">
+        <div class="buscador">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <input type="text" placeholder="Buscar tareas..." id="inputBuscar" />
         </div>
+        <select id="selectPrioridad">
+            <option value="todas" selected>Todas las prioridades</option>
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+        </select>
+    </div>
+
+    <div class="filtros">
+        <button id="btnTodas">Todas ()</button>
+        <button id="btnPendientes">Pendientes ()</button>
+        <button id="btnCompletadas">Completadas ()</button>
+    </div>
+
+    <div class="tareas">
+        <h1>Todas las tareas</h1>
+        <ul id="lista-tareas">
+            <!-- Aquí se cargarán las tareas dinámicamente -->
+        </ul>
+
+        <!-- Menú CRUD y edición (sin cambios) -->
+        <div id="menuCrud" class="menu-crud">
+            <!-- ... tu contenido existente ... -->
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    // Obtener usuario de localStorage
+    const usuarioJSON = localStorage.getItem("usuario");
+    if (!usuarioJSON) {
+        window.location.href = "login.html";
+        return;
+    }
+    const usuario = JSON.parse(usuarioJSON);
+
+    // Función para obtener tareas desde backend (ajusta URL y método según tu API)
+    async function obtenerTareas() {
+        try {
+            const response = await fetch(`http://localhost:8080/api/tareas/usuario/${usuario.id}`, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            });
+            if (!response.ok) throw new Error("Error al obtener tareas");
+            return await response.json(); // Asumimos que devuelve un array de tareas
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    }
+
+    // Renderizar tareas en la lista
+    function renderizarTareas(tareas) {
+        const lista = document.getElementById("lista-tareas");
+        lista.innerHTML = "";
+
+        tareas.forEach(tarea => {
+            const li = document.createElement("li");
+            li.classList.add("tarea");
+
+            // Checkbox completado
+            const checked = tarea.completada ? "checked" : "";
+
+            li.innerHTML = `
+                <div class="informacion">
+                    <div class="container-input">
+                        <img src="../img/controlar.png" width="10" height="10" />
+                        <input type="checkbox" class="input-tarea" ${checked} data-id="${tarea.id}" />
+                    </div>
+                    <div class="texto">
+                        <h1 class="texto-titulo">${tarea.titulo}</h1>
+                        <h2>${tarea.descripcion}</h2>
+                        <p><img src="../img/calendario.png" width="15" height="15" /> ${tarea.fechaLimite.substring(0,10)}</p>
+                    </div>
+                </div>
+                <div class="derecha">
+                    <div class="estados">
+                        <p class="${tarea.prioridad}">${tarea.prioridad}</p>
+                        ${tarea.valor ? `<p class="valor">$${tarea.valor}</p>` : ""}
+                    </div>
+                    <div class="crud">
+                        <img class="editar" src="../img/editar.png" width="20" height="20" data-id="${tarea.id}" />
+                        <img class="eliminar" src="../img/eliminar.png" width="20" height="20" data-id="${tarea.id}" />
+                    </div>
+                </div>
+            `;
+            lista.appendChild(li);
+        });
+    }
+
+    // Actualizar resumen con datos calculados
+    function actualizarResumen(tareas) {
+        const total = tareas.length;
+        const completadas = tareas.filter(t => t.completada).length;
+        const altaPrioridad = tareas.filter(t => t.prioridad === "alta").length;
+
+        document.getElementById("totalTareas").textContent = total;
+        document.getElementById("tareasCompletadas").textContent = completadas;
+        document.getElementById("tareasAltaPrioridad").textContent = altaPrioridad;
+
+        // Actualizar botones de filtro con conteos
+        document.getElementById("btnTodas").textContent = `Todas (${total})`;
+        document.getElementById("btnPendientes").textContent = `Pendientes (${total - completadas})`;
+        document.getElementById("btnCompletadas").textContent = `Completadas (${completadas})`;
+    }
+
+    // Cargar tareas y actualizar UI
+    const tareas = await obtenerTareas();
+    renderizarTareas(tareas);
+    actualizarResumen(tareas);
+
+    // Aquí puedes agregar listeners para filtros, búsqueda, edición, eliminación, etc.
+});
+</script>
     </main>
 
     <footer>

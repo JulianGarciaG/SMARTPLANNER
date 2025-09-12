@@ -8,6 +8,7 @@ import com.co.smartplanner_backend.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -58,10 +59,16 @@ public class UsuarioController {
         }
     }
     @PutMapping("/{id}")
-    public Usuario actualizarUsuario(
-            @PathVariable Integer id,
-            @RequestBody UsuarioUpdateDto updateDTO
-    ) throws Exception {
-        return usuarioService.actualizarUsuario(id, updateDTO);
-    }
+    public ResponseEntity<?> actualizarUsuario(
+        @PathVariable Integer id,
+        @RequestParam(required = false) String nombre,
+        @RequestParam(required = false) String contrasena,
+        @RequestParam(required = false) MultipartFile foto) {
+            try {
+                Usuario usuarioActualizado = usuarioService.actualizarUsuario(id, nombre, contrasena, foto);
+                return ResponseEntity.ok(usuarioActualizado);
+            } catch (Exception e) {
+                return ResponseEntity.badRequest().body(e.getMessage());
+            }
+        }
 }

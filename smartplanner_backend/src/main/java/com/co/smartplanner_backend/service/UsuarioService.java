@@ -9,6 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 
 import java.util.Optional;
@@ -62,24 +67,30 @@ public class UsuarioService {
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
 
-    public Usuario actualizarUsuario(Integer idUsuario, UsuarioUpdateDto updateDTO) throws Exception {
-        Optional<Usuario> optionalUsuario = usuarioRepository.findById(idUsuario);
-        if (optionalUsuario.isEmpty()) {
-            throw new Exception("Usuario no encontrado");
-        }
+    public Usuario actualizarUsuario(Integer id, String nombre, String contrasena, MultipartFile foto) throws Exception {
+        Usuario usuario = obtenerPorId(id);
 
-        Usuario usuario = optionalUsuario.get();
-        if (updateDTO.getNombre() != null && !updateDTO.getNombre().isEmpty()) {
-            usuario.setNombre(updateDTO.getNombre());
-        }
-        if (updateDTO.getContrasena() != null && !updateDTO.getContrasena().isEmpty()) {
-            usuario.setContrasena(passwordEncoder.encode(updateDTO.getContrasena()));
-        }
-        if (updateDTO.getFoto() != null && !updateDTO.getFoto().isEmpty()) {
-            usuario.setFoto(updateDTO.getFoto());
+        if (nombre != null && !nombre.isBlank()) usuario.setNombre(nombre);
+        if (contrasena != null && !contrasena.isBlank()) usuario.setContrasena(contrasena);
+
+        if (foto != null && !foto.isEmpty()) {
+            // Guardar en carpeta local (ej: uploads/)
+            String carpeta = "uploads/";
+            Path ruta = Paths.get(carpeta);
+            if (!Files.exists(ruta)) {
+                Files.createDirectories(ruta);
+            }
+
+            String nombreArchivo = id + "_" + foto.getOriginalFilename();
+            Path rutaArchivo = ruta.resolve(nombreArchivo);
+            Files.write(rutaArchivo, foto.getBytes());
+
+            // Guardar la ruta en BD
+            usuario.setFoto("/uploads/" + nombreArchivo);
         }
 
         return usuarioRepository.save(usuario);
     }
-
 }
+
+

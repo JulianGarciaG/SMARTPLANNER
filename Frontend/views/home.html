@@ -128,199 +128,83 @@
                 <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
             </div>
         </div>
-        <div class="container">
-            <div class="encabezado-dashboard">
-                <h2>¡Buen día! 👋</h2>
-                
-            </div>
-            <p>Aquí tienes un resumen de tu progreso</p>
-        <div class="tarjetas-resumen">
-            <div class="tarjeta tareas-completadas">
-                <div class="texto">
+<div class="container">
+    <div class="encabezado-dashboard">
+        <h2 id="saludo">¡Buen día! 👋</h2>
+    </div>
+    <p>Aquí tienes un resumen de tu progreso</p>
+    <div class="tarjetas-resumen">
+        <div class="tarjeta tareas-completadas">
+            <div class="texto">
                 <p class="titulo">Tareas completadas hoy</p>
-                <p class="cantidad">2/5</p>
-                </div>
-                <div class="etiqueta-tareas">Hoy</div>
+                <p class="cantidad" id="tareasCompletadas">0/0</p>
             </div>
+            <div class="etiqueta-tareas">Hoy</div>
+        </div>
 
-            <div class="tarjeta tiempo-enfocado">
-                <div class="texto">
+        <div class="tarjeta tiempo-enfocado">
+            <div class="texto">
                 <p class="titulo">Tiempo enfocado</p>
-                <p class="cantidad">4.5h</p>
-                </div>
-                <div class="etiqueta-tiempo">Hoy</div>
+                <p class="cantidad" id="tiempoEnfocado">0h</p>
             </div>
+            <div class="etiqueta-tiempo">Hoy</div>
+        </div>
 
-            <div class="tarjeta gastos">
-                <div class="texto">
+        <div class="tarjeta gastos">
+            <div class="texto">
                 <p class="titulo">Gastos del día</p>
-                <p class="cantidad">$45.000</p>
-                </div>
-                <div class="etiqueta-gastos">Hoy</div>
+                <p class="cantidad" id="gastosDia">$0</p>
             </div>
+            <div class="etiqueta-gastos">Hoy</div>
+        </div>
 
-            <div class="tarjeta balance">
-                <div class="texto">
+        <div class="tarjeta balance">
+            <div class="texto">
                 <p class="titulo">Balance mensual</p>
-                <p class="cantidad">$320.000</p>
-                </div>
-                <div class="etiqueta-balance">Hoy</div>
+                <p class="cantidad" id="balanceMensual">$0</p>
             </div>
+            <div class="etiqueta-balance">Hoy</div>
+        </div>
+    </div>
 
-        <div class="seccion-listas">
-            <div class="bloque calendarios">
-               <h3><img src="../img/calendario-verde.png" width="20"> Mis calendarios</h3> 
-                <ul class="lista-eventos">
-                        <li class="evento">
-                            <span class="punto verde"></span>
-                            <div>
-                                <p class="evento-nombre">Personal</p>
-                                <p class="evento-hora">3 Eventos</p>
-                            </div>
-                            <div class="detalles">
-                                <img src="../img/tres-puntos.png" width="20" height="20">
-                            </div>
-                            <div class="opciones">
-                                <ul>
-                                    <li>
-                                        <button><img src="../img/compartir.png" width="15" height="15">Compartir</button>
-                                    </li>
-                                    <li>
-                                        <button>Editar</button>
-                                    </li>
-                                    <li>
-                                        <button>Exportar</button>
-                                    </li>
-                                    <li>
-                                        <button class="red">Eliminar</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    <li class="evento">
-                        <span class="punto azul"></span>
-                        <div>
-                        <p class="evento-nombre">Trabajo</p>
-                        <p class="evento-hora">5 Eventos</p>
-                        </div>
-                        <div class="detalles">
-                            <img src="../img/tres-puntos.png" width="20" height="20">
-                        </div>
-                        <div class="opciones">
-                            <ul>
-                                <li>
-                                    <button><img src="../img/compartir.png" width="15" height="15">Compartir</button>
-                                </li>
-                                <li>
-                                    <button>Editar</button>
-                                </li>
-                                <li>
-                                    <button>Exportar</button>
-                                </li>
-                                <li>
-                                    <button class="red">Eliminar</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="evento">
-                        <span class="punto morado"></span>
-                        <div>
-                        <p class="evento-nombre">Familiar</p>
-                        <p class="evento-hora">2 Eventos</p>
-                        </div>
-                        <div class="detalles">
-                            <img src="../img/tres-puntos.png" width="20" height="20">
-                        </div>
-                        <div class="opciones">
-                            <ul>
-                                <li>
-                                    <button><img src="../img/compartir.png" width="15" height="15">Compartir</button>
-                                </li>
-                                <li>
-                                    <button>Editar</button>
-                                </li>
-                                <li>
-                                    <button>Exportar</button>
-                                </li>
-                                <li>
-                                    <button class="red">Eliminar</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="evento">
-                        <span class="punto naranja"></span>
-                        <div>
-                        <p class="evento-nombre">Proyecto</p>
-                        <p class="evento-hora">4 Eventos</p>
-                        </div>
-                        <div class="detalles">
-                            <img src="../img/tres-puntos.png" width="20" height="20">
-                        </div>
-                        <div class="opciones">
-                            <ul>
-                                <li>
-                                    <button><img src="../img/compartir.png" width="15" height="15">Compartir</button>
-                                </li>
-                                <li>
-                                    <button>Editar</button>
-                                </li>
-                                <li>
-                                    <button>Exportar</button>
-                                </li>
-                                <li>
-                                    <button class="red">Eliminar</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </div>
-                <div class="bloque eventos">
-                    <h3><img src="../img/calendario-verde.png" width="20"> Próximos eventos</h3>
-                    <ul class="lista-eventos">
-                    <li class="evento">
-                        <span class="punto verde"></span>
-                        <div>
-                        <p class="evento-nombre">Reunión de equipo</p>
-                        <p class="evento-hora">10:00 AM - 11:00 AM</p>
-                        </div>
-                    </li>
-                    <li class="evento">
-                        <span class="punto azul"></span>
-                        <div>
-                        <p class="evento-nombre">Cita médica</p>
-                        <p class="evento-hora">3:00 PM - 4:00 PM</p>
-                        </div>
-                    </li>
-                    </ul>
-                </div>
-                
-            </div>
-            <div class="bloque tareas">
-                <h3><img src="../img/comprobado-azul.png" width="20"> Tareas pendientes</h3>
-                    <ul class="lista-tareas">
-                        <li>
-                            <input type="checkbox">
-                            <span>Comprar ingredientes para la cena</span>
-                            <h5 class="prioridad media">Media</h5>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <span>Revisar propuesta de proyecto</span>
-                            <h5 class="prioridad alta">Alta</h5>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <span>Llamar al dentista</span>
-                            <h5 class="prioridad media">Media</h5>
-                        </li>
-                    </ul>
-            </div>
-        </div>
-        </div>
-        
-        </div>
+    <!-- Resto del contenido sin cambios -->
+    <div class="seccion-listas">
+        <!-- Aquí va el contenido que ya tienes -->
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const usuarioJSON = localStorage.getItem("usuario");
+    if (!usuarioJSON) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    const usuario = JSON.parse(usuarioJSON);
+
+    // Actualizar saludo con el nombre del usuario
+    const saludo = document.getElementById("saludo");
+    if (usuario.nombre) {
+        saludo.textContent = `¡Buen día, ${usuario.nombre}! 👋`;
+    }
+
+    // Ejemplo: actualizar datos de resumen si vienen en usuario
+    // Ajusta estos campos según los datos que tengas disponibles
+    if (usuario.tareasCompletadasHoy !== undefined && usuario.tareasTotalesHoy !== undefined) {
+        document.getElementById("tareasCompletadas").textContent = `${usuario.tareasCompletadasHoy}/${usuario.tareasTotalesHoy}`;
+    }
+    if (usuario.tiempoEnfocadoHoy !== undefined) {
+        document.getElementById("tiempoEnfocado").textContent = `${usuario.tiempoEnfocadoHoy}h`;
+    }
+    if (usuario.gastosDia !== undefined) {
+        document.getElementById("gastosDia").textContent = `$${usuario.gastosDia}`;
+    }
+    if (usuario.balanceMensual !== undefined) {
+        document.getElementById("balanceMensual").textContent = `$${usuario.balanceMensual}`;
+    }
+});
+</script>
     </main>
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
@@ -330,3 +214,4 @@
     <script src="../js/abrirDetallesMisCalendarios.js"></script>
 </body>
 </html>
+

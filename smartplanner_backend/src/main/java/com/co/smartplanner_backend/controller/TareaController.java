@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tareas")
-@CrossOrigin(origins = "*") // Permitir peticiones desde el front
+@CrossOrigin(origins = "*") 
 public class TareaController {
 
     private final TareaService tareaService;

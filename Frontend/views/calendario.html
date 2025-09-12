@@ -234,94 +234,156 @@
 <!-- contenido de la pagina -->
 <div class="container">
     <div class="calendar-container">
-        <h1>Mis Calendario</h1>
-        <button id="abrirMenuCalendario"><img src="../img/plus-pequeno.png" width="20" height="20"> Nuevo Calendario</button>
+        <h1>Mis Calendarios</h1>
+        <button id="abrirMenuCalendario">
+            <img src="../img/plus-pequeno.png" width="20" height="20" /> Nuevo Calendario
+        </button>
     </div>
 
     <div class="selec-calendario">
         <h2>Selecciona un calendario para ver:</h2>
 
-        <!-- Ejemplo de un calendario -->
-         <div class="calendarios">
-        <div class="elep-calendario">
-            <span class="punto azul"></span>
-            <h2>Personal</h2>
-            <h3>Eventos</h3>
-            <h4>12 eventos</h4>
-            <div class="contenedor-botones">
-            <button class="boton toggle-ocultar">Ocultar</button>
-            <button class="boton toggle-compartir">Compartir</button>
-            <span class="badge-compartido">Compartido</span>
-            </div>
-        </div>
-        <div class="elep-calendario">
-            <span class="punto verde"></span>
-            <h2>Trabajo</h2>
-            <h3>Eventos</h3>
-            <h4>8 eventos</h4>
-            <div class="contenedor-botones">
-            <button class="boton toggle-ocultar">Ocultar</button>
-            <button class="boton toggle-compartir">Compartir</button>
-            <span class="badge-compartido">Compartido</span>
-            </div>
-        </div>
-
-        <div class="elep-calendario">
-            <span class="punto morado"></span>
-            <h2>Familia</h2>
-            <h3>Eventos</h3>
-            <h4>5 eventos</h4>
-            <div class="contenedor-botones">
-            <button class="boton toggle-ocultar">Ocultar</button>
-            <button class="boton toggle-compartir">Compartir</button>
-            <span class="badge-compartido">Compartido</span>
-            </div>
-        </div>
-
-         <div class="elep-calendario">
-            <span class="punto naranja"></span>
-            <h2>Proyectos</h2>
-            <h3>Eventos</h3>
-            <h4>15 eventos</h4>
-            <div class="contenedor-botones">
-            <button class="boton toggle-ocultar">Ocultar</button>
-            <button class="boton toggle-compartir">Compartir</button>
-            <span class="badge-compartido">Compartido</span>
-            </div>
-        </div>
+        <div class="calendarios" id="listaCalendarios">
+            <!-- Calendarios se cargarán aquí dinámicamente -->
         </div>
     </div>
+
     <div class="vistas-calendario">
         <span class="punto azul"></span>
-        <h1>Viendo: Trabajo</h1>
-            <button id="abrirMenuEvento"><img src="../img/plus-pequeno.png" width="20" height="20"> Nueva evento</button>
-    </div>    
-            
-            <div id="calendar"></div>
-            <h1></h1>
-            <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-            <script src="../js/calendario.js"></script>
-        <div class="eventos">
-            <h1>Eventos de hoy</h1>
-                <ul>
-            <li>
-            <span class="hora">10:00</span>
-            <span class="descripcion">Reunión de equipo</span>
-            <span class="etiqueta trabajo">Trabajo</span>
-            </li>
-            <li>
-            <span class="hora">15:00</span>
-            <span class="descripcion">Cita médica</span>
-            <span class="etiqueta personal">Personal</span>
-            </li>
-            <li>
-            <span class="hora">18:00</span>
-            <span class="descripcion">Gimnasio</span>
-            <span class="etiqueta salud">Salud</span>
-            </li>
+        <h1 id="calendarioSeleccionado">Viendo: Trabajo</h1>
+        <button id="abrirMenuEvento">
+            <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva evento
+        </button>
+    </div>
+
+    <div id="calendar"></div>
+    <h1></h1>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script src="../js/calendario.js"></script>
+
+    <div class="eventos">
+        <h1>Eventos de hoy</h1>
+        <ul id="listaEventosHoy">
+            <!-- Eventos se cargarán aquí dinámicamente -->
         </ul>
+    </div>
 </div>
-        
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const usuarioJSON = localStorage.getItem("usuario");
+    if (!usuarioJSON) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    const usuario = JSON.parse(usuarioJSON);
+
+    // Ejemplo de estructura esperada en usuario:
+    // usuario.calendarios = [
+    //   { nombre: "Personal", color: "azul", eventos: 12, compartido: true },
+    //   { nombre: "Trabajo", color: "verde", eventos: 8, compartido: true },
+    //   ...
+    // ]
+    // usuario.eventosHoy = [
+    //   { hora: "10:00", descripcion: "Reunión de equipo", etiqueta: "trabajo" },
+    //   ...
+    // ]
+
+    const listaCalendarios = document.getElementById("listaCalendarios");
+    listaCalendarios.innerHTML = ""; // Limpiar contenido
+
+    if (Array.isArray(usuario.calendarios) && usuario.calendarios.length > 0) {
+        usuario.calendarios.forEach(cal => {
+            const divCal = document.createElement("div");
+            divCal.classList.add("elep-calendario");
+
+            // Color del punto
+            const spanPunto = document.createElement("span");
+            spanPunto.classList.add("punto", cal.color);
+            divCal.appendChild(spanPunto);
+
+            // Nombre calendario
+            const h2 = document.createElement("h2");
+            h2.textContent = cal.nombre;
+            divCal.appendChild(h2);
+
+            // Texto "Eventos"
+            const h3 = document.createElement("h3");
+            h3.textContent = "Eventos";
+            divCal.appendChild(h3);
+
+            // Cantidad de eventos
+            const h4 = document.createElement("h4");
+            h4.textContent = `${cal.eventos} eventos`;
+            divCal.appendChild(h4);
+
+            // Contenedor botones
+            const contBotones = document.createElement("div");
+            contBotones.classList.add("contenedor-botones");
+
+            const btnOcultar = document.createElement("button");
+            btnOcultar.classList.add("boton", "toggle-ocultar");
+            btnOcultar.textContent = "Ocultar";
+            contBotones.appendChild(btnOcultar);
+
+            const btnCompartir = document.createElement("button");
+            btnCompartir.classList.add("boton", "toggle-compartir");
+            btnCompartir.textContent = "Compartir";
+            contBotones.appendChild(btnCompartir);
+
+            if (cal.compartido) {
+                const spanBadge = document.createElement("span");
+                spanBadge.classList.add("badge-compartido");
+                spanBadge.textContent = "Compartido";
+                contBotones.appendChild(spanBadge);
+            }
+
+            divCal.appendChild(contBotones);
+
+            listaCalendarios.appendChild(divCal);
+        });
+    } else {
+        listaCalendarios.innerHTML = "<p>No tienes calendarios disponibles.</p>";
+    }
+
+    // Cargar eventos de hoy
+    const listaEventosHoy = document.getElementById("listaEventosHoy");
+    listaEventosHoy.innerHTML = "";
+
+    if (Array.isArray(usuario.eventosHoy) && usuario.eventosHoy.length > 0) {
+        usuario.eventosHoy.forEach(ev => {
+            const li = document.createElement("li");
+
+            const spanHora = document.createElement("span");
+            spanHora.classList.add("hora");
+            spanHora.textContent = ev.hora;
+            li.appendChild(spanHora);
+
+            const spanDesc = document.createElement("span");
+            spanDesc.classList.add("descripcion");
+            spanDesc.textContent = ev.descripcion;
+            li.appendChild(spanDesc);
+
+            const spanEtiqueta = document.createElement("span");
+            spanEtiqueta.classList.add("etiqueta", ev.etiqueta);
+            spanEtiqueta.textContent = ev.etiqueta.charAt(0).toUpperCase() + ev.etiqueta.slice(1);
+            li.appendChild(spanEtiqueta);
+
+            listaEventosHoy.appendChild(li);
+        });
+    } else {
+        listaEventosHoy.innerHTML = "<li>No hay eventos para hoy.</li>";
+    }
+
+    // Opcional: actualizar título del calendario seleccionado
+    const calendarioSeleccionado = document.getElementById("calendarioSeleccionado");
+    if (usuario.calendarioActivo) {
+        calendarioSeleccionado.textContent = `Viendo: ${usuario.calendarioActivo}`;
+        // También puedes actualizar el color del punto si quieres
+    }
+});
+</script>      
     </main>
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->

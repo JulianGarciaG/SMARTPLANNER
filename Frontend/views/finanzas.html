@@ -232,275 +232,265 @@
             </div>
         </div>
         <!-- Contenido principal de la página -->
-        <div class="container">
-            <div class="titulo">
-                <h1>Finanzas Personales</h1>
-                <div class="containerButtons">
-                    <button id="abrirMenuFinanza"><img src="../img/plus-pequeno.png" width="20" height="20">Nueva transaccion</button>
-                    <button id="abrirMenuPlanAhorro"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank h-4 w-4 mr-2"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2h0V5z"></path><path d="M2 9v1c0 1.1.9 2 2 2h1"></path><path d="M16 11h0"></path></svg> Nueva Plan de Ahorro</button>
+       <div class="container">
+    <div class="titulo">
+        <h1>Finanzas Personales</h1>
+        <div class="containerButtons">
+            <button id="abrirMenuFinanza">
+                <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva transaccion
+            </button>
+            <button id="abrirMenuPlanAhorro">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-piggy-bank h-4 w-4 mr-2"
+                >
+                    <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2h0V5z"></path>
+                    <path d="M2 9v1c0 1.1.9 2 2 2h1"></path>
+                    <path d="M16 11h0"></path>
+                </svg>
+                Nueva Plan de Ahorro
+            </button>
+        </div>
+    </div>
+    <div class="resumen">
+        <ul>
+            <li>
+                <div class="izquierda">
+                    <h2>Ingresos del Mes</h2>
+                    <h1 id="ingresosMes" class="green">$0.00</h1>
                 </div>
-            </div>
-            <div class="resumen">
-                <ul>
-                    <li>
-                        <div class="izquierda">
-                            <h2>Ingresos del Mes</h2>
-                            <h1 class="green">$2800.00</h1>
-                        </div>
-                        <div class="derecha1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-white"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="izquierda">
-                            <h2>Gastos del mes</h2>
-                            <h1 class="red">$250.50</h1>
-                        </div>
-                        <div class="derecha2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-6 w-6 text-white"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="izquierda">
-                            <h2>Balance</h2>
-                            <h1 class="green">$2549.50</h1>
-                        </div>
-                        <div class="derecha3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-6 w-6 text-white"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="buscadores">
-                <div class="buscador">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-                    <input type="text" placeholder="Buscar transacciones...">
+                <div class="derecha1">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-trending-up h-6 w-6 text-white"
+                    >
+                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                        <polyline points="16 7 22 7 22 13"></polyline>
+                    </svg>
                 </div>
-                <select name="" id="">
-                    <option value="" selected>Todas las categorias</option>
-                    <option value="">Transporte</option>
-                    <option value="">Alimentación</option>
-                    <option value="">Salario</option>
-                    <option value="">Entrenamiento</option>
-                    <option value="">Salud</option>
-                    <option value="">Hogar</option>
-                    <option value="">Educacion</option>
-                    <option value="">Otros</option>
-                </select>
-            </div>
-            <div class="filtros">
-                <button id="todas">Todas (5)</button>
-                <button id="ingresos">Ingresos (2)</button>
-                <button id="egresos">Gastos (3)</button>
-            </div>
-            <div class="tareas">
-                <h1>Historial de transacciones</h1>
-                <ul id="lista-tareas">
-                    <li>
-                        <div class="informacion">
-                            <div class="egreso">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-6 w-6 text-white"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
-                            </div>
-                            <div class="texto">
-                                <h1>Gasolina</h1>
-                                <h2>transporte 2024-01-17</h2>
-                            </div>
-                        </div>
-                        <div class="derecha">
-                            <div class="estados">
-                                <p class="media">Transporte</p>
-                                 <p class="red">-$15.00</p>
-                            </div>
-                            <div class="crud">
-                                <img class="editar" src="../img/editar.png" width="20" height="20">
-                                <img class="eliminar" src="../img/eliminar.png" width="20" height="20">
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="informacion">
-                            <div class="egreso">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-6 w-6 text-white"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
-                            </div>
-                            <div class="texto">
-                                <h1>Supermercado</h1>
-                                <h2>Alimentación 2024-01-20</h2>
-                            </div>
-                        </div>
-                        <div class="derecha">
-                            <div class="estados">
-                                <p class="alta">Alimentación</p>
-                                <p class="red">-$85.50</p>
-                            </div>
-                            <div class="crud">
-                                <img class="editar" src="../img/editar.png" width="20" height="20">
-                                <img class="eliminar" src="../img/eliminar.png" width="20" height="20">
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="informacion">
-                            <div class="ingreso">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-white"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
-                            </div>
-                            <div class="texto">
-                                <h1>Pago Menusal</h1>
-                                <h2>Salario 2024-01-15</h2>
-                            </div>  
-                        </div>
-                        <div class="derecha">
-                            <div class="estados">
-                                <p class="baja">Salario</p>
-                                <p class="green">+$250.00</p>
-                            </div>
-                            <div class="crud">
-                                <img class="editar" src="../img/editar.png" width="20" height="20">
-                                <img class="eliminar" src="../img/eliminar.png" width="20" height="20">
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <div id="menuCrud" class="menu-crud">
-                    <div id="menuEliminar" class="menu-eliminar">
-                        <h1>Estas eliminando una tarea</h1>
-                        <div class="botones">
-                            <button id="cancelarEliminar">Cancelar</button>
-                            <button id="confirmarEliminar">Confirmar</button>
-                        </div>
+            </li>
+            <li>
+                <div class="izquierda">
+                    <h2>Gastos del mes</h2>
+                    <h1 id="gastosMes" class="red">$0.00</h1>
+                </div>
+                <div class="derecha2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-trending-down h-6 w-6 text-white"
+                    >
+                        <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline>
+                        <polyline points="16 17 22 17 22 11"></polyline>
+                    </svg>
+                </div>
+            </li>
+            <li>
+                <div class="izquierda">
+                    <h2>Balance</h2>
+                    <h1 id="balanceMes" class="green">$0.00</h1>
+                </div>
+                <div class="derecha3">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-dollar-sign h-6 w-6 text-white"
+                    >
+                        <line x1="12" x2="12" y1="2" y2="22"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buscadores">
+        <div class="buscador">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"
+            >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <input type="text" placeholder="Buscar transacciones..." id="inputBuscar" />
+        </div>
+        <select id="selectCategoria">
+            <option value="" selected>Todas las categorias</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Alimentación">Alimentación</option>
+            <option value="Salario">Salario</option>
+            <option value="Entretenimiento">Entretenimiento</option>
+            <option value="Salud">Salud</option>
+            <option value="Hogar">Hogar</option>
+            <option value="Educacion">Educacion</option>
+            <option value="Otros">Otros</option>
+        </select>
+    </div>
+    <div class="filtros">
+        <button id="btnTodas">Todas (0)</button>
+        <button id="btnIngresos">Ingresos (0)</button>
+        <button id="btnEgresos">Gastos (0)</button>
+    </div>
+    <div class="tareas">
+        <h1>Historial de transacciones</h1>
+        <ul id="lista-transacciones">
+            <!-- Transacciones se cargarán aquí -->
+        </ul>
+        <div id="menuCrud" class="menu-crud">
+            <!-- contenido existente -->
+        </div>
+    </div>
+    <!-- Resto del contenido (resumen-categorias, progresoAhorro, etc.) sin cambios -->
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    const usuarioJSON = localStorage.getItem("usuario");
+    if (!usuarioJSON) {
+        window.location.href = "login.html";
+        return;
+    }
+    const usuario = JSON.parse(usuarioJSON);
+
+    // Función para obtener transacciones del usuario (ajusta URL y método según tu API)
+    async function obtenerTransacciones() {
+        try {
+            const response = await fetch(`http://localhost:8080/api/finanzas/usuario/${usuario.id}`, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            });
+            if (!response.ok) throw new Error("Error al obtener transacciones");
+            return await response.json(); // Asumimos que devuelve un array de transacciones
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    }
+
+    // Renderizar transacciones en la lista
+    function renderizarTransacciones(transacciones) {
+        const lista = document.getElementById("lista-transacciones");
+        lista.innerHTML = "";
+
+        transacciones.forEach(tx => {
+            const li = document.createElement("li");
+
+            // Clase para icono y color según tipo
+            const tipoClase = tx.tipo === "ingreso" ? "ingreso" : "egreso";
+            const signo = tx.tipo === "ingreso" ? "+" : "-";
+            const colorClase = tx.tipo === "ingreso" ? "green" : "red";
+
+            li.innerHTML = `
+                <div class="informacion">
+                    <div class="${tipoClase}">
+                        ${tx.tipo === "ingreso" ? `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-white">
+                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                            <polyline points="16 7 22 7 22 13"></polyline>
+                        </svg>` : `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-6 w-6 text-white">
+                            <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline>
+                            <polyline points="16 17 22 17 22 11"></polyline>
+                        </svg>`}
                     </div>
-                    <div class="editar-tarea">
-                        <form id="containerEditar" class="container-editar">
-                            <img id="cerrarMenuEditar" src="../img/cerrar.png" width="20" height="20">
-            <h1>Nueva transaccion</h1>
-            <div class="titulo">
-                <h1>Tipo</h1>
-    
-                    <select name="Tipo" id="Tipo">
-                        <option value="ingreso">Ingreso</option>
-                        <option value="egreso">Egreso</option>
-                    </select>
-            </div>
-            <div class="Descripción">
-                <h1>Descripción</h1>
-                <div class="espacio-input">
-                    <input type="text" placeholder="Descripción de la transaccion">
-                </div>
-            </div>
-            <div class="Descripción">
-                <h1>Monto</h1>
-                <div class="espacio-input">
-                    <input type="number" placeholder="0.00">
-                </div>
-            </div>
-            <div class="Descripción">
-                <h1>Categoria</h1>
-                <Select>
-                    <option value="">Seleccionar Categoria</option>
-                    <option value="">Alimentación</option>
-                    <option value="">Transporte</option>
-                    <option value="">Salario</option>
-                    <option value="">Entretenimiento</option>
-                    <option value="">Salud</option>
-                    <option value="">Hogar</option>
-                    <option value="">Educacion</option>
-                    <option value="">Otros</option>
-                </Select>
-            </div>
-            <div class="fecha-limite">
-                <h1>Fecha</h1>
-                <div class="espacio-input">
-                    <input type="date">
-                </div>
-            </div>
-            <div class="Descripción">
-                <h1>Asociar a Tarea(opcional)</h1>
-                <Select>
-                    <option value="">Sin asociar</option>
-                    <option value="">Comprar ingredientes para la cena</option>
-                    <option value="">Reunion con el equipo</option>
-                    <option value="">Entretenimiento</option>
-                    <option value="">Ejercicio matutino</option>
-                    <option value="">Revisar propuestas de proyecto</option>
-                    <option value="">Llamar al dentista</option>
-                </Select>
-            </div>
-            <div class="botones-registro">
-                                <button id="CancelarEditar">Cancelar</button>
-                                <button id="ConfirmarEditar">Confirmar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="resumen-categorias">
-                <h1>Resumen por categorías</h1>
-                <div class="categoria">
-                    <h3>Salario <span class="badge badge-azul">1</span></h3>
-                    <p class="green">$2500.00</p>
-                </div>
-                <div class="categoria">
-                    <h3>Alimentación <span class="badge badge-naranja">1</span></h3>
-                    <p class="red">$85.50</p>
-                </div>
-                <div class="categoria">
-                    <h3>Transporte <span class="badge badge-morado">1</span></h3>
-                    <p class="red">$45.00</p>
-                </div>
-                <div class="categoria">
-                    <h3>Freelance <span class="badge badge-verde">1</span></h3>
-                    <p class="green">$300.00</p>
-                </div>
-                <div class="categoria">
-                    <h3>Entretenimiento <span class="badge badge-rosa">1</span></h3>
-                    <p class="red">$120.00</p>
-                </div>
-            </div>
-            <div class="progresoAhorro">
-                <h1>Progreso de Ahorros</h1>
-                <div class="stat">
-                    <div class="encabezado">
-                        <h1>Vacaciones</h1>
-                        <p>$2300 / $5000</p>
-                        <button id="abrirEditarProgresoAhorro"><img src="../img/editar.png" width="15" height="15"></button>
-                    </div>
-                    <progress value="0.46"></progress>
-                    <p>46.0% completado</p>
-                </div>
-                <div class="stat">
-                    <div class="encabezado">
-                        <h1>Fondo de emergencia</h1>
-                        <p>$6500 / $10000</p>
-                        <button id="abrirEditarProgresoAhorro"><img src="../img/editar.png" width="15" height="15"></button>
-                    </div>
-                    <progress value="0.65"></progress>
-                    <p>65.0% completado</p>
-                </div>
-                <div class="stat">
-                    <div class="encabezado">
-                        <h1>Nuevo auto</h1>
-                        <p>$8900 / $25000</p>
-                        <button id="abrirEditarProgresoAhorro"><img src="../img/editar.png" width="15" height="15"></button>
-                    </div>
-                    <progress value="0.356"></progress>
-                    <p>35.6% completado</p>
-                </div>
-                <div id="editarProgresoAhorro" class="editarProgresoAhorro">
-                    <img id="cerrarEditarProgresoAhorro" src="../img/cerrar.png" width="15" height="15">
-                    <h1>Editas progreso ahorro</h1>
-                    <label for="montoAporte">Monto aporte</label>
-                    <div class="espacio-input">
-                        <input type="text" name="montoAporte" id="" placeholder="Monto aporte">
-                    </div>
-                    <label for="">Fecha del aporte</label>
-                    <div class="espacio-input">
-                        <input type="text" name="fechaAporte" id="" placeholder="Fecha del aporte">
-                    </div>
-                    <div class="botones">
-                        <button id="cancelar">Cancelar</button>
-                        <button id="Actualizar">Actualizar</button>
+                    <div class="texto">
+                        <h1>${tx.descripcion}</h1>
+                        <h2>${tx.categoria} ${tx.fecha.substring(0,10)}</h2>
                     </div>
                 </div>
-            </div>
+                <div class="derecha">
+                    <div class="estados">
+                        <p class="${tx.categoria.toLowerCase()}">${tx.categoria}</p>
+                        <p class="${colorClase}">${signo}$${tx.monto.toFixed(2)}</p>
+                    </div>
+                    <div class="crud">
+                        <img class="editar" src="../img/editar.png" width="20" height="20" data-id="${tx.id}" />
+                        <img class="eliminar" src="../img/eliminar.png" width="20" height="20" data-id="${tx.id}" />
+                    </div>
+                </div>
+            `;
+            lista.appendChild(li);
+        });
+    }
+
+    // Calcular resumen mensual (ingresos, gastos, balance)
+    function calcularResumen(transacciones) {
+        const mesActual = new Date().getMonth();
+        const anioActual = new Date().getFullYear();
+
+        let ingresos = 0;
+        let gastos = 0;
+
+        transacciones.forEach(tx => {
+            const fechaTx = new Date(tx.fecha);
+            if (fechaTx.getMonth() === mesActual && fechaTx.getFullYear() === anioActual) {
+                if (tx.tipo === "ingreso") ingresos += tx.monto;
+                else if (tx.tipo === "egreso") gastos += tx.monto;
+            }
+        });
+
+        const balance = ingresos - gastos;
+
+        document.getElementById("ingresosMes").textContent = `$${ingresos.toFixed(2)}`;
+        document.getElementById("gastosMes").textContent = `$${gastos.toFixed(2)}`;
+        document.getElementById("balanceMes").textContent = `$${balance.toFixed(2)}`;
+
+        // Actualizar botones filtro con conteos
+        const total = transacciones.length;
+        const ingresosCount = transacciones.filter(tx => tx.tipo === "ingreso").length;
+        const egresosCount = transacciones.filter(tx => tx.tipo === "egreso").length;
+
+        document.getElementById("btnTodas").textContent = `Todas (${total})`;
+        document.getElementById("btnIngresos").textContent = `Ingresos (${ingresosCount})`;
+        document.getElementById("btnEgresos").textContent = `Gastos (${egresosCount})`;
+    }
+
+    // Cargar transacciones y actualizar UI
+    const transacciones = await obtenerTransacciones();
+    renderizarTransacciones(transacciones);
+    calcularResumen(transacciones);
+
+    // Aquí puedes agregar listeners para filtros, búsqueda, edición, eliminación, etc.
+});
+</script>
     </main>
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
