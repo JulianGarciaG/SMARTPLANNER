@@ -2,7 +2,6 @@ package com.co.smartplanner_backend.controller;
 
 import com.co.smartplanner_backend.dto.LoginDto;
 import com.co.smartplanner_backend.dto.UsuarioDto;
-import com.co.smartplanner_backend.dto.UsuarioLoginDto;
 import com.co.smartplanner_backend.dto.UsuarioUpdateDto;
 import com.co.smartplanner_backend.model.Usuario;
 import com.co.smartplanner_backend.service.UsuarioService;
@@ -33,23 +32,16 @@ public class UsuarioController {
     }
 
     // Login
- @PostMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDto loginDTO) {
         try {
             Usuario usuario = usuarioService.login(loginDTO);
-
-            // Crear DTO de respuesta (sin devolver la contraseña)
-            UsuarioLoginDto resp = new UsuarioLoginDto(
-                usuario.getIdUsuario(),   
-                usuario.getNombre(),
-                usuario.getCorreoElectronico()
-            );
-
-            return ResponseEntity.ok(resp);
+            return ResponseEntity.ok(usuario);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
     // Listar todos
     @GetMapping
     public ResponseEntity<List<Usuario>> listarTodos() {

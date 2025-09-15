@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await response.json();
       alert("Usuario registrado con éxito ✅");
-      window.location.href = "login.html";
+      window.location.href = "../index.html";
 
     } catch (error) {
       console.error("Error:", error);
