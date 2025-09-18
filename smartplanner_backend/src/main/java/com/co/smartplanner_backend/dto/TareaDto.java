@@ -14,3 +14,4 @@ public class TareaDto {
     private String categoria;   // asociada, sin asociar
     private Integer id_usuario;
 }
+

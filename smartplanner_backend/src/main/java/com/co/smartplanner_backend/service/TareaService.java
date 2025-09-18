@@ -42,4 +42,34 @@ public class TareaService {
     public List<Tarea> listarTareas() {
         return tareaRepository.findAll();
     }
+
+     public Tarea obtenerTareaPorId(Long id) {
+        return tareaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tarea no encontrada"));
+    }
+
+    // ✅ Listar tareas de un usuario
+    public List<Tarea> listarTareasPorUsuario(Integer idUsuario) {
+        return tareaRepository.findByUsuario_IdUsuario(idUsuario);
+    }
+
+    // ✅ Actualizar
+    public Tarea actualizarTarea(Long id, TareaDto dto) {
+        Tarea tarea = obtenerTareaPorId(id);
+
+        tarea.setNombre(dto.getNombre());
+        tarea.setDescripcion(dto.getDescripcion());
+        tarea.setFecha_limite(LocalDateTime.parse(dto.getFecha_limite()));
+        tarea.setEstado_de_tarea(dto.getEstado_de_tarea());
+        tarea.setPrioridad(Prioridad.valueOf(dto.getPrioridad().toLowerCase()));
+        tarea.setCategoria(Categoria.valueOf(dto.getCategoria().toLowerCase()));
+
+        return tareaRepository.save(tarea);
+    }
+
+    // ✅ Eliminar
+    public void eliminarTarea(Long id) {
+        Tarea tarea = obtenerTareaPorId(id);
+        tareaRepository.delete(tarea);
+    }
 }

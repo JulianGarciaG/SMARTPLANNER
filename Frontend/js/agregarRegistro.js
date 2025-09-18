@@ -9,6 +9,11 @@ const asociarGasto = document.getElementById('asociarGasto');
 
 abrirMenuRegistro.addEventListener('click', () => {
     agregarRegistro.style.display = 'flex';
+    // Restaurar título y botón en modo creación
+    const tituloModal = document.querySelector('#containerRegistro > h1');
+    if (tituloModal) tituloModal.textContent = 'Nueva Tarea';
+    const crearBtn = document.getElementById('Crear-registro');
+    if (crearBtn) crearBtn.textContent = 'Crear';
 });
 
 cerrarMenuRegistros.addEventListener('click', () => {

@@ -1,378 +1,236 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMART PLANNER - TAREAS</title>
-    <link rel="icon" href="../img/Logo.png">
-    <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/tareas.css">
-    <link rel="stylesheet" href="../styles/agregar-registro.css">
-    <link rel="stylesheet" href="../styles/notificaciones.css">
-    <link rel="stylesheet" href="../styles/menu-editar.css">
-</head>
-<body>
-    <!-- FORMULARIO AGREGAR REGISTRO -->
-    <div id="agregarRegistro" class="agregar-registro">
-        <form id="containerRegistro" class="container-registro">
-            <img id="cerrarMenuRegistros" src="../img/cerrar.png" width="20" height="20">
-            <h1>Nueva Tarea</h1>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SMART PLANNER - TAREAS</title>
+        <link rel="icon" href="../img/Logo.png" />
+        <link rel="stylesheet" href="../styles/header.css" />
+        <link rel="stylesheet" href="../styles/tareas.css" />
+        <link rel="stylesheet" href="../styles/agregar-registro.css" />
+        <link rel="stylesheet" href="../styles/notificaciones.css" />
+        <link rel="stylesheet" href="../styles/menu-editar.css" />
+    </head>
+    <body>
+        <!-- FORMULARIO AGREGAR REGISTRO -->
+        <div id="agregarRegistro" class="agregar-registro">
+            <form id="containerRegistro" class="container-registro">
+                <img id="cerrarMenuRegistros" src="../img/cerrar.png" width="20" height="20" />
+                <h1>Nueva Tarea</h1>
 
-            <div class="titulo">
-                <h1>Titulo *</h1>
-                <div class="espacio-input">
-                    <input type="text" placeholder="Título de la tarea">
+                <div class="titulo">
+                    <h1>Titulo *</h1>
+                    <div class="espacio-input">
+                        <input type="text" placeholder="Título de la tarea" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="descripcion">
-                <h1>Descripción</h1>
-                <div class="espacio-input">
-                    <input type="text" placeholder="Descripción de la tarea">
+                <div class="descripcion">
+                    <h1>Descripción</h1>
+                    <div class="espacio-input">
+                        <input type="text" placeholder="Descripción de la tarea" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="prioridad">
-                <h1>Prioridad</h1>
-                <select>
-                    <option value="baja">Baja</option>
-                    <option value="media" selected>Media</option>
-                    <option value="alta">Alta</option>
-                </select>
-            </div>
+                <div class="prioridad">
+                    <h1>Prioridad</h1>
+                    <select>
+                        <option value="baja">Baja</option>
+                        <option value="media" selected>Media</option>
+                        <option value="alta">Alta</option>
+                    </select>
+                </div>
 
-            <div class="fecha-limite">
-                <h1>Fecha límite</h1>
-                <div class="espacio-input">
-                    <input type="datetime-local" placeholder="">
+                <div class="fecha-limite">
+                    <h1>Fecha límite</h1>
+                    <div class="espacio-input">
+                        <input type="datetime-local" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="check-box">
-                <input id="abrirAsociarGasto" type="checkbox">
-                <h1>Asociar con un gasto</h1>
-            </div>
-            <div id="asociarGasto" class="asociar-gasto">
-                <h2>Seleccionar gasto</h2>
-                <select>
-                    <option value="" selected>Seleccionar gasto...</option>
-                </select>
-            </div>
-            <div class="botones-registro">
-                <button id="Cancelar-registro" class="Cancelar-registro">Cancelar</button>
-                <button id="Crear-registro" class="Crear-registro">Crear</button>
-            </div>
-        </form>
-    </div>
+                <div class="check-box">
+                    <input id="abrirAsociarGasto" type="checkbox" />
+                    <h1>Asociar con un gasto</h1>
+                </div>
+                <div id="asociarGasto" class="asociar-gasto">
+                    <h2>Seleccionar gasto</h2>
+                    <select>
+                        <option value="" selected>Seleccionar gasto...</option>
+                    </select>
+                </div>
+                <div class="botones-registro">
+                    <button id="Cancelar-registro" class="Cancelar-registro">Cancelar</button>
+                    <button id="Crear-registro" class="Crear-registro">Crear</button>
+                </div>
+            </form>
+        </div>
 
-    <!-- HEADER -->
-    <header>
-        <nav>
-            <div class="izquierda-nav">
-                <div id="abrir-menu" class="menu">
-                    <img class="abrir-menu" src="../img/menu.png" width="18" height="18">
+        <!-- HEADER -->
+        <header>
+            <nav>
+                <div class="izquierda-nav">
+                    <div id="abrir-menu" class="menu">
+                        <img class="abrir-menu" src="../img/menu.png" width="18" height="18" />
+                    </div>
+                    <img class="logo-nav" src="../img/Logo.png" width="40" height="40" />
+                    <div class="nombre-descripcion">
+                        <h1>SMART PLANNER</h1>
+                        <p>Organiza tu tiempo y dinero</p>
+                    </div>
                 </div>
-                <img class="logo-nav" src="../img/Logo.png" width="40" height="40">
-                <div class="nombre-descripcion">
-                    <h1>SMART PLANNER</h1>
-                    <p>Organiza tu tiempo y dinero</p>
-                </div>
-            </div>
-            <div class="derecha-nav">
-                <div class="buscador-nav">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-                    <input type="text" placeholder="Buscar tareas, eventos...">
-                </div>
-                <div class="panel-notificaciones">
-                    <img id="abrirNotificacion" src="../img/notificacion.png" width="18" height="18">
-                    <div id="notificaciones" class="notificaciones">
-                        <h1>Notificaciones</h1>
-                        <div class="tabla-notificaciones">
-                            <div class="notificacion nueva">
-                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="../img/cheque.png" width="18" height="18">
-                                    <h1 class="estado">Tarea vencida</h1>
-                                    <p class="tiempo">2 h</p>
+                <div class="derecha-nav">
+                    <div class="buscador-nav">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                        <input type="text" placeholder="Buscar tareas, eventos..." />
+                    </div>
+                    <div class="panel-notificaciones">
+                        <img id="abrirNotificacion" src="../img/notificacion.png" width="18" height="18" />
+                        <div id="notificaciones" class="notificaciones">
+                            <h1>Notificaciones</h1>
+                            <div class="tabla-notificaciones">
+                                <!-- Notificaciones de ejemplo -->
+                                <div class="notificacion nueva">
+                                    <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12" />
+                                    <div class="estado">
+                                        <img class="tipoNoficicacion" src="../img/cheque.png" width="18" height="18" />
+                                        <h1 class="estado">Tarea vencida</h1>
+                                        <p class="tiempo">2 h</p>
+                                    </div>
+                                    <div class="informacion">
+                                        <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
+                                    </div>
+                                    <p>Marcar como leída</p>
                                 </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
                             </div>
-                            <div class="notificacion nueva">
-                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="../img/calendario-verde.png" width="18" height="18">
-                                    <h1 class="estado">Proximo evento</h1>
-                                    <p class="tiempo">2 h</p>
-                                </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
-                            </div>
-                            <div class="notificacion leida">
-                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="../img/dolar-morado.png" width="18" height="18">
-                                    <h1 class="estado">Tarea vencida</h1>
-                                    <p class="tiempo">2 h</p>
-                                </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
-                            </div>
-                            <div class="notificacion leida">
-                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="../img/cheque.png" width="18" height="18">
-                                    <h1 class="estado">Tarea vencida</h1>
-                                    <p class="tiempo">2 h</p>
-                                </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
+                            <div class="marcar-leido">
+                                <p id="marcarLeida2">Marcar todas como leídas</p>
                             </div>
                         </div>
-                        <div class="marcar-leido">
-                            <p id="marcarLeida2">Marcar todas como leídas</p>
-                        </div>
                     </div>
+                
+                    <a href="../views/perfil.html">
+                        <img class="usuario" src="../img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;" />
+                    </a>
                 </div>
-            
-                <a href="../views/perfil.html">
-                    <img class="usuario" 
-                        src="../img/usuario-perfil.png" 
-                        width="40" height="40" 
-                        style="border-radius: 100%;" 
-                        id="imgUsuarioHeader">
-                </a>
+            </nav>
+        </header>
+
+        <!-- MAIN -->
+        <main>
+            <div id="menu" class="navegacion">
+                <ul>
+                    <li>
+                        <img src="../img/estadistica.png" width="20" height="20" />
+                        <a href="../views/home.html"><p>Dashboard</p></a>
+                    </li>
+                    <li>
+                        <img src="../img/calendario.png" width="20" height="20" />
+                        <a href="calendario.html"><p>Calendario</p></a>
+                    </li>
+                    <li class="active">
+                        <img src="../img/check-blanco.png" width="20" height="20" />
+                        <a href="tareas.html"><p>Tareas</p></a>
+                    </li>
+                    <li>
+                        <img src="../img/dolar.png" width="20" height="20" />
+                        <a href="finanzas.html"><p>Finanzas</p></a>
+                    </li>
+                    <li>
+                        <img src="../img/estadistica.png" width="20" height="20" />
+                        <a href="estadisticas.html"><p>Estadísticas</p></a>
+                    </li>
+                </ul>
+                <div class="tips">
+                    <h1><img src="../img/bombilla.png" width="20" height="20" /> Tip del día</h1>
+                    <p id="tip-del-dia">Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
+                </div>
             </div>
-        </nav>
-    </header>
 
-    <!-- MAIN -->
-    <main>
-        <div id="menu" class="navegacion">
-            <ul>
-                <li>
-                    <img src="../img/estadistica.png" width="20" height="20">
-                    <a href="../views/home.html"><p>Dashboard</p></a>
-                </li>
-                <li>
-                    <img src="../img/calendario.png" width="20" height="20">
-                    <a href="calendario.html"><p>Calendario</p></a>
-                </li>
-                <li class="active">
-                    <img src="../img/check-blanco.png" width="20" height="20">
-                    <a href="tareas.html"><p>Tareas</p></a>
-                </li>
-                <li>
-                    <img src="../img/dolar.png" width="20" height="20">
-                    <a href="finanzas.html"><p>Finanzas</p></a>
-                </li>
-                <li>
-                    <img src="../img/estadistica.png" width="20" height="20">
-                    <a href="estadisticas.html"><p>Estadísticas</p></a>
-                </li>
-            </ul>
-            <div class="tips">
-                <h1><img src="../img/bombilla.png" width="20" height="20"> Tip del día</h1>
-                <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
+            <!-- Contenido principal -->
+            <div class="container">
+                <div class="titulo">
+                    <h1>Gestión de Tareas</h1>
+                    <button id="abrirMenuRegistro">
+                        <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva tarea
+                    </button>
+                </div>
+
+                <div class="resumen">
+                    <ul>
+                        <li>
+                            <div class="izquierda">
+                                <h2>Total de tareas</h2>
+                                <h1 id="totalTareas">0</h1>
+                            </div>
+                            <div class="derecha1">
+                                <img src="../img/controlar.png" width="40" height="40" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="izquierda">
+                                <h2>Completadas</h2>
+                                <h1 id="tareasCompletadas">0</h1>
+                            </div>
+                            <div class="derecha2">
+                                <img src="../img/comprobado.png" width="40" height="40" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="izquierda">
+                                <h2>Alta prioridad</h2>
+                                <h1 id="tareasAltaPrioridad">0</h1>
+                            </div>
+                            <div class="derecha3">
+                                <img src="../img/calendario-blanco.png" width="40" height="40" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="buscadores">
+                    <div class="buscador">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                        <input type="text" placeholder="Buscar tareas..." id="inputBuscar" />
+                    </div>
+                    <select id="selectPrioridad">
+                        <option value="todas" selected>Todas las prioridades</option>
+                        <option value="alta">Alta</option>
+                        <option value="media">Media</option>
+                        <option value="baja">Baja</option>
+                    </select>
+                </div>
+
+                <div class="filtros">
+                    <button id="btnTodas">Todas (0)</button>
+                    <button id="btnPendientes">Pendientes (0)</button>
+                    <button id="btnCompletadas">Completadas (0)</button>
+                </div>
+
+                <div class="tareas">
+                    <h1>Todas las tareas</h1>
+                    <ul id="lista-tareas">
+                        <!-- Aquí se cargarán las tareas dinámicamente -->
+                    </ul>
+
+                    <!-- Menú CRUD y edición -->
+                    <div id="menuCrud" class="menu-crud"></div>
+                </div>
             </div>
-        </div>
+        </main>
 
-        <!-- Contenido principal -->
-<div class="container">
-    <div class="titulo">
-        <h1>Gestión de Tareas</h1>
-        <button id="abrirMenuRegistro">
-            <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva tarea
-        </button>
-    </div>
 
-    <div class="resumen">
-        <ul>
-            <li>
-                <div class="izquierda">
-                    <h2>Total de tareas</h2>
-                    <h1 id="totalTareas">0</h1>
-                </div>
-                <div class="derecha1">
-                    <img src="../img/controlar.png" width="40" height="40" />
-                </div>
-            </li>
-            <li>
-                <div class="izquierda">
-                    <h2>Completadas</h2>
-                    <h1 id="tareasCompletadas">0</h1>
-                </div>
-                <div class="derecha2">
-                    <img src="../img/comprobado.png" width="40" height="40" />
-                </div>
-            </li>
-            <li>
-                <div class="izquierda">
-                    <h2>Alta prioridad</h2>
-                    <h1 id="tareasAltaPrioridad">0</h1>
-                </div>
-                <div class="derecha3">
-                    <img src="../img/calendario-blanco.png" width="40" height="40" />
-                </div>
-            </li>
-        </ul>
-    </div>
 
-    <div class="buscadores">
-        <div class="buscador">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.3-4.3"></path>
-            </svg>
-            <input type="text" placeholder="Buscar tareas..." id="inputBuscar" />
-        </div>
-        <select id="selectPrioridad">
-            <option value="todas" selected>Todas las prioridades</option>
-            <option value="alta">Alta</option>
-            <option value="media">Media</option>
-            <option value="baja">Baja</option>
-        </select>
-    </div>
+        <!-- Scripts -->
+        <script src="../js/funcionalidadMenu.js"></script>
+        <script src="../js/agregarRegistro.js"></script>
+        <script src="../js/input-check.js"></script>
+        <script src="../js/notificaciones.js"></script>
+        <script src="../js/funcionalidadFiltrosTareas.js"></script>
+        <script src="../js/funcionalidadCrud.js"></script>
+        <script src="../js/api/tareas.js"></script>
+        <script src="../js/tareas.js"></script> 
+        <script src="../js/tipDinamico.js"></script>
 
-    <div class="filtros">
-        <button id="btnTodas">Todas ()</button>
-        <button id="btnPendientes">Pendientes ()</button>
-        <button id="btnCompletadas">Completadas ()</button>
-    </div>
-
-    <div class="tareas">
-        <h1>Todas las tareas</h1>
-        <ul id="lista-tareas">
-            <!-- Aquí se cargarán las tareas dinámicamente -->
-        </ul>
-
-        <!-- Menú CRUD y edición (sin cambios) -->
-        <div id="menuCrud" class="menu-crud">
-            <!-- ... tu contenido existente ... -->
-        </div>
-    </div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", async () => {
-    // Obtener usuario de localStorage
-    const usuarioJSON = localStorage.getItem("usuario");
-    if (!usuarioJSON) {
-        window.location.href = "login.html";
-        return;
-    }
-    const usuario = JSON.parse(usuarioJSON);
-
-    // Función para obtener tareas desde backend (ajusta URL y método según tu API)
-    async function obtenerTareas() {
-        try {
-            const response = await fetch(`http://localhost:8080/api/tareas/usuario/${usuario.id}`, {
-                method: "GET",
-                headers: { "Content-Type": "application/json" },
-            });
-            if (!response.ok) throw new Error("Error al obtener tareas");
-            return await response.json(); // Asumimos que devuelve un array de tareas
-        } catch (error) {
-            console.error(error);
-            return [];
-        }
-    }
-
-    // Renderizar tareas en la lista
-    function renderizarTareas(tareas) {
-        const lista = document.getElementById("lista-tareas");
-        lista.innerHTML = "";
-
-        tareas.forEach(tarea => {
-            const li = document.createElement("li");
-            li.classList.add("tarea");
-
-            // Checkbox completado
-            const checked = tarea.completada ? "checked" : "";
-
-            li.innerHTML = `
-                <div class="informacion">
-                    <div class="container-input">
-                        <img src="../img/controlar.png" width="10" height="10" />
-                        <input type="checkbox" class="input-tarea" ${checked} data-id="${tarea.id}" />
-                    </div>
-                    <div class="texto">
-                        <h1 class="texto-titulo">${tarea.titulo}</h1>
-                        <h2>${tarea.descripcion}</h2>
-                        <p><img src="../img/calendario.png" width="15" height="15" /> ${tarea.fechaLimite.substring(0,10)}</p>
-                    </div>
-                </div>
-                <div class="derecha">
-                    <div class="estados">
-                        <p class="${tarea.prioridad}">${tarea.prioridad}</p>
-                        ${tarea.valor ? `<p class="valor">$${tarea.valor}</p>` : ""}
-                    </div>
-                    <div class="crud">
-                        <img class="editar" src="../img/editar.png" width="20" height="20" data-id="${tarea.id}" />
-                        <img class="eliminar" src="../img/eliminar.png" width="20" height="20" data-id="${tarea.id}" />
-                    </div>
-                </div>
-            `;
-            lista.appendChild(li);
-        });
-    }
-
-    // Actualizar resumen con datos calculados
-    function actualizarResumen(tareas) {
-        const total = tareas.length;
-        const completadas = tareas.filter(t => t.completada).length;
-        const altaPrioridad = tareas.filter(t => t.prioridad === "alta").length;
-
-        document.getElementById("totalTareas").textContent = total;
-        document.getElementById("tareasCompletadas").textContent = completadas;
-        document.getElementById("tareasAltaPrioridad").textContent = altaPrioridad;
-
-        // Actualizar botones de filtro con conteos
-        document.getElementById("btnTodas").textContent = `Todas (${total})`;
-        document.getElementById("btnPendientes").textContent = `Pendientes (${total - completadas})`;
-        document.getElementById("btnCompletadas").textContent = `Completadas (${completadas})`;
-    }
-
-    // Cargar tareas y actualizar UI
-    const tareas = await obtenerTareas();
-    renderizarTareas(tareas);
-    actualizarResumen(tareas);
-
-    // Aquí puedes agregar listeners para filtros, búsqueda, edición, eliminación, etc.
-});
-</script>
-    </main>
-
-    <footer>
-        <!-- Pie de página -->
-    </footer>
-
-    <!-- Scripts -->
-    <script src="../js/funcionalidadMenu.js"></script>
-    <script src="../js/agregarRegistro.js"></script>
-    <script src="../js/input-check.js"></script>
-    <script src="../js/notificaciones.js"></script>
-    <script src="../js/funcionalidadFiltrosTareas.js"></script>
-    <script src="../js/funcionalidadCrud.js"></script>
-    <script src="../js/api/tareas.js"></script>
-   
-</body>
-</html>
+        </script>
+    </body>
+    </html>

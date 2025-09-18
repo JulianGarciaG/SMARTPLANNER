@@ -196,11 +196,7 @@
                     </div>
                 </div>
                 <a href="../views/perfil.html">
-                    <img class="usuario" 
-                        src="../img/usuario-perfil.png" 
-                        width="40" height="40" 
-                        style="border-radius: 100%;" 
-                        id="imgUsuarioHeader">
+                    <img class="usuario" src="../img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;">
                 </a>
             </div>
         </nav>
@@ -232,7 +228,7 @@
             </ul>
             <div class="tips">
                 <h1><img src="../img/bombilla.png" width="20" height="20">Tip del día</h1>
-                <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
+                <p id="tip-del-dia">Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
             </div>
         </div>
         <!-- Contenido principal de la página -->
@@ -506,6 +502,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     <script src="../js/abrirEditarProgresoAhorro.js"></script>
     <script src="../js/funcionalidadCrud.js"></script>
     <script src="../js/funcionalidadFiltrosFinanzas.js"></script>
-    <script src="../js/api/finanzas.js"></script>
+    <script src="../js/tipDinamico.js"></script>
 </body>
 </html>

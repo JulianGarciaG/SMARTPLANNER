@@ -28,4 +28,29 @@ public class TareaController {
     public ResponseEntity<List<Tarea>> listarTareas() {
         return ResponseEntity.ok(tareaService.listarTareas());
     }
+
+    // ✅ Obtener tarea por ID (ruta ajustada para evitar conflicto con listado por usuario)
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Tarea> obtenerTarea(@PathVariable Long id) {
+        return ResponseEntity.ok(tareaService.obtenerTareaPorId(id));
+    }
+
+    // ✅ Listar tareas de un usuario específico (ajustado a /api/tareas/{id_usuario})
+    @GetMapping("/{id_usuario}")
+    public ResponseEntity<List<Tarea>> listarTareasPorUsuario(@PathVariable("id_usuario") Integer idUsuario) {
+        return ResponseEntity.ok(tareaService.listarTareasPorUsuario(idUsuario));
+    }
+
+    // ✅ Actualizar tarea
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<Tarea> actualizarTarea(@PathVariable Long id, @RequestBody TareaDto tareaDto) {
+        return ResponseEntity.ok(tareaService.actualizarTarea(id, tareaDto));
+    }
+
+    // ✅ Eliminar tarea
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Void> eliminarTarea(@PathVariable Long id) {
+        tareaService.eliminarTarea(id);
+        return ResponseEntity.noContent().build();
+    }
 }

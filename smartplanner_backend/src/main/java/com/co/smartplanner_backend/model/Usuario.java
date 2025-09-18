@@ -7,7 +7,6 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
     private Integer idUsuario;
 
     @Column(nullable = false, length = 50)
