@@ -3,11 +3,12 @@ package com.co.smartplanner_backend.service;
 import com.co.smartplanner_backend.dto.LoginDto;
 import com.co.smartplanner_backend.dto.UsuarioDto;
 import com.co.smartplanner_backend.model.Usuario;
-import com.co.smartplanner_backend.dto.UsuarioUpdateDto;
 import com.co.smartplanner_backend.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Base64;
 import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 import java.nio.file.Files;
@@ -35,7 +36,7 @@ public class UsuarioService {
         Usuario usuario = new Usuario();
         usuario.setNombre(dto.getNombre());
         usuario.setCorreoElectronico(dto.getCorreoElectronico());
-        usuario.setContrasena(passwordEncoder.encode(dto.getContrasena())); // Encriptar
+        usuario.setContrasena(passwordEncoder.encode(dto.getContrasena()));
         usuario.setFoto(dto.getFoto());
 
         return usuarioRepository.save(usuario);
@@ -71,8 +72,9 @@ public class UsuarioService {
         Usuario usuario = obtenerPorId(id);
 
         if (nombre != null && !nombre.isBlank()) usuario.setNombre(nombre);
-        if (contrasena != null && !contrasena.isBlank()) usuario.setContrasena(contrasena);
-
+        if (contrasena != null && !contrasena.isBlank()) {
+        usuario.setContrasena(passwordEncoder.encode(contrasena));}
+        
         if (foto != null && !foto.isEmpty()) {
             // Guardar en carpeta local (ej: uploads/)
             String carpeta = "uploads/";
@@ -81,12 +83,9 @@ public class UsuarioService {
                 Files.createDirectories(ruta);
             }
 
-            String nombreArchivo = id + "_" + foto.getOriginalFilename();
-            Path rutaArchivo = ruta.resolve(nombreArchivo);
-            Files.write(rutaArchivo, foto.getBytes());
+            String base64 = Base64.getEncoder().encodeToString(foto.getBytes());
+            usuario.setFoto("data:" + foto.getContentType() + ";base64," + base64);
 
-            // Guardar la ruta en BD
-            usuario.setFoto("/uploads/" + nombreArchivo);
         }
 
         return usuarioRepository.save(usuario);

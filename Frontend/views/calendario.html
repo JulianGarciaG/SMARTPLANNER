@@ -14,8 +14,8 @@
 </head>
 <body>
     <!-- formulario para agrega un nuevo calendario-->
-        <div id="agregarCalendario" class="agregar-calendario">
-        <div id="containerCalendario" class="container-calendario">
+    <div id="agregarCalendario" class="agregar-calendario">
+        <form id="containerCalendario" class="container-calendario">
             <img id="cerrarMenuCalendarios" src="../img/cerrar.png" width="20" height="20">
             <h1>Nuevo Calendario</h1>
             <h2></h2>
@@ -42,7 +42,7 @@
 
             <div class="fecha-limite">
                 <h1>Tipo Calendario</h1>
-                <select id="tipoCalendario">
+                <select name="tipo_de_calendario" id="tipoCalendario">
                     <option value="personal">Personal</option>
                     <option value="trabajo">Trabajo</option>
                     <option value="otro">Otro</option> 
@@ -69,9 +69,9 @@
 
             <div class="botones-calendario">
                 <button id="cancelarCalendario" class="cancelar-calendario">Cancelar</button>
-                <button id="crearCalendario" class="crear-calendario">Crear</button>
+                <button type="submit" id="crearCalendario" class="crear-calendario">Crear</button>
             </div>
-        </div>
+        </form>
     </div>
 
     <!-- formulario para agregar un nuevo evento -->
@@ -273,7 +273,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const usuarioJSON = localStorage.getItem("usuario");
     if (!usuarioJSON) {
-        window.location.href = "login.html";
+        window.location.href = "../index.html";
         return;
     }
 
@@ -388,6 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
     </footer>
+    <script src="../js/calendario.js"></script>
     <script src="../js/funcionalidadMenu.js"></script>
     <script src="../js/agregarEventos.js"></script>
     <script src="../js/notificaciones.js"></script>
