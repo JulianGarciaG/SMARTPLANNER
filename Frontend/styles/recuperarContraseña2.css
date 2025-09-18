@@ -1,0 +1,238 @@
+body{
+    background: #EFFBF9;
+background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 251, 1) 100%);
+}
+
+body {
+  background-color: #eef9fc;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Logo */
+.logo {
+  margin-top: 2rem;
+}
+
+/* Branding */
+.branding h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem 0 0.25rem;
+}
+
+.branding p {
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Pasos numerados */
+.step-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  margin-top: 1.5rem;
+}
+
+.step-indicator div img {
+  width: 36px;
+  height: 36px;
+
+}
+
+/* Etiquetas debajo de los pasos */
+.step-labels {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.step-labels h4 {
+  font-weight: 500;
+  color: #64748b;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Caja del formulario */
+.recovery-box {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.recovery-box h2 {
+  text-align: center;
+  margin: 0 0 0 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.recovery-box h2 {
+  text-align: center;
+  margin: 0 0 0 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.recovery-box h3 {
+  
+  margin: 0 0 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.recovery-box p {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+/* Input con ícono */
+/* Inputs */
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  background-color: #f9fafb;
+}
+
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+  border-color: #3b82f6;
+  background-color: #fff;
+}
+
+/* Icono en los inputs */
+
+
+/* Contenedor relativo para input con ícono */
+.input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon svg {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+.input-icon input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 2.5rem; 
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  background-color: #f9fafb;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 3rem;   
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  width: 100%;
+  background: linear-gradient(to right, #10b981, #3b82f6);
+  color: white;
+  border-radius: 0.75rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.submit-button svg {
+  stroke: white;
+}
+
+.submit-button:hover {
+  opacity: 0.9;
+}
+
+/* Enlace "Reenviar código" para que parezca botón secundario */
+.resend-link {
+  display: inline-block;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #10b981;
+  text-decoration: none;
+  margin-top: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.resend-link:hover {
+  color: #0ea769;
+  text-decoration: underline;
+}
+
+/* Botón/enlace "Cambiar email" con flecha */
+.back-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  color: #6b7280;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 0.75rem;
+}
+
+.back-link svg {
+  stroke: #6b7280;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: auto;
+  padding: 1.5rem;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}

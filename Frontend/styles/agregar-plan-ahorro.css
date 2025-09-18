@@ -1,0 +1,158 @@
+*{
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+.agregar-planAhorro {
+    display: none;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    background-color: #00000064;
+    width: 100%;
+    height: 100%;
+    z-index: 999; 
+    justify-content: center;
+    align-items: center;
+}
+
+
+.agregar-planAhorro .container-planAhorro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fbfbfb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    height: auto; 
+    max-height: 105vh; 
+    overflow-y: auto; 
+}
+.agregar-planAhorro .container-planAhorro img {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.container-planAhorro h1 {
+    font-size: 25px;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.agregar-planAhorro .titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.agregar-planAhorro .check-box {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+.agregar-planAhorro .titulo h1, .Descripción h1, .prioridad h1, .fecha-limite h1, .check-box h1, .asociar-gasto h1 {
+    font-size: 16px;
+    color: #1e293b;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.agregar-planAhorro .espacio-input {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: #f8fdfd;
+    padding: 10px;
+    border: 2px solid #a7f3d0;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.agregar-planAhorro select {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #a7f3d0;
+    background-color: #f8fdfd;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #545454;
+    font-size: 13px;
+}
+
+.agregar-planAhorro .asociar-gasto {
+    display: none;
+    flex-direction: column;
+}
+
+.agregar-planAhorro .espacio-input input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: bold;
+    color: #545454;
+    font-size: 13px;
+}
+
+.agregar-planAhorro .botones-planAhorro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.agregar-planAhorro .botones-planAhorro button {
+    height: 40px;
+    width: 50%;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.agregar-planAhorro .botones-planAhorro .Cancelar-planAhorro {
+    background-color: white;
+}
+
+.agregar-planAhorro .botones-planAhorro .Crear-planAhorro {
+    background: #f59e0b;
+    color: white;
+    border: none;
+}
+
+#abrirMenuPlanAhorro {
+  background: white;
+  color: black;
+  border: 2px solid transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  box-shadow: 0 0 12px rgb(0, 0, 0, 0.2);
+}
+
+.containerButtons #abrirMenuPlanAhorro svg {
+  color: black;
+}
+
+.containerButtons #abrirMenuPlanAhorro:hover {
+    background: #f59e0b;
+    color: white;
+}
+
+.containerButtons #abrirMenuPlanAhorro:hover svg {
+    color: white;
+}

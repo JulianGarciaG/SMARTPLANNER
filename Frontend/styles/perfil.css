@@ -1,0 +1,249 @@
+* {
+  --bg: linear-gradient(135deg, #f1f8f7 0%, #e1f0f2 100%);
+  --card-bg: #ffffff;
+  --accent: #16a34a;
+  --muted: #6b7c8c;
+  --border: #cfe6e8;
+  --danger: #d9534f;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: #222;
+}
+
+/* topbar */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 32px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+.topbar .back {
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: bold;
+}
+.top-title h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+.top-title h4 {
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/* layout */
+.profile-wrap {
+  max-width: 1100px;
+  margin: 28px auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+}
+
+/* left profile card */
+.profile-card {
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 28px;
+  position: relative;
+}
+.avatar-btn {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.95);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+.name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+}
+.email {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* right info card */
+.info-card {
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.info-header h3 {
+  margin: 0;
+  color: #0f2b30;
+  font-size: 1.2rem;
+}
+
+.info-form .grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.info-form label {
+  display: block;
+  font-size: 0.95rem;
+  color: #222;
+  font-weight: 500;
+}
+.info-form input {
+  width: 90%;
+  padding: 12px;
+  border: 1px solid #d6e6ea;
+  border-radius: 8px;
+  background: #f9fdfd;
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: #222;
+  outline: none;
+  transition: all 0.2s;
+}
+.info-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 168, 14, 0.2);
+}
+
+/* password rules */
+.password-rules {
+  margin-top: 5%;
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: #f1fafa;
+  padding: 12px;
+  border-left: 4px solid #16a34a;
+  border-radius: 6px;
+}
+.password-rules h4 {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  color: #333;
+}
+.password-rules ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+/* form actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+.btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.btn.primary {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+}
+.btn.primary:hover {
+  background: #40cf74;
+}
+.btn.secondary {
+  background: #fff;
+  color: var(--muted);
+}
+.btn.secondary:hover {
+  background: #f13131;
+  color: #fff;
+}
+
+/* Diseño de ojo en la contraseña */
+.input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon input {
+  width: 100%;
+  padding-right: 40px; /* espacio para el ícono */
+  box-sizing: border-box;
+}
+
+.input-icon svg {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #666;
+  transition: 0.3s;
+}
+
+.input-icon svg:hover {
+  color: #000;
+}
+
+.toggle-password {
+  position: absolute;      /* Se posiciona dentro del input */
+  right: 0.5rem;             /* Se ubica al extremo derecho del input */
+  top: 56%;                /* Centrado vertical */
+  transform: translateY(-50%); /* Corrección para centrar el ícono */
+  
+  background: none;        /* Sin fondo */
+  border: none;            /* Sin borde */
+  cursor: pointer;         /* Cursor tipo "mano" */
+  padding: 0;              /* Quita espacios extra */
+  
+  color: #6b7280;          /* Color gris del ícono */
+  display: flex;           /* Para alinear el SVG */
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* responsive */
+@media (max-width: 768px) {
+  .profile-wrap {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+}

@@ -1,0 +1,264 @@
+*{
+    font-family: 'Poppins', 'Segoe UI', sans-serif;;
+}
+.agregar-registro {
+    display: none;
+    position: absolute;
+    background-color: #00000064;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+}
+
+.agregar-registro .container-registro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    background-color: #fbfbfb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 500px;
+}
+
+.agregar-registro .container-registro img {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.agregar-registro .container-registro img:hover {
+    cursor: pointer;
+}
+
+.container-registro h1 {
+    font-size: 25px;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.agregar-registro .titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.agregar-registro .check-box {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+.agregar-registro .titulo h1, .Descripción h1, .prioridad h1, .fecha-limite h1, .check-box h1, .asociar-gasto h1 {
+    font-size: 16px;
+    color: #1e293b;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.agregar-registro .espacio-input {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: #f8fdfd;
+    padding: 10px;
+    border: 2px solid #a7f3d0;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.agregar-registro select {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #a7f3d0;
+    background-color: #f8fdfd;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #545454;
+    font-size: 13px;
+}
+
+.agregar-registro .asociar-gasto {
+    display: none;
+    flex-direction: column;
+}
+
+.agregar-registro .espacio-input input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: bold;
+    color: #545454;
+    font-size: 13px;
+}
+
+.agregar-registro .botones-registro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.agregar-registro .botones-registro button {
+    height: 40px;
+    width: 50%;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.agregar-registro .botones-registro .Cancelar-registro {
+    background-color: white;
+}
+
+.agregar-registro .botones-registro .Cancelar-registro:hover {
+    cursor: pointer;
+}
+
+.agregar-registro .botones-registro .Crear-registro {
+    background: linear-gradient(90deg, rgba(52, 210, 153, 1) 0%, rgba(96, 165, 250, 1) 100%);
+    color: white;
+    border: none;
+}
+
+.agregar-registro {
+    display: none;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    background-color: #00000064;
+    width: 100%;
+    height: 100%;
+    z-index: 999; 
+    justify-content: center;
+    align-items: center;
+}
+
+.agregar-registro .container-registro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fbfbfb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    height: auto; 
+    max-height: 105vh; 
+    overflow-y: auto; 
+}
+
+.agregar-registro .container-registro img {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.container-registro h1 {
+    font-size: 25px;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.agregar-registro .titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.agregar-registro .check-box {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+.agregar-registro .titulo h1, .descripcion h1, .prioridad h1, .fecha-limite h1, .check-box h1, .asociar-gasto h1 {
+    font-size: 16px;
+    color: #1e293b;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.agregar-registro .espacio-input {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: #f8fdfd;
+    padding: 10px;
+    border: 2px solid #a7f3d0;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.agregar-registro select {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #a7f3d0;
+    background-color: #f8fdfd;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #545454;
+    font-size: 13px;
+}
+
+.agregar-registro .asociar-gasto {
+    display: none;
+    flex-direction: column;
+}
+
+.agregar-registro .espacio-input input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: bold;
+    color: #545454;
+    font-size: 13px;
+}
+
+.agregar-registro .botones-registro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.agregar-registro .botones-registro button {
+    height: 40px;
+    width: 50%;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.agregar-registro .botones-registro .Cancelar-registro {
+    background-color: white;
+}
+
+.agregar-registro .botones-registro .Crear-registro {
+    background: linear-gradient(90deg, rgba(52, 210, 153, 1) 0%, rgba(96, 165, 250, 1) 100%);
+    color: white;
+    border: none;
+}

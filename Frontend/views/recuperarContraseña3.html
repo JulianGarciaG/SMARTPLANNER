@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPlanner - Cambiar Contraseña</title>
+    <link rel="icon" href="../img/Logo.png" />
+    <link rel="stylesheet" href="../styles/recuperarContraseña2.css" />
+</head>
+<body>
+    
+<section class="logo">
+    <img src="../img/Logo.png" alt="Logo SmartPlanner" width="100" height="100" />
+  </section>
+
+
+  <section class="branding">
+    <h2>SmartPlanner</h2>
+    <p>Recupera el acceso a tu cuenta</p>
+  </section>
+
+  <section class="step-indicator">
+    <div><img src="../img/numero-1.png" alt="Paso 1" /></div>
+    <div><img src="../img/number-2.png" alt="Paso 2" /></div>
+    <div><img src="../img/numero-3.png" alt="Paso 3" /></div>
+  </section>
+
+  <section class="step-labels">
+    <div><h4>Email</h4></div>
+    <div><h4>Código</h4></div>
+    <div><h4>Contraseña</h4></div>
+  </section>
+
+  
+  <section class="recovery-box">
+    <h2>Nueva Contraseña</h2>
+    <p>Crea una contraseña segura para tu cuenta</p>
+
+    <h3>Nueva Contraseña</h3>
+    <div class="input-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+      </svg>
+      <input id="new-password" type="text" inputmode="numeric" maxlength="6" placeholder="••••••••••" required />
+
+      <!-- Botón del ojo -->
+      <button type="button" class="toggle-password" onclick="togglePassword('new-password', this)">
+          <!-- Ojo abierto -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+              fill="currentColor" viewBox="0 0 24 24" class="eye-open">
+          <path d="M12 5c-7 0-11 7-11 7s4 7 11 7 
+                  11-7 11-7-4-7-11-7zm0 
+                  12c-2.8 0-5-2.2-5-5s2.2-5 
+                  5-5 5 2.2 5 5-2.2 5-5 
+                  5zm0-8a3 3 0 1 0 0 6 
+                  3 3 0 0 0 0-6z"/>
+          </svg>
+          <!-- Ojo tachado -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+              fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 5c-7 0-11 7-11 7s4 7 
+                    11 7 11-7 11-7-4-7-11-7zM12 
+                    17c-2.8 0-5-2.2-5-5 0-.8.2-1.6.6-2.3l6.7 
+                    6.7c-.7.4-1.5.6-2.3.6zM12 
+                    7c2.8 0 5 2.2 5 5 0 .8-.2 
+                    1.6-.6 2.3l-6.7-6.7C10.4 
+                    7.2 11.2 7 12 7z"/>
+            <line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" stroke-width="2" display="none" class="eye-closed"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <h3>Confirmar Contraseña</h3>
+   <div class="input-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+      </svg>
+      <input id="confirm-password" type="text" inputmode="numeric" maxlength="6" placeholder="••••••••••" required />
+
+      <!-- Botón del ojo -->
+      <button type="button" class="toggle-password" onclick="togglePassword('confirm-password', this)">
+        <!-- Ojo abierto -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+              fill="currentColor" viewBox="0 0 24 24" class="eye-open">
+          <path d="M12 5c-7 0-11 7-11 7s4 7 11 7 
+                  11-7 11-7-4-7-11-7zm0 
+                  12c-2.8 0-5-2.2-5-5s2.2-5 
+                  5-5 5 2.2 5 5-2.2 5-5 
+                  5zm0-8a3 3 0 1 0 0 6 
+                  3 3 0 0 0 0-6z"/>
+          </svg>
+        <!-- Ojo tachado -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+              fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 5c-7 0-11 7-11 7s4 7 
+                    11 7 11-7 11-7-4-7-11-7zM12 
+                    17c-2.8 0-5-2.2-5-5 0-.8.2-1.6.6-2.3l6.7 
+                    6.7c-.7.4-1.5.6-2.3.6zM12 
+                    7c2.8 0 5 2.2 5 5 0 .8-.2 
+                    1.6-.6 2.3l-6.7-6.7C10.4 
+                    7.2 11.2 7 12 7z"/>
+            <line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" stroke-width="2" display="none" class="eye-closed"/>
+          </svg>
+  
+    </div>
+
+    <form action="../index.html">
+      <button type="submit" class="submit-button">
+          Cambiar Contraseña
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
+            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+      </button>
+    </form>
+  </section>
+  <footer>
+    <p>© 2024 SmartPlanner. Todos los derechos reservados.</p>
+  </footer>
+
+
+<script src="../js/mostrarContraseña.js"></script>
+
+</body>
+</html>
