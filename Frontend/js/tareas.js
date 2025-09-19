@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    // Validar usuario logueado
     const usuarioJSON = localStorage.getItem("usuario");
     if (!usuarioJSON) {
         window.location.href = "login.html";
         return;
     }
-    const usuario = JSON.parse(usuarioJSON);
 
     const lista = document.getElementById("lista-tareas");
     const tituloSeccion = document.querySelector('.tareas h1');
@@ -19,110 +17,53 @@ document.addEventListener("DOMContentLoaded", async () => {
     const btnPendientes = document.getElementById("btnPendientes");
     const btnCompletadas = document.getElementById("btnCompletadas");
 
-    // ---------- Datos en memoria ----------
-    let todasLasTareas = Array.isArray(window.tareasData) ? window.tareasData : [];
-    let estadoFiltro = 'todas'; // 'todas' | 'pendientes' | 'completadas'
+    let estadoFiltro = 'todas';
     let textoBusqueda = '';
     let prioridadFiltro = 'todas';
 
-    async function crearTarea(tarea) {
-        try {
-            const response = await fetch(`http://localhost:8080/api/tareas`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...tarea, usuarioId: usuario.id })
-            });
-            if (!response.ok) throw new Error("Error al crear tarea");
-            return await response.json();
-        } catch (error) {
-            console.error(error);
-            return null;
-        }
+    function actualizarResumen() {
+        const arr = Array.isArray(window.tareasData) ? window.tareasData : [];
+        const total = arr.length;
+        const completadas = arr.filter(t => t.estado_de_tarea === true || t.completada).length;
+        const altaPrioridad = arr.filter(t => (t.prioridad || '').toLowerCase() === "alta").length;
+
+        if (totalTareas) totalTareas.textContent = total;
+        if (tareasCompletadas) tareasCompletadas.textContent = completadas;
+        if (tareasAltaPrioridad) tareasAltaPrioridad.textContent = altaPrioridad;
+
+        if (btnTodas) btnTodas.textContent = `Todas (${total})`;
+        if (btnPendientes) btnPendientes.textContent = `Pendientes (${total - completadas})`;
+        if (btnCompletadas) btnCompletadas.textContent = `Completadas (${completadas})`;
     }
 
-    // ---------- Render ----------
-    function renderizarTareas(tareas) {
-        lista.innerHTML = "";
-        if (!tareas.length) {
-            const li = document.createElement('li');
-            li.textContent = 'No hay tareas registradas';
-            lista.appendChild(li);
-            return;
-        }
-        tareas.forEach(tarea => lista.appendChild(crearElementoTarea(tarea)));
-    }
-
-    function crearElementoTarea(tarea) {
-        const li = document.createElement("li");
-        li.classList.add("tarea");
-
-        const checked = (tarea.estado_de_tarea === true || tarea.completada) ? "checked" : "";
-
-        li.innerHTML = `
-            <div class="informacion">
-                <div class="container-input">
-                    <img src="../img/controlar.png" width="10" height="10" />
-                    <input type="checkbox" class="input-tarea" ${checked} data-id="${tarea.id_tarea || tarea.id}" />
-                </div>
-                <div class="texto">
-                    <h1 class="texto-titulo">${tarea.nombre || tarea.titulo}</h1>
-                    <h2>${tarea.descripcion ?? ""}</h2>
-                    <p><img src="../img/calendario.png" width="15" height="15" /> 
-                        ${(tarea.fecha_limite || tarea.fechaLimite || '').toString().substring(0,10)}
-                    </p>
-                </div>
-            </div>
-            <div class="derecha">
-                <div class="estados">
-                    <p class="${(tarea.prioridad||'').toLowerCase()}">${(tarea.prioridad||'').toLowerCase()}</p>
-                    ${tarea.valor ? `<p class="valor">$${tarea.valor}</p>` : ""}
-                </div>
-                <div class="crud">
-                    <img class="editar" src="../img/editar.png" width="20" height="20" data-id="${tarea.id}" />
-                    <img class="eliminar" src="../img/eliminar.png" width="20" height="20" data-id="${tarea.id}" />
-                </div>
-            </div>
-        `;
-        return li;
-    }
-
-    function actualizarResumen(tareas) {
-        const total = todasLasTareas.length;
-        const completadas = todasLasTareas.filter(t => t.estado_de_tarea === true || t.completada).length;
-        const altaPrioridad = todasLasTareas.filter(t => (t.prioridad || '').toLowerCase() === "alta").length;
-
-        totalTareas.textContent = total;
-        tareasCompletadas.textContent = completadas;
-        tareasAltaPrioridad.textContent = altaPrioridad;
-
-        btnTodas.textContent = `Todas (${total})`;
-        btnPendientes.textContent = `Pendientes (${total - completadas})`;
-        btnCompletadas.textContent = `Completadas (${completadas})`;
-    }
-
-    // ---------- Filtro combinado ----------
-    function aplicarFiltros() {
-        let base = [...todasLasTareas];
-
-        // estado
-        if (estadoFiltro === 'pendientes') base = base.filter(t => !(t.estado_de_tarea === true || t.completada));
-        if (estadoFiltro === 'completadas') base = base.filter(t => (t.estado_de_tarea === true || t.completada));
-
-        // prioridad
-        if (prioridadFiltro !== 'todas') base = base.filter(t => (t.prioridad || '').toLowerCase() === prioridadFiltro);
-
-        // búsqueda
+    function coincideBusqueda(li) {
         const q = textoBusqueda.trim().toLowerCase();
-        if (q) base = base.filter(t =>
-            (t.nombre || t.titulo || '').toLowerCase().includes(q) ||
-            (t.descripcion || '').toLowerCase().includes(q)
-        );
+        if (!q) return true;
+        const nombre = li.dataset.nombre || '';
+        const descripcion = li.dataset.descripcion || '';
+        return nombre.includes(q) || descripcion.includes(q);
+    }
 
-        renderizarTareas(base);
-        // actualizar contadores con todas las tareas en memoria
-        actualizarResumen(todasLasTareas);
+    function aplicarFiltros() {
+        const items = lista ? Array.from(lista.querySelectorAll('li')) : [];
+        items.forEach(li => {
+            if (!li.dataset) return;
+            const estadoOk =
+                (estadoFiltro === 'todas') ||
+                (estadoFiltro === 'pendientes' && li.dataset.estado === 'pendiente') ||
+                (estadoFiltro === 'completadas' && li.dataset.estado === 'completada');
 
-        // actualizar título
+            const prioridadOk =
+                (prioridadFiltro === 'todas') ||
+                (li.dataset.prioridad === prioridadFiltro);
+
+            const busquedaOk = coincideBusqueda(li);
+
+            li.style.display = (estadoOk && prioridadOk && busquedaOk) ? 'flex' : 'none';
+        });
+
+        actualizarResumen();
+
         if (tituloSeccion) {
             if (estadoFiltro === 'todas') tituloSeccion.textContent = 'Todas las tareas';
             if (estadoFiltro === 'pendientes') tituloSeccion.textContent = 'Tareas pendientes';
@@ -130,32 +71,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    // ---------- Eventos ----------
-    const form = document.getElementById("containerRegistro");
-    if (form) {
-        // Evitar doble manejo: la creación/edición la gestiona js/api/tareas.js
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-        });
-    }
+    // Eventos de filtro
+    if (btnTodas) btnTodas.addEventListener('click', () => { estadoFiltro = 'todas'; aplicarFiltros(); });
+    if (btnPendientes) btnPendientes.addEventListener('click', () => { estadoFiltro = 'pendientes'; aplicarFiltros(); });
+    if (btnCompletadas) btnCompletadas.addEventListener('click', () => { estadoFiltro = 'completadas'; aplicarFiltros(); });
+    if (inputBuscar) inputBuscar.addEventListener('input', (e) => { textoBusqueda = e.target.value; aplicarFiltros(); });
+    if (selectPrioridad) selectPrioridad.addEventListener('change', (e) => { prioridadFiltro = e.target.value; aplicarFiltros(); });
 
-    // Botones de estado
-    btnTodas.addEventListener('click', () => { estadoFiltro = 'todas'; aplicarFiltros(); });
-    btnPendientes.addEventListener('click', () => { estadoFiltro = 'pendientes'; aplicarFiltros(); });
-    btnCompletadas.addEventListener('click', () => { estadoFiltro = 'completadas'; aplicarFiltros(); });
+    // Reaplicar filtros cuando se cargan tareas o cambian en memoria
+    window.addEventListener('tareas:loaded', aplicarFiltros);
+    window.addEventListener('tareas:changed', aplicarFiltros);
 
-    // Búsqueda
-    inputBuscar.addEventListener('input', (e) => { textoBusqueda = e.target.value; aplicarFiltros(); });
-
-    // Prioridad
-    selectPrioridad.addEventListener('change', (e) => { prioridadFiltro = e.target.value; aplicarFiltros(); });
-
-    // Cuando el otro script cargue tareas del backend
-    window.addEventListener('tareas:loaded', (ev) => {
-        todasLasTareas = Array.isArray(ev.detail) ? ev.detail : [];
-        aplicarFiltros();
-    });
-
-    // ---------- Init ----------
+    // Primera pasada
     aplicarFiltros();
 });

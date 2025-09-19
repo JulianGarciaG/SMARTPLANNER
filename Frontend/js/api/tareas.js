@@ -34,8 +34,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const prioridad = (t.prioridad || "").toString().toLowerCase();
       const fecha = formatearFecha(t.fecha_limite);
       const completada = t.estado_de_tarea === true;
+
+      // dataset para filtros y contadores
+      li.dataset.id = String(t.id_tarea);
+      li.dataset.estado = completada ? "completada" : "pendiente";
+      li.dataset.prioridad = prioridad;
+      li.dataset.nombre = (t.nombre ?? "").toLowerCase();
+      li.dataset.descripcion = (t.descripcion ?? "").toLowerCase();
+
+      // Aplicar clase completada al li principal
+      li.classList.add("tarea");
+      if (completada) {
+        li.classList.add("completada");
+      }
+
       li.innerHTML = `
-        <div class="tarea-item ${completada ? "completada" : ""}">
+        <div class="tarea-item">
           <div class="tarea-left">
             <input type="checkbox" class="tarea-check" data-id="${t.id_tarea}" ${completada ? "checked" : ""} />
             <div class="tarea-content">
@@ -61,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cargarTareas = async () => {
     const idUsuario = getIdUsuario();
     if (!idUsuario) {
-      // No logueado
       renderTareas([]);
       return;
     }
@@ -70,58 +83,74 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!resp.ok) throw new Error(await resp.text());
       const data = await resp.json();
       const arr = Array.isArray(data) ? data : [];
-      // Exponer en window y notificar a otros módulos
       window.tareasData = arr;
-      window.dispatchEvent(new CustomEvent('tareas:loaded', { detail: arr }));
       renderTareas(arr);
-      // Totales si existen contadores
+      window.dispatchEvent(new CustomEvent('tareas:loaded', { detail: arr }));
       const total = document.getElementById("totalTareas");
-      if (total) total.textContent = String(data.length || 0);
+      if (total) total.textContent = String(arr.length || 0);
     } catch (err) {
       console.error("Error cargando tareas:", err);
       renderTareas([]);
+      window.tareasData = [];
+      window.dispatchEvent(new CustomEvent('tareas:loaded', { detail: [] }));
     }
   };
 
-  // Cargar al iniciar
   cargarTareas();
-  // Exponer método para refrescar desde otros scripts
   window.refreshTareas = cargarTareas;
 
-  // Delegación para eliminar y editar
   if (listaTareas) {
     listaTareas.addEventListener("click", async (e) => {
       const target = e.target;
-      // Toggle completada: UI + persistencia
+
+      // Toggle completada (sin recargar toda la lista)
       if (target.classList.contains("tarea-check")) {
-        const wrapper = target.closest('.tarea-item');
-        if (wrapper) {
-          if (target.checked) wrapper.classList.add('completada');
-          else wrapper.classList.remove('completada');
+        const li = target.closest('li');
+        const checked = !!target.checked;
+        
+        if (li) {
+          if (checked) {
+            li.classList.add('completada');
+            li.dataset.estado = "completada";
+          } else {
+            li.classList.remove('completada');
+            li.dataset.estado = "pendiente";
+          }
         }
+
         const id = target.getAttribute('data-id');
         const idUsuario = getIdUsuario();
+
+        // Actualiza memoria local para que filtros/contadores reflejen el cambio
+        const arr = Array.isArray(window.tareasData) ? window.tareasData : [];
+        const tarea = arr.find(t => String(t.id_tarea) === String(id));
+        if (tarea) tarea.estado_de_tarea = checked;
+        window.tareasData = arr;
+        window.dispatchEvent(new Event('tareas:changed'));
+
         if (id) {
-          // Buscar la tarea actual para enviar body completo
-          const tarea = (window.tareasData || []).find(t => String(t.id_tarea) === String(id));
           const payload = {
             nombre: tarea?.nombre || '',
             descripcion: tarea?.descripcion || '',
             prioridad: (tarea?.prioridad || '').toString().toLowerCase() || 'media',
             fecha_limite: tarea?.fecha_limite || new Date().toISOString(),
             categoria: (tarea?.categoria || 'sin_asociar').toString().toLowerCase(),
-            estado_de_tarea: !!target.checked,
+            estado_de_tarea: checked,
             id_usuario: idUsuario
           };
-          fetch(`http://localhost:8080/api/tareas/actualizar/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          }).then(() => window.refreshTareas && window.refreshTareas())
-            .catch(err => console.error('No se pudo actualizar estado de tarea', err));
+          try {
+            await fetch(`http://localhost:8080/api/tareas/actualizar/${id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+          } catch (err) {
+            console.error('No se pudo actualizar estado de tarea', err);
+          }
         }
         return;
       }
+
       // Eliminar
       if (target.classList.contains("eliminar")) {
         const id = target.getAttribute("data-id");
@@ -142,12 +171,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const id = target.getAttribute("data-id");
         if (!id) return;
 
-        // Abrir modal existente de crear para reutilizar como editar
         const modal = document.getElementById("agregarRegistro");
         const form = document.getElementById("containerRegistro");
         if (!modal || !form) return;
 
-        // Prefill con los valores actuales mostrados en la tarjeta
         const card = target.closest("li");
         const tituloInput = document.querySelector('.titulo input');
         const descripcionInput = document.querySelector('.descripcion input');
@@ -162,7 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
         tituloInput.value = titulo;
         descripcionInput.value = descripcion;
         prioridadSelect.value = badge || 'media';
-        // Intentar mapear a datetime-local
         const date = new Date(fechaTexto);
         if (!isNaN(date.getTime())) {
           const isoLocal = new Date(date.getTime()-date.getTimezoneOffset()*60000).toISOString().slice(0,16);
@@ -170,7 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         modal.style.display = 'flex';
-        // Activar modo edición y cambiar textos
         isEditing = true;
         editId = id;
         if (crearBtn) crearBtn.textContent = 'Guardar cambios';
@@ -179,23 +204,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
   if (crearBtn) {
-  crearBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
+    crearBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
 
       const idUsuario = getIdUsuario();
-    if (!idUsuario) {
-      alert("Debes iniciar sesión primero");
-      window.location.href = "login.html";
-      return;
-    }
+      if (!idUsuario) {
+        alert("Debes iniciar sesión primero");
+        window.location.href = "login.html";
+        return;
+      }
 
-    const tarea = {
-      nombre: document.querySelector(".titulo input").value,
-      descripcion: document.querySelector(".descripcion input").value,
-      prioridad: document.querySelector(".prioridad select").value,
-      fecha_limite: document.querySelector(".fecha-limite input").value,
-      categoria: document.getElementById("abrirAsociarGasto").checked ? "asociada" : "sin_asociar",
+      const tarea = {
+        nombre: document.querySelector(".titulo input").value,
+        descripcion: document.querySelector(".descripcion input").value,
+        prioridad: document.querySelector(".prioridad select").value,
+        fecha_limite: document.querySelector(".fecha-limite input").value,
+        categoria: document.getElementById("abrirAsociarGasto").checked ? "asociada" : "sin_asociar",
         estado_de_tarea: false,
         id_usuario: idUsuario
       };
@@ -210,13 +236,13 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         } else {
           response = await fetch("http://localhost:8080/api/tareas/crear", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(tarea),
-      });
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(tarea),
+          });
         }
 
-      if (response.ok) {
+        if (response.ok) {
           alert(isEditing ? 'Tarea actualizada ✅' : 'Tarea creada con éxito ✅');
           await cargarTareas();
           const modal = document.getElementById('agregarRegistro');
@@ -224,14 +250,14 @@ document.addEventListener("DOMContentLoaded", () => {
           isEditing = false;
           editId = null;
           crearBtn.textContent = 'Crear';
-      } else {
-        const errorText = await response.text();
-        throw new Error(errorText);
-      }
-    } catch (error) {
-      console.error("Error:", error);
+        } else {
+          const errorText = await response.text();
+          throw new Error(errorText);
+        }
+      } catch (error) {
+        console.error("Error:", error);
         alert((isEditing ? 'Error al actualizar tarea ❌: ' : 'Error al crear tarea ❌: ') + error.message);
-    }
-  });
+      }
+    });
   }
 });
