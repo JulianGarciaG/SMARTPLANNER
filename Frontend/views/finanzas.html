@@ -56,68 +56,75 @@
 </div>
 
     <!-- Menu de finanzas para agregar una nueva finanza -->
-    <div id="agregarFinanza" class="agregar-finanza">
-        <div id="containerFinanza" class="container-finanza">
-            <img id="cerrarMenuFinanzas" src="../img/cerrar.png" width="20" height="20">
-            <h1>Nueva transaccion</h1>
-            <div class="titulo">
-                <h1>Tipo</h1>
-    
-                    <select name="Tipo" id="Tipo">
-                        <option value="ingreso">Ingreso</option>
-                        <option value="egreso">Egreso</option>
-                    </select>
-            </div>
-            <div class="Descripción">
-                <h1>Descripción</h1>
-                <div class="espacio-input">
-                    <input type="text" placeholder="Descripción de la transaccion">
-                </div>
-            </div>
-            <div class="Descripción">
-                <h1>Monto</h1>
-                <div class="espacio-input">
-                    <input type="number" placeholder="0.00">
-                </div>
-            </div>
-            <div class="Descripción">
-                <h1>Categoria</h1>
-                <Select>
-                    <option value="">Seleccionar Categoria</option>
-                    <option value="">Alimentación</option>
-                    <option value="">Transporte</option>
-                    <option value="">Salario</option>
-                    <option value="">Entretenimiento</option>
-                    <option value="">Salud</option>
-                    <option value="">Hogar</option>
-                    <option value="">Educacion</option>
-                    <option value="">Otros</option>
-                </Select>
-            </div>
-            <div class="fecha-limite">
-                <h1>Fecha</h1>
-                <div class="espacio-input">
-                    <input type="date">
-                </div>
-            </div>
-            <div class="Descripción">
-                <h1>Asociar a Tarea(opcional)</h1>
-                <Select>
-                    <option value="">Sin asociar</option>
-                    <option value="">Comprar ingredientes para la cena</option>
-                    <option value="">Reunion con el equipo</option>
-                    <option value="">Entretenimiento</option>
-                    <option value="">Ejercicio matutino</option>
-                    <option value="">Revisar propuestas de proyecto</option>
-                    <option value="">Llamar al dentista</option>
-                </Select>
-            </div>
-            <div class="botones-finanza">
-                <button id="cancelarFinanza" class="Cancelar-finanza">Cancelar</button>
-                <button id="crearFinanza" class="Crear-finanza">Crear</button>
-            </div>
-        </div>
+<div id="agregarFinanza" class="agregar-finanza" style="display:none;">
+  <form id="containerFinanza" class="container-finanza" onsubmit="event.preventDefault()">
+    <img id="cerrarMenuFinanzas" src="../img/cerrar.png" width="20" height="20">
+    <h1>Nueva transacción</h1>
+
+    <div class="titulo">
+      <h1>Tipo</h1>
+      <select id="tipo">
+        <option value="ingreso">Ingreso</option>
+        <option value="egreso">Egreso</option>
+      </select>
     </div>
+
+    <div class="Descripción">
+      <h1>Descripción</h1>
+      <div class="espacio-input">
+        <input type="text" placeholder="Descripción de la transacción" id="descripcion">
+      </div>
+    </div>
+
+    <div class="Descripción">
+      <h1>Monto</h1>
+      <div class="espacio-input">
+        <input type="number" placeholder="0.00" id="monto">
+      </div>
+    </div>
+
+    <div class="Descripción">
+      <h1>Categoría</h1>
+      <select id="categoria">
+        <option value="">Seleccionar Categoría</option>
+        <option value="Alimentación">Alimentación</option>
+        <option value="Transporte">Transporte</option>
+        <option value="Salario">Salario</option>
+        <option value="Entretenimiento">Entretenimiento</option>
+        <option value="Salud">Salud</option>
+        <option value="Hogar">Hogar</option>
+        <option value="Educacion">Educación</option>
+        <option value="Otros">Otros</option>
+      </select>
+    </div>
+
+    <div class="fecha-limite">
+      <h1>Fecha</h1>
+      <div class="espacio-input">
+        <input type="date" id="fecha">
+      </div>
+    </div>
+
+    <div class="Descripción">
+      <h1>Asociar a Tarea (opcional)</h1>
+      <select id="tarea">
+        <option value="">Sin asociar</option>
+        <option value="1">Comprar ingredientes para la cena</option>
+        <option value="2">Reunión con el equipo</option>
+        <option value="3">Entretenimiento</option>
+        <option value="4">Ejercicio matutino</option>
+        <option value="5">Revisar propuestas de proyecto</option>
+        <option value="6">Llamar al dentista</option>
+      </select>
+    </div>
+
+    <div class="botones-finanza">
+      <button id="cancelarFinanza" type="button" class="Cancelar-finanza">Cancelar</button>
+      <button id="crearFinanza" class="Crear-finanza" type="submit">Crear</button>
+    </div>
+  </form>
+</div>
+
     <!-- header de la pagina -->
     <header>
         <nav>
@@ -236,9 +243,10 @@
     <div class="titulo">
         <h1>Finanzas Personales</h1>
         <div class="containerButtons">
-            <button id="abrirMenuFinanza">
-                <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva transaccion
-            </button>
+           <button id="abrirMenuFinanza" type="button">
+  <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva transacción
+</button>
+
             <button id="abrirMenuPlanAhorro">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -496,12 +504,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
     </footer>
     <script src="../js/funcionalidadMenu.js"></script>
-    <script src="../js/agregarFinanza.js"></script>
+    <script type="module" src="../js/finanzas.js"></script>
     <script src="../js/notificaciones.js"></script>
     <script src="../js/agregarPlanAhorro.js"></script>
     <script src="../js/abrirEditarProgresoAhorro.js"></script>
     <script src="../js/funcionalidadCrud.js"></script>
     <script src="../js/funcionalidadFiltrosFinanzas.js"></script>
-    <script src="../js/tipDinamico.js"></script>
+
+ 
+
 </body>
 </html>
