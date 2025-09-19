@@ -14,8 +14,8 @@
 </head>
 <body>
     <!-- formulario para agrega un nuevo calendario-->
-        <div id="agregarCalendario" class="agregar-calendario">
-        <div id="containerCalendario" class="container-calendario">
+    <div id="agregarCalendario" class="agregar-calendario">
+        <form id="containerCalendario" class="container-calendario">
             <img id="cerrarMenuCalendarios" src="../img/cerrar.png" width="20" height="20">
             <h1>Nuevo Calendario</h1>
             <h2></h2>
@@ -42,7 +42,7 @@
 
             <div class="fecha-limite">
                 <h1>Tipo Calendario</h1>
-                <select id="tipoCalendario">
+                <select name="tipo_de_calendario" id="tipoCalendario">
                     <option value="personal">Personal</option>
                     <option value="trabajo">Trabajo</option>
                     <option value="otro">Otro</option> 
@@ -50,12 +50,11 @@
             </div>   
             <div >
                 <div class="compartir-opcion">
-                <input type="checkbox" id="compartirCalendario" />
-                <h2>Compartir calendario</h2>
+                    <input type="checkbox" id="compartirCalendario" />
+                    <h2>Compartir calendario</h2>
                 </div>
-                </div>
-
-                <div id="permisosCompartir" style="display:none; margin-top:10px;">
+            </div>
+            <div id="permisosCompartir" style="display:none; margin-top:10px;">
                 <p>Permisos de compartir</p>
                 <div class="opciones-permisos">
                     <input type="radio" name="permiso" value="soloVer" checked />
@@ -69,9 +68,9 @@
 
             <div class="botones-calendario">
                 <button id="cancelarCalendario" class="cancelar-calendario">Cancelar</button>
-                <button id="crearCalendario" class="crear-calendario">Crear</button>
+                <button type="submit" id="crearCalendario" class="crear-calendario">Crear</button>
             </div>
-        </div>
+        </form>
     </div>
 
     <!-- formulario para agregar un nuevo evento -->
@@ -243,8 +242,9 @@
     <div class="selec-calendario">
         <h2>Selecciona un calendario para ver:</h2>
 
+        <!-- El JS va a inyectar aquí los calendarios -->
         <div class="calendarios" id="listaCalendarios">
-            <!-- Calendarios se cargarán aquí dinámicamente -->
+
         </div>
     </div>
 
@@ -273,7 +273,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const usuarioJSON = localStorage.getItem("usuario");
     if (!usuarioJSON) {
-        window.location.href = "login.html";
+        window.location.href = "../index.html";
         return;
     }
 
@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ejemplo de estructura esperada en usuario:
     // usuario.calendarios = [
     //   { nombre: "Personal", color: "azul", eventos: 12, compartido: true },
-    //   { nombre: "Trabajo", color: "verde", eventos: 8, compartido: true },
+    //   { nombre: "Trabajo", color: "verde", eventos: 8, compartido: false },
     //   ...
     // ]
     // usuario.eventosHoy = [
@@ -290,104 +290,75 @@ document.addEventListener("DOMContentLoaded", () => {
     //   ...
     // ]
 
-    const listaCalendarios = document.getElementById("listaCalendarios");
-    listaCalendarios.innerHTML = ""; // Limpiar contenido
+    // // 📌 Cargar calendarios
+    // const listaCalendarios = document.getElementById("listaCalendarios");
+    // listaCalendarios.innerHTML = ""; // Limpiar contenido
 
-    if (Array.isArray(usuario.calendarios) && usuario.calendarios.length > 0) {
-        usuario.calendarios.forEach(cal => {
-            const divCal = document.createElement("div");
-            divCal.classList.add("elep-calendario");
+    // if (Array.isArray(usuario.calendarios) && usuario.calendarios.length > 0) {
+    //     usuario.calendarios.forEach(cal => {
+    //         listaCalendarios.innerHTML += `
+    //             <div class="elep-calendario">
+    //                 <span class="punto ${cal.color}"></span>
+    //                 <h2>${cal.nombre}</h2>
+    //                 <h3>Eventos</h3>
+    //                 <h4>${cal.eventos} eventos</h4>
+    //                 <div class="contenedor-botones">
+    //                     <button class="boton toggle-ocultar">Ocultar</button>
+    //                     <button class="boton toggle-compartir">Compartir</button>
+    //                     ${cal.compartido ? '<span class="badge-compartido">Compartido</span>' : ''}
+    //                 </div>
+    //             </div>
+    //         `;
+    //     });
+    // } else {
+    //     listaCalendarios.innerHTML = "<p>No tienes calendarios disponibles.</p>";
+    // }
 
-            // Color del punto
-            const spanPunto = document.createElement("span");
-            spanPunto.classList.add("punto", cal.color);
-            divCal.appendChild(spanPunto);
-
-            // Nombre calendario
-            const h2 = document.createElement("h2");
-            h2.textContent = cal.nombre;
-            divCal.appendChild(h2);
-
-            // Texto "Eventos"
-            const h3 = document.createElement("h3");
-            h3.textContent = "Eventos";
-            divCal.appendChild(h3);
-
-            // Cantidad de eventos
-            const h4 = document.createElement("h4");
-            h4.textContent = `${cal.eventos} eventos`;
-            divCal.appendChild(h4);
-
-            // Contenedor botones
-            const contBotones = document.createElement("div");
-            contBotones.classList.add("contenedor-botones");
-
-            const btnOcultar = document.createElement("button");
-            btnOcultar.classList.add("boton", "toggle-ocultar");
-            btnOcultar.textContent = "Ocultar";
-            contBotones.appendChild(btnOcultar);
-
-            const btnCompartir = document.createElement("button");
-            btnCompartir.classList.add("boton", "toggle-compartir");
-            btnCompartir.textContent = "Compartir";
-            contBotones.appendChild(btnCompartir);
-
-            if (cal.compartido) {
-                const spanBadge = document.createElement("span");
-                spanBadge.classList.add("badge-compartido");
-                spanBadge.textContent = "Compartido";
-                contBotones.appendChild(spanBadge);
-            }
-
-            divCal.appendChild(contBotones);
-
-            listaCalendarios.appendChild(divCal);
-        });
-    } else {
-        listaCalendarios.innerHTML = "<p>No tienes calendarios disponibles.</p>";
-    }
-
-    // Cargar eventos de hoy
+    // 📌 Cargar eventos de hoy
     const listaEventosHoy = document.getElementById("listaEventosHoy");
-    listaEventosHoy.innerHTML = "";
+    if (listaEventosHoy) {
+        listaEventosHoy.innerHTML = "";
 
-    if (Array.isArray(usuario.eventosHoy) && usuario.eventosHoy.length > 0) {
-        usuario.eventosHoy.forEach(ev => {
-            const li = document.createElement("li");
+        if (Array.isArray(usuario.eventosHoy) && usuario.eventosHoy.length > 0) {
+            usuario.eventosHoy.forEach(ev => {
+                const li = document.createElement("li");
 
-            const spanHora = document.createElement("span");
-            spanHora.classList.add("hora");
-            spanHora.textContent = ev.hora;
-            li.appendChild(spanHora);
+                const spanHora = document.createElement("span");
+                spanHora.classList.add("hora");
+                spanHora.textContent = ev.hora;
+                li.appendChild(spanHora);
 
-            const spanDesc = document.createElement("span");
-            spanDesc.classList.add("descripcion");
-            spanDesc.textContent = ev.descripcion;
-            li.appendChild(spanDesc);
+                const spanDesc = document.createElement("span");
+                spanDesc.classList.add("descripcion");
+                spanDesc.textContent = ev.descripcion;
+                li.appendChild(spanDesc);
 
-            const spanEtiqueta = document.createElement("span");
-            spanEtiqueta.classList.add("etiqueta", ev.etiqueta);
-            spanEtiqueta.textContent = ev.etiqueta.charAt(0).toUpperCase() + ev.etiqueta.slice(1);
-            li.appendChild(spanEtiqueta);
+                const spanEtiqueta = document.createElement("span");
+                spanEtiqueta.classList.add("etiqueta", ev.etiqueta);
+                spanEtiqueta.textContent = ev.etiqueta.charAt(0).toUpperCase() + ev.etiqueta.slice(1);
+                li.appendChild(spanEtiqueta);
 
-            listaEventosHoy.appendChild(li);
-        });
-    } else {
-        listaEventosHoy.innerHTML = "<li>No hay eventos para hoy.</li>";
+                listaEventosHoy.appendChild(li);
+            });
+        } else {
+            listaEventosHoy.innerHTML = "<li>No hay eventos para hoy.</li>";
+        }
     }
 
-    // Opcional: actualizar título del calendario seleccionado
+    // 📌 Opcional: actualizar título del calendario seleccionado
     const calendarioSeleccionado = document.getElementById("calendarioSeleccionado");
-    if (usuario.calendarioActivo) {
+    if (calendarioSeleccionado && usuario.calendarioActivo) {
         calendarioSeleccionado.textContent = `Viendo: ${usuario.calendarioActivo}`;
-        // También puedes actualizar el color del punto si quieres
+        // Aquí podrías actualizar también el color del punto si lo necesitas
     }
 });
+
 </script>      
     </main>
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
     </footer>
+    <script src="../js/api/calendario.js"></script>
     <script src="../js/funcionalidadMenu.js"></script>
     <script src="../js/agregarEventos.js"></script>
     <script src="../js/notificaciones.js"></script>
