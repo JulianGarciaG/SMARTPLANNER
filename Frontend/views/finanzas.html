@@ -14,9 +14,39 @@
     <link rel="stylesheet" href="../styles/menu-editar.css">
 </head>
 <body>
+    <!-- FORMULARIO PARA AGREGAR APORTE A PLAN DE AHORRO -->
+    <div id="editarProgresoAhorro" class="agregar-planAhorro" style="display: none;">
+        <form class="container-planAhorro">
+            <img id="cerrarEditarProgresoAhorro" src="../img/cerrar.png" width="15" height="15">
+            <h1>Agregar aporte al plan</h1>
+            <div class="Descripción">
+                <h1>Descripción del aporte</h1>
+                <div class="espacio-input">
+                    <input type="text" placeholder="ej. Ahorro del mes, Bono, Venta">
+                </div>
+            </div>
+            <div class="Descripción">
+                <h1>Monto aporte</h1>
+                <div class="espacio-input">
+                    <input type="number" name="montoAporte" placeholder="0.00" step="0.01" min="0">
+                </div>
+            </div>
+            <div class="fecha-limite">
+                <h1>Fecha del aporte</h1>
+                <div class="espacio-input">
+                    <input type="date" name="fechaAporte">
+                </div>
+            </div>
+            <div class="botones-planAhorro">
+                <button id="cancelar" type="button" class="Cancelar-planAhorro">Cancelar</button>
+                <button id="Actualizar" type="button" class="Crear-planAhorro">Agregar Aporte</button>
+            </div>
+        </form>
+    </div>
+
     <!-- FORMULARIO PARA AGREGA PLAN DE AHORROS -->
      <div id="agregarPlanAhorro" class="agregar-planAhorro">
-    <div id="containerPlanAhorro" class="container-planAhorro">
+    <form id="containerPlanAhorro" class="container-planAhorro">
         <img id="cerrarMenuPlanAhorro" src="../img/cerrar.png" width="20" height="20">
         <h1>Nuevo Plan de Ahorro</h1>
         <div class="Descripción">
@@ -52,12 +82,12 @@
             <button id="cancelarPlanAhorro" class="Cancelar-planAhorro">Cancelar</button>
             <button id="guardarPlanAhorro" class="Crear-planAhorro">Guardar</button>
         </div>
-    </div>
+    </form>
 </div>
 
     <!-- Menu de finanzas para agregar una nueva finanza -->
     <div id="agregarFinanza" class="agregar-finanza">
-        <div id="containerFinanza" class="container-finanza">
+        <form id="containerFinanza" class="container-finanza">
             <img id="cerrarMenuFinanzas" src="../img/cerrar.png" width="20" height="20">
             <h1>Nueva transaccion</h1>
             <div class="titulo">
@@ -116,7 +146,7 @@
                 <button id="cancelarFinanza" class="Cancelar-finanza">Cancelar</button>
                 <button id="crearFinanza" class="Crear-finanza">Crear</button>
             </div>
-        </div>
+        </form>
     </div>
     <!-- header de la pagina -->
     <header>
@@ -378,7 +408,14 @@
             <!-- contenido existente -->
         </div>
     </div>
-    <!-- Resto del contenido (resumen-categorias, progresoAhorro, etc.) sin cambios -->
+
+    <!-- NUEVA SECCIÓN: Planes de Ahorro -->
+    <div class="tareas">
+        <h1>Planes de Ahorro</h1>
+        <ul id="lista-planes-ahorro">
+            <!-- Planes de ahorro se cargarán aquí -->
+        </ul>
+    </div>
 </div>
 
 <script>
@@ -393,7 +430,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Función para obtener transacciones del usuario (ajusta URL y método según tu API)
     async function obtenerTransacciones() {
         try {
-            const response = await fetch(`http://localhost:8080/api/finanzas/usuario/${usuario.id}`, {
+            const response = await fetch(`http://localhost:8080/api/finanzas/usuario/${usuario.idUsuario}`, {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             });
@@ -439,7 +476,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <div class="derecha">
                     <div class="estados">
                         <p class="${tx.categoria.toLowerCase()}">${tx.categoria}</p>
-                        <p class="${colorClase}">${signo}$${tx.monto.toFixed(2)}</p>
+                        <p class="${colorClase}">${signo}${tx.monto.toFixed(2)}</p>
                     </div>
                     <div class="crud">
                         <img class="editar" src="../img/editar.png" width="20" height="20" data-id="${tx.id}" />
@@ -469,9 +506,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const balance = ingresos - gastos;
 
-        document.getElementById("ingresosMes").textContent = `$${ingresos.toFixed(2)}`;
-        document.getElementById("gastosMes").textContent = `$${gastos.toFixed(2)}`;
-        document.getElementById("balanceMes").textContent = `$${balance.toFixed(2)}`;
+        document.getElementById("ingresosMes").textContent = `${ingresos.toFixed(2)}`;
+        document.getElementById("gastosMes").textContent = `${gastos.toFixed(2)}`;
+        document.getElementById("balanceMes").textContent = `${balance.toFixed(2)}`;
 
         // Actualizar botones filtro con conteos
         const total = transacciones.length;
@@ -503,5 +540,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     <script src="../js/funcionalidadCrud.js"></script>
     <script src="../js/funcionalidadFiltrosFinanzas.js"></script>
     <script src="../js/tipDinamico.js"></script>
+    <script src="../js/api/planAhorro.js"></script>
 </body>
 </html>

@@ -1,12 +1,13 @@
 package com.co.smartplanner_backend.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class PlanAhorroDto {
     private Integer idPlanAhorro;
     private String nombrePlan;
-    private Double montoActual;
-    private Double montoMeta;
+    private BigDecimal montoActual;
+    private BigDecimal montoMeta;
     private LocalDate fechaFin;
     private Integer idUsuario;
 
@@ -27,19 +28,19 @@ public class PlanAhorroDto {
         this.nombrePlan = nombrePlan;
     }
 
-    public Double getMontoActual() {
+    public BigDecimal getMontoActual() {
         return montoActual;
     }
 
-    public void setMontoActual(Double montoActual) {
+    public void setMontoActual(BigDecimal montoActual) {
         this.montoActual = montoActual;
     }
 
-    public Double getMontoMeta() {
+    public BigDecimal getMontoMeta() {
         return montoMeta;
     }
 
-    public void setMontoMeta(Double montoMeta) {
+    public void setMontoMeta(BigDecimal montoMeta) {
         this.montoMeta = montoMeta;
     }
 

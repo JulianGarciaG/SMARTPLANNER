@@ -27,8 +27,8 @@ public class PlanAhorro {
     @Column(name = "fecha_fin")
     private LocalDate fechaFin;
 
-    @ManyToOne(fetch = FetchType.LAZY) 
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario") 
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false) 
     private Usuario usuario;
 
     // Getters y Setters
