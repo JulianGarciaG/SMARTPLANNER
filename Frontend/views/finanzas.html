@@ -148,6 +148,9 @@
             </div>
         </form>
     </div>
+  </form>
+</div>
+
     <!-- header de la pagina -->
     <header>
         <nav>
@@ -266,9 +269,10 @@
     <div class="titulo">
         <h1>Finanzas Personales</h1>
         <div class="containerButtons">
-            <button id="abrirMenuFinanza">
-                <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva transaccion
-            </button>
+           <button id="abrirMenuFinanza" type="button">
+  <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva transacción
+</button>
+
             <button id="abrirMenuPlanAhorro">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -533,7 +537,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
     </footer>
     <script src="../js/funcionalidadMenu.js"></script>
-    <script src="../js/agregarFinanza.js"></script>
+    <script type="module" src="../js/finanzas.js"></script>
     <script src="../js/notificaciones.js"></script>
     <script src="../js/agregarPlanAhorro.js"></script>
     <script src="../js/abrirEditarProgresoAhorro.js"></script>
