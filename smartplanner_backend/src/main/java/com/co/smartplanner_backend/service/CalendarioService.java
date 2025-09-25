@@ -18,6 +18,7 @@ public class CalendarioService {
         Calendario calendario = new Calendario();
         calendario.setNombre(dto.getNombre());
         calendario.setTipo_de_calendario(dto.getTipo_de_calendario());
+        calendario.setColor(dto.getColor()); // 👈 guardar color
         return calendarioRepository.save(calendario);
     }
 
