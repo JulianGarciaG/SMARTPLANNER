@@ -10,8 +10,8 @@ public class TareaDto {
     private String descripcion;
     private String fecha_limite;
     private Boolean estado_de_tarea;
-    private String prioridad;   // baja, media, alta
-    private String categoria;   // asociada, sin asociar
+    private String prioridad;  
+    private String categoria; 
     private Integer id_usuario;
 }
 

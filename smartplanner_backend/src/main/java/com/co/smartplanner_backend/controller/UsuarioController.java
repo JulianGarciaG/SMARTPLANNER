@@ -2,7 +2,6 @@ package com.co.smartplanner_backend.controller;
 
 import com.co.smartplanner_backend.dto.LoginDto;
 import com.co.smartplanner_backend.dto.UsuarioDto;
-import com.co.smartplanner_backend.dto.UsuarioUpdateDto;
 import com.co.smartplanner_backend.model.Usuario;
 import com.co.smartplanner_backend.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;

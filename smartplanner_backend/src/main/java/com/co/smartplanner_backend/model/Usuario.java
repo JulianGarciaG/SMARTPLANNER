@@ -2,12 +2,12 @@ package com.co.smartplanner_backend.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "usuario")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
+    @JoinColumn(name = "id_usuario")
     private Integer idUsuario;
 
     @Column(nullable = false, length = 50)

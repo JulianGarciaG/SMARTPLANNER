@@ -1,12 +1,13 @@
-DROP DATABASE if exists smartplanner;
+DROP DATABASE smartplanner;
 CREATE database smartplanner;
 USE smartplanner;
+
 CREATE TABLE Usuario (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     correo_electronico VARCHAR(100) UNIQUE NOT NULL,
-    contrasena VARCHAR(30) NOT NULL,
-    foto VARCHAR(255)
+    contrasena VARCHAR(255) NOT NULL,
+    foto MEDIUMBLOB
 );
 
 CREATE TABLE Notificacion (
@@ -19,16 +20,27 @@ CREATE TABLE Notificacion (
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
 
-
+CREATE TABLE Calendario_Compartido (
+    id_usuario INT,
+    id_calendario INT,
+    permiso ENUM('no_compartido', 'ver', 'editar') NOT NULL,
+    PRIMARY KEY (id_usuario, id_calendario),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_calendario) REFERENCES Calendario(id_calendario)
+);
 
 -- Tabla para las transacciones
 CREATE TABLE Transaccion (
     id_gasto INT PRIMARY KEY AUTO_INCREMENT,
-    monto DECIMAL(12, 2) NOT NULL,
+    monto DECIMAL NOT NULL,
     descripcion TEXT,
+    tipo ENUM('ingreso', 'egreso') NOT NULL,
+    categoria VARCHAR(100),
     fecha DATE,
+    id_tarea INT NULL,
     id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_tarea) REFERENCES Tarea(id_tarea) 
 );
 
 -- Tabla para los planes de ahorro
@@ -41,7 +53,6 @@ CREATE TABLE Plan_ahorro (
     id_usuario INT,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
-
 -- Tabla para el detalle de planes de ahorro
 CREATE TABLE Detalle_plan_ahorro (
     id_detalle_plan_ahorro INT PRIMARY KEY AUTO_INCREMENT,
@@ -57,16 +68,8 @@ CREATE TABLE Detalle_plan_ahorro (
 CREATE TABLE Calendario (
     id_calendario INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
+    color VARCHAR(7) NOT NULL DEFAULT '#4285f4',
     tipo_de_calendario ENUM('personal', 'trabajo','otro')
-);
-
-CREATE TABLE Calendario_Compartido (
-    id_usuario INT,
-    id_calendario INT,
-    permiso ENUM('ver', 'editar', 'eliminar'),
-    PRIMARY KEY (id_usuario, id_calendario),
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
-    FOREIGN KEY (id_calendario) REFERENCES Calendario(id_calendario)
 );
 
 -- Tabla para las tareas
@@ -77,7 +80,7 @@ CREATE TABLE Tarea (
     descripcion VARCHAR(255),
     estado_de_tarea BOOLEAN DEFAULT FALSE,
     prioridad ENUM('baja','media','alta'),
-    categoria ENUM('asociada','sin_asociar'),
+    categoria ENUM('asociada','sin asociar'),
     id_usuario INT,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
