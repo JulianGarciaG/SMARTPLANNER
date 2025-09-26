@@ -34,20 +34,20 @@
 
   <section class="recovery-box">
     <h2>Verifica tu código</h2>
-    <p>Hemos enviado un código de 6 dígitos a <strong>{email}</strong></p>
+    <p>Hemos enviado un código de 6 dígitos a <strong id="email-display">{email}</strong></p>
 
-    <h3>Código de verificación</h3>
-    <div class="input-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
-      </svg>
-      <input type="text" inputmode="numeric" maxlength="6" placeholder="                               1 2 3 4 5 6" required />
-    </div>
-    <p>Ingresa el código de 6 dígitos</p>
+    <form id="verify-form">
+      <h3>Código de verificación</h3>
+      <div class="input-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+          stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+        </svg>
+        <input type="text" id="verification-code" inputmode="numeric" maxlength="6" placeholder="123456" required />
+      </div>
+      <p>Ingresa el código de 6 dígitos</p>
 
-    <form action="../views/recuperarContraseña3.html">
-      <button type="submit" class="submit-button">
+      <button type="submit" class="submit-button" data-original-text="Verificar código">
         Verificar código
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
           stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -59,7 +59,7 @@
 
 
     <p>¿No recibiste el código?</p>
-    <a href="#" class="resend-link">Reenviar código</a>
+    <a href="#" id="resend-code" class="resend-link">Reenviar código</a>
 
  
     <a class="back-link" href="../views/recuperarContraseña.html">
@@ -77,5 +77,10 @@
   <footer>
     <p>© 2024 SmartPlanner. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- Scripts -->
+  <script src="../js/emailConfig.js"></script>
+  <script src="../js/emailService.js"></script>
+  <script src="../js/passwordReset.js"></script>
 </body>
 </html>

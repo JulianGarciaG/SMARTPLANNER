@@ -142,11 +142,22 @@ body {
   text-decoration: none;
   font-weight: 600;
   transition: background 0.3s;
+  width: 100%;       
+  box-sizing: border-box;
 }
 
 .submit-button:hover {
   opacity: 0.95;
 }
+
+.submit-button svg {
+  flex-shrink: 0;           /* 👉 asegura que el icono no deforme el texto */
+}
+
+.submit-button:hover {
+  opacity: 0.9;
+}
+
 
 /* Volver al login */
 .back-link {

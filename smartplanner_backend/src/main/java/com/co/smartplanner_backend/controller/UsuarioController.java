@@ -70,5 +70,19 @@ public class UsuarioController {
             } catch (Exception e) {
                 return ResponseEntity.badRequest().body(e.getMessage());
             }
+    }
+
+    // Actualizar contraseña por correo
+    @PutMapping("/actualizar-contrasena")
+    public ResponseEntity<?> actualizarContrasena(
+            @RequestParam String correo,
+            @RequestParam String nuevaContrasena) {
+        try {
+            usuarioService.actualizarContrasenaPorCorreo(correo, nuevaContrasena);
+            return ResponseEntity.ok("Contraseña actualizada correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
 }

@@ -91,6 +91,19 @@ public class UsuarioService {
 
         return usuarioRepository.save(usuario);
     }
+
+    public void actualizarContrasenaPorCorreo(String correo, String nuevaContrasena) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByCorreoElectronico(correo);
+
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            usuario.setContrasena(passwordEncoder.encode(nuevaContrasena)); // encriptada
+            usuarioRepository.save(usuario);
+        } else {
+            throw new RuntimeException("Usuario no encontrado con el correo: " + correo);
+        }
+    }
+
 }
 
 
