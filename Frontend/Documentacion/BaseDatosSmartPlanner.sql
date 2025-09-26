@@ -38,11 +38,10 @@ CREATE TABLE Transaccion (
     categoria VARCHAR(100),
     fecha DATE,
     id_tarea INT NULL,
-    id_usuario INT,
+    id_usuario INT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
     FOREIGN KEY (id_tarea) REFERENCES Tarea(id_tarea) 
 );
-
 -- Tabla para los planes de ahorro
 CREATE TABLE Plan_ahorro (
     id_plan_ahorro INT PRIMARY KEY AUTO_INCREMENT,
