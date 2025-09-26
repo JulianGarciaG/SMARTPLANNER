@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/transacciones")
-@CrossOrigin(origins = "*") // Permite peticiones desde el front
+@CrossOrigin(origins = "*")
 public class TransaccionController {
 
     @Autowired
@@ -50,4 +50,10 @@ public class TransaccionController {
         service.deleteTransaccion(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/usuario/{idUsuario}")
+    public ResponseEntity<List<TransaccionDto>> getByUsuario(@PathVariable Integer idUsuario) {
+    return ResponseEntity.ok(service.getTransaccionesByUsuario(idUsuario));
+}
+
 }

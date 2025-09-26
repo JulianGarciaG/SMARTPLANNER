@@ -745,3 +745,55 @@ main {
     background-color: #F87177;
     color: white;
 }
+
+/* Estilos base para todas las categorías */
+.estados p {
+  display: inline-block;
+  padding: 2px 8px;       
+  border-radius: 999px;   
+  font-size: 0.75rem;     
+  font-weight: bold;    
+  text-align: center;
+  min-width: 60px;
+}
+
+/* Categorías específicas (colores pastel) */
+.alimentación {
+  background-color: #ffeaea;
+  color: #c94a4a;
+}
+
+.transporte {
+  background-color: #fff9db;
+  color: #a68b00;
+}
+
+.salario {
+  background-color: #e6f9ed;
+  color: #1e7d43;
+}
+
+.entretenimiento {
+  background-color: #f3e6ff;
+  color: #6a1b9a;
+}
+
+.salud {
+  background-color: #ffe6f0;
+  color: #b23a6d;
+}
+
+.hogar {
+  background-color: #e0f7fa;
+  color: #007c91;
+}
+
+.educacion {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.otros {
+  background-color: #f5f5f5;
+  color: #555;
+}
