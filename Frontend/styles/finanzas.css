@@ -797,3 +797,95 @@ main {
   background-color: #f5f5f5;
   color: #555;
 }
+/* Contenedor principal */
+.resumen-categorias {
+  display: grid;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  background: #f9fcff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  margin-top: 5%;
+}
+
+/* Tarjetas individuales */
+.resumen-categorias .categoria {
+  flex: 1 1 200px;
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.resumen-categorias .categoria:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos y valores */
+.resumen-categorias h1 {
+  font-size: 1.5rem;
+  flex-basis: 100%;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.resumen-categorias .categoria h3 {
+  font-size: 0.9rem;
+  color: #1f2937;
+  margin: 0;
+  font-weight: normal;
+}
+
+.resumen-categorias .categoria p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Badge de cantidad de transacciones */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  margin-left: 0.5rem;
+}
+
+.badge-azul {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.badge-naranja {
+  background-color: #ffedd5;
+  color: #ea580c;
+}
+
+.badge-morado {
+  background-color: #ede9fe;
+  color: #7c3aed;
+}
+
+.badge-rosa {
+  background-color: #ffe4e6;
+  color: #db2777;
+}
+
+.badge-verde {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+#contenedor-resumen {
+  display: flex;
+  flex-wrap:wrap;
+  gap: 2rem;        
+  justify-content: flex-start; /* o space-between / center según prefieras */
+}
