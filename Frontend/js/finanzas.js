@@ -9,23 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // 🔍 Buscador por nombre (descripcion)
   const inputBuscar = document.getElementById("inputBuscar");
 
-  if (inputBuscar) {
-    inputBuscar.addEventListener("input", () => {
-      const texto = inputBuscar.value.trim().toLowerCase();
-
-      if (!texto) {
-        renderizarTransacciones(todasTransacciones);
-      } else {
-        const filtradas = todasTransacciones.filter(
-          (tx) =>
-            tx.descripcion &&
-            tx.descripcion.toLowerCase().includes(texto)
-        );
-        renderizarTransacciones(filtradas);
-      }
-    });
-  }
-
   // Estado
   let idEditando = null;
   let todasTransacciones = [];
@@ -66,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Helper: obtener input por id
   const inpu = (id) => document.getElementById(id);
 
-  // Abrir modal
+  // ------------------- MODALES -------------------
   if (btnAbrir && menuFinanza && formFinanza) {
     btnAbrir.addEventListener("click", (e) => {
       e.preventDefault();
@@ -79,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Cerrar modal
   const cerrarModal = () => {
     idEditando = null;
     tituloForm.textContent = "Nueva Transacción";
@@ -90,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
   btnCerrar?.addEventListener("click", cerrarModal);
   btnCancelar?.addEventListener("click", cerrarModal);
 
-  // Obtener id usuario
+  // ------------------- UTIL -------------------
   const getIdUsuario = () => {
     const u = localStorage.getItem("usuario");
     if (!u) return null;
@@ -102,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Render transacciones
+  // ------------------- RENDER LISTA -------------------
   const renderizarTransacciones = (transacciones) => {
     listaTransacciones.innerHTML = "";
     if (!transacciones || transacciones.length === 0) {
@@ -149,7 +131,46 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // 🔄 Actualizar contadores
+  // ------------------- RENDER RESUMEN -------------------
+  const renderResumenCategorias = (transacciones) => {
+    const contenedor = document.getElementById("contenedor-resumen");
+    if (!contenedor) return;
+    contenedor.innerHTML = "";
+
+    const resumen = {};
+
+    transacciones.forEach((t) => {
+      if (!resumen[t.categoria]) {
+        resumen[t.categoria] = { total: 0, cantidad: 0 };
+      }
+      // ingresos suman, egresos restan
+      resumen[t.categoria].total += String(t.tipo).toLowerCase() === "ingreso" ? t.monto : -t.monto;
+      resumen[t.categoria].cantidad += 1;
+    });
+
+    Object.entries(resumen).forEach(([categoria, datos]) => {
+      const div = document.createElement("div");
+      div.classList.add("categoria");
+
+      // Badge dinámico por categoría
+      let badgeClass = "badge-azul";
+      if (categoria.toLowerCase().includes("aliment")) badgeClass = "badge-naranja";
+      else if (categoria.toLowerCase().includes("transporte")) badgeClass = "badge-morado";
+      else if (categoria.toLowerCase().includes("entreten")) badgeClass = "badge-rosa";
+      else if (categoria.toLowerCase().includes("free")) badgeClass = "badge-verde";
+
+      const colorClass = datos.total >= 0 ? "green" : "red";
+
+      div.innerHTML = `
+        <h3>${categoria} <span class="badge ${badgeClass}">${datos.cantidad}</span></h3>
+        <p class="${colorClass}">${formatearMoneda(datos.total)}</p>
+      `;
+
+      contenedor.appendChild(div);
+    });
+  };
+
+  // ------------------- ESTADÍSTICAS -------------------
   const actualizarContadores = () => {
     const total = todasTransacciones.length;
     const ingresos = todasTransacciones.filter(tx => String(tx.tipo).toLowerCase() === "ingreso").length;
@@ -160,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnEgresos) btnEgresos.textContent = `Gastos (${egresos})`;
   };
 
-  // 📊 Actualizar estadísticas
   const actualizarEstadisticas = (transacciones) => {
     if (!ingresosEl || !gastosEl || !balanceEl) return;
 
@@ -198,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Cargar todas
+  // ------------------- CARGA -------------------
   const cargarTransacciones = async () => {
     const idUsuario = getIdUsuario();
     if (!idUsuario) {
@@ -210,14 +230,31 @@ document.addEventListener("DOMContentLoaded", () => {
       todasTransacciones = trans;
       renderizarTransacciones(trans);
       actualizarContadores();
-      actualizarEstadisticas(trans); // 👈 se llama aquí
+      actualizarEstadisticas(trans);
+      renderResumenCategorias(trans);
     } catch (err) {
       console.error("Error al cargar transacciones:", err);
       listaTransacciones.innerHTML = "<li>Error al cargar transacciones</li>";
     }
   };
 
-  // Filtro por categoría
+  // ------------------- EVENTOS -------------------
+  if (inputBuscar) {
+    inputBuscar.addEventListener("input", () => {
+      const texto = inputBuscar.value.trim().toLowerCase();
+      if (!texto) {
+        renderizarTransacciones(todasTransacciones);
+      } else {
+        const filtradas = todasTransacciones.filter(
+          (tx) =>
+            tx.descripcion &&
+            tx.descripcion.toLowerCase().includes(texto)
+        );
+        renderizarTransacciones(filtradas);
+      }
+    });
+  }
+
   if (selectCategoria) {
     selectCategoria.addEventListener("change", () => {
       const categoriaSeleccionada = selectCategoria.value;
@@ -234,7 +271,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Filtros por tipo
   btnTodas?.addEventListener("click", () => {
     renderizarTransacciones(todasTransacciones);
   });
@@ -249,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarTransacciones(egresos);
   });
 
-  // Submit (crear/editar)
+  // ------------------- FORM SUBMIT -------------------
   formFinanza?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const idUsuario = getIdUsuario();
@@ -262,8 +298,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const fecha = inpu("fecha")?.value || new Date().toISOString().split("T")[0];
 
     const payload = { tipo, descripcion, monto, categoria, fecha, id_usuario: idUsuario };
-
-    console.log("Payload a enviar:", payload);
 
     try {
       if (idEditando) {
@@ -298,7 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Delegación eventos: editar / eliminar
+  // ------------------- EDITAR / ELIMINAR -------------------
   listaTransacciones?.addEventListener("click", async (e) => {
     const eliminarBtn = e.target.closest(".eliminar");
     const editarBtn = e.target.closest(".editar");
@@ -359,6 +393,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // inicial
+  // ------------------- INICIAL -------------------
   cargarTransacciones();
 });
