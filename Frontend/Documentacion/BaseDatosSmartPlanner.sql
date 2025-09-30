@@ -20,28 +20,8 @@ CREATE TABLE Notificacion (
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
 
-CREATE TABLE Calendario_Compartido (
-    id_usuario INT,
-    id_calendario INT,
-    permiso ENUM('no_compartido', 'ver', 'editar') NOT NULL,
-    PRIMARY KEY (id_usuario, id_calendario),
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
-    FOREIGN KEY (id_calendario) REFERENCES Calendario(id_calendario)
-);
 
--- Tabla para las transacciones
-CREATE TABLE Transaccion (
-    id_gasto INT PRIMARY KEY AUTO_INCREMENT,
-    monto DECIMAL NOT NULL,
-    descripcion TEXT,
-    tipo ENUM('ingreso', 'egreso') NOT NULL,
-    categoria VARCHAR(100),
-    fecha DATE,
-    id_tarea INT NULL,
-    id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
-    FOREIGN KEY (id_tarea) REFERENCES Tarea(id_tarea) 
-);
+
 -- Tabla para los planes de ahorro
 CREATE TABLE Plan_ahorro (
     id_plan_ahorro INT PRIMARY KEY AUTO_INCREMENT,
@@ -79,7 +59,7 @@ CREATE TABLE Tarea (
     descripcion VARCHAR(255),
     estado_de_tarea BOOLEAN DEFAULT FALSE,
     prioridad ENUM('baja','media','alta'),
-    categoria ENUM('asociada','sin asociar'),
+    categoria ENUM('asociada','sin_asociar'),
     id_usuario INT,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
@@ -94,4 +74,35 @@ CREATE TABLE Evento (
     lugar VARCHAR(255),
     id_calendario INT,
     FOREIGN KEY (id_calendario) REFERENCES Calendario(id_calendario)
+);
+
+CREATE TABLE Calendario_Compartido (
+    id_usuario INT,
+    id_calendario INT,
+    permiso ENUM('no_compartido', 'ver', 'editar') NOT NULL,
+    PRIMARY KEY (id_usuario, id_calendario),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_calendario) REFERENCES Calendario(id_calendario)
+);
+-- Tabla para las transacciones
+CREATE TABLE Transaccion (
+    id_gasto INT PRIMARY KEY AUTO_INCREMENT,
+    monto DECIMAL NOT NULL,
+    descripcion TEXT,
+    tipo ENUM('ingreso', 'egreso') NOT NULL,
+    categoria VARCHAR(100),
+    fecha DATE,
+    id_tarea INT NULL,
+    id_usuario INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_tarea) REFERENCES Tarea(id_tarea) 
+);
+
+CREATE TABLE password_reset_tokens (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    token VARCHAR(6) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL,
+    expires_at DATETIME NOT NULL,
+    used BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at DATETIME NOT NULL
 );
