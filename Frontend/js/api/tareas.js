@@ -4,11 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
   let isEditing = false;
   let editId = null;
 
-  const getIdUsuario = () => {
-    const idUsuario = localStorage.getItem("id_usuario");
-    return idUsuario ? parseInt(idUsuario) : null;
-  };
-
+    const getIdUsuario = () => {
+        // Leer el objeto usuario completo
+        const usuarioJSON = localStorage.getItem("usuario");
+        if (!usuarioJSON) return null;
+        
+        try {
+            const usuario = JSON.parse(usuarioJSON);
+            return usuario.idUsuario || null;
+        } catch (e) {
+            console.error("Error parseando usuario:", e);
+            return null;
+        }
+    };
   const formatearFecha = (iso) => {
     if (!iso) return "";
     try {
