@@ -30,6 +30,32 @@
     </form>
     <h2 class="name">Name User</h2>
     <div class="email">nameuser@example.com</div>
+        <div class="current-plan-section">
+      <div class="plan-header">
+        <i class="fas fa-crown plan-icon"></i>
+        <h3>Plan Actual</h3>
+      </div>
+      
+      <div class="plan-info" id="currentPlanInfo">
+        <div class="plan-details">
+          <div class="plan-name-badge">
+            <span class="plan-name">Gratuito</span>
+            <span class="plan-status active">Plan Activo</span>
+          </div>
+          <div class="plan-price">$0 COP/mes</div>
+          <div class="plan-next-billing">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Próximo cobro: Plan</span>
+          </div>
+        </div>
+      </div>
+            <div class="plan-actions">
+        <button class="btn-plan primary" onclick="cambiarPlan()">
+          <i class="fas fa-exchange-alt"></i>
+          Cambiar Plan
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- LADO DERECHO INFORMACIÓN -->
@@ -175,7 +201,109 @@
 </main>
   <script src="../js/mostrarContraseña.js"></script>
   <script src="../js/api/updateUser.js"></script>
-  
+<script>
+    const API_URL = 'http://localhost:8080/api';
+    let usuarioActual = null;
+    
+    function cambiarPlan() {
+        if (usuarioActual && usuarioActual.idUsuario) {
+            localStorage.setItem('idUsuario', usuarioActual.idUsuario);
+            window.location.href = 'planes.html';
+        } else {
+            alert('Error: No se pudo identificar el usuario');
+        }
+    }
+
+    async function cargarPerfil() {
+        const usuarioJSON = localStorage.getItem('usuario');
+        if (!usuarioJSON) {
+            alert("No hay usuario logueado");
+            window.location.href = "../index.html";
+            return;
+        }
+
+        try {
+            const usuario = JSON.parse(usuarioJSON);
+            usuarioActual = usuario;
+
+            document.querySelector(".name").textContent = usuario.nombre;
+            document.querySelector(".email").textContent = usuario.correoElectronico;
+
+            if (usuario.foto) {
+                // ✅ Si la foto no es una URL completa, agregar el servidor
+                const fotoUrl = usuario.foto.startsWith('http') 
+                    ? usuario.foto 
+                    : `http://localhost:8080${usuario.foto}`;
+                document.getElementById("imgPerfil").src = fotoUrl;
+            }if (usuario.foto) {
+                // ✅ Si la foto no es una URL completa, agregar el servidor
+                const fotoUrl = usuario.foto.startsWith('http') 
+                    ? usuario.foto 
+                    : `http://localhost:8080${usuario.foto}`;
+                document.getElementById("imgPerfil").src = fotoUrl;
+            }
+
+            // Traer suscripción activa
+            const response = await fetch(`${API_URL}/suscripciones/usuario/${usuario.idUsuario}/activa`);
+            
+            if (response.ok) {
+                const suscripcion = await response.json();
+                actualizarInfoPlan(suscripcion);
+            } else {
+                // Plan gratuito por defecto
+                actualizarInfoPlan(null);
+            }
+
+        } catch (error) {
+            console.error("Error cargando perfil:", error);
+            actualizarInfoPlan(null);
+        }
+    }
+
+    function actualizarInfoPlan(suscripcion) {
+        const planNameElement = document.querySelector('.plan-name');
+        const planPriceElement = document.querySelector('.plan-price');
+        const planStatusElement = document.querySelector('.plan-status');
+        const planNextBillingElement = document.querySelector('.plan-next-billing span');
+        const planIcon = document.querySelector('.plan-icon');
+        
+        if (suscripcion && suscripcion.estado === 'activa') {
+            planNameElement.textContent = suscripcion.nombrePlan;
+            planPriceElement.textContent = `$${Number(suscripcion.precio).toLocaleString()} COP/mes`;
+            planStatusElement.textContent = 'Plan Activo';
+            planStatusElement.className = 'plan-status active';
+            
+            const fechaFin = new Date(suscripcion.fechaFin);
+            planNextBillingElement.textContent = `Próximo cobro: ${fechaFin.toLocaleDateString('es-ES')}`;
+            
+            // Cambiar icono según el plan
+            planIcon.className = 'fas plan-icon';
+            switch(suscripcion.nombrePlan) {
+                case 'Personal':
+                    planIcon.classList.add('fa-user-tie');
+                    break;
+                case 'Empresas Medianas':
+                    planIcon.classList.add('fa-users');
+                    break;
+                case 'Empresas Grandes':
+                    planIcon.classList.add('fa-building');
+                    break;
+                default:
+                    planIcon.classList.add('fa-crown');
+            }
+        } else {
+            // Plan gratuito
+            planNameElement.textContent = 'Gratuito';
+            planPriceElement.textContent = '$0 COP/mes';
+            planStatusElement.textContent = 'Plan Gratuito';
+            planStatusElement.className = 'plan-status free';
+            planNextBillingElement.textContent = 'Sin próximo cobro';
+            planIcon.className = 'fas fa-user plan-icon';
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", cargarPerfil);
+</script>
 </body>
 </html>
 

@@ -21,6 +21,7 @@ public class Transaccion {
 
     private LocalDate fecha;
 
+    @Column(name = "id_tarea")
     private Long id_tarea;
 
     @Column(name = "id_usuario")
@@ -75,7 +76,6 @@ public class Transaccion {
     public void setId_tarea(Long id_tarea) {
         this.id_tarea = id_tarea;
     }
-
     public Integer getId_usuario() {
         return idUsuario;
     }

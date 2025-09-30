@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const API_URL = 'http://localhost:8080/api';
   
   // 🔹 Verificar sesión
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
   const usuario = JSON.parse(usuarioJSON);
-  window.usuarioActual = usuario; // ✅ Hacer disponible globalmente
+  window.usuarioActual = usuario; // Hacer disponible globalmente
 
   // 🔹 Referencias al DOM
   const imgPerfil = document.getElementById("imgPerfil");
@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const nameH2 = document.querySelector(".name");
   const emailDiv = document.querySelector(".email");
 
-  let archivoFoto = null;
+  let archivoFoto = null; // archivo temporal
 
-  // 🔹 Cargar datos del usuario logueado
+  // 🔹 Cargar datos del usuario logueado y suscripción
   function cargarDatosUsuario() {
     if (usuario.foto) imgPerfil.src = usuario.foto;
     if (usuario.nombre) {
@@ -35,7 +35,47 @@ document.addEventListener("DOMContentLoaded", () => {
       emailDiv.textContent = usuario.correoElectronico;
     }
   }
+  
+  // 🔹 Cargar información de la suscripción actual
+  async function cargarSuscripcionEnPerfil() {
+    try {
+        const response = await fetch(`${API_URL}/planes/suscripcion/usuario/${usuario.idUsuario}`);
+        
+        if (response.ok) {
+            const suscripcion = await response.json();
+            actualizarInfoPlanEnPerfil(suscripcion);
+        } else {
+            // Plan gratuito por defecto
+            actualizarInfoPlanEnPerfil(null);
+        }
+        
+    } catch (error) {
+        console.error('Error al cargar suscripción:', error);
+        actualizarInfoPlanEnPerfil(null);
+    }
+  }
+
+  function actualizarInfoPlanEnPerfil(suscripcion) {
+    const planNameElement = document.querySelector('.plan-name');
+    const planPriceElement = document.querySelector('.plan-price');
+    const planNextBillingElement = document.querySelector('.plan-next-billing span');
+    
+    if (suscripcion && suscripcion.estado === 'activa') {
+        planNameElement.textContent = suscripcion.nombrePlan;
+        planPriceElement.textContent = `$${suscripcion.precio.toLocaleString()} COP/mes`;
+        
+        const fechaFin = new Date(suscripcion.fechaFin);
+        planNextBillingElement.textContent = `Próximo cobro: ${fechaFin.toLocaleDateString('es-ES')}`;
+    } else {
+        planNameElement.textContent = 'Gratuito';
+        planPriceElement.textContent = '$0 COP/mes';
+        planNextBillingElement.textContent = 'Próximo cobro: Plan gratuito';
+    }
+  }
+
+  // Cargar datos iniciales
   cargarDatosUsuario();
+  await cargarSuscripcionEnPerfil();
 
   // 🔹 Cambiar foto
   btnCambiarFoto.addEventListener("click", (e) => {
@@ -49,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     archivoFoto = file;
 
+    // Mostrar preview
     const reader = new FileReader();
     reader.onload = function (e) {
       imgPerfil.src = e.target.result;
@@ -107,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
+      // Enviar los datos al backend
       const formData = new FormData();
       formData.append("nombre", nombre);
       if (contrasena) formData.append("contrasena", contrasena);
@@ -115,29 +157,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch(
         `${API_URL}/usuarios/${usuario.idUsuario}`,
         {
-          method: "PUT",
-          body: formData,
+            method: "PUT",
+            body: formData,
         }
-      );
+        );
 
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(errorText || "Error al actualizar usuario");
       }
 
-  const usuarioActualizado = await response.json();
+      const usuarioActualizado = await response.json();
 
-  // ✅ Construir URL completa para la foto
-  if (usuarioActualizado.foto && !usuarioActualizado.foto.startsWith('http')) {
-      usuarioActualizado.foto = `http://localhost:8080${usuarioActualizado.foto}`;
-  }
-
-localStorage.setItem("usuario", JSON.stringify(usuarioActualizado));
+      // Guardar cambios en localStorage
+      localStorage.setItem("usuario", JSON.stringify(usuarioActualizado));
 
       alert("Perfil actualizado correctamente ✅");
       Object.assign(usuario, usuarioActualizado);
       cargarDatosUsuario();
 
+      // Limpiar contraseñas y archivo
       contrasenaInput.value = "";
       confirmContrasenaInput.value = "";
       archivoFoto = null;
@@ -155,23 +194,13 @@ localStorage.setItem("usuario", JSON.stringify(usuarioActualizado));
   });
 });
 
-// ✅ Función GLOBAL para cambiar de plan (FUERA del DOMContentLoaded)
+// Función global para cambiar de plan (llamada desde el HTML)
 function cambiarPlan() {
-  console.log("🔵 Función cambiarPlan ejecutada");
-  
-  const usuarioJSON = localStorage.getItem('usuario');
-  if (!usuarioJSON) {
-    alert('Error: No hay usuario logueado');
-    return;
-  }
-  
-  const usuario = JSON.parse(usuarioJSON);
-  console.log("🔵 Usuario encontrado:", usuario);
-  
-  if (usuario && usuario.idUsuario) {
-    console.log("🔵 Navegando a planes.html");
-    window.location.href = 'planes.html';
-  } else {
-    alert('Error: No se pudo identificar el usuario');
-  }
+    // Guardar ID del usuario en sessionStorage para la página de planes
+    if (window.usuarioActual && window.usuarioActual.idUsuario) {
+        sessionStorage.setItem('idUsuario', window.usuarioActual.idUsuario);
+        window.location.href = 'planes.html';
+    } else {
+        alert('Error: No se pudo identificar el usuario');
+    }
 }
