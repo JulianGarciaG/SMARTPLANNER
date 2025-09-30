@@ -70,28 +70,38 @@ public class UsuarioService {
     public Usuario actualizarUsuario(Integer id, String nombre, String contrasena, MultipartFile foto) throws Exception {
         Usuario usuario = obtenerPorId(id);
 
-        if (nombre != null && !nombre.isBlank()) usuario.setNombre(nombre);
-        if (contrasena != null && !contrasena.isBlank()) usuario.setContrasena(contrasena);
+        if (nombre != null && !nombre.isBlank()) {
+            usuario.setNombre(nombre);
+        }
+        
+        if (contrasena != null && !contrasena.isBlank()) {
+            usuario.setContrasena(passwordEncoder.encode(contrasena)); // ✅ Encriptar la contraseña
+        }
 
         if (foto != null && !foto.isEmpty()) {
-            // Guardar en carpeta local (ej: uploads/)
             String carpeta = "uploads/";
             Path ruta = Paths.get(carpeta);
             if (!Files.exists(ruta)) {
                 Files.createDirectories(ruta);
             }
 
-            String nombreArchivo = id + "_" + foto.getOriginalFilename();
+            String nombreArchivo = id + "_perfil." + getExtension(foto.getOriginalFilename());
             Path rutaArchivo = ruta.resolve(nombreArchivo);
             Files.write(rutaArchivo, foto.getBytes());
 
-            // Guardar la ruta en BD
+            // Guardar la ruta relativa en BD
             usuario.setFoto("/uploads/" + nombreArchivo);
         }
 
         return usuarioRepository.save(usuario);
     }
 
+// Método auxiliar para obtener la extensión del archivo
+private String getExtension(String filename) {
+    if (filename == null) return "jpg";
+    int lastDot = filename.lastIndexOf('.');
+    return lastDot > 0 ? filename.substring(lastDot + 1) : "jpg";
+}
     public void actualizarContrasenaPorCorreo(String correo, String nuevaContrasena) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByCorreoElectronico(correo);
 
