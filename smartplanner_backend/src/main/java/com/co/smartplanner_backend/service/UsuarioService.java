@@ -13,9 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-
-
 import java.util.Optional;
 
 @Service
@@ -56,6 +53,7 @@ public class UsuarioService {
             throw new RuntimeException("Usuario no encontrado");
         }
     }
+
     // Listar todos
     public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
@@ -96,12 +94,19 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-// Método auxiliar para obtener la extensión del archivo
-private String getExtension(String filename) {
-    if (filename == null) return "jpg";
-    int lastDot = filename.lastIndexOf('.');
-    return lastDot > 0 ? filename.substring(lastDot + 1) : "jpg";
-}
+    // ✅ De rama-calendario-2
+    public Usuario obtenerPorCorreo(String correo) {
+        return usuarioRepository.findByCorreoElectronico(correo)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con correo: " + correo));
+    }
+
+    // ✅ De main
+    private String getExtension(String filename) {
+        if (filename == null) return "jpg";
+        int lastDot = filename.lastIndexOf('.');
+        return lastDot > 0 ? filename.substring(lastDot + 1) : "jpg";
+    }
+
     public void actualizarContrasenaPorCorreo(String correo, String nuevaContrasena) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByCorreoElectronico(correo);
 
@@ -113,7 +118,4 @@ private String getExtension(String filename) {
             throw new RuntimeException("Usuario no encontrado con el correo: " + correo);
         }
     }
-
 }
-
-

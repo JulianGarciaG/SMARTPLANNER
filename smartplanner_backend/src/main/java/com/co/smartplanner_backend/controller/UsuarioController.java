@@ -57,6 +57,18 @@ public class UsuarioController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    // Buscar por correo electrónico
+    @GetMapping("/correo/{correo}")
+    public ResponseEntity<?> buscarPorCorreo(@PathVariable String correo) {
+        try {
+            Usuario usuario = usuarioService.obtenerPorCorreo(correo);
+            return ResponseEntity.ok(usuario);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizarUsuario(
         @PathVariable Integer id,
