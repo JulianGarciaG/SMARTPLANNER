@@ -37,9 +37,9 @@ public class TareaController {
 
     // ✅ Listar tareas de un usuario específico (ajustado a /api/tareas/{id_usuario})
     @GetMapping("/{id_usuario}")
-    public ResponseEntity<List<Tarea>> listarTareasPorUsuario(@PathVariable("id_usuario") Integer idUsuario) {
-        return ResponseEntity.ok(tareaService.listarTareasPorUsuario(idUsuario));
-    }
+public ResponseEntity<List<TareaDto>> listarTareasPorUsuario(@PathVariable("id_usuario") Integer idUsuario) {
+    return ResponseEntity.ok(tareaService.listarTareasPorUsuario(idUsuario));
+}
 
     // ✅ Actualizar tarea
     @PutMapping("/actualizar/{id}")

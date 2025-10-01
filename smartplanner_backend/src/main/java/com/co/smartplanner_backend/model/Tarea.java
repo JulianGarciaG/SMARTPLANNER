@@ -7,6 +7,11 @@ import java.time.LocalDateTime;
 @Table(name = "Tarea")
 public class Tarea {
 
+    @Column(name = "id_transaccion")
+private Long idTransaccion;
+
+public Long getIdTransaccion() { return idTransaccion; }
+public void setIdTransaccion(Long idTransaccion) { this.idTransaccion = idTransaccion; }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_tarea;
