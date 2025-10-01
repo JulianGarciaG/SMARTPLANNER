@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Random;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 public class PasswordResetService {
@@ -116,6 +118,7 @@ public class PasswordResetService {
     }
 
     // Limpiar tokens expirados (se ejecuta cada hora)
+    @Transactional
     @Scheduled(fixedRate = 3600000) // 1 hora en milisegundos
     public void cleanupExpiredTokens() {
         tokenRepository.deleteExpiredTokens(LocalDateTime.now());
