@@ -31,6 +31,10 @@ public class PlanAhorro {
     @JoinColumn(name = "id_usuario", nullable = false) 
     private Usuario usuario;
 
+    @Column(nullable = false)
+    private Boolean eliminado = false;
+
+
     // Getters y Setters
     public Integer getIdPlanAhorro() {
         return idPlanAhorro;
@@ -78,5 +82,13 @@ public class PlanAhorro {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Boolean getEliminado() {
+        return eliminado;
+    }
+    
+    public void setEliminado(Boolean eliminado) {
+        this.eliminado = eliminado;
     }
 }

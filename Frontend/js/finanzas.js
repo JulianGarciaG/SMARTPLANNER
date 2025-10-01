@@ -1,84 +1,398 @@
 // js/finanzas.js
-import { createTransaccion } from "./api/transaccion.js";
+import { obtenerTransacciones, createTransaccion } from "./api/transaccion.js";
+
+console.log("finanzas.js cargado (module)");
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM listo - inicializando finanzas");
+
+  // 🔍 Buscador por nombre (descripcion)
+  const inputBuscar = document.getElementById("inputBuscar");
+
+  // Estado
+  let idEditando = null;
+  let todasTransacciones = [];
+
+  // Elementos
   const btnAbrir = document.getElementById("abrirMenuFinanza");
   const menuFinanza = document.getElementById("agregarFinanza");
   const btnCerrar = document.getElementById("cerrarMenuFinanzas");
   const btnCancelar = document.getElementById("cancelarFinanza");
   const formFinanza = document.getElementById("containerFinanza");
+  const listaTransacciones = document.getElementById("lista-transacciones");
+  const tituloForm = document.getElementById("tituloForm");
+  const btnSubmit = formFinanza?.querySelector("button[type='submit']");
+  const selectCategoria = document.getElementById("selectCategoria");
 
-  // seguridad: si algún elemento no existe, salir con mensaje en console
-  if (!formFinanza) {
-    console.error("form #containerFinanza no encontrado en DOM");
-    return;
-  }
+  // Botones de filtro por tipo
+  const btnTodas = document.getElementById("btnTodas");
+  const btnIngresos = document.getElementById("btnIngresos");
+  const btnEgresos = document.getElementById("btnEgresos");
 
-  // Abrir modal (btnAbrir puede estar fuera del form)
-  if (btnAbrir) {
+  // Estadísticas
+  const ingresosEl = document.getElementById("ingresosMes");
+  const gastosEl = document.getElementById("gastosMes");
+  const balanceEl = document.getElementById("balanceMes");
+
+  const log = (...args) => console.log("[finanzas]", ...args);
+
+  // ✅ Helper para formatear valores en COP
+  const formatearMoneda = (valor) => {
+    return new Intl.NumberFormat("es-CO", {
+      style: "currency",
+      currency: "COP",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(valor);
+  };
+
+  // Helper: obtener input por id
+  const inpu = (id) => document.getElementById(id);
+
+  // ------------------- MODALES -------------------
+  if (btnAbrir && menuFinanza && formFinanza) {
     btnAbrir.addEventListener("click", (e) => {
-      e.preventDefault(); // evita comportamiento por defecto (si fuese submit)
-      formFinanza.reset(); // limpia campos al abrir
+      e.preventDefault();
+      idEditando = null;
+      formFinanza.reset();
+      tituloForm.textContent = "Nueva Transacción";
+      if (btnSubmit) btnSubmit.textContent = "Crear";
       menuFinanza.style.display = "flex";
+      log("Abrir modal - crear");
     });
   }
 
-  // Cerrar modal
-  if (btnCerrar) {
-    btnCerrar.addEventListener("click", (e) => {
-      e.preventDefault();
-      menuFinanza.style.display = "none";
-    });
-  }
-  if (btnCancelar) {
-    btnCancelar.addEventListener("click", (e) => {
-      e.preventDefault();
-      menuFinanza.style.display = "none";
-    });
-  }
+  const cerrarModal = () => {
+    idEditando = null;
+    tituloForm.textContent = "Nueva Transacción";
+    if (btnSubmit) btnSubmit.textContent = "Crear";
+    menuFinanza.style.display = "none";
+  };
 
-  // IMPORTANT — submit handler (evita que el form haga submit por defecto)
-  formFinanza.addEventListener("submit", async (e) => {
-    e.preventDefault(); // **** esto evita el '?' en la URL ****
+  btnCerrar?.addEventListener("click", cerrarModal);
+  btnCancelar?.addEventListener("click", cerrarModal);
 
-    // validar que hay usuario en localStorage
-    const usuarioJSON = localStorage.getItem("usuario");
-    if (!usuarioJSON) {
-      alert("Debes iniciar sesión");
+  // ------------------- UTIL -------------------
+  const getIdUsuario = () => {
+    const u = localStorage.getItem("usuario");
+    if (!u) return null;
+    try {
+      const obj = JSON.parse(u);
+      return obj.idUsuario ?? obj.id ?? obj.id_usuario ?? null;
+    } catch {
+      return null;
+    }
+  };
+
+  // ------------------- RENDER LISTA -------------------
+  const renderizarTransacciones = (transacciones) => {
+    listaTransacciones.innerHTML = "";
+    if (!transacciones || transacciones.length === 0) {
+      listaTransacciones.innerHTML = "<li>No hay transacciones registradas</li>";
       return;
     }
-    const usuario = JSON.parse(usuarioJSON);
 
-    // recoger valores (defensivo: comprueba que existen los elementos)
-    const tipoEl = document.getElementById("tipo");
-    const descEl = document.getElementById("descripcion");
-    const montoEl = document.getElementById("monto");
-    const catEl = document.getElementById("categoria");
-    const fechaEl = document.getElementById("fecha");
-    const tareaEl = document.getElementById("tarea");
+    transacciones.forEach((tx) => {
+      const li = document.createElement("li");
+      const esIngreso = String(tx.tipo).toLowerCase() === "ingreso";
+      const signo = esIngreso ? "+" : "-";
+      const colorClase = esIngreso ? "green" : "red";
 
-    const transaccion = {
-      tipo: tipoEl ? tipoEl.value : "",
-      descripcion: descEl ? descEl.value : "",
-      monto: montoEl ? parseFloat(montoEl.value || 0) : 0,
-      categoria: catEl ? catEl.value : "",
-      fecha: fechaEl ? fechaEl.value : null, // yyyy-MM-dd
-      id_tarea: tareaEl && tareaEl.value ? tareaEl.value : null,
-      id_usuario: usuario.id_usuario ?? usuario.id ?? usuario.userId
-    };
+      li.innerHTML = `
+        <div class="informacion">
+          <div class="${esIngreso ? "ingreso" : "egreso"}">
+            ${esIngreso 
+              ? `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                  <polyline points="16 7 22 7 22 13"></polyline>
+                </svg>`
+              : `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline>
+                  <polyline points="16 17 22 17 22 11"></polyline>
+                </svg>`}
+          </div>
+          <div class="texto">
+            <h1>${tx.descripcion}</h1>
+            <h2>${tx.categoria} ${tx.fecha ? tx.fecha.substring(0,10) : ""}</h2>
+          </div>
+        </div>
+        <div class="derecha">
+          <div class="estados">
+            <p class="${tx.categoria ? tx.categoria.toLowerCase() : ""}">${tx.categoria ?? ""}</p>
+            <p class="${colorClase}">${signo}${formatearMoneda(tx.monto)}</p>
+          </div>
+          <div class="crud">
+            <img class="editar" src="../img/editar.png" width="20" height="20" data-id="${tx.id_gasto}" style="cursor: pointer;" />
+            <img class="eliminar" src="../img/eliminar.png" width="20" height="20" data-id="${tx.id_gasto}" style="cursor: pointer;" />
+          </div>
+        </div>
+      `;
+      listaTransacciones.appendChild(li);
+    });
+  };
 
-    console.log("Enviando transacción:", transaccion);
+  // ------------------- RENDER RESUMEN -------------------
+  const renderResumenCategorias = (transacciones) => {
+    const contenedor = document.getElementById("contenedor-resumen");
+    if (!contenedor) return;
+    contenedor.innerHTML = "";
 
-    const result = await createTransaccion(transaccion);
+    const resumen = {};
 
-    if (result) {
-      alert("✅ Transacción creada");
-      formFinanza.reset();
-      menuFinanza.style.display = "none";
-      // actualizar UI en lugar de reload si prefieres
-      location.reload();
+    transacciones.forEach((t) => {
+      if (!resumen[t.categoria]) {
+        resumen[t.categoria] = { total: 0, cantidad: 0 };
+      }
+      // ingresos suman, egresos restan
+      resumen[t.categoria].total += String(t.tipo).toLowerCase() === "ingreso" ? t.monto : -t.monto;
+      resumen[t.categoria].cantidad += 1;
+    });
+
+    Object.entries(resumen).forEach(([categoria, datos]) => {
+      const div = document.createElement("div");
+      div.classList.add("categoria");
+
+      // Badge dinámico por categoría
+      let badgeClass = "badge-azul";
+      if (categoria.toLowerCase().includes("aliment")) badgeClass = "badge-naranja";
+      else if (categoria.toLowerCase().includes("transporte")) badgeClass = "badge-morado";
+      else if (categoria.toLowerCase().includes("entreten")) badgeClass = "badge-rosa";
+      else if (categoria.toLowerCase().includes("free")) badgeClass = "badge-verde";
+
+      const colorClass = datos.total >= 0 ? "green" : "red";
+
+      div.innerHTML = `
+        <h3>${categoria} <span class="badge ${badgeClass}">${datos.cantidad}</span></h3>
+        <p class="${colorClass}">${formatearMoneda(datos.total)}</p>
+      `;
+
+      contenedor.appendChild(div);
+    });
+  };
+
+  // ------------------- ESTADÍSTICAS -------------------
+  const actualizarContadores = () => {
+    const total = todasTransacciones.length;
+    const ingresos = todasTransacciones.filter(tx => String(tx.tipo).toLowerCase() === "ingreso").length;
+    const egresos = todasTransacciones.filter(tx => String(tx.tipo).toLowerCase() === "egreso").length;
+
+    if (btnTodas) btnTodas.textContent = `Todas (${total})`;
+    if (btnIngresos) btnIngresos.textContent = `Ingresos (${ingresos})`;
+    if (btnEgresos) btnEgresos.textContent = `Gastos (${egresos})`;
+  };
+
+  const actualizarEstadisticas = (transacciones) => {
+    if (!ingresosEl || !gastosEl || !balanceEl) return;
+
+    const hoy = new Date();
+    const mesActual = hoy.getMonth();
+    const anioActual = hoy.getFullYear();
+
+    let totalIngresos = 0;
+    let totalGastos = 0;
+
+    transacciones.forEach((tx) => {
+      if (!tx.fecha) return;
+      const fechaTx = new Date(tx.fecha);
+      if (fechaTx.getMonth() === mesActual && fechaTx.getFullYear() === anioActual) {
+        if (String(tx.tipo).toLowerCase() === "ingreso") {
+          totalIngresos += Number(tx.monto) || 0;
+        } else if (String(tx.tipo).toLowerCase() === "egreso") {
+          totalGastos += Number(tx.monto) || 0;
+        }
+      }
+    });
+
+    const balance = totalIngresos - totalGastos;
+
+    ingresosEl.textContent = formatearMoneda(totalIngresos);
+    gastosEl.textContent = formatearMoneda(totalGastos);
+    balanceEl.textContent = formatearMoneda(balance);
+
+    if (balance >= 0) {
+      balanceEl.classList.add("green");
+      balanceEl.classList.remove("red");
     } else {
-      alert("❌ Error al crear transacción (ver consola)");
+      balanceEl.classList.add("red");
+      balanceEl.classList.remove("green");
+    }
+  };
+
+  // ------------------- CARGA -------------------
+  const cargarTransacciones = async () => {
+    const idUsuario = getIdUsuario();
+    if (!idUsuario) {
+      listaTransacciones.innerHTML = "<li>Inicia sesión para ver las transacciones</li>";
+      return;
+    }
+    try {
+      const trans = await obtenerTransacciones(idUsuario);
+      todasTransacciones = trans;
+      renderizarTransacciones(trans);
+      actualizarContadores();
+      actualizarEstadisticas(trans);
+      renderResumenCategorias(trans);
+    } catch (err) {
+      console.error("Error al cargar transacciones:", err);
+      listaTransacciones.innerHTML = "<li>Error al cargar transacciones</li>";
+    }
+  };
+
+  // ------------------- EVENTOS -------------------
+  if (inputBuscar) {
+    inputBuscar.addEventListener("input", () => {
+      const texto = inputBuscar.value.trim().toLowerCase();
+      if (!texto) {
+        renderizarTransacciones(todasTransacciones);
+      } else {
+        const filtradas = todasTransacciones.filter(
+          (tx) =>
+            tx.descripcion &&
+            tx.descripcion.toLowerCase().includes(texto)
+        );
+        renderizarTransacciones(filtradas);
+      }
+    });
+  }
+
+  if (selectCategoria) {
+    selectCategoria.addEventListener("change", () => {
+      const categoriaSeleccionada = selectCategoria.value;
+      if (!categoriaSeleccionada) {
+        renderizarTransacciones(todasTransacciones);
+      } else {
+        const filtradas = todasTransacciones.filter(
+          (tx) =>
+            tx.categoria &&
+            tx.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase()
+        );
+        renderizarTransacciones(filtradas);
+      }
+    });
+  }
+
+  btnTodas?.addEventListener("click", () => {
+    renderizarTransacciones(todasTransacciones);
+  });
+
+  btnIngresos?.addEventListener("click", () => {
+    const ingresos = todasTransacciones.filter(tx => String(tx.tipo).toLowerCase() === "ingreso");
+    renderizarTransacciones(ingresos);
+  });
+
+  btnEgresos?.addEventListener("click", () => {
+    const egresos = todasTransacciones.filter(tx => String(tx.tipo).toLowerCase() === "egreso");
+    renderizarTransacciones(egresos);
+  });
+
+  // ------------------- FORM SUBMIT -------------------
+  formFinanza?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const idUsuario = getIdUsuario();
+    if (!idUsuario) return alert("Debes iniciar sesión");
+
+    const tipo = inpu("tipo")?.value || "egreso";
+    const descripcion = inpu("descripcion")?.value || "";
+    const monto = parseFloat(inpu("monto")?.value || 0);
+    const categoria = inpu("categoria")?.value || "";
+    const fecha = inpu("fecha")?.value || new Date().toISOString().split("T")[0];
+
+    const payload = { tipo, descripcion, monto, categoria, fecha, id_usuario: idUsuario };
+
+    try {
+      if (idEditando) {
+        const res = await fetch(`http://localhost:8080/api/transacciones/${idEditando}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (res.ok) {
+          alert("Transacción editada ✅");
+        } else {
+          alert("Error al editar transacción");
+        }
+        idEditando = null;
+        tituloForm.textContent = "Nueva Transacción";
+        if (btnSubmit) btnSubmit.textContent = "Crear";
+      } else {
+        const res = await createTransaccion(payload);
+        if (res) {
+          alert("Transacción creada ✅");
+        } else {
+          alert("Error al crear transacción");
+        }
+      }
+
+      menuFinanza.style.display = "none";
+      formFinanza.reset();
+      await cargarTransacciones();
+    } catch (err) {
+      console.error("Error creando/editando transacción:", err);
+      alert("Error creando/editando transacción");
     }
   });
+
+  // ------------------- EDITAR / ELIMINAR -------------------
+  listaTransacciones?.addEventListener("click", async (e) => {
+    const eliminarBtn = e.target.closest(".eliminar");
+    const editarBtn = e.target.closest(".editar");
+
+    if (eliminarBtn) {
+      const id = eliminarBtn.dataset.id;
+      if (!id) return;
+      if (!confirm("¿Deseas eliminar esta transacción?")) return;
+      try {
+        await fetch(`http://localhost:8080/api/transacciones/${id}`, { method: "DELETE" });
+        await cargarTransacciones();
+      } catch (err) {
+        console.error("Error eliminando:", err);
+        alert("Error al eliminar");
+      }
+      return;
+    }
+
+    if (editarBtn) {
+      const id = editarBtn.dataset.id;
+      if (!id) return;
+      log("Click editar id:", id);
+
+      const idUsuario = getIdUsuario();
+      try {
+        let trans = await obtenerTransacciones(idUsuario);
+        let tx = trans?.find(t => String(t.id_gasto) === String(id));
+
+        if (!tx) {
+          try {
+            const resp = await fetch(`http://localhost:8080/api/transacciones/${id}`);
+            if (resp.ok) tx = await resp.json();
+          } catch (err) {
+            console.warn("GET por id falló:", err);
+          }
+        }
+
+        if (!tx) {
+          alert("No se encontró la transacción para editar.");
+          return;
+        }
+
+        inpu("tipo").value = tx.tipo ?? "egreso";
+        inpu("descripcion").value = tx.descripcion ?? "";
+        inpu("monto").value = tx.monto ?? "";
+        inpu("categoria").value = tx.categoria ?? "";
+        inpu("fecha").value = tx.fecha ? tx.fecha.substring(0,10) : "";
+
+        tituloForm.textContent = "Editar Transacción";
+        if (btnSubmit) btnSubmit.textContent = "Editar";
+        menuFinanza.style.display = "flex";
+        idEditando = tx.id_gasto ?? tx.id ?? id;
+        log("Modal edit abierto para idEditando =", idEditando);
+      } catch (err) {
+        console.error("Error preparando edición:", err);
+        alert("Error al preparar la edición");
+      }
+    }
+  });
+
+  // ------------------- INICIAL -------------------
+  cargarTransacciones();
 });

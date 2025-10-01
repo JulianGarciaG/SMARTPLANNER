@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPlanner - Pago Seguro</title>
+    <link rel="stylesheet" href="../styles/pagos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="img/Logo.png">
+</head>
+<body>
+    <div class="container">
+        <div class="payment-container">
+            <!-- Formulario de Pago -->
+            <div class="payment-form">
+                <div class="form-header">
+                    <i class="fas fa-credit-card"></i>
+                    <h2>Método de Pago</h2>
+                    <p>Selecciona tu método de pago preferido</p>
+                </div>
+
+                <form id="paymentForm">
+                    <!-- Método de Pago -->
+                    <div class="payment-methods">
+                        <div class="method-option active" data-method="tarjeta">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Tarjeta</span>
+                        </div>
+                        <div class="method-option" data-method="paypal">
+                            <i class="fab fa-paypal"></i>
+                            <span>PayPal</span>
+                        </div>
+                    </div>
+
+                    <!-- Formulario Tarjeta -->
+                    <div id="tarjetaForm" class="payment-details active">
+                        <div class="form-group">
+                            <label for="numeroTarjeta">Número de Tarjeta</label>
+                            <input type="text" id="numeroTarjeta" name="numeroTarjeta" 
+                                   placeholder="1234 5678 9012 3456" maxlength="19" required>
+                            <div class="card-icons">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fab fa-cc-amex"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fechaVencimiento">Fecha de Vencimiento</label>
+                                <input type="text" id="fechaVencimiento" name="fechaVencimiento" 
+                                       placeholder="MM/AA" maxlength="5" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" 
+                                       placeholder="123" maxlength="4" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nombreTarjeta">Nombre en la Tarjeta</label>
+                            <input type="text" id="nombreTarjeta" name="nombreTarjeta" 
+                                   placeholder="Juan Pérez" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pais">País</label>
+                                <select id="pais" name="pais" required>
+                                    <option value="">Selecciona tu país</option>
+                                    <option value="CO" selected>Colombia</option>
+                                    <option value="AR">Argentina</option>
+                                    <option value="MX">México</option>
+                                    <option value="PE">Perú</option>
+                                    <option value="CL">Chile</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ciudad">Ciudad</label>
+                                <input type="text" id="ciudad" name="ciudad" 
+                                       placeholder="Bogotá" value="Medellín" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="codigoPostal">Código Postal</label>
+                            <input type="text" id="codigoPostal" name="codigoPostal" 
+                                   placeholder="110111" required>
+                        </div>
+                    </div>
+
+                    <!-- Formulario PayPal -->
+                    <div id="paypalForm" class="payment-details">
+                        <div class="paypal-info">
+                            <i class="fab fa-paypal paypal-icon"></i>
+                            <h3>Pagar con PayPal</h3>
+                            <p>Serás redirigido a PayPal para completar tu pago de forma segura</p>
+                        </div>
+                    </div>
+
+                    <!-- Información de Seguridad -->
+                    <div class="security-info">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>Tu información está protegida con encriptación SSL de 256 bits</p>
+                        <p class="trial-info">
+                            <i class="fas fa-info-circle"></i>
+                            14 días de prueba gratuita • Cancela en cualquier momento
+                        </p>
+                    </div>
+
+                    <button type="submit" class="confirm-button">
+                        <i class="fas fa-lock"></i>
+                        Confirmar Pago
+                    </button>
+                </form>
+            </div>
+
+            <!-- Resumen del Pedido -->
+            <div class="order-summary">
+                <h3>Resumen del Pedido</h3>
+                
+                <div class="plan-info">
+                    <span class="plan-name" id="planName">Plan Personal</span>
+                    <span class="plan-billing">Facturación mensual</span>
+                    <div class="plan-features">
+                        <i class="fas fa-check"></i> Calendarios ilimitados
+                        <i class="fas fa-check"></i> Calendarios compartidos
+                        <i class="fas fa-check"></i> Análisis financiero completo
+                    </div>
+                </div>
+
+                <div class="pricing-breakdown">
+                    <div class="price-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$ 15.000</span>
+                    </div>
+                    <div class="price-row tax">
+                        <span>IVA (19%)</span>
+                        <span id="iva">$ 2.850</span>
+                    </div>
+                    <div class="price-row total">
+                        <span>Total</span>
+                        <span id="total">$ 17.850</span>
+                    </div>
+                </div>
+
+                <div class="billing-cycle">
+                    <h4>Ciclo de Facturación</h4>
+                    <div class="cycle-info">
+                        <div class="cycle-row">
+                            <span>Próximo cargo:</span>
+                            <span id="proximoCargo">15 Feb 2024</span>
+                        </div>
+                        <div class="cycle-row">
+                            <span>Frecuencia:</span>
+                            <span>Mensual</span>
+                        </div>
+                    </div>
+                    <p class="cancel-note">
+                        Puedes cancelar tu suscripción en cualquier momento desde tu configuración de cuenta.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // ✅ Cambiar sessionStorage por localStorage
+    const planSeleccionado = JSON.parse(localStorage.getItem('planSeleccionado'));
+    
+    if (!planSeleccionado) {
+        alert('No se ha seleccionado ningún plan');
+        window.location.href = 'planes.html';
+        return;
+    }
+
+    actualizarResumenPedido(planSeleccionado);
+    configurarFormularioPago();
+});
+
+function actualizarResumenPedido(plan) {
+    document.getElementById('planName').textContent = plan.nombrePlan;
+    document.getElementById('subtotal').textContent = `$ ${plan.precio.toLocaleString()}`;
+    
+    const iva = Math.round(plan.precio * 0.19);
+    document.getElementById('iva').textContent = `$ ${iva.toLocaleString()}`;
+    
+    const total = plan.precio + iva;
+    document.getElementById('total').textContent = `$ ${total.toLocaleString()}`;
+    
+    const proximoCargo = new Date();
+    proximoCargo.setMonth(proximoCargo.getMonth() + 1);
+    document.getElementById('proximoCargo').textContent = proximoCargo.toLocaleDateString('es-ES');
+}
+
+function configurarFormularioPago() {
+    const paymentMethods = document.querySelectorAll('.method-option');
+    const paymentDetails = document.querySelectorAll('.payment-details');
+    
+    paymentMethods.forEach(method => {
+        method.addEventListener('click', () => {
+            paymentMethods.forEach(m => m.classList.remove('active'));
+            paymentDetails.forEach(d => d.classList.remove('active'));
+            
+            method.classList.add('active');
+            const methodType = method.dataset.method;
+            document.getElementById(methodType + 'Form').classList.add('active');
+        });
+    });
+
+    const numeroTarjeta = document.getElementById('numeroTarjeta');
+    if (numeroTarjeta) {
+        numeroTarjeta.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+    }
+
+    const fechaVencimiento = document.getElementById('fechaVencimiento');
+    if (fechaVencimiento) {
+        fechaVencimiento.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+    }
+
+    const paymentForm = document.getElementById('paymentForm');
+    if (paymentForm) {
+        paymentForm.addEventListener('submit', procesarPago);
+    }
+}
+
+async function procesarPago(event) {
+    event.preventDefault();
+    
+    const planSeleccionado = JSON.parse(localStorage.getItem('planSeleccionado'));
+    const metodoPago = document.querySelector('.method-option.active').dataset.method;
+
+    if (metodoPago === 'tarjeta') {
+        const numeroTarjeta = document.getElementById('numeroTarjeta').value;
+        const fechaVencimiento = document.getElementById('fechaVencimiento').value;
+        const cvv = document.getElementById('cvv').value;
+        const nombreTarjeta = document.getElementById('nombreTarjeta').value;
+
+        if (!numeroTarjeta || !fechaVencimiento || !cvv || !nombreTarjeta) {
+            alert('Por favor completa todos los campos de la tarjeta');
+            return;
+        }
+    }
+
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    
+    try {
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+        submitBtn.disabled = true;
+
+        // Preparar datos como JSON
+        const payload = {
+            idUsuario: planSeleccionado.idUsuario,
+            idPlan: planSeleccionado.idPlan,
+            metodoPago: metodoPago
+        };
+
+        console.log('Enviando JSON:', payload);
+
+        const response = await fetch('http://localhost:8080/api/suscripciones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        console.log('Response status:', response.status);
+
+        if (!response.ok) {
+            let errorMessage = 'Error al procesar el pago';
+            try {
+                const errorData = await response.json();
+                errorMessage = errorData.error || errorData.message || errorMessage;
+            } catch (e) {
+                const errorText = await response.text();
+                errorMessage = errorText || `Error HTTP ${response.status}`;
+            }
+            throw new Error(errorMessage);
+        }
+
+        const resultado = await response.json();
+        console.log('Pago exitoso:', resultado);
+        
+        localStorage.removeItem('planSeleccionado');
+        
+        alert('¡Pago procesado exitosamente! Tu suscripción ha sido activada.');
+        window.location.href = 'perfil.html';
+
+    } catch (error) {
+        console.error('Error completo:', error);
+        alert('Error al procesar el pago: ' + error.message);
+        
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+}
+</script>
+</body>
+</html>

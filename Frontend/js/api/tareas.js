@@ -4,11 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
   let isEditing = false;
   let editId = null;
 
-  const getIdUsuario = () => {
-    const idUsuario = localStorage.getItem("id_usuario");
-    return idUsuario ? parseInt(idUsuario) : null;
-  };
-
+    const getIdUsuario = () => {
+        // Leer el objeto usuario completo
+        const usuarioJSON = localStorage.getItem("usuario");
+        if (!usuarioJSON) return null;
+        
+        try {
+            const usuario = JSON.parse(usuarioJSON);
+            return usuario.idUsuario || null;
+        } catch (e) {
+            console.error("Error parseando usuario:", e);
+            return null;
+        }
+    };
   const formatearFecha = (iso) => {
     if (!iso) return "";
     try {
@@ -99,10 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
           if (target.checked) wrapper.classList.add('completada');
           else wrapper.classList.remove('completada');
         }
+
         const id = target.getAttribute('data-id');
         const idUsuario = getIdUsuario();
         if (id) {
-          // Buscar la tarea actual para enviar body completo
           const tarea = (window.tareasData || []).find(t => String(t.id_tarea) === String(id));
           const payload = {
             nombre: tarea?.nombre || '',
@@ -113,11 +121,17 @@ document.addEventListener("DOMContentLoaded", () => {
             estado_de_tarea: !!target.checked,
             id_usuario: idUsuario
           };
+
           fetch(`http://localhost:8080/api/tareas/actualizar/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
-          }).then(() => window.refreshTareas && window.refreshTareas())
+          })
+            .then(() => window.refreshTareas && window.refreshTareas())
+            .then(() => {
+              // 🔹 Disparar evento global para que el dashboard.js escuche
+              window.dispatchEvent(new CustomEvent("tareas:updated", { detail: window.tareasData }));
+            })
             .catch(err => console.error('No se pudo actualizar estado de tarea', err));
         }
         return;

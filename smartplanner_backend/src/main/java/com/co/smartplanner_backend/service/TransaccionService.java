@@ -94,4 +94,13 @@ public class TransaccionService {
         entity.setId_usuario(dto.getId_usuario());
         return entity;
     }
+
+    public List<TransaccionDto> getTransaccionesByUsuario(Integer idUsuario) {
+    return repository.findByIdUsuario(idUsuario)
+            .stream()
+            .map(this::toDto)  // usar el método correcto
+            .collect(Collectors.toList());
+}
+
+
 }

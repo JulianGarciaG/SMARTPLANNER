@@ -56,13 +56,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         const li = document.createElement("li");
         li.classList.add("tarea");
 
-        const checked = (tarea.estado_de_tarea === true || tarea.completada) ? "checked" : "";
+        const checked = (tarea.estado_de_tarea === true || tarea.completada);
+
+        if (checked) {
+            li.classList.add("completada"); // 👈 Agregamos clase al li
+        }
 
         li.innerHTML = `
             <div class="informacion">
                 <div class="container-input">
                     <img src="../img/controlar.png" width="10" height="10" />
-                    <input type="checkbox" class="input-tarea" ${checked} data-id="${tarea.id_tarea || tarea.id}" />
+                    <input type="checkbox" class="input-tarea" ${checked ? "checked" : ""} data-id="${tarea.id_tarea || tarea.id}" />
                 </div>
                 <div class="texto">
                     <h1 class="texto-titulo">${tarea.nombre || tarea.titulo}</h1>
@@ -83,8 +87,47 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </div>
             </div>
         `;
+
+        // 🔹 Evento para marcar/desmarcar completada
+        const checkbox = li.querySelector(".input-tarea");
+        checkbox.addEventListener("change", async (e) => {
+            const checked = e.target.checked;
+
+            if (checked) {
+                li.classList.add("completada");
+            } else {
+                li.classList.remove("completada");
+            }
+
+            try {
+                // Mandar actualización al backend
+                const payload = {
+                    nombre: tarea.nombre,
+                    descripcion: tarea.descripcion,
+                    prioridad: tarea.prioridad || "media",
+                    fecha_limite: tarea.fecha_limite,
+                    categoria: tarea.categoria || "sin_asociar",
+                    estado_de_tarea: checked,
+                    id_usuario: tarea.id_usuario
+                };
+
+                await fetch(`http://localhost:8080/api/tareas/actualizar/${tarea.id_tarea}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                // Refrescar vista
+                aplicarFiltros();
+
+            } catch (err) {
+                console.error("Error actualizando tarea:", err);
+            }
+        });
+
         return li;
     }
+
 
     function actualizarResumen(tareas) {
         const total = todasLasTareas.length;

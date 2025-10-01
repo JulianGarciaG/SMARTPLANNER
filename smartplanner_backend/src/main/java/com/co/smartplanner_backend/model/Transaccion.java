@@ -21,9 +21,11 @@ public class Transaccion {
 
     private LocalDate fecha;
 
+    @Column(name = "id_tarea")
     private Long id_tarea;
 
-    private Integer id_usuario;
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
 
     // Getters y Setters
     public Long getId_gasto() {
@@ -74,11 +76,10 @@ public class Transaccion {
     public void setId_tarea(Long id_tarea) {
         this.id_tarea = id_tarea;
     }
-
     public Integer getId_usuario() {
-        return id_usuario;
+        return idUsuario;
     }
     public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+        this.idUsuario = id_usuario;
     }
 }

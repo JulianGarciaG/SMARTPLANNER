@@ -110,7 +110,7 @@ body{
     color: #16A34A;
 }
 
-.etiqueta-tiempo{
+.etiqueta-ahorro{
     background-color: #DBEAFE;
     color: #2563EB;           
     font-size: 12px;
@@ -120,7 +120,7 @@ body{
     white-space: nowrap;
 }
 
-.etiqueta-tiempo:hover{
+.etiqueta-ahorro:hover{
     background-color: #839fdb;;
     color: #2563EB; 
 }

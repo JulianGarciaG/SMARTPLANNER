@@ -33,24 +33,26 @@
     <h2>¿Olvidaste tu contraseña?</h2>
     <p>Ingresa tu email y te enviaremos un código de verificación</p>
 
-    <h3>Email</h3>
-    <div class="input-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <rect width="20" height="16" x="2" y="4" rx="2" />
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-      </svg>
-      <input type="email" placeholder="tu@email.com" required />
-    </div>
+    <form id="request-form">
+      <h3>Email</h3>
+      <div class="input-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+          stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect width="20" height="16" x="2" y="4" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+        <input type="email" id="email-input" placeholder="tu@email.com" required />
+      </div>
 
-    <a class="submit-button" href="../views/recuperarContraseña2.html">
-      Enviar código
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
-        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M5 12h14"></path>
-        <path d="m12 5 7 7-7 7"></path>
-      </svg>
-    </a>
+      <button type="submit" class="submit-button" data-original-text="Enviar código">
+        Enviar código
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
+          stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </button>
+    </form>
 
     <a class="back-link" href="/Frontend/index.html">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -66,5 +68,10 @@
   <footer>
     <p>© 2024 SmartPlanner. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- Scripts -->
+  <script src="../js/emailConfig.js"></script>
+  <script src="../js/emailService.js"></script>
+  <script src="../js/passwordReset.js"></script>
 </body>
 </html>

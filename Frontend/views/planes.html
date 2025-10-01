@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPlanner - Elige tu Plan</title>
+    <link rel="stylesheet" href="../styles/planes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="img/Logo.png">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Elige tu Plan</h1>
+            <p>Selecciona el plan que mejor se adapte a tus necesidades y comienza a organizar tu vida de manera más eficiente</p>
+        </header>
+
+        <div class="pricing-cards">
+            <!-- Plan Gratuito -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-icon gratuito-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Gratuito</h3>
+                    <p class="plan-subtitle">Perfecto para uso personal básico</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price">Gratis</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 1 calendario personal</li>
+                    <li><i class="fas fa-check"></i> Hasta 50 eventos por mes</li>
+                    <li><i class="fas fa-check"></i> Recordatorios básicos</li>
+                    <li><i class="fas fa-check"></i> Seguimiento de gastos básico</li>
+                    <li><i class="fas fa-check"></i> Soporte por email</li>
+                </ul>
+                <button class="plan-button current-plan" disabled>Plan Actual</button>
+            </div>
+
+            <!-- Plan Personal -->
+            <div class="plan-card popular">
+                <div class="popular-badge">Más Popular</div>
+                <div class="plan-header">
+                    <div class="plan-icon personal-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Personal</h3>
+                    <p class="plan-subtitle">Ideal para profesionales independientes</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price">$ 15.000</span>
+                    <span class="period">/mes</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Calendarios ilimitados</li>
+                    <li><i class="fas fa-check"></i> Eventos ilimitados</li>
+                    <li><i class="fas fa-check"></i> Calendarios compartidos</li>
+                    <li><i class="fas fa-check"></i> Recordatorios avanzados</li>
+                    <li><i class="fas fa-check"></i> Análisis financiero completo</li>
+                    <li><i class="fas fa-check"></i> Planes de ahorro ilimitados</li>
+                    <li><i class="fas fa-check"></i> Exportar datos</li>
+                    <li><i class="fas fa-check"></i> Soporte prioritario</li>
+                </ul>
+                <button class="plan-button" onclick="selectPlan(2, 'Personal', 15000)">Seleccionar Plan</button>
+            </div>
+
+            <!-- Plan Empresas Medianas -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-icon medianas-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Empresas Medianas</h3>
+                    <p class="plan-subtitle">Para equipos medianos y empresas en crecimiento</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price">$ 120.000</span>
+                    <span class="period">/mes</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Todo el plan Personal</li>
+                    <li><i class="fas fa-check"></i> Hasta 25 usuarios</li>
+                    <li><i class="fas fa-check"></i> Gestión de equipos</li>
+                    <li><i class="fas fa-check"></i> Reportes avanzados</li>
+                    <li><i class="fas fa-check"></i> Integraciones básicas</li>
+                    <li><i class="fas fa-check"></i> Backup automático</li>
+                    <li><i class="fas fa-check"></i> Soporte prioritario</li>
+                    <li><i class="fas fa-check"></i> Dashboard empresarial</li>
+                </ul>
+                <button class="plan-button" onclick="selectPlan(3, 'Empresas Medianas', 120000)">Seleccionar Plan</button>
+            </div>
+
+            <!-- Plan Empresas Grandes -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-icon grandes-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Empresas Grandes</h3>
+                    <p class="plan-subtitle">Para grandes empresas y uso corporativo</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price">$ 500.000</span>
+                    <span class="period">/mes</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Todo el plan Empresas Medianas</li>
+                    <li><i class="fas fa-check"></i> Usuarios ilimitados</li>
+                    <li><i class="fas fa-check"></i> Gestión avanzada de equipos</li>
+                    <li><i class="fas fa-check"></i> Reportes personalizados</li>
+                    <li><i class="fas fa-check"></i> Integraciones con terceros</li>
+                    <li><i class="fas fa-check"></i> API personalizada</li>
+                    <li><i class="fas fa-check"></i> Backup automático diario</li>
+                    <li><i class="fas fa-check"></i> Soporte 24/7 dedicado</li>
+                    <li><i class="fas fa-check"></i> Consultoría personalizada</li>
+                </ul>
+                <button class="plan-button" onclick="selectPlan(4, 'Empresas Grandes', 500000)">Seleccionar Plan</button>
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <div class="info-card">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Seguridad Garantizada</h4>
+                <p>Tus datos están protegidos con encriptación SSL de 256 bits</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-sync-alt"></i>
+                <h4>Fácil Migración</h4>
+                <p>Cambia de plan cuando quieras sin perder tus datos</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-headset"></i>
+                <h4>Soporte 24/7</h4>
+                <p>Nuestro equipo está siempre disponible para ayudarte</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+const API_URL = 'http://localhost:8080/api';
+let usuarioActual = null;
+
+// Cargar usuario inmediatamente (no esperar DOMContentLoaded)
+function inicializarUsuario() {
+    const usuarioJSON = localStorage.getItem("usuario");
+    
+    if (!usuarioJSON) {
+        alert("No hay usuario logueado");
+        window.location.href = "../index.html";
+        return false;
+    }
+    
+    try {
+        usuarioActual = JSON.parse(usuarioJSON);
+        console.log("Usuario cargado:", usuarioActual);
+        return true;
+    } catch (error) {
+        console.error("Error al parsear usuario:", error);
+        alert("Error al cargar datos del usuario");
+        window.location.href = "../index.html";
+        return false;
+    }
+}
+
+// Llamar inmediatamente, no esperar DOMContentLoaded
+if (!inicializarUsuario()) {
+    // Si falla, detener ejecución
+    throw new Error("No se pudo inicializar usuario");
+}
+
+function selectPlan(idPlan, nombrePlan, precio) {
+    console.log("selectPlan llamado - Usuario actual:", usuarioActual);
+    
+    if (!usuarioActual) {
+        alert("Error: No hay usuario cargado");
+        window.location.href = "../index.html";
+        return;
+    }
+    
+    if (!usuarioActual.idUsuario) {
+        alert("Error: Usuario no tiene ID");
+        console.error("Usuario completo:", usuarioActual);
+        return;
+    }
+
+    const planSeleccionado = {
+        idUsuario: usuarioActual.idUsuario,
+        idPlan: idPlan,
+        nombrePlan: nombrePlan,
+        precio: precio
+    };
+
+    console.log("Guardando plan:", planSeleccionado);
+    localStorage.setItem('planSeleccionado', JSON.stringify(planSeleccionado));
+    
+    // Verificar que se guardó
+    const verificacion = localStorage.getItem('planSeleccionado');
+    console.log("Verificación - Plan guardado:", verificacion);
+    
+    window.location.href = 'pagos.html';
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+    console.log("DOMContentLoaded - Usuario ya cargado:", usuarioActual);
+    await cargarSuscripcionActual();
+});
+
+async function cargarSuscripcionActual() {
+    if (!usuarioActual || !usuarioActual.idUsuario) {
+        console.warn("No se puede cargar suscripción sin usuario");
+        return;
+    }
+    
+    try {
+        const response = await fetch(`${API_URL}/planes/suscripcion/usuario/${usuarioActual.idUsuario}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            const suscripcion = await response.json();
+            console.log("Suscripción cargada:", suscripcion);
+            actualizarPlanActual(suscripcion);
+        } else {
+            console.log("No hay suscripción activa o plan gratuito");
+        }
+    } catch (error) {
+        console.error('Error cargando suscripción:', error);
+    }
+}
+
+function actualizarPlanActual(suscripcion) {
+    const botones = document.querySelectorAll('.plan-button');
+    botones.forEach(btn => {
+        btn.textContent = 'Seleccionar Plan';
+        btn.disabled = false;
+        btn.className = 'plan-button';
+    });
+
+    const planCards = document.querySelectorAll('.plan-card');
+    planCards.forEach((card, index) => {
+        const boton = card.querySelector('.plan-button');
+        if (index + 1 === suscripcion.idTipoPlan) {
+            boton.textContent = 'Plan Actual';
+            boton.disabled = true;
+            boton.className = 'plan-button current-plan';
+        }
+    });
+}
+</script>
+</body>
+</html>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMART PLANNER - ESTADISTICAS</title>
     <link rel="icon" href="../img/Logo.png" />
-    <link rel="stylesheet" href="../styles/estadisticas.css  " />
+    <link rel="stylesheet" href="../styles/estadisticas.css" />
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/body.css">
     <link rel="stylesheet" href="../styles/notificaciones.css">
@@ -87,9 +87,16 @@
                         </div>
                     </div>
                 </div>
-                <a href="../views/perfil.html">
-                    <img class="usuario" src="../img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;">
-                </a>
+                    <a href="../views/perfil.html">
+                    <img 
+                        id="imgUsuarioHeader"
+                        class="usuario" 
+                        src="../img/usuario-perfil.png" 
+                        width="40" 
+                        height="40" 
+                        style="border-radius: 100%;" 
+                    >
+                    </a>
             </div>
         </nav>
     </header>
@@ -131,29 +138,29 @@
             <div class="tarjeta tareas-completadas">
                 <div class="texto">
                     <p class="titulo">Productividad</p>
-                    <p class="cantidad">40 %</p>
+                    <p class="cantidad" id="productividad-valor"></p>
                 </div>
                 <div class="etiqueta-tareas">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-white"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg></div>
                 </div>
                 <div class="tarjeta tiempo-enfocado">
                     <div class="texto">
-                        <p class="titulo">Tiempo Atacante</p>
-                        <p class="cantidad">6,2 horas</p>
+                        <p class="titulo">Planes de Ahorro</p>
+                        <p class="cantidad" id="planes-ahorro-valor"></p>
                     </div>
                     <div class="etiqueta-tiempo"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock h-6 w-6 text-white"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
                 </div>
                 <div class="tarjeta gastos">
                     <div class="texto">
                         <p class="titulo">Balance</p>
-                        <p class="cantidad">$ 2549.50</p>
+                        <p class="cantidad" id="balance-valor"></p>
                     </div>
                     <div class="etiqueta-gastos"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target h-6 w-6 text-white"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> </div>
                 </div>
                 <div class="tarjeta balance">
                     <div class="texto">
                         <p class="titulo">Tareas completadas</p>
-                        <p class="cantidad">2 / 5</p>
+                        <p class="cantidad" id="tareas-completadas-valor"></p>
                     </div>
                     <div class="etiqueta-balance"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-6 w-6 text-white"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg></div>
                 </div>
@@ -163,73 +170,8 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-5 w-5 text-emerald-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
                     <h1>Progreso Semanal</h1>
                 </div>
-                <div class="dias">
-                    <div class="apartado-dias"> 
-                        <div class="numero-tareasEspecial">
-                            <h3>8</h3>
-                        </div>
-                        <div class="progreso">
-                            <h2>Lun</h2>
-                            <p> 8/10 </p>
-                        </div>
-                    </div>
-                    <div class="apartado-dias"> 
-                        <div class="numero-tareas">
-                            <h3>6</h3>
-                        </div>
-                        <div class="progreso">
-                            <h2>Mar</h2>
-                            <p> 6/8 </p>
-                        </div>
-                    </div>
-                    <div class="apartado-dias">
-                        <div class="numero-tareas">
-                            <h3>9</h3>
-                        </div>
-                        <div class="progreso">
-                            <h2>Mier</h2>
-                            <p> 9/12 </p>
-                        </div>    
-                    </div>
-                    <div class="apartado-dias">
-                        <div class="numero-tareas">
-                            <h3>7</h3>
-                        </div>
-                        <div class="progreso">
-                            <h2>Jue</h2>
-                            <p> 7/9 </p>
-                        </div>
-                        
-                    </div>
-                    <div class="apartado-dias">
-                        <div class="numero-tareas">
-                            <h3>5</h3>
-                        </div>
-                        <div class="progreso">
-                            <h2>Vier</h2>
-                            <p> 5/7 </p>
-                        </div>
-                        
-                    </div>
-                    <div class="apartado-dias">
-                        <div class="numero-tareas">
-                            <h3>3</h3>
-                        </div>
-                        <div class="progreso">
-                            <h2>Sab</h2>
-                            <p> 3/4 </p>
-                        </div>    
-                    </div>
-                    <div class="apartado-dias">
-                        <div class="numero-tareas">
-                            <h3>2</h3>
-                        </div>
-                        <div class="progreso">
-                            <h2>Dom</h2>
-                            <p> 2/3 </p>
-                        </div>
-                        
-                    </div>
+                <div class="dias" id="progreso-semanal-container">
+                    <!-- Se llenará dinámicamente con JavaScript -->
                 </div>
             </div>
         </div>
@@ -239,34 +181,32 @@
                 <h1>Progreso de tareas</h1>
                 <div class= "tareasCompletadas">
                     <h2>Completadas</h2>
-                    <p>3</p>
+                    <p id="tareas-completadas-numero"></p>
                 </div>
                 <div class="tareasPendientes">
                     <h2>Pendientes</h2>
-                    <p>3</p>
+                    <p id="tareas-pendientes-numero"></p>
                 </div>
                 <div class="progresoGeneral">
-
                     <h2>Progreso general</h2>
-                    <p>40%</p>
-
+                    <p id="progreso-general-porcentaje"></p>
                 </div>
-                <progress value="0.4"></progress>
+                <progress id="progreso-general-bar" value="0"></progress>
             </div>
 
             <div class="resumenFinanciero">
                 <h1>Resumen Financiero</h1>   
                 <div class="rfIngresos">
                     <h2>Ingresos</h2>
-                    <p><strong>$2800.00</strong></p>
+                    <p><strong id="rf-ingresos"></strong></p>
                 </div>
                 <div class="rfGastos">
                     <h2>Gastos</h2>
-                    <p><strong>$250.50</strong></p>
+                    <p><strong id="rf-gastos"></strong></p>
                 </div>
                 <div class="rfBalance">
                     <h2>Balance</h2>
-                    <p><strong>$2549.50</strong></p>
+                    <p><strong id="rf-balance"></strong></p>
                 </div>
                 
                 <div class="comparacionMensual">
@@ -276,126 +216,57 @@
         </div>
 
           <div class="seguimientosHabitosContent">
-            <h1>Seguimiento de hábitos</h1>
+            <h1>Seguimiento de calendarios</h1>
 
             <div class="contentProgress">
                 <div class="textProgress">
-                    <h2>Ejercicio Matutino</h2>
+                    <h2>Calendarios totales</h2>
                     <div class="diasHabitos">
-                        <h3>7 dias</h3>
+                        <h3 id="calendarios-totales-dias"></h3>
                     </div>
-                    <p>23/30</p>
+                    <p id="calendarios-totales-progreso"></p>
                 </div>
-                <progress value="0.30"></progress>
+                <progress id="calendarios-totales-bar" value="0"></progress>
             </div>
 
             <div class="contentProgress">
                 <div class="textProgress">
-                    <h2>Lectura diaria</h2>
+                    <h2>Calendarios personales</h2>
                     <div class="diasHabitos">
-                        <h3>12 días</h3>
+                        <h3 id="calendarios-personales-dias"></h3>
                     </div>
-                    <p>57/21</p>
+                    <p id="calendarios-personales-progreso"></p>
                 </div>
-                <progress value="0.30"></progress>
+                <progress id="calendarios-personales-bar" value="0"></progress>
             </div>
 
             <div class="contentProgress">
                 <div class="textProgress">
-                    <h2>Meditación</h2>
+                    <h2>Calendarios compartidos</h2>
                     <div class="diasHabitos">
-                        <h3>5 días</h3>
+                        <h3 id="calendarios-compartidos-dias"></h3>
                     </div>
-                    <p>36/14</p>
+                    <p id="calendarios-compartidos-progreso"></p>
                 </div>
-                <progress value="0.50"></progress>
-            </div>
-
-            <div class="contentProgress">
-                <div class="textProgress">
-                    <h2>Beber agua</h2>
-                    <div class="diasHabitos">
-                        <h3>15 días</h3>
-                    </div>
-                    <p>50/30</p>
-                </div>
-                <progress value="100"></progress>
+                <progress id="calendarios-compartidos-bar" value="0"></progress>
             </div>
         </div>
 
 
         <div class="rendimientos">
-        <h1>Rendimiento por categoría</h1>
-        <div class="categorias-grid">
-
-            <!-- Trabajo -->
-            <div class="bar-container">
-                <div class="content">
-                    <h2>Trabajo</h2>
-                    <p>1/2</p>
-                </div>
-                <div class="bar-progress">
-                    <progress value="50" max="100" class="trabajo"></progress>
-                    <p>50%</p>
-                </div>
-            </div>
-
-            <!-- Personal -->
-            <div class="bar-container">
-                <div class="content">
-                    <h2>Personal</h2>
-                    <p>0/2</p>
-                </div>
-                <div class="bar-progress">
-                    <progress value="0" max="100" class="personal"></progress>
-                    <p>0%</p>
-                </div>
-            </div>
-
-            <!-- Salud -->
-            <div class="bar-container">
-                <div class="content">
-                    <h2>Salud</h2>
-                    <p>1/1</p>
-                </div>
-                <div class="bar-progress">
-                    <progress value="100" max="100" class="salud"></progress>
-                    <p>100%</p>
-                </div>
-            </div>
-
-            <!-- Finanzas -->
-            <div class="bar-container">
-                <div class="content">
-                    <h2>Finanzas</h2>
-                    <p>1/5</p>
-                </div>
-                <div class="bar-progress">
-                    <progress value="20" max="100" class="finanzas"></progress>
-                    <p>20%</p>
-                </div>
-            </div>
-
+        <h1>Rendimiento por prioridad</h1>
+        <div class="categorias-grid" id="rendimiento-prioridad-container">
+            <!-- Se llenará dinámicamente con JavaScript -->
         </div>
         </div>
 
         <div class="distribucion-gastos">
             <h1>Distribución de gastos</h1> 
-            <ul>
-                <li>
-                    <span class="descripcion">Entretenimiento</span>
-                    <span class="valor">$120.00</span>
-                </li>
-                <li>
-                    <span class="descripcion">Alimentación</span>
-                    <span class="valor">$85.50</span>
-                </li>
-                <li>
-                    <span class="descripcion">Transporte</span>
-                    <span class="valor">$45.00</span>
-                </li>
+            <ul id="distribucion-gastos-lista">
+                <!-- Se llenará dinámicamente con JavaScript -->
             </ul>
         </div>
+    </div>
     </main>
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
@@ -403,6 +274,7 @@
     <script src="../js/funcionalidadMenu.js"></script>
     <script src="../js/notificaciones.js"></script>
     <script src="../js/tipDinamico.js"></script>
-</body>
+    <script src="../js/estadisticas.js"></script>
+    <script src="../js/api/imagen.js"></script>
 </body>
 </html>

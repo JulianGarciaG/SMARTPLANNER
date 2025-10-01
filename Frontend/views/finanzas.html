@@ -89,11 +89,11 @@
     <div id="agregarFinanza" class="agregar-finanza">
         <form id="containerFinanza" class="container-finanza">
             <img id="cerrarMenuFinanzas" src="../img/cerrar.png" width="20" height="20">
-            <h1>Nueva transaccion</h1>
+            <h1 id="tituloForm">Nueva transaccion</h1>
             <div class="titulo">
                 <h1>Tipo</h1>
     
-                    <select name="Tipo" id="Tipo">
+                    <select name="tipo" id="tipo">
                         <option value="ingreso">Ingreso</option>
                         <option value="egreso">Egreso</option>
                     </select>
@@ -101,27 +101,27 @@
             <div class="Descripción">
                 <h1>Descripción</h1>
                 <div class="espacio-input">
-                    <input type="text" placeholder="Descripción de la transaccion">
+                    <input id="descripcion"type="text" placeholder="Descripción de la transaccion">
                 </div>
             </div>
             <div class="Descripción">
                 <h1>Monto</h1>
                 <div class="espacio-input">
-                    <input type="number" placeholder="0.00">
+                    <input id="monto" type="number" placeholder="0.00">
                 </div>
             </div>
             <div class="Descripción">
                 <h1>Categoria</h1>
-                <Select>
+                <Select ID="categoria" name="categoria">
                     <option value="">Seleccionar Categoria</option>
-                    <option value="">Alimentación</option>
-                    <option value="">Transporte</option>
-                    <option value="">Salario</option>
-                    <option value="">Entretenimiento</option>
-                    <option value="">Salud</option>
-                    <option value="">Hogar</option>
-                    <option value="">Educacion</option>
-                    <option value="">Otros</option>
+                    <option value="Alimentación">Alimentación</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Salario">Salario</option>
+                    <option value="Entretenimiento">Entretenimiento</option>
+                    <option value="Salud">Salud</option>
+                    <option value="Hogar">Hogar</option>
+                    <option value="Educacion">Educacion</option>
+                    <option value="Otros">Otros</option>
                 </Select>
             </div>
             <div class="fecha-limite">
@@ -143,8 +143,8 @@
                 </Select>
             </div>
             <div class="botones-finanza">
-                <button id="cancelarFinanza" class="Cancelar-finanza">Cancelar</button>
-                <button id="crearFinanza" class="Crear-finanza">Crear</button>
+                <button id="cancelarFinanza" type="button" class="Cancelar-finanza">Cancelar</button>
+                <button id="crearFinanza" type="submit" class="Crear-finanza">Crear</button>
             </div>
         </form>
     </div>
@@ -228,9 +228,16 @@
                         </div>
                     </div>
                 </div>
-                <a href="../views/perfil.html">
-                    <img class="usuario" src="../img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;">
-                </a>
+                    <a href="../views/perfil.html">
+                    <img 
+                        id="imgUsuarioHeader"
+                        class="usuario" 
+                        src="../img/usuario-perfil.png" 
+                        width="40" 
+                        height="40" 
+                        style="border-radius: 100%;" 
+                    >
+                    </a>
             </div>
         </nav>
     </header>
@@ -290,7 +297,7 @@
                     <path d="M2 9v1c0 1.1.9 2 2 2h1"></path>
                     <path d="M16 11h0"></path>
                 </svg>
-                Nueva Plan de Ahorro
+                Nuevo Plan de Ahorro
             </button>
         </div>
     </div>
@@ -406,11 +413,81 @@
     <div class="tareas">
         <h1>Historial de transacciones</h1>
         <ul id="lista-transacciones">
-            <!-- Transacciones se cargarán aquí -->
+            
         </ul>
-        <div id="menuCrud" class="menu-crud">
-            <!-- contenido existente -->
-        </div>
+    
+<!-- Modal Crear/Editar Transacción -->
+<div id="agregarFinanza" class="agregar-finanza">
+  <div class="container-finanza">
+    <img id="cerrarMenuFinanzas" src="../img/cerrar.png" width="20" height="20">
+    <h1 id="tituloForm"></h1> 
+
+ <form id="containerFinanza" class="container-finanza"> <!-- 👈 se agregó id -->
+    <div class="titulo">
+      <h1>Tipo:</h1>
+      <select id="tipo" name="tipo" required>
+        <option value="ingreso">Ingreso</option>
+        <option value="egreso">Egreso</option>
+      </select>
+    </div>
+
+    <div class="titulo">
+      <h1>Descripción:</h1>
+      <div class="espacio-input">
+        <input type="text" id="descripcion" name="descripcion" required />
+      </div>
+    </div>
+
+    <div class="titulo">
+      <h1>Monto:</h1>
+      <div class="espacio-input">
+        <input type="number" id="monto" name="monto" step="0.01" required />
+      </div>
+    </div>
+
+    <div class="titulo">
+      <h1>Categoría:</h1>
+      <div class="espacio-input">
+        
+        <input type="text" id="categoria" name="categoria" required />
+      </div>
+    </div>
+
+    <div class="titulo">
+      <h1>Fecha:</h1>
+      <div class="espacio-input">
+        <input type="date" id="fecha" name="fecha" required />
+      </div>
+    </div>
+
+    <div class="botones-finanza">
+      <button type="button" class="Cancelar-finanza" id="cancelarFinanza">Cancelar</button>
+      <button type="submit" class="Crear-finanza" id="guardarFinanza">Guardar</button>
+    </div>
+  </div>
+</div>
+
+            <div id="menuEliminar" class="menu-eliminar">
+                        <div class="botones">
+                            <button id="cancelarEliminar">Cancelar</button>
+                            <button id="confirmarEliminar">Confirmar</button>
+                        </div>
+                        <div class="editar-tarea">
+                        <form id="containerEditar" class="container-editar">
+                            <img id="cerrarMenuEditar" src="../img/cerrar.png" width="20" height="20">
+       </div>
+            </div>
+    </div>
+    <div>
+        
+    <section id="resumen-categorias" class="resumen-categorias">
+  <h1>Resumen por categorías</h1>
+  
+  <div id="contenedor-resumen">
+    <!-- Aquí se insertarán las categorías dinámicamente -->
+  </div>
+</section>
+
     </div>
 
     <!-- NUEVA SECCIÓN: Planes de Ahorro -->
@@ -422,116 +499,8 @@
     </div>
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", async () => {
-    const usuarioJSON = localStorage.getItem("usuario");
-    if (!usuarioJSON) {
-        window.location.href = "login.html";
-        return;
-    }
-    const usuario = JSON.parse(usuarioJSON);
+<script src="../js/estilosfinanzas.js"></script>
 
-    // Función para obtener transacciones del usuario (ajusta URL y método según tu API)
-    async function obtenerTransacciones() {
-        try {
-            const response = await fetch(`http://localhost:8080/api/finanzas/usuario/${usuario.idUsuario}`, {
-                method: "GET",
-                headers: { "Content-Type": "application/json" },
-            });
-            if (!response.ok) throw new Error("Error al obtener transacciones");
-            return await response.json(); // Asumimos que devuelve un array de transacciones
-        } catch (error) {
-            console.error(error);
-            return [];
-        }
-    }
-
-    // Renderizar transacciones en la lista
-    function renderizarTransacciones(transacciones) {
-        const lista = document.getElementById("lista-transacciones");
-        lista.innerHTML = "";
-
-        transacciones.forEach(tx => {
-            const li = document.createElement("li");
-
-            // Clase para icono y color según tipo
-            const tipoClase = tx.tipo === "ingreso" ? "ingreso" : "egreso";
-            const signo = tx.tipo === "ingreso" ? "+" : "-";
-            const colorClase = tx.tipo === "ingreso" ? "green" : "red";
-
-            li.innerHTML = `
-                <div class="informacion">
-                    <div class="${tipoClase}">
-                        ${tx.tipo === "ingreso" ? `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-white">
-                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                            <polyline points="16 7 22 7 22 13"></polyline>
-                        </svg>` : `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down h-6 w-6 text-white">
-                            <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline>
-                            <polyline points="16 17 22 17 22 11"></polyline>
-                        </svg>`}
-                    </div>
-                    <div class="texto">
-                        <h1>${tx.descripcion}</h1>
-                        <h2>${tx.categoria} ${tx.fecha.substring(0,10)}</h2>
-                    </div>
-                </div>
-                <div class="derecha">
-                    <div class="estados">
-                        <p class="${tx.categoria.toLowerCase()}">${tx.categoria}</p>
-                        <p class="${colorClase}">${signo}${tx.monto.toFixed(2)}</p>
-                    </div>
-                    <div class="crud">
-                        <img class="editar" src="../img/editar.png" width="20" height="20" data-id="${tx.id}" />
-                        <img class="eliminar" src="../img/eliminar.png" width="20" height="20" data-id="${tx.id}" />
-                    </div>
-                </div>
-            `;
-            lista.appendChild(li);
-        });
-    }
-
-    // Calcular resumen mensual (ingresos, gastos, balance)
-    function calcularResumen(transacciones) {
-        const mesActual = new Date().getMonth();
-        const anioActual = new Date().getFullYear();
-
-        let ingresos = 0;
-        let gastos = 0;
-
-        transacciones.forEach(tx => {
-            const fechaTx = new Date(tx.fecha);
-            if (fechaTx.getMonth() === mesActual && fechaTx.getFullYear() === anioActual) {
-                if (tx.tipo === "ingreso") ingresos += tx.monto;
-                else if (tx.tipo === "egreso") gastos += tx.monto;
-            }
-        });
-
-        const balance = ingresos - gastos;
-
-        document.getElementById("ingresosMes").textContent = `${ingresos.toFixed(2)}`;
-        document.getElementById("gastosMes").textContent = `${gastos.toFixed(2)}`;
-        document.getElementById("balanceMes").textContent = `${balance.toFixed(2)}`;
-
-        // Actualizar botones filtro con conteos
-        const total = transacciones.length;
-        const ingresosCount = transacciones.filter(tx => tx.tipo === "ingreso").length;
-        const egresosCount = transacciones.filter(tx => tx.tipo === "egreso").length;
-
-        document.getElementById("btnTodas").textContent = `Todas (${total})`;
-        document.getElementById("btnIngresos").textContent = `Ingresos (${ingresosCount})`;
-        document.getElementById("btnEgresos").textContent = `Gastos (${egresosCount})`;
-    }
-
-    // Cargar transacciones y actualizar UI
-    const transacciones = await obtenerTransacciones();
-    renderizarTransacciones(transacciones);
-    calcularResumen(transacciones);
-
-    // Aquí puedes agregar listeners para filtros, búsqueda, edición, eliminación, etc.
-});
-</script>
     </main>
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
@@ -540,10 +509,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     <script type="module" src="../js/finanzas.js"></script>
     <script src="../js/notificaciones.js"></script>
     <script src="../js/agregarPlanAhorro.js"></script>
-    <script src="../js/abrirEditarProgresoAhorro.js"></script>
+   <script src="../js/abrirEditarProgresoAhorro.js"></script>
     <script src="../js/funcionalidadCrud.js"></script>
     <script src="../js/funcionalidadFiltrosFinanzas.js"></script>
     <script src="../js/tipDinamico.js"></script>
     <script src="../js/api/planAhorro.js"></script>
+    <script src="../js/api/imagen.js"></script>
+    <script src="../js/busqueda.js"></script>
 </body>
 </html>

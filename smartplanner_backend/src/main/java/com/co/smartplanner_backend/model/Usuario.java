@@ -1,4 +1,5 @@
 package com.co.smartplanner_backend.model;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,7 +8,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JoinColumn(name = "id_usuario")
+    @Column(name = "id_usuario")
     private Integer idUsuario;
 
     @Column(nullable = false, length = 50)

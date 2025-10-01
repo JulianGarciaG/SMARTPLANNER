@@ -13,9 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-
-
 import java.util.Optional;
 
 @Service
@@ -56,6 +53,7 @@ public class UsuarioService {
             throw new RuntimeException("Usuario no encontrado");
         }
     }
+
     // Listar todos
     public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
@@ -70,32 +68,54 @@ public class UsuarioService {
     public Usuario actualizarUsuario(Integer id, String nombre, String contrasena, MultipartFile foto) throws Exception {
         Usuario usuario = obtenerPorId(id);
 
-        if (nombre != null && !nombre.isBlank()) usuario.setNombre(nombre);
-        if (contrasena != null && !contrasena.isBlank()) usuario.setContrasena(contrasena);
+        if (nombre != null && !nombre.isBlank()) {
+            usuario.setNombre(nombre);
+        }
+        
+        if (contrasena != null && !contrasena.isBlank()) {
+            usuario.setContrasena(passwordEncoder.encode(contrasena)); // ✅ Encriptar la contraseña
+        }
 
         if (foto != null && !foto.isEmpty()) {
-            // Guardar en carpeta local (ej: uploads/)
             String carpeta = "uploads/";
             Path ruta = Paths.get(carpeta);
             if (!Files.exists(ruta)) {
                 Files.createDirectories(ruta);
             }
 
-            String nombreArchivo = id + "_" + foto.getOriginalFilename();
+            String nombreArchivo = id + "_perfil." + getExtension(foto.getOriginalFilename());
             Path rutaArchivo = ruta.resolve(nombreArchivo);
             Files.write(rutaArchivo, foto.getBytes());
 
-            // Guardar la ruta en BD
+            // Guardar la ruta relativa en BD
             usuario.setFoto("/uploads/" + nombreArchivo);
         }
 
         return usuarioRepository.save(usuario);
     }
 
+    // ✅ De rama-calendario-2
     public Usuario obtenerPorCorreo(String correo) {
-    return usuarioRepository.findByCorreoElectronico(correo)
-            .orElseThrow(() -> new RuntimeException("Usuario no encontrado con correo: " + correo));
-}
-}
+        return usuarioRepository.findByCorreoElectronico(correo)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con correo: " + correo));
+    }
 
+    // ✅ De main
+    private String getExtension(String filename) {
+        if (filename == null) return "jpg";
+        int lastDot = filename.lastIndexOf('.');
+        return lastDot > 0 ? filename.substring(lastDot + 1) : "jpg";
+    }
 
+    public void actualizarContrasenaPorCorreo(String correo, String nuevaContrasena) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByCorreoElectronico(correo);
+
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            usuario.setContrasena(passwordEncoder.encode(nuevaContrasena)); // encriptada
+            usuarioRepository.save(usuario);
+        } else {
+            throw new RuntimeException("Usuario no encontrado con el correo: " + correo);
+        }
+    }
+}

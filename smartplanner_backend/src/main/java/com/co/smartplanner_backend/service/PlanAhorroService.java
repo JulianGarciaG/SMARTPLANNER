@@ -85,11 +85,16 @@ public class PlanAhorroService {
 
     // Eliminar plan de ahorro
     public void eliminarPlanAhorro(Integer idPlan) {
-        if (!planAhorroRepository.existsById(idPlan)) {
+        Optional<PlanAhorro> planOpt = planAhorroRepository.findById(idPlan);
+        if (planOpt.isEmpty()) {
             throw new RuntimeException("Plan de ahorro no encontrado");
         }
-        planAhorroRepository.deleteById(idPlan);
+
+        PlanAhorro plan = planOpt.get();
+        plan.setEliminado(true); // 👈 marcar como eliminado
+        planAhorroRepository.save(plan);
     }
+
 
     // Obtener un plan específico
     public PlanAhorroDto obtenerPlanPorId(Integer idPlan) {

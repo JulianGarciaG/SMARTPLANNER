@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const API_URL = 'http://localhost:8080/api';
+  
   // 🔹 Verificar sesión
   const usuarioJSON = localStorage.getItem("usuario");
   if (!usuarioJSON) {
@@ -6,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
   const usuario = JSON.parse(usuarioJSON);
+  window.usuarioActual = usuario; // ✅ Hacer disponible globalmente
 
   // 🔹 Referencias al DOM
   const imgPerfil = document.getElementById("imgPerfil");
@@ -19,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nameH2 = document.querySelector(".name");
   const emailDiv = document.querySelector(".email");
 
-  let archivoFoto = null; // archivo temporal
+  let archivoFoto = null;
 
   // 🔹 Cargar datos del usuario logueado
   function cargarDatosUsuario() {
@@ -46,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     archivoFoto = file;
 
-    // Mostrar preview
     const reader = new FileReader();
     reader.onload = function (e) {
       imgPerfil.src = e.target.result;
@@ -105,36 +107,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      // Enviar los datos al backend
       const formData = new FormData();
       formData.append("nombre", nombre);
       if (contrasena) formData.append("contrasena", contrasena);
       if (archivoFoto) formData.append("foto", archivoFoto);
 
       const response = await fetch(
-        `http://localhost:8080/api/usuarios/${usuario.idUsuario}`,
+        `${API_URL}/usuarios/${usuario.idUsuario}`,
         {
-            method: "PUT",
-            body: formData,
+          method: "PUT",
+          body: formData,
         }
-        );
-
+      );
 
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(errorText || "Error al actualizar usuario");
       }
 
-      const usuarioActualizado = await response.json();
+  const usuarioActualizado = await response.json();
 
-      // Guardar cambios en localStorage
-      localStorage.setItem("usuario", JSON.stringify(usuarioActualizado));
+  // ✅ Construir URL completa para la foto
+  if (usuarioActualizado.foto && !usuarioActualizado.foto.startsWith('http')) {
+      usuarioActualizado.foto = `http://localhost:8080${usuarioActualizado.foto}`;
+  }
+
+localStorage.setItem("usuario", JSON.stringify(usuarioActualizado));
 
       alert("Perfil actualizado correctamente ✅");
       Object.assign(usuario, usuarioActualizado);
       cargarDatosUsuario();
 
-      // Limpiar contraseñas y archivo
       contrasenaInput.value = "";
       confirmContrasenaInput.value = "";
       archivoFoto = null;
@@ -151,3 +154,24 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "../index.html";
   });
 });
+
+// ✅ Función GLOBAL para cambiar de plan (FUERA del DOMContentLoaded)
+function cambiarPlan() {
+  console.log("🔵 Función cambiarPlan ejecutada");
+  
+  const usuarioJSON = localStorage.getItem('usuario');
+  if (!usuarioJSON) {
+    alert('Error: No hay usuario logueado');
+    return;
+  }
+  
+  const usuario = JSON.parse(usuarioJSON);
+  console.log("🔵 Usuario encontrado:", usuario);
+  
+  if (usuario && usuario.idUsuario) {
+    console.log("🔵 Navegando a planes.html");
+    window.location.href = 'planes.html';
+  } else {
+    alert('Error: No se pudo identificar el usuario');
+  }
+}
