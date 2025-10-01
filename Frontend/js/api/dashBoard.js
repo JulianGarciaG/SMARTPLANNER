@@ -82,29 +82,58 @@ async function cargarFinanzas(userId) {
     let balance = 0;
 
     transacciones.forEach(tx => {
-      if (tx.tipo === "gasto") balance -= tx.monto;
+      if (tx.tipo === "egreso") balance -= tx.monto;      
       if (tx.tipo === "ingreso") balance += tx.monto;
-      if (tx.fecha === hoy && tx.tipo === "gasto") gastosHoy += tx.monto;
+      if (tx.fecha === hoy && tx.tipo === "egreso") gastosHoy += tx.monto; 
     });
 
-    document.getElementById("balanceMensual").textContent = `$${balance.toLocaleString()}`;
+    // 🔹 Elemento balance mensual
+    const balanceEl = document.getElementById("balanceMensual");
+    balanceEl.textContent = `$${balance.toLocaleString()}`;
+
+    // 🔹 Limpiar clases previas
+    balanceEl.classList.remove("positivo", "negativo");
+
+    // 🔹 Agregar color según valor
+    if (balance > 0) {
+      balanceEl.classList.add("positivo"); // verde
+    } else if (balance < 0) {
+      balanceEl.classList.add("negativo"); // rojo
+    }
+
+    // 🔹 Actualizar tarjeta de gastos del día
+    document.querySelector(".tarjeta.gastos .cantidad").textContent = `$${gastosHoy.toLocaleString()}`;
+    
   } catch (err) {
     console.error("Error cargando finanzas:", err);
   }
 }
 
+
+
 // ================== PLANES DE AHORRO ==================
 async function cargarPlanesAhorro(userId) {
   try {
+    // 🔹 Total de planes
     const resp = await fetch(`http://localhost:8080/api/planes-ahorro/usuario/${userId}`);
     if (!resp.ok) throw new Error("Error al cargar planes de ahorro");
     const planes = await resp.json();
-    document.getElementById("planesAhorro").textContent = planes.length;
+
+    // 🔹 Planes completados
+    const completadosResp = await fetch(`http://localhost:8080/api/planes-ahorro/usuario/${userId}/completados`);
+    const completados = completadosResp.ok ? await completadosResp.json() : [];
+
+    // 🔹 Actualizar tarjeta
+    const total = planes.length;
+    const completos = completados.length;
+
+    document.getElementById("planesAhorro").textContent = `${completos}/${total}`;
   } catch (err) {
     console.error("No se pudieron cargar los planes de ahorro", err);
-    document.getElementById("planesAhorro").textContent = "0";
+    document.getElementById("planesAhorro").textContent = "0/0";
   }
 }
+
 
 // ================== CALENDARIOS ==================
 async function cargarCalendarios() {

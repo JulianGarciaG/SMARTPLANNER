@@ -376,3 +376,10 @@ body{
     background-color: #FEE2E2;
     color: #DC2626;
 }
+.cantidad.positivo {
+  color: #16A34A; /* verde */
+}
+
+.cantidad.negativo {
+  color: #DC2626; /* rojo */
+}
