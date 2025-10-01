@@ -8,7 +8,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfigurationSource;
 import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 public class SecurityConfig {
@@ -16,15 +15,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // Desactiva CSRF
-            .cors(cors -> {}) // 🔥 Habilitar CORS
+            .csrf(csrf -> csrf.disable()) // ❌ Desactiva CSRF
+            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // 🔥 Configuración de CORS
             .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll() // Permite todas las peticiones
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll()
+                .anyRequest().permitAll() // ✅ Permite todas las peticiones
             );
+
         return http.build();
     }
 
@@ -42,3 +38,4 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+}
