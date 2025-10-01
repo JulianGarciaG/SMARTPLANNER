@@ -138,7 +138,7 @@
             <div class="tarjeta tareas-completadas">
                 <div class="texto">
                     <p class="titulo">Productividad</p>
-                    <p class="cantidad" id="productividad-valor">40 %</p>
+                    <p class="cantidad" id="productividad-valor"></p>
                 </div>
                 <div class="etiqueta-tareas">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-white"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg></div>
@@ -146,21 +146,21 @@
                 <div class="tarjeta tiempo-enfocado">
                     <div class="texto">
                         <p class="titulo">Planes de Ahorro</p>
-                        <p class="cantidad" id="planes-ahorro-valor">2 / 5</p>
+                        <p class="cantidad" id="planes-ahorro-valor"></p>
                     </div>
                     <div class="etiqueta-tiempo"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock h-6 w-6 text-white"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
                 </div>
                 <div class="tarjeta gastos">
                     <div class="texto">
                         <p class="titulo">Balance</p>
-                        <p class="cantidad" id="balance-valor">$ 2549.50</p>
+                        <p class="cantidad" id="balance-valor"></p>
                     </div>
                     <div class="etiqueta-gastos"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target h-6 w-6 text-white"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> </div>
                 </div>
                 <div class="tarjeta balance">
                     <div class="texto">
                         <p class="titulo">Tareas completadas</p>
-                        <p class="cantidad" id="tareas-completadas-valor">2 / 5</p>
+                        <p class="cantidad" id="tareas-completadas-valor"></p>
                     </div>
                     <div class="etiqueta-balance"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-6 w-6 text-white"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg></div>
                 </div>
@@ -181,32 +181,32 @@
                 <h1>Progreso de tareas</h1>
                 <div class= "tareasCompletadas">
                     <h2>Completadas</h2>
-                    <p id="tareas-completadas-numero">3</p>
+                    <p id="tareas-completadas-numero"></p>
                 </div>
                 <div class="tareasPendientes">
                     <h2>Pendientes</h2>
-                    <p id="tareas-pendientes-numero">3</p>
+                    <p id="tareas-pendientes-numero"></p>
                 </div>
                 <div class="progresoGeneral">
                     <h2>Progreso general</h2>
-                    <p id="progreso-general-porcentaje">40%</p>
+                    <p id="progreso-general-porcentaje"></p>
                 </div>
-                <progress id="progreso-general-bar" value="0.4"></progress>
+                <progress id="progreso-general-bar" value="0"></progress>
             </div>
 
             <div class="resumenFinanciero">
                 <h1>Resumen Financiero</h1>   
                 <div class="rfIngresos">
                     <h2>Ingresos</h2>
-                    <p><strong id="rf-ingresos">$2800.00</strong></p>
+                    <p><strong id="rf-ingresos"></strong></p>
                 </div>
                 <div class="rfGastos">
                     <h2>Gastos</h2>
-                    <p><strong id="rf-gastos">$250.50</strong></p>
+                    <p><strong id="rf-gastos"></strong></p>
                 </div>
                 <div class="rfBalance">
                     <h2>Balance</h2>
-                    <p><strong id="rf-balance">$2549.50</strong></p>
+                    <p><strong id="rf-balance"></strong></p>
                 </div>
                 
                 <div class="comparacionMensual">
@@ -222,33 +222,33 @@
                 <div class="textProgress">
                     <h2>Calendarios totales</h2>
                     <div class="diasHabitos">
-                        <h3 id="calendarios-totales-dias">8 calendarios</h3>
+                        <h3 id="calendarios-totales-dias"></h3>
                     </div>
-                    <p id="calendarios-totales-progreso">8/10</p>
+                    <p id="calendarios-totales-progreso"></p>
                 </div>
-                <progress id="calendarios-totales-bar" value="0.80"></progress>
+                <progress id="calendarios-totales-bar" value="0"></progress>
             </div>
 
             <div class="contentProgress">
                 <div class="textProgress">
                     <h2>Calendarios personales</h2>
                     <div class="diasHabitos">
-                        <h3 id="calendarios-personales-dias">5 calendarios</h3>
+                        <h3 id="calendarios-personales-dias"></h3>
                     </div>
-                    <p id="calendarios-personales-progreso">5/10</p>
+                    <p id="calendarios-personales-progreso"></p>
                 </div>
-                <progress id="calendarios-personales-bar" value="0.50"></progress>
+                <progress id="calendarios-personales-bar" value="0"></progress>
             </div>
 
             <div class="contentProgress">
                 <div class="textProgress">
                     <h2>Calendarios compartidos</h2>
                     <div class="diasHabitos">
-                        <h3 id="calendarios-compartidos-dias">3 calendarios</h3>
+                        <h3 id="calendarios-compartidos-dias"></h3>
                     </div>
-                    <p id="calendarios-compartidos-progreso">3/10</p>
+                    <p id="calendarios-compartidos-progreso"></p>
                 </div>
-                <progress id="calendarios-compartidos-bar" value="0.30"></progress>
+                <progress id="calendarios-compartidos-bar" value="0"></progress>
             </div>
         </div>
 
