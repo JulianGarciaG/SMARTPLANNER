@@ -1,7 +1,5 @@
-// js/transaccion.js
 const API_URL = "http://localhost:8080/api/transacciones";
 
-// ✅ Crear transacción
 export async function createTransaccion(transaccion) {
   try {
     const response = await fetch(API_URL, {
@@ -9,31 +7,30 @@ export async function createTransaccion(transaccion) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(transaccion),
     });
-
     if (!response.ok) {
-      const text = await response.text();
-      console.error("Server error:", response.status, text);
+      console.error("Error en createTransaccion:", response.status);
       return null;
     }
-
     return await response.json();
   } catch (error) {
-    console.error("❌ createTransaccion:", error);
+    console.error("Error createTransaccion:", error);
     return null;
   }
 }
 
-// ✅ Obtener transacciones de un usuario
-export async function obtenerTransacciones(idUsuario) {
+// js/api/transaccion.js
+export async function obtenerTransacciones() {
   try {
-    const response = await fetch(`${API_URL}/usuario/${idUsuario}`);
-    if (!response.ok) {
-      console.error("Error obteniendo transacciones:", response.status);
-      return [];
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("❌ obtenerTransacciones:", error);
+    const usuarioJSON = localStorage.getItem("usuario");
+    if (!usuarioJSON) return [];
+    const usuario = JSON.parse(usuarioJSON);
+
+    const resp = await fetch(`http://localhost:8080/api/transacciones/usuario/${usuario.idUsuario}`);
+    if (!resp.ok) throw new Error(await resp.text());
+
+    return await resp.json();
+  } catch (err) {
+    console.error("Error al obtener transacciones:", err);
     return [];
   }
 }

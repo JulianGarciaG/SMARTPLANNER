@@ -1,67 +1,118 @@
-// const informacion1 = document.getElementById("informacion1");
-// const informacion2 = document.getElementById("informacion2");
-// const informacion3 = document.getElementById("informacion3");
-
-// const texto1 = document.getElementById("texto1");
-// const texto2 = document.getElementById("texto2");
-// const texto3 = document.getElementById("texto3");
-
-// const input1 = document.getElementById("input-informacion1");
-// const input2 = document.getElementById("input-informacion2");
-// const input3 = document.getElementById("input-informacion3");
-
-// input1.addEventListener("click", function () {
-//     if (input1.checked) {
-//         informacion1.style.backgroundColor = "rgb(236 253 245)";
-//         texto1.style.textDecoration = "line-through";
-//         texto1.style.color = "#6b7280";
-//     } else {
-//         informacion1.style.backgroundColor = "white";
-//         texto1.style.textDecoration = "none";
-//         texto1.style.color = "#1e293b";
-//     }
-// });
-
-// input2.addEventListener("click", function () {
-//     if (input2.checked) {
-//         informacion2.style.backgroundColor = "rgb(236 253 245)";
-//         texto2.style.textDecoration = "line-through";
-//         texto2.style.color = "#6b7280";
-//     } else {
-//         informacion2.style.backgroundColor = "white";
-//         texto2.style.textDecoration = "none";
-//         texto2.style.color = "#1e293b";
-//     }
-// });
-
-// input3.addEventListener("click", function () {
-//     if (input3.checked) {
-//         informacion3.style.backgroundColor = "rgb(236 253 245)";
-//         texto3.style.textDecoration = "line-through";
-//         texto3.style.color = "#6b7280";
-//     } else {
-//         informacion3.style.backgroundColor = "white";
-//         texto3.style.textDecoration = "none";
-//         texto3.style.color = "#1e293b";
-//     }
-// });
-
-// Seleccionamos todas las tareas
+// Seleccionamos todas las tareas para el efecto visual
 const tareas = document.querySelectorAll(".tarea");
 
 tareas.forEach(tarea => {
   const input = tarea.querySelector(".input-tarea");
   const texto = tarea.querySelector(".texto-titulo");
 
-  input.addEventListener("click", () => {
-    if (input.checked) {
-      tarea.style.backgroundColor = "rgb(236 253 245)";
-      texto.style.textDecoration = "line-through";
-      texto.style.color = "#6b7280";
-    } else {
-      tarea.style.backgroundColor = "white";
-      texto.style.textDecoration = "none";
-      texto.style.color = "#1e293b";
+  if (input && texto) {
+    input.addEventListener("click", () => {
+      if (input.checked) {
+        tarea.style.backgroundColor = "rgb(236 253 245)";
+        texto.style.textDecoration = "line-through";
+        texto.style.color = "#6b7280";
+      } else {
+        tarea.style.backgroundColor = "white";
+        texto.style.textDecoration = "none";
+        texto.style.color = "#1e293b";
+      }
+    });
+  }
+});
+
+// =====================================================
+// MANEJO DEL CHECKBOX "Asociar con un gasto"
+// =====================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const checkboxAsociar = document.getElementById("abrirAsociarGasto");
+  const divAsociarGasto = document.getElementById("asociarGasto");
+  const selectAsociarGasto = divAsociarGasto?.querySelector("select");
+
+  // Función para cargar las transacciones del usuario
+  const cargarTransacciones = async () => {
+    const usuarioJSON = localStorage.getItem("usuario");
+    if (!usuarioJSON) return [];
+
+    try {
+      const usuario = JSON.parse(usuarioJSON);
+      const idUsuario = usuario.idUsuario || usuario.id || usuario.id_usuario;
+      
+      if (!idUsuario) return [];
+
+      const response = await fetch(`http://localhost:8080/api/transacciones/usuario/${idUsuario}`);
+      if (!response.ok) return [];
+
+      const transacciones = await response.json();
+      return Array.isArray(transacciones) ? transacciones : [];
+    } catch (error) {
+      console.error("Error cargando transacciones:", error);
+      return [];
     }
-  });
+  };
+
+  // Función para formatear moneda
+  const formatearMoneda = (valor) => {
+    return new Intl.NumberFormat("es-CO", {
+      style: "currency",
+      currency: "COP",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(valor);
+  };
+
+  // Función para popular el select con transacciones
+  const popularSelect = async () => {
+    if (!selectAsociarGasto) return;
+
+    const transacciones = await cargarTransacciones();
+    
+    // Limpiar select excepto la primera opción
+    selectAsociarGasto.innerHTML = '<option value="" selected>Seleccionar gasto...</option>';
+
+    // Verificar si hay una transacción preseleccionada de localStorage
+    const transaccionPreseleccionada = localStorage.getItem("transaccionParaTarea");
+    let idPreseleccionado = null;
+
+    if (transaccionPreseleccionada) {
+      try {
+        const trans = JSON.parse(transaccionPreseleccionada);
+        idPreseleccionado = trans.id;
+      } catch (e) {
+        console.error("Error parseando transacción preseleccionada:", e);
+      }
+    }
+
+    // Agregar todas las transacciones
+    transacciones.forEach(tx => {
+      const option = document.createElement("option");
+      option.value = tx.id_gasto || tx.id;
+      option.textContent = `${tx.descripcion} - ${formatearMoneda(tx.monto)}`;
+      
+      // Si esta es la transacción preseleccionada, marcarla
+      if (idPreseleccionado && String(tx.id_gasto || tx.id) === String(idPreseleccionado)) {
+        option.selected = true;
+      }
+      
+      selectAsociarGasto.appendChild(option);
+    });
+  };
+
+  // Manejar el cambio del checkbox
+  if (checkboxAsociar && divAsociarGasto) {
+    checkboxAsociar.addEventListener("change", async () => {
+      if (checkboxAsociar.checked) {
+        divAsociarGasto.style.display = "block";
+        // Cargar transacciones al mostrar
+        await popularSelect();
+      } else {
+        divAsociarGasto.style.display = "none";
+      }
+    });
+
+    // Si el checkbox ya está marcado al cargar (por la transacción preseleccionada)
+    if (checkboxAsociar.checked) {
+      divAsociarGasto.style.display = "block";
+      popularSelect();
+    }
+  }
 });

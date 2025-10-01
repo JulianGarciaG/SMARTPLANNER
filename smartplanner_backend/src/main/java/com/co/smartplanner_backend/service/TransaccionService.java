@@ -65,9 +65,19 @@ public class TransaccionService {
     }
 
     // Eliminar
-    public void deleteTransaccion(Long id) {
-        repository.deleteById(id);
+
+public void deleteTransaccion(Long id) {
+    Optional<Transaccion> optTransaccion = repository.findById(id);
+    if (optTransaccion.isPresent()) {
+        Transaccion transaccion = optTransaccion.get();
+        // Si está vinculada a una tarea, desvincular
+        if (transaccion.getId_tarea() != null) {
+            transaccion.setId_tarea(null);
+            repository.save(transaccion);
+        }
     }
+    repository.deleteById(id);
+}
 
     private TransaccionDto toDto(Transaccion entity) {
         TransaccionDto dto = new TransaccionDto();

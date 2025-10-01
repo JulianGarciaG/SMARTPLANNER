@@ -6,10 +6,7 @@ console.log("finanzas.js cargado (module)");
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM listo - inicializando finanzas");
 
-  // 🔍 Buscador por nombre (descripcion)
   const inputBuscar = document.getElementById("inputBuscar");
-
-  // Estado
   let idEditando = null;
   let todasTransacciones = [];
 
@@ -23,20 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const tituloForm = document.getElementById("tituloForm");
   const btnSubmit = formFinanza?.querySelector("button[type='submit']");
   const selectCategoria = document.getElementById("selectCategoria");
-
-  // Botones de filtro por tipo
   const btnTodas = document.getElementById("btnTodas");
   const btnIngresos = document.getElementById("btnIngresos");
   const btnEgresos = document.getElementById("btnEgresos");
-
-  // Estadísticas
   const ingresosEl = document.getElementById("ingresosMes");
   const gastosEl = document.getElementById("gastosMes");
   const balanceEl = document.getElementById("balanceMes");
 
   const log = (...args) => console.log("[finanzas]", ...args);
 
-  // ✅ Helper para formatear valores en COP
   const formatearMoneda = (valor) => {
     return new Intl.NumberFormat("es-CO", {
       style: "currency",
@@ -46,10 +38,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }).format(valor);
   };
 
-  // Helper: obtener input por id
   const inpu = (id) => document.getElementById(id);
 
-  // ------------------- MODALES -------------------
+  const getIdUsuario = () => {
+    const u = localStorage.getItem("usuario");
+    if (!u) return null;
+    try {
+      const obj = JSON.parse(u);
+      return obj.idUsuario ?? obj.id ?? obj.id_usuario ?? null;
+    } catch {
+      return null;
+    }
+  };
+
+  // MODALES
   if (btnAbrir && menuFinanza && formFinanza) {
     btnAbrir.addEventListener("click", (e) => {
       e.preventDefault();
@@ -72,19 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   btnCerrar?.addEventListener("click", cerrarModal);
   btnCancelar?.addEventListener("click", cerrarModal);
 
-  // ------------------- UTIL -------------------
-  const getIdUsuario = () => {
-    const u = localStorage.getItem("usuario");
-    if (!u) return null;
-    try {
-      const obj = JSON.parse(u);
-      return obj.idUsuario ?? obj.id ?? obj.id_usuario ?? null;
-    } catch {
-      return null;
-    }
-  };
-
-  // ------------------- RENDER LISTA -------------------
+  // RENDER LISTA
   const renderizarTransacciones = (transacciones) => {
     listaTransacciones.innerHTML = "";
     if (!transacciones || transacciones.length === 0) {
@@ -131,19 +121,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // ------------------- RENDER RESUMEN -------------------
+  // RENDER RESUMEN
   const renderResumenCategorias = (transacciones) => {
     const contenedor = document.getElementById("contenedor-resumen");
     if (!contenedor) return;
     contenedor.innerHTML = "";
 
     const resumen = {};
-
     transacciones.forEach((t) => {
       if (!resumen[t.categoria]) {
         resumen[t.categoria] = { total: 0, cantidad: 0 };
       }
-      // ingresos suman, egresos restan
       resumen[t.categoria].total += String(t.tipo).toLowerCase() === "ingreso" ? t.monto : -t.monto;
       resumen[t.categoria].cantidad += 1;
     });
@@ -152,12 +140,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.classList.add("categoria");
 
-      // Badge dinámico por categoría
       let badgeClass = "badge-azul";
       if (categoria.toLowerCase().includes("aliment")) badgeClass = "badge-naranja";
       else if (categoria.toLowerCase().includes("transporte")) badgeClass = "badge-morado";
       else if (categoria.toLowerCase().includes("entreten")) badgeClass = "badge-rosa";
-      else if (categoria.toLowerCase().includes("free")) badgeClass = "badge-verde";
 
       const colorClass = datos.total >= 0 ? "green" : "red";
 
@@ -165,12 +151,11 @@ document.addEventListener("DOMContentLoaded", () => {
         <h3>${categoria} <span class="badge ${badgeClass}">${datos.cantidad}</span></h3>
         <p class="${colorClass}">${formatearMoneda(datos.total)}</p>
       `;
-
       contenedor.appendChild(div);
     });
   };
 
-  // ------------------- ESTADÍSTICAS -------------------
+  // ESTADÍSTICAS
   const actualizarContadores = () => {
     const total = todasTransacciones.length;
     const ingresos = todasTransacciones.filter(tx => String(tx.tipo).toLowerCase() === "ingreso").length;
@@ -182,43 +167,54 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const actualizarEstadisticas = (transacciones) => {
-    if (!ingresosEl || !gastosEl || !balanceEl) return;
+  console.log("Función actualizarEstadisticas ejecutada");
+  console.log("Transacciones recibidas:", transacciones);
 
-    const hoy = new Date();
-    const mesActual = hoy.getMonth();
-    const anioActual = hoy.getFullYear();
+  if (!ingresosEl || !gastosEl || !balanceEl) {
+    console.error("Elementos no encontrados en el DOM");
+    return;
+  }
 
-    let totalIngresos = 0;
-    let totalGastos = 0;
+  const hoy = new Date();
+  const mesActual = hoy.getMonth();
+  const anioActual = hoy.getFullYear();
 
-    transacciones.forEach((tx) => {
-      if (!tx.fecha) return;
-      const fechaTx = new Date(tx.fecha);
-      if (fechaTx.getMonth() === mesActual && fechaTx.getFullYear() === anioActual) {
-        if (String(tx.tipo).toLowerCase() === "ingreso") {
-          totalIngresos += Number(tx.monto) || 0;
-        } else if (String(tx.tipo).toLowerCase() === "egreso") {
-          totalGastos += Number(tx.monto) || 0;
-        }
+  let totalIngresos = 0;
+  let totalGastos = 0;
+
+  transacciones.forEach((tx) => {
+    if (!tx.fecha) return;
+
+    // ✅ Normalizar fecha para evitar problema de zona horaria
+    const [anio, mes, dia] = tx.fecha.substring(0, 10).split("-").map(Number);
+    const fechaTx = new Date(anio, mes - 1, dia);
+
+    if (fechaTx.getMonth() === mesActual && fechaTx.getFullYear() === anioActual) {
+      const monto = parseFloat(tx.monto) || 0;
+      if (String(tx.tipo).toLowerCase() === "ingreso") {
+        totalIngresos += monto;
+      } else if (String(tx.tipo).toLowerCase() === "egreso") {
+        totalGastos += monto;
       }
-    });
-
-    const balance = totalIngresos - totalGastos;
-
-    ingresosEl.textContent = formatearMoneda(totalIngresos);
-    gastosEl.textContent = formatearMoneda(totalGastos);
-    balanceEl.textContent = formatearMoneda(balance);
-
-    if (balance >= 0) {
-      balanceEl.classList.add("green");
-      balanceEl.classList.remove("red");
-    } else {
-      balanceEl.classList.add("red");
-      balanceEl.classList.remove("green");
     }
-  };
+  });
 
-  // ------------------- CARGA -------------------
+  const balance = totalIngresos - totalGastos;
+
+  ingresosEl.textContent = formatearMoneda(totalIngresos);
+  gastosEl.textContent = formatearMoneda(totalGastos);
+  balanceEl.textContent = formatearMoneda(balance);
+
+  if (balance >= 0) {
+    balanceEl.classList.add("green");
+    balanceEl.classList.remove("red");
+  } else {
+    balanceEl.classList.add("red");
+    balanceEl.classList.remove("green");
+  }
+};
+
+  // CARGA
   const cargarTransacciones = async () => {
     const idUsuario = getIdUsuario();
     if (!idUsuario) {
@@ -228,6 +224,9 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const trans = await obtenerTransacciones(idUsuario);
       todasTransacciones = trans;
+      
+      console.log("Transacciones obtenidas:", trans.length);
+      
       renderizarTransacciones(trans);
       actualizarContadores();
       actualizarEstadisticas(trans);
@@ -238,7 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // ------------------- EVENTOS -------------------
+  // EVENTOS
   if (inputBuscar) {
     inputBuscar.addEventListener("input", () => {
       const texto = inputBuscar.value.trim().toLowerCase();
@@ -246,9 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderizarTransacciones(todasTransacciones);
       } else {
         const filtradas = todasTransacciones.filter(
-          (tx) =>
-            tx.descripcion &&
-            tx.descripcion.toLowerCase().includes(texto)
+          (tx) => tx.descripcion && tx.descripcion.toLowerCase().includes(texto)
         );
         renderizarTransacciones(filtradas);
       }
@@ -262,30 +259,24 @@ document.addEventListener("DOMContentLoaded", () => {
         renderizarTransacciones(todasTransacciones);
       } else {
         const filtradas = todasTransacciones.filter(
-          (tx) =>
-            tx.categoria &&
-            tx.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase()
+          (tx) => tx.categoria && tx.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase()
         );
         renderizarTransacciones(filtradas);
       }
     });
   }
 
-  btnTodas?.addEventListener("click", () => {
-    renderizarTransacciones(todasTransacciones);
-  });
-
+  btnTodas?.addEventListener("click", () => renderizarTransacciones(todasTransacciones));
   btnIngresos?.addEventListener("click", () => {
     const ingresos = todasTransacciones.filter(tx => String(tx.tipo).toLowerCase() === "ingreso");
     renderizarTransacciones(ingresos);
   });
-
   btnEgresos?.addEventListener("click", () => {
     const egresos = todasTransacciones.filter(tx => String(tx.tipo).toLowerCase() === "egreso");
     renderizarTransacciones(egresos);
   });
 
-  // ------------------- FORM SUBMIT -------------------
+  // FORM SUBMIT
   formFinanza?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const idUsuario = getIdUsuario();
@@ -327,12 +318,12 @@ document.addEventListener("DOMContentLoaded", () => {
       formFinanza.reset();
       await cargarTransacciones();
     } catch (err) {
-      console.error("Error creando/editando transacción:", err);
-      alert("Error creando/editando transacción");
+      console.error("Error:", err);
+      alert("Error al procesar transacción");
     }
   });
 
-  // ------------------- EDITAR / ELIMINAR -------------------
+  // EDITAR / ELIMINAR
   listaTransacciones?.addEventListener("click", async (e) => {
     const eliminarBtn = e.target.closest(".eliminar");
     const editarBtn = e.target.closest(".editar");
@@ -354,7 +345,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (editarBtn) {
       const id = editarBtn.dataset.id;
       if (!id) return;
-      log("Click editar id:", id);
 
       const idUsuario = getIdUsuario();
       try {
@@ -362,12 +352,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let tx = trans?.find(t => String(t.id_gasto) === String(id));
 
         if (!tx) {
-          try {
-            const resp = await fetch(`http://localhost:8080/api/transacciones/${id}`);
-            if (resp.ok) tx = await resp.json();
-          } catch (err) {
-            console.warn("GET por id falló:", err);
-          }
+          const resp = await fetch(`http://localhost:8080/api/transacciones/${id}`);
+          if (resp.ok) tx = await resp.json();
         }
 
         if (!tx) {
@@ -385,7 +371,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (btnSubmit) btnSubmit.textContent = "Editar";
         menuFinanza.style.display = "flex";
         idEditando = tx.id_gasto ?? tx.id ?? id;
-        log("Modal edit abierto para idEditando =", idEditando);
       } catch (err) {
         console.error("Error preparando edición:", err);
         alert("Error al preparar la edición");
@@ -393,6 +378,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ------------------- INICIAL -------------------
   cargarTransacciones();
 });

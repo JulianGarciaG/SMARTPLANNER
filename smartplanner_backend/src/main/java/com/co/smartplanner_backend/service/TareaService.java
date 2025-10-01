@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TareaService {
@@ -35,7 +36,7 @@ public class TareaService {
         tarea.setPrioridad(Prioridad.valueOf(dto.getPrioridad().toLowerCase()));
         tarea.setCategoria(Categoria.valueOf(dto.getCategoria().toLowerCase()));
         tarea.setUsuario(usuario);
-
+tarea.setIdTransaccion(dto.getId_transaccion());
         return tareaRepository.save(tarea);
     }
 
@@ -49,9 +50,27 @@ public class TareaService {
     }
 
     // ✅ Listar tareas de un usuario
-    public List<Tarea> listarTareasPorUsuario(Integer idUsuario) {
-        return tareaRepository.findByUsuario_IdUsuario(idUsuario);
-    }
+    public List<TareaDto> listarTareasPorUsuario(Integer idUsuario) {
+    List<Tarea> tareas = tareaRepository.findByUsuario_IdUsuario(idUsuario);
+    return tareas.stream()
+            .map(this::convertirATareaDto)  // Método que convierte Tarea a TareaDto
+            .collect(Collectors.toList());
+}
+
+// Agregar este método helper
+private TareaDto convertirATareaDto(Tarea tarea) {
+    TareaDto dto = new TareaDto();
+    dto.setId_tarea(tarea.getId_tarea());
+    dto.setNombre(tarea.getNombre());
+    dto.setDescripcion(tarea.getDescripcion());
+    dto.setFecha_limite(tarea.getFecha_limite().toString());
+    dto.setEstado_de_tarea(tarea.getEstado_de_tarea());
+    dto.setPrioridad(tarea.getPrioridad().toString());
+    dto.setCategoria(tarea.getCategoria().toString());
+    dto.setId_usuario(tarea.getUsuario().getIdUsuario());
+    dto.setId_transaccion(tarea.getIdTransaccion());  // ← ESTA LÍNEA ES CRÍTICA
+    return dto;
+}
 
     // ✅ Actualizar
     public Tarea actualizarTarea(Long id, TareaDto dto) {
@@ -63,7 +82,7 @@ public class TareaService {
         tarea.setEstado_de_tarea(dto.getEstado_de_tarea());
         tarea.setPrioridad(Prioridad.valueOf(dto.getPrioridad().toLowerCase()));
         tarea.setCategoria(Categoria.valueOf(dto.getCategoria().toLowerCase()));
-
+        tarea.setIdTransaccion(dto.getId_transaccion());
         return tareaRepository.save(tarea);
     }
 
