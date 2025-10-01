@@ -91,6 +91,11 @@ public class UsuarioService {
 
         return usuarioRepository.save(usuario);
     }
+
+    public Usuario obtenerPorCorreo(String correo) {
+    return usuarioRepository.findByCorreoElectronico(correo)
+            .orElseThrow(() -> new RuntimeException("Usuario no encontrado con correo: " + correo));
+}
 }
 
 

@@ -13,10 +13,16 @@ public class CalendarioCompartido {
     @Column(nullable = false)
     private Permiso permiso;
 
-    // Relación con Calendario
+    // Relación con Usuario (mapeada a la parte idUsuario del EmbeddedId)
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("idCalendario") // Vincula con la clave compuesta
-    @JoinColumn(name = "id_calendario", insertable = false, updatable = false)
+    @MapsId("idUsuario")
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
+
+    // Relación con Calendario (mapeada a la parte idCalendario del EmbeddedId)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idCalendario")
+    @JoinColumn(name = "id_calendario", nullable = false)
     private Calendario calendario;
 
     // Getters y Setters
@@ -34,6 +40,14 @@ public class CalendarioCompartido {
 
     public void setPermiso(Permiso permiso) {
         this.permiso = permiso;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Calendario getCalendario() {

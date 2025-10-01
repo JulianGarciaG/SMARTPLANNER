@@ -321,6 +321,7 @@ h1{
   height: 18px;
   border-radius: 50%;
   display: inline-block;
+  background-color: #cccccc;
 }
 
 .azul {
@@ -334,7 +335,12 @@ h1{
 }
 .naranja {
   background-color: #f97316;
-
+}
+.rojo {
+  background-color: #ea4335;
+}
+.rosa {
+  background-color: #f442ce;
 }
 
 .contenedor-botones {

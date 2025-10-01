@@ -74,7 +74,7 @@
     </div>
 
     <!-- formulario para agregar un nuevo evento -->
-        <div id="agregarEvento" class="agregar-evento">
+    <div id="agregarEvento" class="agregar-evento">
         <div id="containerEvento" class="container-evento">
             <img id="cerrarMenuEventos" src="../img/cerrar.png" width="20" height="20">
             <h1>Nuevo Evento</h1>
@@ -82,32 +82,32 @@
             <div class="titulo">
                 <h1>Titulo *</h1>
                 <div class="espacio-input">
-                    <input type="text" placeholder="Título del evento">
+                    <input id="tituloEvento" type="text" placeholder="Título del evento">
                 </div>
             </div>
 
             <div class="descripcion">
                 <h1>Descripción</h1>
                 <div class="espacio-input">
-                    <input type="text" placeholder="Descripción del evento">
+                    <input id="descripcionEvento" type="text" placeholder="Descripción del evento">
                 </div>
             </div>
             <div class="fecha-limite">
                 <h1>Fecha inicio</h1>
                 <div class="espacio-input">
-                    <input type="datetime-local" placeholder="Fecha y hora del evento">
+                    <input id="fechaInicioEvento" type="datetime-local">
                 </div>
             </div>
             <div class="fecha-limite">
                 <h1>Fecha fin</h1>
                 <div class="espacio-input">
-                    <input type="datetime-local" placeholder="Fecha y hora del evento">
+                    <input id="fechaFinEvento" type="datetime-local">
                 </div>
             </div>    
             <div class="descripcion">
                 <h1>Lugar</h1>
                 <div class="espacio-input">
-                    <input type="text"placeholder="Lugar del evento">
+                    <input id="lugarEvento" type="text" placeholder="Lugar del evento">
                 </div>
             </div>
             <div class="botones-evento">
@@ -135,61 +135,21 @@
                     <input type="text" placeholder="Buscar tareas, eventos...">
                 </div>
                 <div class="panel-notificaciones">
-                    <img id="abrirNotificacion" src="../img/notificacion.png" width="18" height="18">
+                    <!-- Icono de campana -->
+                    <img id="abrirNotificacion" src="../img/notificacion.png" width="18" height="18" data-count="0">
+
+                    <!-- Panel desplegable -->
                     <div id="notificaciones" class="notificaciones">
                         <h1>Notificaciones</h1>
+
+                        <!-- Aquí se renderizan las notificaciones -->
                         <div class="tabla-notificaciones">
-                            <div class="notificacion nueva">
-                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="../img/cheque.png" width="18" height="18">
-                                    <h1 class="estado">Tarea vencida</h1>
-                                    <p class="tiempo">2 h</p>
-                                </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
-                            </div>
-                            <div class="notificacion nueva">
-                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="../img/calendario-verde.png" width="18" height="18">
-                                    <h1 class="estado">Proximo evento</h1>
-                                    <p class="tiempo">2 h</p>
-                                </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
-                            </div>
-                            <div class="notificacion leida">
-                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="../img/dolar-morado.png" width="18" height="18">
-                                    <h1 class="estado">Tarea vencida</h1>
-                                    <p class="tiempo">2 h</p>
-                                </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
-                            </div>
-                            <div class="notificacion leida">
-                                <img class="cerraNotificacion" src="../img/cerrar.png" width="12" height="12">
-                                <div class="estado">
-                                    <img class="tipoNoficicacion" src="../img/cheque.png" width="18" height="18">
-                                    <h1 class="estado">Tarea vencida</h1>
-                                    <p class="tiempo">2 h</p>
-                                </div>
-                                <div class="informacion">
-                                    <p>La tarea 'Revisar propuesta' vencio hace 2 horas</p>
-                                </div>
-                                <p id="marcarLeida1">Marcar como leída</p>
-                            </div>
+                            <!-- Notificaciones dinámicas (JS las insertará aquí) -->
                         </div>
+
+                        <!-- Acción global -->
                         <div class="marcar-leido">
-                            <p id="marcarLeida2">Marcar todas como leídas</p>
+                            <p id="marcarLeida2" onclick="marcarTodasLeidas()">Marcar todas como leídas</p>
                         </div>
                     </div>
                 </div>
@@ -248,9 +208,22 @@
         </div>
     </div>
 
+    <!-- <div id="modalCompartir" class="modal oculto">
+        <div class="modal-content">
+            <h2>Compartir calendario</h2>
+            <input type="text" id="usuarioCompartir" placeholder="Correo o usuario">
+            <select id="permisoCompartir">
+            <option value="ver">Ver</option>
+            <option value="editar">Editar</option>
+            </select>
+            <button id="confirmarCompartir">Compartir</button>
+            <button id="cerrarModalCompartir">Cancelar</button>
+        </div>
+    </div> -->
+
     <div class="vistas-calendario">
-        <span class="punto azul"></span>
-        <h1 id="calendarioSeleccionado">Viendo: Trabajo</h1>
+        <span id="puntoCalendario" class="punto"></span>
+        <h1 id="calendarioSeleccionado">No hay calendarios seleccionados</h1>
         <button id="abrirMenuEvento">
             <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva evento
         </button>
@@ -259,11 +232,12 @@
     <div id="calendar"></div>
     <h1></h1>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-    <script src="../js/calendario.js"></script>
+    <!-- <script src="../js/calendario.js"></script> -->
 
     <div class="eventos">
         <h1>Eventos de hoy</h1>
         <ul id="listaEventosHoy">
+            <li>No hay eventos para este calendario</li>
             <!-- Eventos se cargarán aquí dinámicamente -->
         </ul>
     </div>
@@ -315,35 +289,35 @@ document.addEventListener("DOMContentLoaded", () => {
     // }
 
     // 📌 Cargar eventos de hoy
-    const listaEventosHoy = document.getElementById("listaEventosHoy");
-    if (listaEventosHoy) {
-        listaEventosHoy.innerHTML = "";
+    // const listaEventosHoy = document.getElementById("listaEventosHoy");
+    // if (listaEventosHoy) {
+    //     listaEventosHoy.innerHTML = "";
 
-        if (Array.isArray(usuario.eventosHoy) && usuario.eventosHoy.length > 0) {
-            usuario.eventosHoy.forEach(ev => {
-                const li = document.createElement("li");
+    //     if (Array.isArray(usuario.eventosHoy) && usuario.eventosHoy.length > 0) {
+    //         usuario.eventosHoy.forEach(ev => {
+    //             const li = document.createElement("li");
 
-                const spanHora = document.createElement("span");
-                spanHora.classList.add("hora");
-                spanHora.textContent = ev.hora;
-                li.appendChild(spanHora);
+    //             const spanHora = document.createElement("span");
+    //             spanHora.classList.add("hora");
+    //             spanHora.textContent = ev.hora;
+    //             li.appendChild(spanHora);
 
-                const spanDesc = document.createElement("span");
-                spanDesc.classList.add("descripcion");
-                spanDesc.textContent = ev.descripcion;
-                li.appendChild(spanDesc);
+    //             const spanDesc = document.createElement("span");
+    //             spanDesc.classList.add("descripcion");
+    //             spanDesc.textContent = ev.descripcion;
+    //             li.appendChild(spanDesc);
 
-                const spanEtiqueta = document.createElement("span");
-                spanEtiqueta.classList.add("etiqueta", ev.etiqueta);
-                spanEtiqueta.textContent = ev.etiqueta.charAt(0).toUpperCase() + ev.etiqueta.slice(1);
-                li.appendChild(spanEtiqueta);
+    //             const spanEtiqueta = document.createElement("span");
+    //             spanEtiqueta.classList.add("etiqueta", ev.etiqueta);
+    //             spanEtiqueta.textContent = ev.etiqueta.charAt(0).toUpperCase() + ev.etiqueta.slice(1);
+    //             li.appendChild(spanEtiqueta);
 
-                listaEventosHoy.appendChild(li);
-            });
-        } else {
-            listaEventosHoy.innerHTML = "<li>No hay eventos para hoy.</li>";
-        }
-    }
+    //             listaEventosHoy.appendChild(li);
+    //         });
+    //     } else {
+    //         listaEventosHoy.innerHTML = "<li>No hay eventos para hoy.</li>";
+    //     }
+    // }
 
     // 📌 Opcional: actualizar título del calendario seleccionado
     const calendarioSeleccionado = document.getElementById("calendarioSeleccionado");
@@ -365,5 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <script src="../js/modificarBotones.js"></script>
     <script src="../js/agregarCalendario.js"></script>
     <script src="../js/tipDinamico.js"></script>
+    <script src="../js/api/Evento.js"></script>
+    <script src="../js/notificaciones.js"></script>
 </body>
 </html>

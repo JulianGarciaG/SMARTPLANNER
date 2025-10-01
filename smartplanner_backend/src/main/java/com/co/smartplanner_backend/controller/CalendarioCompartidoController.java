@@ -2,11 +2,10 @@ package com.co.smartplanner_backend.controller;
 
 import com.co.smartplanner_backend.dto.CalendarioCompartidoDetalleDto;
 import com.co.smartplanner_backend.dto.CalendarioCompartidoDto;
-import com.co.smartplanner_backend.model.Calendario;
-import com.co.smartplanner_backend.model.CalendarioCompartido;
-import com.co.smartplanner_backend.model.CalendarioCompartidoId;
-import com.co.smartplanner_backend.model.Permiso;
+import com.co.smartplanner_backend.model.*;
 import com.co.smartplanner_backend.repository.CalendarioCompartidoRepository;
+import com.co.smartplanner_backend.service.CalendarioCompartidoService;
+import com.co.smartplanner_backend.service.NotificacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,48 +21,56 @@ public class CalendarioCompartidoController {
     @Autowired
     private CalendarioCompartidoRepository repository;
 
-    // ✅ GET: Obtener todos los calendarios compartidos de un usuario
+    @Autowired
+    private CalendarioCompartidoService service;
+
+    @Autowired
+    private NotificacionService notificacionService;
+
+    // GET: Obtener todos los calendarios compartidos de un usuario
     @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<List<CalendarioCompartidoDetalleDto>> obtenerCalendariosPorUsuario(@PathVariable Integer idUsuario) {
-        List<CalendarioCompartido> compartidos = repository.findByIdIdUsuario(idUsuario);
+        List<CalendarioCompartido> compartidos = service.obtenerCalendariosPorUsuario(idUsuario);
 
         List<CalendarioCompartidoDetalleDto> respuesta = compartidos.stream()
                 .map(c -> new CalendarioCompartidoDetalleDto(
                         c.getCalendario().getIdCalendario(),
                         c.getCalendario().getNombre(),
                         c.getCalendario().getColor(),
-                        c.getPermiso().name() // se devolverá en minúsculas, como en el enum
+                        c.getPermiso().name()
                 ))
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(respuesta);
     }
 
-    // ✅ POST: Crear una relación Calendario_Compartido
+    /**
+     * POST: Crear relación Calendario_Compartido.
+     * - Si DTO trae "correo": se busca ese usuario y se comparte (y se envía notificación local).
+     * - Si no trae correo pero trae idUsuario: vincula ese usuario (ej: propietario/personal).
+     */
     @PostMapping
     public ResponseEntity<?> crearRelacion(@RequestBody CalendarioCompartidoDto dto) {
         try {
-            // Crear la clave compuesta
-            CalendarioCompartidoId id = new CalendarioCompartidoId(dto.getIdUsuario(), dto.getIdCalendario());
+            CalendarioCompartido guardado = service.compartirCalendario(dto);
 
-            // Crear entidad
-            CalendarioCompartido relacion = new CalendarioCompartido();
-            relacion.setId(id);
+            // Si la petición vino con correo -> notificar al usuario invitado
+            if (dto.getCorreo() != null && !dto.getCorreo().isBlank()) {
+                String titulo = "Nuevo calendario compartido";
+                String permiso = dto.getPermiso() != null ? dto.getPermiso() : "ver";
+                String mensaje = "Se te ha compartido el calendario '" + guardado.getCalendario().getNombre()
+                        + "' con permiso: " + permiso;
 
-            // Asignar calendario con solo el id (para evitar null)
-            Calendario calendario = new Calendario();
-            calendario.setIdCalendario(dto.getIdCalendario());
-            relacion.setCalendario(calendario);
+                // Mantén el tipo en minúsculas (como tu BD lo guarda)
+                String tipo = "alerta";
 
-            // Normalizar permiso a minúsculas y con "_" en lugar de "-"
-            String permisoNormalizado = dto.getPermiso()
-                    .toLowerCase()
-                    .replace("-", "_");
-
-            relacion.setPermiso(Permiso.valueOf(permisoNormalizado));
-
-            // Guardar en BD
-            repository.save(relacion);
+                notificacionService.crear(
+                        guardado.getUsuario().getIdUsuario(),
+                        titulo,
+                        mensaje,
+                        tipo
+                );
+            }
 
             return ResponseEntity.ok("Relación creada con éxito");
         } catch (Exception e) {
