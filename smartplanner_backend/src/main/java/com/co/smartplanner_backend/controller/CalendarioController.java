@@ -33,4 +33,28 @@ public class CalendarioController {
     public ResponseEntity<List<Calendario>> listarCalendarios() {
         return ResponseEntity.ok(calendarioService.listarCalendarios());
     }
+
+    // PUT - Editar calendario
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editarCalendario(
+            @PathVariable Integer id,
+            @RequestBody CalendarioDto dto) {
+        try {
+            Calendario actualizado = calendarioService.editarCalendario(id, dto);
+            return ResponseEntity.ok(actualizado);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+        }
+    }
+
+    // DELETE - Eliminar calendario
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarCalendario(@PathVariable Integer id) {
+        try {
+            calendarioService.eliminarCalendario(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+        }
+    }
 }

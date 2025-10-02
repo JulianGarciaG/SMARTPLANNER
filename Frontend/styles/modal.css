@@ -1,0 +1,306 @@
+/* ==================== ESTILOS PARA BOTONES DE EVENTOS ==================== */
+
+/* Contenedor de eventos en la lista */
+#listaEventosHoy li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+#listaEventosHoy li:hover {
+    background: #e9ecef;
+}
+
+/* Botones de acción en eventos */
+.evento-acciones {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-editar-evento,
+.btn-eliminar-evento {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+/* Botón Editar */
+.btn-editar-evento {
+    color: #4285f4;
+}
+
+.btn-editar-evento:hover {
+    background: rgba(66, 133, 244, 0.1);
+    transform: scale(1.1);
+}
+
+.btn-editar-evento svg {
+    stroke: #000;
+}
+
+/* Botón Eliminar */
+.btn-eliminar-evento {
+    color: #ea4335;
+}
+
+.btn-eliminar-evento:hover {
+    background: rgba(234, 67, 53, 0.1);
+    transform: scale(1.1);
+}
+
+.btn-eliminar-evento svg {
+    fill: #000;
+}
+
+/* Asegurar que los SVGs no sean seleccionables */
+.btn-editar-evento svg,
+.btn-eliminar-evento svg {
+    pointer-events: none;
+}
+
+
+/* ==================== ESTILOS DE MODALES (COMPARTIDOS) ==================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border: none;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+/* Botón de cerrar (X) */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 20px;
+    transition: color 0.2s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+}
+
+/* Estilos de formulario en modal */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="datetime-local"],
+.modal-content input[type="color"],
+.modal-content textarea,
+.modal-content select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+    font-family: inherit;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="datetime-local"]:focus,
+.modal-content textarea:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: #4285f4;
+}
+
+.modal-content textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.modal-content input[type="color"] {
+    height: 45px;
+    cursor: pointer;
+}
+
+/* Botones del modal */
+.modal-content button[type="submit"],
+.modal-content #confirmarEliminar,
+.modal-content #confirmarEliminarEvento {
+    background-color: #4285f4;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #3367d6;
+}
+
+.modal-content #confirmarEliminar,
+.modal-content #confirmarEliminarEvento {
+    background-color: #ea4335;
+}
+
+.modal-content #confirmarEliminar:hover,
+.modal-content #confirmarEliminarEvento:hover {
+    background-color: #d33828;
+}
+
+/* Botón cancelar en modales */
+.modal-content button[onclick*="cerrarModal"] {
+    background-color: #f1f3f4;
+    color: #333;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+.modal-content button[onclick*="cerrarModal"]:hover {
+    background-color: #e8eaed;
+}
+
+/* Estilos para los círculos de color en modales */
+.modal-content .color-options {
+    display: flex;
+    gap: 12px;
+    margin: 10px 0 20px 0;
+}
+
+.modal-content .color-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.modal-content .color-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content .color-circle.selected {
+    border: 3px solid #333;
+    transform: scale(1.15);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo especial para el nombre del evento a eliminar */
+#nombreEventoEliminar {
+    font-weight: bold;
+    color: #ea4335;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+        padding: 20px;
+    }
+
+    .modal-content h2 {
+        font-size: 20px;
+    }
+
+    .modal-content button {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-top: 10px;
+    }
+
+    /* Eventos en lista */
+    #listaEventosHoy li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .evento-acciones {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}

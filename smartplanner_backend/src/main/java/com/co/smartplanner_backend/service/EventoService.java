@@ -6,7 +6,15 @@ import java.util.List;
 
 public interface EventoService {
     EventoDto crearEvento(EventoDto dto);
+    
     List<EventoDto> listarEventosPorCalendario(Integer idCalendario);
-
+    
     long contarEventosPorCalendario(Integer idCalendario);
+    
+    // ✨ Nuevos métodos
+    EventoDto actualizarEvento(Integer idEvento, EventoDto dto);
+    
+    void eliminarEvento(Integer idEvento);
+    
+    EventoDto obtenerEventoPorId(Integer idEvento);
 }
