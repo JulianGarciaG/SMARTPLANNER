@@ -25,4 +25,24 @@ public class CalendarioService {
     public List<Calendario> listarCalendarios() {
         return calendarioRepository.findAll();
     }
+
+    // Editar calendario
+    public Calendario editarCalendario(Integer id, CalendarioDto dto) {
+        Calendario calendario = calendarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Calendario no encontrado"));
+
+        calendario.setNombre(dto.getNombre());
+        calendario.setTipo_de_calendario(dto.getTipo_de_calendario());
+        calendario.setColor(dto.getColor());
+
+        return calendarioRepository.save(calendario);
+    }
+
+    // Eliminar calendario
+    public void eliminarCalendario(Integer id) {
+        if (!calendarioRepository.existsById(id)) {
+            throw new RuntimeException("Calendario no encontrado");
+        }
+        calendarioRepository.deleteById(id);
+    }
 }

@@ -15,6 +15,32 @@ document.addEventListener("DOMContentLoaded", () => {
     // Colores conocidos
     const KNOWN_CLASSES = ["verde", "morado", "naranja", "azul", "rojo", "rosa"];
 
+    // ==================== FUNCIONES DE MODALES ====================
+    function abrirModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = "block";
+        }
+    }
+
+    function cerrarModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Hacer la función cerrarModal global para que funcione con onclick
+    window.cerrarModal = cerrarModal;
+
+    // Cerrar modal al hacer clic fuera del contenido
+    window.addEventListener("click", (e) => {
+        if (e.target.classList.contains("modal")) {
+            e.target.style.display = "none";
+        }
+    });
+
+    // ==================== FUNCIONES AUXILIARES ====================
     function mapColorToClass(rawColor) {
         if (!rawColor) return null;
         const c = rawColor.trim().toLowerCase();
@@ -55,7 +81,17 @@ document.addEventListener("DOMContentLoaded", () => {
         return JSON.parse(localStorage.getItem("usuario"));
     }
 
-    // Selección de color
+    function escapeHtml(str) {
+        if (str == null) return '';
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    // ==================== SELECCIÓN DE COLOR (CREAR CALENDARIO) ====================
     const colorCircles = document.querySelectorAll(".color-circle");
     colorCircles.forEach(circle => {
         circle.addEventListener("click", () => {
@@ -66,7 +102,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Crear calendario
+    // ==================== SELECCIÓN DE COLOR (MODAL EDITAR) ====================
+    function setupModalColorCircles() {
+        const modalColorCircles = document.querySelectorAll("#modalEditar .color-circle");
+        const editColorInput = document.getElementById("editColor");
+
+        modalColorCircles.forEach(circle => {
+            circle.addEventListener("click", () => {
+                const selectedColor = circle.getAttribute("data-color");
+                editColorInput.value = selectedColor;
+                modalColorCircles.forEach(c => c.classList.remove("selected"));
+                circle.classList.add("selected");
+            });
+        });
+    }
+
+    // Ejecutar después de que el DOM esté completamente cargado
+    setupModalColorCircles();
+
+    // ==================== CREAR CALENDARIO ====================
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -81,7 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!color) { alert("Debes elegir un color"); return; }
 
         try {
-            // Crear calendario
             const resCal = await fetch(apiCalendarios, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -100,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 permiso = (val === "soloVer") ? "ver" : "editar";
             }
 
-            // Crear relación calendario-usuario
             const resCompartido = await fetch(apiCompartidos, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -124,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // ==================== CARGAR CALENDARIOS ====================
     async function cargarCalendarios() {
         listaCalendarios.innerHTML = "";
         const usuario = getUsuario();
@@ -163,22 +216,36 @@ document.addEventListener("DOMContentLoaded", () => {
                     : `<span class="punto" style="background:${safeColor}"></span>`;
 
                 cont.innerHTML = `
-                    ${spanHtml}
-                    <h2>${safeNombre}</h2>
-                    <h3>Eventos</h3>
-                    <h4>${totalEventos} evento${totalEventos !== 1 ? "s" : ""}</h4>
-                    <div class="contenedor-botones">
-                        <button class="boton toggle-ocultar"
-                                data-id="${item.idCalendario}"
-                                data-nombre="${safeNombre}"
-                                data-color="${safeColor}"
-                                data-color-class="${colorClass ?? ''}">
-                            Mostrar
-                        </button>
-                        <button class="boton toggle-compartir">Compartir</button>
-                        <span class="badge-compartido">${escapeHtml(item.permiso)}</span>
-                    </div>
-                `;
+                ${spanHtml}
+                <h2>${safeNombre}</h2>
+                <h3>Eventos</h3>
+                <h4>${totalEventos} evento${totalEventos !== 1 ? "s" : ""}</h4>
+                <div class="contenedor-botones">
+                    <button class="boton toggle-ocultar"
+                            data-id="${item.idCalendario}"
+                            data-nombre="${safeNombre}"
+                            data-color="${safeColor}"
+                            data-color-class="${colorClass ?? ''}">
+                        Mostrar
+                    </button>
+                    <button class="boton toggle-compartir">Compartir</button>
+                    <span class="badge-compartido">${escapeHtml(item.permiso)}</span>
+                </div>
+                <div class="detalles">
+                    <img src="../img/tres-puntos.png" width="20" height="20">
+                </div>
+                <div class="opciones">
+                    <ul>
+                        <li>
+                            <button class="btn-editar-modal" data-id="${item.idCalendario}" data-nombre="${safeNombre}" data-color="${safeColor}" data-tipo="${item.tipo_de_calendario || 'personal'}">Editar</button>
+                        </li>
+                        <li>
+                            <button class="red btn-eliminar-modal" data-id="${item.idCalendario}">Eliminar</button>
+                        </li>
+                    </ul>
+                </div>
+            `;
+
                 listaCalendarios.appendChild(cont);
             }
 
@@ -188,19 +255,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function escapeHtml(str) {
-        if (str == null) return '';
-        return String(str)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-
     cargarCalendarios();
 
-    // 👉 Mostrar/Ocultar calendario
+    // ==================== MOSTRAR/OCULTAR CALENDARIO ====================
     document.addEventListener("click", async (e) => {
         if (e.target.classList.contains("toggle-ocultar")) {
             const idCalendario = e.target.getAttribute("data-id");
@@ -227,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 👉 Compartir calendario manual
+    // ==================== COMPARTIR CALENDARIO ====================
     document.addEventListener("click", async (e) => {
         if (e.target.classList.contains("toggle-compartir")) {
             const card = e.target.closest(".elep-calendario");
@@ -238,9 +295,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!correo) return;
 
             try {
-                const permiso = "ver"; // por defecto
+                const permiso = "ver";
 
-                // Crear relación calendario-compartido
                 const res = await fetch(apiCompartidos, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -253,7 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (!res.ok) throw new Error(await res.text());
 
-                // ✅ Enviar notificación al usuario compartido
                 await fetch("http://localhost:8080/api/notificaciones/crear-por-correo", {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -261,7 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         correoDestino: correo,
                         titulo: "Calendario compartido",
                         mensaje: "Se te ha compartido un calendario",
-                        tipo: "alerta" // puede ser "recordatorio" o "alerta_critica"
+                        tipo: "alerta"
                     })
                 });
 
@@ -273,4 +328,129 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // ==================== DETALLES DE CALENDARIOS ====================
+    document.addEventListener("click", (e) => {
+        const boton = e.target.closest(".elep-calendario .detalles");
+
+        if (boton) {
+            e.stopPropagation();
+            const opciones = boton.nextElementSibling;
+
+            document.querySelectorAll(".elep-calendario .opciones").forEach(o => {
+                if (o !== opciones) {
+                    o.classList.remove("visible");
+                }
+            });
+
+            opciones.classList.toggle("visible");
+            return;
+        }
+
+        document.querySelectorAll(".elep-calendario .opciones").forEach(opciones => {
+            if (!opciones.contains(e.target)) {
+                opciones.classList.remove("visible");
+            }
+        });
+    });
+
+    // ==================== MODAL EDITAR ====================
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("btn-editar-modal")) {
+            const idCalendario = e.target.getAttribute("data-id");
+            const nombre = e.target.getAttribute("data-nombre");
+            const color = e.target.getAttribute("data-color");
+            const tipo = e.target.getAttribute("data-tipo");
+
+            // Rellenar los campos del modal
+            document.getElementById("editId").value = idCalendario;
+            document.getElementById("editNombre").value = nombre;
+            document.getElementById("editColor").value = color;
+            document.getElementById("editTipo").value = tipo;
+
+            // Seleccionar el círculo de color correspondiente
+            const modalColorCircles = document.querySelectorAll("#modalEditar .color-circle");
+            modalColorCircles.forEach(circle => {
+                circle.classList.remove("selected");
+                if (circle.getAttribute("data-color").toLowerCase() === color.toLowerCase()) {
+                    circle.classList.add("selected");
+                }
+            });
+
+            // Abrir el modal
+            abrirModal("modalEditar");
+        }
+    });
+
+    // Formulario de edición
+    const formEditar = document.getElementById("formEditarCalendario");
+    if (formEditar) {
+        formEditar.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const idCalendario = document.getElementById("editId").value;
+            const nombre = document.getElementById("editNombre").value;
+            const color = document.getElementById("editColor").value;
+            const tipo = document.getElementById("editTipo").value;
+
+            if (!color) {
+                alert("Debes elegir un color");
+                return;
+            }
+
+            try {
+                const res = await fetch(`${apiCalendarios}/${idCalendario}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        nombre: nombre,
+                        tipo_de_calendario: tipo,
+                        color: color
+                    })
+                });
+
+                if (!res.ok) throw new Error(await res.text());
+
+                alert("✅ Calendario actualizado correctamente");
+                cerrarModal("modalEditar");
+                cargarCalendarios();
+            } catch (err) {
+                console.error(err);
+                alert("❌ Error al editar: " + err.message);
+            }
+        });
+    }
+
+    // ==================== MODAL ELIMINAR ====================
+    let calendarioIdAEliminar = null;
+
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("btn-eliminar-modal")) {
+            calendarioIdAEliminar = e.target.getAttribute("data-id");
+            abrirModal("modalEliminar");
+        }
+    });
+
+    // Confirmar eliminación
+    const btnConfirmarEliminar = document.getElementById("confirmarEliminar");
+    if (btnConfirmarEliminar) {
+        btnConfirmarEliminar.addEventListener("click", async () => {
+            if (!calendarioIdAEliminar) return;
+
+            try {
+                const res = await fetch(`${apiCalendarios}/${calendarioIdAEliminar}`, {
+                    method: "DELETE"
+                });
+
+                if (!res.ok) throw new Error(await res.text());
+
+                alert("✅ Calendario eliminado correctamente");
+                cerrarModal("modalEliminar");
+                calendarioIdAEliminar = null;
+                cargarCalendarios();
+            } catch (err) {
+                console.error(err);
+                alert("❌ Error al eliminar: " + err.message);
+            }
+        });
+    }
 });

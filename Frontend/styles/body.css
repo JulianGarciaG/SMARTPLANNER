@@ -5,14 +5,15 @@
     font-family: 'Poppins', 'Segoe UI', sans-serif;
 }
 
-body{
+body {
     background: #EFFBF9;
     background: linear-gradient(120deg, rgba(239, 251, 249, 1) 0%, rgba(242, 252, 251, 1) 100%);
 }
 
 .layout {
     display: flex;
-    height: calc(100vh - 80px); /* Ajusta según el alto del header */
+    height: calc(100vh - 80px);
+    /* Ajusta según el alto del header */
 }
 
 .container {
@@ -75,8 +76,8 @@ body{
     padding: 20px;
     width: 250px;
     height: 120px;
-    flex: 1 1 220px; 
-    min-width: 220px; 
+    flex: 1 1 220px;
+    min-width: 220px;
     transition: transform 0.2s ease;
 }
 
@@ -95,9 +96,9 @@ body{
     font-weight: bold;
 }
 
-.etiqueta-tareas{
-    background-color: #DCFCE7; 
-    color: #16A34A;             
+.etiqueta-tareas {
+    background-color: #DCFCE7;
+    color: #16A34A;
     font-size: 12px;
     font-weight: 600;
     padding: 4px 10px;
@@ -105,14 +106,14 @@ body{
     white-space: nowrap;
 }
 
-.etiqueta-tareas:hover{
-    background-color: #72d697; 
+.etiqueta-tareas:hover {
+    background-color: #72d697;
     color: #16A34A;
 }
 
-.etiqueta-ahorro{
+.etiqueta-ahorro {
     background-color: #DBEAFE;
-    color: #2563EB;           
+    color: #2563EB;
     font-size: 12px;
     font-weight: 600;
     padding: 4px 10px;
@@ -120,14 +121,15 @@ body{
     white-space: nowrap;
 }
 
-.etiqueta-ahorro:hover{
-    background-color: #839fdb;;
-    color: #2563EB; 
+.etiqueta-ahorro:hover {
+    background-color: #839fdb;
+    ;
+    color: #2563EB;
 }
 
-.etiqueta-gastos{
+.etiqueta-gastos {
     background-color: #FEE2E2;
-    color: #DC2626;          
+    color: #DC2626;
     font-size: 12px;
     font-weight: 600;
     padding: 4px 10px;
@@ -135,14 +137,14 @@ body{
     white-space: nowrap;
 }
 
-.etiqueta-gastos:hover{
+.etiqueta-gastos:hover {
     background-color: #e78484;
     color: #DC2626;
-}    
+}
 
-.etiqueta-balance{
+.etiqueta-balance {
     background-color: #FEF9C3;
-    color: #CA8A04;         
+    color: #CA8A04;
     font-size: 12px;
     font-weight: 600;
     padding: 4px 10px;
@@ -150,9 +152,9 @@ body{
     white-space: nowrap;
 }
 
-.etiqueta-balance:hover{
+.etiqueta-balance:hover {
     background-color: #d8b66c;
-    color: #CA8A04;  
+    color: #CA8A04;
 }
 
 .seccion-listas {
@@ -199,71 +201,6 @@ body{
     position: relative;
 }
 
-.evento .detalles {
-    position: absolute;
-    right: 5%;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-}
-
-.evento .opciones {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    background-color: white;
-    padding: 10px;
-    height: auto;
-    width: 120px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    z-index: 2;
-    right: 5%;
-    top: 80%;
-}
-
-.evento .opciones ul {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    justify-content: center;
-    gap: 10px;
-}
-
-.evento .opciones ul li {
-    padding: 5px;
-    display: flex;
-    align-items: center;
-}
-
-.evento .opciones li button {
-    border: none;
-    background-color: transparent;
-    display: flex;
-    color: #555;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.evento .opciones li button:hover {
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.evento .opciones li .red {
-    color: red;
-}
-
-
-.evento .detalles:hover {
-    background-color: rgb(201, 248, 199);
-    border-radius: 20%;
-    cursor: pointer;
-}
-
 .punto {
     width: 10px;
     height: 10px;
@@ -271,6 +208,7 @@ body{
     margin-top: 6px;
     flex-shrink: 0;
 }
+
 .punto.verde {
     background-color: #34D399;
 }
@@ -315,7 +253,7 @@ body{
     position: relative;
 }
 
-.lista-tareas li span{
+.lista-tareas li span {
     position: absolute;
     left: 50px;
 }
@@ -323,37 +261,48 @@ body{
 
 /* Estilo para los checkboxes */
 .lista-tareas li input[type="checkbox"] {
-    -webkit-appearance: none;  /* Elimina la apariencia predeterminada del checkbox */
-    -moz-appearance: none;     /* Elimina la apariencia predeterminada del checkbox */
-    appearance: none;          /* Elimina la apariencia predeterminada del checkbox */
-    
+    -webkit-appearance: none;
+    /* Elimina la apariencia predeterminada del checkbox */
+    -moz-appearance: none;
+    /* Elimina la apariencia predeterminada del checkbox */
+    appearance: none;
+    /* Elimina la apariencia predeterminada del checkbox */
+
     width: 20px;
     height: 20px;
-    border-radius: 5px;        /* Hace el checkbox circular */
-    border: 2px solid #34D399; /* Bordes azules */
-    background-color: #fff;    /* Fondo blanco */
+    border-radius: 5px;
+    /* Hace el checkbox circular */
+    border: 2px solid #34D399;
+    /* Bordes azules */
+    background-color: #fff;
+    /* Fondo blanco */
     cursor: pointer;
     position: relative;
-    transition: all 0.3s ease; /* Transición suave */
+    transition: all 0.3s ease;
+    /* Transición suave */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .lista-tareas li input[type="checkbox"]:checked {
-    background-color: #34D399;  /* Fondo azul cuando está marcado */
-    border-color: #34D399;      /* Borde azul cuando está marcado */
+    background-color: #34D399;
+    /* Fondo azul cuando está marcado */
+    border-color: #34D399;
+    /* Borde azul cuando está marcado */
 }
 
 .lista-tareas li input[type="checkbox"]:checked::before {
-    content: '✔';                 /* Crear contenido vacío */
+    content: '✔';
+    /* Crear contenido vacío */
     position: absolute;
     color: white;
 }
 
 /* Estilo al pasar el cursor sobre el checkbox */
 .lista-tareas li input[type="checkbox"]:hover {
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Sombra suave al pasar el cursor */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    /* Sombra suave al pasar el cursor */
 }
 
 .prioridad {
@@ -363,9 +312,8 @@ body{
     border-radius: 12px;
     text-transform: lowercase;
 }
-.prioridad span {
-    
-}
+
+.prioridad span {}
 
 .prioridad.media {
     background-color: #FEF9C3;
@@ -376,3 +324,80 @@ body{
     background-color: #FEE2E2;
     color: #DC2626;
 }
+
+/* ==================== ESTILOS DE MODALES ==================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border: none;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+/* Botón de cerrar (X) */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 20px;
+    transition: color 0.2s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+}
+

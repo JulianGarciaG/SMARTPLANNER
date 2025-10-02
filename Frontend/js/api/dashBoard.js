@@ -36,7 +36,6 @@ async function cargarTareas(userId) {
         document.getElementById("tareasCompletadas").textContent = `${completadas}/${tareas.length}`;
 
         try {
-          // 🔹 Armamos el payload completo que espera el backend
           const payload = {
             nombre: t.nombre,
             descripcion: t.descripcion,
@@ -53,7 +52,6 @@ async function cargarTareas(userId) {
             body: JSON.stringify(payload)
           });
 
-          // 🔹 Refrescamos lista después de actualizar
           window.refreshTareas && window.refreshTareas();
 
         } catch (err) {
@@ -63,7 +61,6 @@ async function cargarTareas(userId) {
 
       lista.appendChild(li);
     });
-
 
     document.getElementById("tareasCompletadas").textContent = `${completadas}/${tareas.length}`;
   } catch (err) {
@@ -123,9 +120,6 @@ async function cargarCalendarios() {
         <div>
           <p class="evento-nombre">${c.nombre}</p>
           <p class="evento-hora">0 Eventos</p>
-        </div>
-        <div class="detalles">
-          <img src="../img/tres-puntos.png" width="20" height="20">
         </div>
       `;
       lista.appendChild(li);
