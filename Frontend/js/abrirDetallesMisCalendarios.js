@@ -1,10 +1,12 @@
-// Selecciona todos los botones de "detalles"
+console.log("Script de abrir detalles cargado");
+
 const botonesDetalles = document.querySelectorAll('.evento .detalles');
 
 botonesDetalles.forEach(boton => {
-    boton.addEventListener('click', () => {
-        const opciones = boton.nextElementSibling; // el div.opciones que viene justo después
-        opciones.style.display = (opciones.style.display === 'flex') ? 'none' : 'flex';
+    boton.addEventListener('click', (e) => {
+        e.stopPropagation(); // para que no se cierre inmediatamente
+        const opciones = boton.nextElementSibling;
+        opciones.style.display = 'flex';
     });
 });
 

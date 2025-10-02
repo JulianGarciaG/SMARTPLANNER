@@ -6,24 +6,25 @@ public class EventoDto {
     private Integer idEvento;
     private String nombre;
     private String descripcion;
-    private String lugar;
     private LocalDateTime fechaInicio;
     private LocalDateTime fechaFin;
+    private String lugar;
     private Integer idCalendario;
 
-    // ✅ Constructor vacío (obligatorio para Jackson)
+    // Constructor vacío
     public EventoDto() {
     }
 
-    // Constructor con parámetros
-    public EventoDto(Integer idEvento, String nombre, String descripcion, String lugar,
-                LocalDateTime fechaInicio, LocalDateTime fechaFin, Integer idCalendario) {
+    // Constructor completo
+    public EventoDto(Integer idEvento, String nombre, String descripcion,
+            LocalDateTime fechaInicio, LocalDateTime fechaFin,
+            String lugar, Integer idCalendario) {
         this.idEvento = idEvento;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.lugar = lugar;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.lugar = lugar;
         this.idCalendario = idCalendario;
     }
 
@@ -52,14 +53,6 @@ public class EventoDto {
         this.descripcion = descripcion;
     }
 
-    public String getLugar() {
-        return lugar;
-    }
-
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
-    }
-
     public LocalDateTime getFechaInicio() {
         return fechaInicio;
     }
@@ -74,6 +67,14 @@ public class EventoDto {
 
     public void setFechaFin(LocalDateTime fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
     }
 
     public Integer getIdCalendario() {

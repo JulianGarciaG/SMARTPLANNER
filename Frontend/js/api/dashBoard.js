@@ -135,6 +135,7 @@ async function cargarTareas(userId) {
             body: JSON.stringify(payload),
           });
 
+          window.refreshTareas && window.refreshTareas();
           // 🔄 Actualiza inmediatamente la tarjeta "Gastos del día"
           await cargarGastosDelDiaDesdeTareas(t.id_usuario);
         } catch (err) {

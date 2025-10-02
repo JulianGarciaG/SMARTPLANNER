@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,9 @@
     <link rel="stylesheet" href="../styles/agregar-evento.css">
     <link rel="stylesheet" href="../styles/notificaciones.css">
     <link rel="stylesheet" href="../styles/agregar-calendario.css">
+    <link rel="stylesheet" href="../styles/modal.css">
 </head>
+
 <body>
     <!-- formulario para agrega un nuevo calendario-->
     <div id="agregarCalendario" class="agregar-calendario">
@@ -29,15 +32,15 @@
             <div class="descripcion">
                 <h1>Color del calendario</h1>
                 <div class="color-options">
-                <span class="color-circle" data-color="#34a853" style="background:#34a853"></span>
-                <span class="color-circle" data-color="#4285f4" style="background:#4285f4"></span>
-                <span class="color-circle" data-color="#fbbc05" style="background:#fbbc05"></span>
-                <span class="color-circle" data-color="#ea4335" style="background:#ea4335"></span>
-                <span class="color-circle" data-color="#a142f4" style="background:#a142f4"></span>
-                <span class="color-circle" data-color="#f442ce" style="background:#f442ce"></span>
+                    <span class="color-circle" data-color="#34a853" style="background:#34a853"></span>
+                    <span class="color-circle" data-color="#4285f4" style="background:#4285f4"></span>
+                    <span class="color-circle" data-color="#fbbc05" style="background:#fbbc05"></span>
+                    <span class="color-circle" data-color="#ea4335" style="background:#ea4335"></span>
+                    <span class="color-circle" data-color="#a142f4" style="background:#a142f4"></span>
+                    <span class="color-circle" data-color="#f442ce" style="background:#f442ce"></span>
                 </div>
-            <!-- Input oculto para guardar el valor del color elegido -->
-            <input type="hidden" id="colorSeleccionado" name="colorSeleccionado">
+                <!-- Input oculto para guardar el valor del color elegido -->
+                <input type="hidden" id="colorSeleccionado" name="colorSeleccionado">
             </div>
 
             <div class="fecha-limite">
@@ -45,10 +48,10 @@
                 <select name="tipo_de_calendario" id="tipoCalendario">
                     <option value="personal">Personal</option>
                     <option value="trabajo">Trabajo</option>
-                    <option value="otro">Otro</option> 
+                    <option value="otro">Otro</option>
                 </select>
-            </div>   
-            <div >
+            </div>
+            <div>
                 <div class="compartir-opcion">
                     <input type="checkbox" id="compartirCalendario" />
                     <h2>Compartir calendario</h2>
@@ -103,7 +106,7 @@
                 <div class="espacio-input">
                     <input id="fechaFinEvento" type="datetime-local">
                 </div>
-            </div>    
+            </div>
             <div class="descripcion">
                 <h1>Lugar</h1>
                 <div class="espacio-input">
@@ -121,7 +124,7 @@
         <nav>
             <div class="izquierda-nav">
                 <div id="abrir-menu" class="menu">
-                    <img  class="abrir-menu" src="../img/menu.png" width="18" height="18">
+                    <img class="abrir-menu" src="../img/menu.png" width="18" height="18">
                 </div>
                 <img class="logo-nav" src="../img/Logo.png" width="40" height="40">
                 <div class="nombre-descripcion">
@@ -131,7 +134,12 @@
             </div>
             <div class="derecha-nav">
                 <div class="buscador-nav">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </svg>
                     <input type="text" placeholder="Buscar tareas, eventos...">
                 </div>
                 <div class="panel-notificaciones">
@@ -165,23 +173,33 @@
             <ul>
                 <li>
                     <img src="../img/estadistica.png" width="20" height="20">
-                    <a href="../views/home.html"><p>Dashboard</p></a>
+                    <a href="../views/home.html">
+                        <p>Dashboard</p>
+                    </a>
                 </li>
                 <li class="active">
                     <img src="../img/calendario-blanco.png" width="20" height="20">
-                    <a href="calendario.html"><p>Calendario</p></a>
+                    <a href="calendario.html">
+                        <p>Calendario</p>
+                    </a>
                 </li>
                 <li>
                     <img src="../img/check.png" width="20" height="20">
-                    <a href="tareas.html"><p>Tareas</p></a>
+                    <a href="tareas.html">
+                        <p>Tareas</p>
+                    </a>
                 </li>
                 <li>
                     <img src="../img/dolar.png" width="20" height="20">
-                    <a href="finanzas.html"><p>Finanzas</p></a>
+                    <a href="finanzas.html">
+                        <p>Finanzas</p>
+                    </a>
                 </li>
                 <li>
                     <img src="../img/estadistica.png" width="20" height="20">
-                    <a href="estadisticas.html"><p>Estadísticas</p></a>
+                    <a href="estadisticas.html">
+                        <p>Estadísticas</p>
+                    </a>
                 </li>
 
             </ul>
@@ -190,25 +208,25 @@
                 <p id="tip-del-dia">Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
             </div>
         </div>
-<!-- contenido de la pagina -->
-<div class="container">
-    <div class="calendar-container">
-        <h1>Mis Calendarios</h1>
-        <button id="abrirMenuCalendario">
-            <img src="../img/plus-pequeno.png" width="20" height="20" /> Nuevo Calendario
-        </button>
-    </div>
+        <!-- contenido de la pagina -->
+        <div class="container">
+            <div class="calendar-container">
+                <h1>Mis Calendarios</h1>
+                <button id="abrirMenuCalendario">
+                    <img src="../img/plus-pequeno.png" width="20" height="20" /> Nuevo Calendario
+                </button>
+            </div>
 
-    <div class="selec-calendario">
-        <h2>Selecciona un calendario para ver:</h2>
+            <div class="selec-calendario">
+                <h2>Selecciona un calendario para ver:</h2>
 
-        <!-- El JS va a inyectar aquí los calendarios -->
-        <div class="calendarios" id="listaCalendarios">
+                <!-- El JS va a inyectar aquí los calendarios -->
+                <div class="calendarios" id="listaCalendarios">
 
-        </div>
-    </div>
+                </div>
+            </div>
 
-    <!-- <div id="modalCompartir" class="modal oculto">
+            <!-- <div id="modalCompartir" class="modal oculto">
         <div class="modal-content">
             <h2>Compartir calendario</h2>
             <input type="text" id="usuarioCompartir" placeholder="Correo o usuario">
@@ -221,113 +239,198 @@
         </div>
     </div> -->
 
-    <div class="vistas-calendario">
-        <span id="puntoCalendario" class="punto"></span>
-        <h1 id="calendarioSeleccionado">No hay calendarios seleccionados</h1>
-        <button id="abrirMenuEvento">
-            <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva evento
-        </button>
-    </div>
+            <div class="vistas-calendario">
+                <span id="puntoCalendario" class="punto"></span>
+                <h1 id="calendarioSeleccionado">No hay calendarios seleccionados</h1>
+                <button id="abrirMenuEvento">
+                    <img src="../img/plus-pequeno.png" width="20" height="20" /> Nueva evento
+                </button>
+            </div>
 
-    <div id="calendar"></div>
-    <h1></h1>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-    <!-- <script src="../js/calendario.js"></script> -->
+            <div id="calendar"></div>
+            <h1></h1>
+            <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+            <!-- <script src="../js/calendario.js"></script> -->
 
-    <div class="eventos">
-        <h1>Eventos de hoy</h1>
-        <ul id="listaEventosHoy">
-            <li>No hay eventos para este calendario</li>
-            <!-- Eventos se cargarán aquí dinámicamente -->
-        </ul>
-    </div>
-</div>
+            <div class="eventos">
+                <h1>Eventos de hoy</h1>
+                <ul id="listaEventosHoy">
+                    <li>No hay eventos para este calendario</li>
+                    <!-- Eventos se cargarán aquí dinámicamente -->
+                </ul>
+            </div>
+        </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const usuarioJSON = localStorage.getItem("usuario");
-    if (!usuarioJSON) {
-        window.location.href = "../index.html";
-        return;
-    }
+        <!-- Modal Editar -->
+        <div id="modalEditar" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModal('modalEditar')">&times;</span>
+                <h2>Editar Calendario</h2>
+                <form id="formEditarCalendario">
+                    <input type="hidden" id="editId">
 
-    const usuario = JSON.parse(usuarioJSON);
+                    <label>Nombre:</label>
+                    <input type="text" id="editNombre" required>
 
-    // Ejemplo de estructura esperada en usuario:
-    // usuario.calendarios = [
-    //   { nombre: "Personal", color: "azul", eventos: 12, compartido: true },
-    //   { nombre: "Trabajo", color: "verde", eventos: 8, compartido: false },
-    //   ...
-    // ]
-    // usuario.eventosHoy = [
-    //   { hora: "10:00", descripcion: "Reunión de equipo", etiqueta: "trabajo" },
-    //   ...
-    // ]
+                    <label>Color del calendario:</label>
+                    <div class="color-options">
+                        <span class="color-circle" data-color="#34a853" style="background:#34a853"></span>
+                        <span class="color-circle" data-color="#4285f4" style="background:#4285f4"></span>
+                        <span class="color-circle" data-color="#fbbc05" style="background:#fbbc05"></span>
+                        <span class="color-circle" data-color="#ea4335" style="background:#ea4335"></span>
+                        <span class="color-circle" data-color="#a142f4" style="background:#a142f4"></span>
+                        <span class="color-circle" data-color="#f442ce" style="background:#f442ce"></span>
+                    </div>
+                    <input type="hidden" id="editColor">
 
-    // // 📌 Cargar calendarios
-    // const listaCalendarios = document.getElementById("listaCalendarios");
-    // listaCalendarios.innerHTML = ""; // Limpiar contenido
+                    <label>Tipo:</label>
+                    <select id="editTipo">
+                        <option value="personal">Personal</option>
+                        <option value="trabajo">Trabajo</option>
+                        <option value="otro">Otro</option>
+                    </select>
 
-    // if (Array.isArray(usuario.calendarios) && usuario.calendarios.length > 0) {
-    //     usuario.calendarios.forEach(cal => {
-    //         listaCalendarios.innerHTML += `
-    //             <div class="elep-calendario">
-    //                 <span class="punto ${cal.color}"></span>
-    //                 <h2>${cal.nombre}</h2>
-    //                 <h3>Eventos</h3>
-    //                 <h4>${cal.eventos} eventos</h4>
-    //                 <div class="contenedor-botones">
-    //                     <button class="boton toggle-ocultar">Ocultar</button>
-    //                     <button class="boton toggle-compartir">Compartir</button>
-    //                     ${cal.compartido ? '<span class="badge-compartido">Compartido</span>' : ''}
-    //                 </div>
-    //             </div>
-    //         `;
-    //     });
-    // } else {
-    //     listaCalendarios.innerHTML = "<p>No tienes calendarios disponibles.</p>";
-    // }
+                    <button type="submit">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
 
-    // 📌 Cargar eventos de hoy
-    // const listaEventosHoy = document.getElementById("listaEventosHoy");
-    // if (listaEventosHoy) {
-    //     listaEventosHoy.innerHTML = "";
+        <!-- Modal Editar Evento -->
+        <div id="modalEditarEvento" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModal('modalEditarEvento')">&times;</span>
+                <h2>Editar Evento</h2>
+                <form id="formEditarEvento">
+                    <input type="hidden" id="editEventoId">
 
-    //     if (Array.isArray(usuario.eventosHoy) && usuario.eventosHoy.length > 0) {
-    //         usuario.eventosHoy.forEach(ev => {
-    //             const li = document.createElement("li");
+                    <label>Título del evento:</label>
+                    <input type="text" id="editTituloEvento" required>
 
-    //             const spanHora = document.createElement("span");
-    //             spanHora.classList.add("hora");
-    //             spanHora.textContent = ev.hora;
-    //             li.appendChild(spanHora);
+                    <label>Descripción:</label>
+                    <textarea id="editDescripcionEvento" rows="3"></textarea>
 
-    //             const spanDesc = document.createElement("span");
-    //             spanDesc.classList.add("descripcion");
-    //             spanDesc.textContent = ev.descripcion;
-    //             li.appendChild(spanDesc);
+                    <label>Fecha de inicio:</label>
+                    <input type="datetime-local" id="editFechaInicioEvento" required>
 
-    //             const spanEtiqueta = document.createElement("span");
-    //             spanEtiqueta.classList.add("etiqueta", ev.etiqueta);
-    //             spanEtiqueta.textContent = ev.etiqueta.charAt(0).toUpperCase() + ev.etiqueta.slice(1);
-    //             li.appendChild(spanEtiqueta);
+                    <label>Fecha de fin:</label>
+                    <input type="datetime-local" id="editFechaFinEvento" required>
 
-    //             listaEventosHoy.appendChild(li);
-    //         });
-    //     } else {
-    //         listaEventosHoy.innerHTML = "<li>No hay eventos para hoy.</li>";
-    //     }
-    // }
+                    <label>Lugar:</label>
+                    <input type="text" id="editLugarEvento">
 
-    // 📌 Opcional: actualizar título del calendario seleccionado
-    const calendarioSeleccionado = document.getElementById("calendarioSeleccionado");
-    if (calendarioSeleccionado && usuario.calendarioActivo) {
-        calendarioSeleccionado.textContent = `Viendo: ${usuario.calendarioActivo}`;
-        // Aquí podrías actualizar también el color del punto si lo necesitas
-    }
-});
+                    <button type="submit">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
 
-</script>      
+        <!-- Modal Eliminar Evento -->
+        <div id="modalEliminarEvento" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModal('modalEliminarEvento')">&times;</span>
+                <h2>Eliminar Evento</h2>
+                <p>¿Estás seguro de que deseas eliminar este evento?</p>
+                <p id="nombreEventoEliminar" style="font-weight: bold; color: #ea4335;"></p>
+                <button id="confirmarEliminarEvento">Eliminar</button>
+                <button onclick="cerrarModal('modalEliminarEvento')">Cancelar</button>
+            </div>
+        </div>
+
+        <!-- Modal Eliminar (sin cambios) -->
+        <div id="modalEliminar" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModal('modalEliminar')">&times;</span>
+                <h2>Eliminar Calendario</h2>
+                <p>¿Estás seguro de que deseas eliminar este calendario?</p>
+                <button id="confirmarEliminar">Eliminar</button>
+                <button onclick="cerrarModal('modalEliminar')">Cancelar</button>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const usuarioJSON = localStorage.getItem("usuario");
+                if (!usuarioJSON) {
+                    window.location.href = "../index.html";
+                    return;
+                }
+
+                const usuario = JSON.parse(usuarioJSON);
+
+                // Ejemplo de estructura esperada en usuario:
+                // usuario.calendarios = [
+                //   { nombre: "Personal", color: "azul", eventos: 12, compartido: true },
+                //   { nombre: "Trabajo", color: "verde", eventos: 8, compartido: false },
+                //   ...
+                // ]
+                // usuario.eventosHoy = [
+                //   { hora: "10:00", descripcion: "Reunión de equipo", etiqueta: "trabajo" },
+                //   ...
+                // ]
+
+                // // 📌 Cargar calendarios
+                // const listaCalendarios = document.getElementById("listaCalendarios");
+                // listaCalendarios.innerHTML = ""; // Limpiar contenido
+
+                // if (Array.isArray(usuario.calendarios) && usuario.calendarios.length > 0) {
+                //     usuario.calendarios.forEach(cal => {
+                //         listaCalendarios.innerHTML += `
+                //             <div class="elep-calendario">
+                //                 <span class="punto ${cal.color}"></span>
+                //                 <h2>${cal.nombre}</h2>
+                //                 <h3>Eventos</h3>
+                //                 <h4>${cal.eventos} eventos</h4>
+                //                 <div class="contenedor-botones">
+                //                     <button class="boton toggle-ocultar">Ocultar</button>
+                //                     <button class="boton toggle-compartir">Compartir</button>
+                //                     ${cal.compartido ? '<span class="badge-compartido">Compartido</span>' : ''}
+                //                 </div>
+                //             </div>
+                //         `;
+                //     });
+                // } else {
+                //     listaCalendarios.innerHTML = "<p>No tienes calendarios disponibles.</p>";
+                // }
+
+                // 📌 Cargar eventos de hoy
+                // const listaEventosHoy = document.getElementById("listaEventosHoy");
+                // if (listaEventosHoy) {
+                //     listaEventosHoy.innerHTML = "";
+
+                //     if (Array.isArray(usuario.eventosHoy) && usuario.eventosHoy.length > 0) {
+                //         usuario.eventosHoy.forEach(ev => {
+                //             const li = document.createElement("li");
+
+                //             const spanHora = document.createElement("span");
+                //             spanHora.classList.add("hora");
+                //             spanHora.textContent = ev.hora;
+                //             li.appendChild(spanHora);
+
+                //             const spanDesc = document.createElement("span");
+                //             spanDesc.classList.add("descripcion");
+                //             spanDesc.textContent = ev.descripcion;
+                //             li.appendChild(spanDesc);
+
+                //             const spanEtiqueta = document.createElement("span");
+                //             spanEtiqueta.classList.add("etiqueta", ev.etiqueta);
+                //             spanEtiqueta.textContent = ev.etiqueta.charAt(0).toUpperCase() + ev.etiqueta.slice(1);
+                //             li.appendChild(spanEtiqueta);
+
+                //             listaEventosHoy.appendChild(li);
+                //         });
+                //     } else {
+                //         listaEventosHoy.innerHTML = "<li>No hay eventos para hoy.</li>";
+                //     }
+                // }
+
+                // 📌 Opcional: actualizar título del calendario seleccionado
+                const calendarioSeleccionado = document.getElementById("calendarioSeleccionado");
+                if (calendarioSeleccionado && usuario.calendarioActivo) {
+                    calendarioSeleccionado.textContent = `Viendo: ${usuario.calendarioActivo}`;
+                    // Aquí podrías actualizar también el color del punto si lo necesitas
+                }
+            });
+
+        </script>
     </main>
     <footer>
         <!-- ESTO ES EL PIE DE PAGINA, QUE NOSOTROS NO TENEMOS -->
@@ -344,4 +447,5 @@ document.addEventListener("DOMContentLoaded", () => {
     <script src="../js/api/imagen.js"></script>
     <script src="../js/busqueda.js"></script>
 </body>
+
 </html>
