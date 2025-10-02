@@ -29,6 +29,26 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const data = await response.json();
+
+      // 🔔 NUEVO: enviar correo de bienvenida (no bloquea si falla)
+      if (window.emailService && typeof window.emailService.sendRegistrationConfirmationEmail === "function") {
+        try {
+          const resMail = await window.emailService.sendRegistrationConfirmationEmail(
+            correoElectronico, // se mostrará como {{to_email}} en la plantilla
+            nombre,            // se usará como {{user_name}}
+            null               // (opcional) link de verificación si luego lo implementas
+          );
+          if (!resMail.success) {
+            console.warn("Bienvenida enviada con advertencia:", resMail.message);
+          }
+        } catch (mailErr) {
+          console.warn("No se pudo enviar el correo de bienvenida:", mailErr);
+        }
+      } else {
+        console.warn("EmailService no disponible en esta vista");
+      }
+
+      // Continúa tu flujo normal
       alert("Usuario registrado con éxito ✅");
       window.location.href = "../index.html";
 
