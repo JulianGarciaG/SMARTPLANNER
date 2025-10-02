@@ -401,3 +401,10 @@ body {
     color: #000;
 }
 
+.cantidad.positivo {
+  color: #16A34A; /* verde */
+}
+
+.cantidad.negativo {
+  color: #DC2626; /* rojo */
+}

@@ -433,11 +433,12 @@ h1{
 }
 
 .vistas-calendario{
-  display: flex;      
+  display: flex;  
+      
   gap: 10px;    
-  background: #c6ebce;  
+  background: white;  
   width: 100%;
-  border-radius: 8px;
+  border-radius: 20px;
   text-align: center;
 }
 

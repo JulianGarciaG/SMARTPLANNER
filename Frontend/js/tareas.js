@@ -1,204 +1,445 @@
-document.addEventListener("DOMContentLoaded", async () => {
-    // Validar usuario logueado
-    const usuarioJSON = localStorage.getItem("usuario");
-    if (!usuarioJSON) {
-        window.location.href = "login.html";
-        return;
-    }
-    const usuario = JSON.parse(usuarioJSON);
+// document.addEventListener("DOMContentLoaded", () => {
+  
+//   // =====================================================
+//   // VERIFICAR SI VIENE DE UNA TRANSACCIÓN
+//   // =====================================================
+//   const transaccionData = localStorage.getItem("transaccionParaTarea");
+  
+//   if (transaccionData) {
+//     try {
+//       const transaccion = JSON.parse(transaccionData);
+//       console.log("Transacción detectada:", transaccion);
+      
+//       // 1. Abrir el formulario automáticamente
+//       const modal = document.getElementById("agregarRegistro");
+//       if (modal) {
+//         modal.style.display = "flex";
+//         console.log("Modal abierto");
+//       }
+      
+//       // 2. Marcar el checkbox de "Asociar con un gasto"
+//       const checkboxAsociar = document.getElementById("abrirAsociarGasto");
+//       if (checkboxAsociar && !checkboxAsociar.checked) {
+//         checkboxAsociar.checked = true;
+//         // Disparar el evento change para que input-check.js lo procese
+//         checkboxAsociar.dispatchEvent(new Event('change', { bubbles: true }));
+//         console.log("Checkbox marcado");
+//       }
+      
+//       // 3. Esperar un momento para que el select se muestre
+//       setTimeout(() => {
+//         const selectAsociarGasto = document.querySelector("#asociarGasto select");
+        
+//         if (selectAsociarGasto) {
+//           const formatearMoneda = (valor) => {
+//             return new Intl.NumberFormat("es-CO", {
+//               style: "currency",
+//               currency: "COP",
+//               minimumFractionDigits: 2,
+//               maximumFractionDigits: 2
+//             }).format(valor);
+//           };
 
-    const lista = document.getElementById("lista-tareas");
-    const tituloSeccion = document.querySelector('.tareas h1');
-    const inputBuscar = document.getElementById('inputBuscar');
-    const selectPrioridad = document.getElementById('selectPrioridad');
-    const totalTareas = document.getElementById("totalTareas");
-    const tareasCompletadas = document.getElementById("tareasCompletadas");
-    const tareasAltaPrioridad = document.getElementById("tareasAltaPrioridad");
+//           // Limpiar opciones existentes excepto la primera
+//           const primeraOpcion = selectAsociarGasto.querySelector('option[value=""]');
+//           selectAsociarGasto.innerHTML = '';
+//           if (primeraOpcion) {
+//             selectAsociarGasto.appendChild(primeraOpcion.cloneNode(true));
+//           }
 
-    const btnTodas = document.getElementById("btnTodas");
-    const btnPendientes = document.getElementById("btnPendientes");
-    const btnCompletadas = document.getElementById("btnCompletadas");
+//           // Agregar la transacción seleccionada
+//           const option = document.createElement("option");
+//           option.value = transaccion.id;
+//           option.textContent = `${transaccion.descripcion} - ${formatearMoneda(transaccion.monto)}`;
+//           option.selected = true;
+//           selectAsociarGasto.appendChild(option);
+//           console.log("Transacción agregada al select");
+//         }
+        
+//         // 4. Crear el banner informativo
+//         const form = document.getElementById("containerRegistro");
+//         if (form) {
+//           let bannerExistente = form.querySelector(".info-transaccion-banner");
+          
+//           if (!bannerExistente) {
+//             const formatearMoneda = (valor) => {
+//               return new Intl.NumberFormat("es-CO", {
+//                 style: "currency",
+//                 currency: "COP",
+//                 minimumFractionDigits: 2,
+//                 maximumFractionDigits: 2
+//               }).format(valor);
+//             };
 
-    // ---------- Datos en memoria ----------
-    let todasLasTareas = Array.isArray(window.tareasData) ? window.tareasData : [];
-    let estadoFiltro = 'todas'; // 'todas' | 'pendientes' | 'completadas'
-    let textoBusqueda = '';
-    let prioridadFiltro = 'todas';
+//             const banner = document.createElement("div");
+//             banner.className = "info-transaccion-banner";
+//             banner.style.cssText = `
+//               background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+//               color: white;
+//               padding: 16px;
+//               border-radius: 12px;
+//               margin-bottom: 20px;
+//               box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+//               animation: slideDown 0.3s ease-out;
+//             `;
+            
+//             banner.innerHTML = `
+//               <style>
+//                 @keyframes slideDown {
+//                   from {
+//                     opacity: 0;
+//                     transform: translateY(-10px);
+//                   }
+//                   to {
+//                     opacity: 1;
+//                     transform: translateY(0);
+//                   }
+//                 }
+//               </style>
+//               <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+//                 <div style="flex: 1;">
+//                   <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+//                     <span style="font-size: 20px;">💰</span>
+//                     <h3 style="margin: 0; font-size: 13px; opacity: 0.9; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+//                       Asociada a Transacción
+//                     </h3>
+//                   </div>
+//                   <p style="margin: 0 0 4px 0; font-size: 16px; font-weight: 600; line-height: 1.4;">
+//                     ${transaccion.descripcion}
+//                   </p>
+//                   <p style="margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.5px;">
+//                     ${formatearMoneda(transaccion.monto)}
+//                   </p>
+//                 </div>
+//                 <button 
+//                   type="button" 
+//                   id="cerrarBannerTransaccion"
+//                   style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); 
+//                          color: white; padding: 10px 18px; border-radius: 8px; cursor: pointer; 
+//                          font-size: 13px; transition: all 0.2s; font-weight: 600; white-space: nowrap;
+//                          flex-shrink: 0;"
+//                   onmouseover="this.style.background='rgba(255,255,255,0.25)'; this.style.transform='translateY(-1px)'"
+//                   onmouseout="this.style.background='rgba(255,255,255,0.15)'; this.style.transform='translateY(0)'">
+//                   ✕ Desasociar
+//                 </button>
+//               </div>
+//             `;
+            
+//             // Insertar el banner después del título "Nueva Tarea"
+//             const h1 = form.querySelector("h1");
+//             if (h1) {
+//               h1.insertAdjacentElement('afterend', banner);
+//               console.log("Banner insertado");
+//             }
+            
+//             // Evento para desasociar
+//             const btnCerrarBanner = banner.querySelector("#cerrarBannerTransaccion");
+//             if (btnCerrarBanner) {
+//               btnCerrarBanner.addEventListener("click", () => {
+//                 banner.remove();
+//                 localStorage.removeItem("transaccionParaTarea");
+                
+//                 // Desmarcar checkbox
+//                 if (checkboxAsociar) {
+//                   checkboxAsociar.checked = false;
+//                   checkboxAsociar.dispatchEvent(new Event('change', { bubbles: true }));
+//                 }
+                
+//                 // Limpiar el select
+//                 const selectAsociarGasto = document.querySelector("#asociarGasto select");
+//                 if (selectAsociarGasto) {
+//                   selectAsociarGasto.innerHTML = '<option value="" selected>Seleccionar gasto...</option>';
+//                 }
+                
+//                 console.log("Transacción desasociada");
+//               });
+//             }
+//           }
+//         }
+//       }, 100); // Pequeño delay para asegurar que el DOM esté listo
+      
+//     } catch (error) {
+//       console.error("Error al procesar transacción:", error);
+//       localStorage.removeItem("transaccionParaTarea");
+//     }
+//   }
+  
+//   // =====================================================
+//   // CÓDIGO ORIGINAL DEL CRUD
+//   // =====================================================
+  
+//   const crearBtn = document.getElementById("Crear-registro");
+//   const listaTareas = document.getElementById("lista-tareas");
+//   let isEditing = false;
+//   let editId = null;
 
-    async function crearTarea(tarea) {
-        try {
-            const response = await fetch(`http://localhost:8080/api/tareas`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...tarea, usuarioId: usuario.id })
-            });
-            if (!response.ok) throw new Error("Error al crear tarea");
-            return await response.json();
-        } catch (error) {
-            console.error(error);
-            return null;
-        }
-    }
+//   const getIdUsuario = () => {
+//     const usuarioJSON = localStorage.getItem("usuario");
+//     if (!usuarioJSON) return null;
+//     try {
+//       const usuario = JSON.parse(usuarioJSON);
+//       return usuario.idUsuario || null;
+//     } catch (e) {
+//       console.error("Error parseando usuario:", e);
+//       return null;
+//     }
+//   };
 
-    // ---------- Render ----------
-    function renderizarTareas(tareas) {
-        lista.innerHTML = "";
-        if (!tareas.length) {
-            const li = document.createElement('li');
-            li.textContent = 'No hay tareas registradas';
-            lista.appendChild(li);
-            return;
-        }
-        tareas.forEach(tarea => lista.appendChild(crearElementoTarea(tarea)));
-    }
+//   const formatearFecha = (iso) => {
+//     if (!iso) return "";
+//     try {
+//       const d = new Date(iso);
+//       return d.toLocaleString();
+//     } catch (_) {
+//       return iso;
+//     }
+//   };
 
-    function crearElementoTarea(tarea) {
-        const li = document.createElement("li");
-        li.classList.add("tarea");
+//   const renderTareas = (tareas = []) => {
+//     if (!listaTareas) return;
+//     listaTareas.innerHTML = "";
+//     if (!tareas.length) {
+//       const li = document.createElement("li");
+//       li.textContent = "No hay tareas registradas";
+//       listaTareas.appendChild(li);
+//       return;
+//     }
 
-        const checked = (tarea.estado_de_tarea === true || tarea.completada);
+//     tareas.forEach((t) => {
+//       const li = document.createElement("li");
+//       li.classList.add("tarea");
+      
+//       const prioridad = (t.prioridad || "").toString().toLowerCase();
+//       const fecha = formatearFecha(t.fecha_limite);
+//       const completada = t.estado_de_tarea === true;
+      
+//       if (completada) {
+//         li.classList.add("completada");
+//       }
+      
+//       li.innerHTML = `
+//         <div class="tarea-item">
+//           <div class="tarea-left">
+//             <input type="checkbox" class="tarea-check" data-id="${t.id_tarea}" ${completada ? "checked" : ""} />
+//             <div class="tarea-content">
+//               <h3>${t.nombre ?? "(Sin título)"}</h3>
+//               <p>${t.descripcion ?? ""}</p>
+//               <div class="tarea-meta">
+//                 <img src="../img/calendario.png" width="15" height="15" />
+//                 <span>${fecha}</span>
+//               </div>
+//             </div>
+//           </div>
+//           <div class="tarea-actions">
+//             <span class="badge ${prioridad}">${prioridad}</span>
+//             <img class="editar" data-id="${t.id_tarea}" src="../img/editar.png" width="20" height="20" />
+//             <img class="eliminar" data-id="${t.id_tarea}" src="../img/eliminar.png" width="20" height="20" />
+//           </div>
+//         </div>
+//       `;
+//       listaTareas.appendChild(li);
+//     });
+//   };
 
-        if (checked) {
-            li.classList.add("completada"); // 👈 Agregamos clase al li
-        }
+//   const cargarTareas = async () => {
+//     const idUsuario = getIdUsuario();
+//     if (!idUsuario) {
+//       renderTareas([]);
+//       return;
+//     }
+//     try {
+//       const resp = await fetch(`http://localhost:8080/api/tareas/${idUsuario}`);
+//       if (!resp.ok) throw new Error(await resp.text());
+//       const data = await resp.json();
+//       const arr = Array.isArray(data) ? data : [];
+//       window.tareasData = arr;
+//       window.dispatchEvent(new CustomEvent('tareas:loaded', { detail: arr }));
+//       renderTareas(arr);
+//       const total = document.getElementById("totalTareas");
+//       if (total) total.textContent = String(data.length || 0);
+//     } catch (err) {
+//       console.error("Error cargando tareas:", err);
+//       renderTareas([]);
+//     }
+//   };
 
-        li.innerHTML = `
-            <div class="informacion">
-                <div class="container-input">
-                    <img src="../img/controlar.png" width="10" height="10" />
-                    <input type="checkbox" class="input-tarea" ${checked ? "checked" : ""} data-id="${tarea.id_tarea || tarea.id}" />
-                </div>
-                <div class="texto">
-                    <h1 class="texto-titulo">${tarea.nombre || tarea.titulo}</h1>
-                    <h2>${tarea.descripcion ?? ""}</h2>
-                    <p><img src="../img/calendario.png" width="15" height="15" /> 
-                        ${(tarea.fecha_limite || tarea.fechaLimite || '').toString().substring(0,10)}
-                    </p>
-                </div>
-            </div>
-            <div class="derecha">
-                <div class="estados">
-                    <p class="${(tarea.prioridad||'').toLowerCase()}">${(tarea.prioridad||'').toLowerCase()}</p>
-                    ${tarea.valor ? `<p class="valor">$${tarea.valor}</p>` : ""}
-                </div>
-                <div class="crud">
-                    <img class="editar" src="../img/editar.png" width="20" height="20" data-id="${tarea.id}" />
-                    <img class="eliminar" src="../img/eliminar.png" width="20" height="20" data-id="${tarea.id}" />
-                </div>
-            </div>
-        `;
+//   cargarTareas();
+//   window.refreshTareas = cargarTareas;
 
-        // 🔹 Evento para marcar/desmarcar completada
-        const checkbox = li.querySelector(".input-tarea");
-        checkbox.addEventListener("change", async (e) => {
-            const checked = e.target.checked;
+//   if (listaTareas) {
+//     listaTareas.addEventListener("click", async (e) => {
+//       const target = e.target;
+      
+//       if (target.classList.contains("tarea-check")) {
+//         const li = target.closest('li');
+        
+//         if (target.checked) {
+//           li.classList.add('completada');
+//         } else {
+//           li.classList.remove('completada');
+//         }
 
-            if (checked) {
-                li.classList.add("completada");
-            } else {
-                li.classList.remove("completada");
-            }
+//         const id = target.getAttribute('data-id');
+//         const idUsuario = getIdUsuario();
+//         if (id) {
+//           const tarea = (window.tareasData || []).find(t => String(t.id_tarea) === String(id));
+//           const payload = {
+//             nombre: tarea?.nombre || '',
+//             descripcion: tarea?.descripcion || '',
+//             prioridad: (tarea?.prioridad || '').toString().toLowerCase() || 'media',
+//             fecha_limite: tarea?.fecha_limite || new Date().toISOString(),
+//             categoria: (tarea?.categoria || 'sin_asociar').toString().toLowerCase(),
+//             estado_de_tarea: !!target.checked,
+//             id_usuario: idUsuario
+//           };
 
-            try {
-                // Mandar actualización al backend
-                const payload = {
-                    nombre: tarea.nombre,
-                    descripcion: tarea.descripcion,
-                    prioridad: tarea.prioridad || "media",
-                    fecha_limite: tarea.fecha_limite,
-                    categoria: tarea.categoria || "sin_asociar",
-                    estado_de_tarea: checked,
-                    id_usuario: tarea.id_usuario
-                };
+//           fetch(`http://localhost:8080/api/tareas/actualizar/${id}`, {
+//             method: 'PUT',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify(payload)
+//           })
+//             .then(() => window.refreshTareas && window.refreshTareas())
+//             .then(() => {
+//               window.dispatchEvent(new CustomEvent("tareas:updated", { detail: window.tareasData }));
+//             })
+//             .catch(err => console.error('No se pudo actualizar estado de tarea', err));
+//         }
+//         return;
+//       }
+      
+//       if (target.classList.contains("eliminar")) {
+//         const id = target.getAttribute("data-id");
+//         if (!id) return;
+//         if (!confirm("¿Deseas eliminar esta tarea?")) return;
+//         try {
+//           const resp = await fetch(`http://localhost:8080/api/tareas/eliminar/${id}`, { method: "DELETE" });
+//           if (!resp.ok) throw new Error(await resp.text());
+//           await cargarTareas();
+//         } catch (err) {
+//           alert("No se pudo eliminar la tarea");
+//           console.error(err);
+//         }
+//       }
 
-                await fetch(`http://localhost:8080/api/tareas/actualizar/${tarea.id_tarea}`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                });
+//       if (target.classList.contains("editar")) {
+//         const id = target.getAttribute("data-id");
+//         if (!id) return;
 
-                // Refrescar vista
-                aplicarFiltros();
+//         const modal = document.getElementById("agregarRegistro");
+//         const form = document.getElementById("containerRegistro");
+//         if (!modal || !form) return;
 
-            } catch (err) {
-                console.error("Error actualizando tarea:", err);
-            }
-        });
+//         const card = target.closest("li");
+//         const tituloInput = document.querySelector('.titulo input');
+//         const descripcionInput = document.querySelector('.descripcion input');
+//         const prioridadSelect = document.querySelector('.prioridad select');
+//         const fechaInput = document.querySelector('.fecha-limite input');
 
-        return li;
-    }
+//         const titulo = card.querySelector('.tarea-content h3')?.textContent || '';
+//         const descripcion = card.querySelector('.tarea-content p')?.textContent || '';
+//         const badge = card.querySelector('.badge')?.textContent || '';
+//         const fechaTexto = card.querySelector('.tarea-meta span')?.textContent || '';
 
+//         tituloInput.value = titulo;
+//         descripcionInput.value = descripcion;
+//         prioridadSelect.value = badge || 'media';
+//         const date = new Date(fechaTexto);
+//         if (!isNaN(date.getTime())) {
+//           const isoLocal = new Date(date.getTime()-date.getTimezoneOffset()*60000).toISOString().slice(0,16);
+//           fechaInput.value = isoLocal;
+//         }
 
-    function actualizarResumen(tareas) {
-        const total = todasLasTareas.length;
-        const completadas = todasLasTareas.filter(t => t.estado_de_tarea === true || t.completada).length;
-        const altaPrioridad = todasLasTareas.filter(t => (t.prioridad || '').toLowerCase() === "alta").length;
+//         modal.style.display = 'flex';
+//         isEditing = true;
+//         editId = id;
+//         if (crearBtn) crearBtn.textContent = 'Guardar cambios';
+//         const tituloModal = modal.querySelector('form h1');
+//         if (tituloModal) tituloModal.textContent = 'Actualizar tarea';
+//       }
+//     });
+//   }
 
-        totalTareas.textContent = total;
-        tareasCompletadas.textContent = completadas;
-        tareasAltaPrioridad.textContent = altaPrioridad;
+//   if (crearBtn) {
+//     crearBtn.addEventListener("click", async (e) => {
+//       e.preventDefault();
 
-        btnTodas.textContent = `Todas (${total})`;
-        btnPendientes.textContent = `Pendientes (${total - completadas})`;
-        btnCompletadas.textContent = `Completadas (${completadas})`;
-    }
+//       const idUsuario = getIdUsuario();
+//       if (!idUsuario) {
+//         alert("Debes iniciar sesión primero");
+//         window.location.href = "../index.html";
+//         return;
+//       }
 
-    // ---------- Filtro combinado ----------
-    function aplicarFiltros() {
-        let base = [...todasLasTareas];
+//       const tarea = {
+//         nombre: document.querySelector(".titulo input").value,
+//         descripcion: document.querySelector(".descripcion input").value,
+//         prioridad: document.querySelector(".prioridad select").value,
+//         fecha_limite: document.querySelector(".fecha-limite input").value,
+//         categoria: document.getElementById("abrirAsociarGasto").checked ? "asociada" : "sin_asociar",
+//         estado_de_tarea: false,
+//         id_usuario: idUsuario,
+//         id_transaccion: document.getElementById("abrirAsociarGasto").checked 
+//           ? (document.querySelector("#asociarGasto select").value || null)
+//           : null
+//       };
 
-        // estado
-        if (estadoFiltro === 'pendientes') base = base.filter(t => !(t.estado_de_tarea === true || t.completada));
-        if (estadoFiltro === 'completadas') base = base.filter(t => (t.estado_de_tarea === true || t.completada));
+//       try {
+//         let response;
+//         if (isEditing && editId) {
+//           response = await fetch(`http://localhost:8080/api/tareas/actualizar/${editId}`, {
+//             method: 'PUT',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify(tarea)
+//           });
+//         } else {
+//           response = await fetch("http://localhost:8080/api/tareas/crear", {
+//             method: "POST",
+//             headers: { "Content-Type": "application/json" },
+//             body: JSON.stringify(tarea),
+//           });
+//         }
 
-        // prioridad
-        if (prioridadFiltro !== 'todas') base = base.filter(t => (t.prioridad || '').toLowerCase() === prioridadFiltro);
-
-        // búsqueda
-        const q = textoBusqueda.trim().toLowerCase();
-        if (q) base = base.filter(t =>
-            (t.nombre || t.titulo || '').toLowerCase().includes(q) ||
-            (t.descripcion || '').toLowerCase().includes(q)
-        );
-
-        renderizarTareas(base);
-        // actualizar contadores con todas las tareas en memoria
-        actualizarResumen(todasLasTareas);
-
-        // actualizar título
-        if (tituloSeccion) {
-            if (estadoFiltro === 'todas') tituloSeccion.textContent = 'Todas las tareas';
-            if (estadoFiltro === 'pendientes') tituloSeccion.textContent = 'Tareas pendientes';
-            if (estadoFiltro === 'completadas') tituloSeccion.textContent = 'Tareas completadas';
-        }
-    }
-
-    // ---------- Eventos ----------
-    const form = document.getElementById("containerRegistro");
-    if (form) {
-        // Evitar doble manejo: la creación/edición la gestiona js/api/tareas.js
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-        });
-    }
-
-    // Botones de estado
-    btnTodas.addEventListener('click', () => { estadoFiltro = 'todas'; aplicarFiltros(); });
-    btnPendientes.addEventListener('click', () => { estadoFiltro = 'pendientes'; aplicarFiltros(); });
-    btnCompletadas.addEventListener('click', () => { estadoFiltro = 'completadas'; aplicarFiltros(); });
-
-    // Búsqueda
-    inputBuscar.addEventListener('input', (e) => { textoBusqueda = e.target.value; aplicarFiltros(); });
-
-    // Prioridad
-    selectPrioridad.addEventListener('change', (e) => { prioridadFiltro = e.target.value; aplicarFiltros(); });
-
-    // Cuando el otro script cargue tareas del backend
-    window.addEventListener('tareas:loaded', (ev) => {
-        todasLasTareas = Array.isArray(ev.detail) ? ev.detail : [];
-        aplicarFiltros();
-    });
-
-    // ---------- Init ----------
-    aplicarFiltros();
-});
+//         if (response.ok) {
+//           alert(isEditing ? 'Tarea actualizada ✅' : 'Tarea creada con éxito ✅');
+          
+//           // Limpiar localStorage después de crear exitosamente
+//           localStorage.removeItem("transaccionParaTarea");
+          
+//           await cargarTareas();
+//           const modal = document.getElementById('agregarRegistro');
+//           if (modal) modal.style.display = 'none';
+//           isEditing = false;
+//           editId = null;
+//           crearBtn.textContent = 'Crear';
+          
+//           // Limpiar formulario
+//           document.querySelector('.titulo input').value = '';
+//           document.querySelector('.descripcion input').value = '';
+//           document.querySelector('.prioridad select').value = 'media';
+//           document.querySelector('.fecha-limite input').value = '';
+          
+//         } else {
+//           const errorText = await response.text();
+//           throw new Error(errorText);
+//         }
+//       } catch (error) {
+//         console.error("Error:", error);
+//         alert((isEditing ? 'Error al actualizar tarea ❌: ' : 'Error al crear tarea ❌: ') + error.message);
+//       }
+//     });
+//   }
+  
+//   // Limpiar localStorage al cerrar el modal sin crear
+//   const btnCerrar = document.getElementById("cerrarMenuRegistros");
+//   const btnCancelar = document.getElementById("Cancelar-registro");
+  
+//   [btnCerrar, btnCancelar].forEach(btn => {
+//     if (btn) {
+//       btn.addEventListener("click", () => {
+//         localStorage.removeItem("transaccionParaTarea");
+//         const banner = document.querySelector(".info-transaccion-banner");
+//         if (banner) banner.remove();
+//       });
+//     }
+//   });
+// });

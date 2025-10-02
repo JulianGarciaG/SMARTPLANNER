@@ -15,10 +15,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // ❌ Desactiva CSRF
-            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // 🔥 Configuración de CORS
+            .csrf(csrf -> csrf.disable()) // Desactiva CSRF
+            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Configuración CORS
             .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll() // ✅ Permite todas las peticiones
+                .anyRequest().permitAll() // Permite todas las peticiones
             );
 
         return http.build();
@@ -34,8 +34,9 @@ public class SecurityConfig {
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-}
+

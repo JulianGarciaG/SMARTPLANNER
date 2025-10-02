@@ -61,7 +61,7 @@
         </div>
 
         <a href="../views/perfil.html">
-          <img class="usuario" src="../img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;">
+          <img id="imgUsuarioHeader" class="usuario" src="../img/usuario-perfil.png" width="40" height="40" style="border-radius: 100%;">
         </a>
       </div>
     </nav>
@@ -93,7 +93,7 @@
       </ul>
       <div class="tips">
         <h1><img src="../img/bombilla.png" width="20" height="20">Tip del día</h1>
-        <p>Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
+        <p id="tip-del-dia" >Vincula tus gastos con tareas para un mejor control financiero y de tiempo.</p>
       </div>
     </div>
 
@@ -115,9 +115,17 @@
         <div class="tarjeta tiempo-enfocado">
           <div class="texto">
             <p class="titulo">Planes de ahorro</p>
-            <p class="cantidad" id="planesAhorro">0</p>
+            <p class="cantidad" id="planesAhorro">0/0</p>
           </div>
           <div class="etiqueta-ahorro">Total</div>
+        </div>
+
+        <div class="tarjeta gastos">
+          <div class="texto">
+            <p class="titulo">Gastos totales pendientes</p>
+            <p class="cantidad">$0</p> 
+          </div>
+          <div class="etiqueta-gastos">Hoy</div>
         </div>
 
         <div class="tarjeta balance">
@@ -140,7 +148,9 @@
           <ul class="lista-eventos" id="listaEventos"></ul>
         </div>
       </div>
-<br>
+
+      <br>
+
       <div class="bloque tareas">
         <h3><img src="../img/comprobado-azul.png" width="20"> Tareas pendientes</h3>
         <ul class="lista-tareas" id="listaTareas"></ul>
@@ -153,6 +163,7 @@
   <script src="../js/tipDinamico.js"></script>
   <script src="../js/initUser.js"></script>
   <script src="../js/api/dashboard.js"></script>
+  <script src="../js/api/imagen.js"></script>
   <script src="../js/busqueda.js"></script>
 </body> 
 </html>

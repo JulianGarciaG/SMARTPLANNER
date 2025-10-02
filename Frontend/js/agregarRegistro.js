@@ -1,36 +1,25 @@
-const cerrarMenuRegistros = document.getElementById('cerrarMenuRegistros');
-const abrirMenuRegistro = document.getElementById('abrirMenuRegistro');
-const agregarRegistro = document.getElementById('agregarRegistro');
-const containerRegistro = document.getElementById('containerRegistro');
-const cancelarRegistro = document.getElementById('Cancelar-registro');
+// agregarRegistro.js - Solo abre/cierra el modal
 
-const abrirAsociarGasto = document.getElementById('abrirAsociarGasto');
-const asociarGasto = document.getElementById('asociarGasto');
+const abrirModal = document.getElementById("abrirMenuRegistro");
+const cerrarModal = document.getElementById("cerrarMenuRegistros");
+const cancelarModal = document.getElementById("Cancelar-registro");
+const modal = document.getElementById("agregarRegistro");
 
-abrirMenuRegistro.addEventListener('click', () => {
-    agregarRegistro.style.display = 'flex';
-    // Restaurar título y botón en modo creación
-    const tituloModal = document.querySelector('#containerRegistro > h1');
-    if (tituloModal) tituloModal.textContent = 'Nueva Tarea';
-    const crearBtn = document.getElementById('Crear-registro');
-    if (crearBtn) crearBtn.textContent = 'Crear';
-});
+if (abrirModal) {
+  abrirModal.addEventListener("click", () => {
+    if (modal) modal.style.display = "flex";
+  });
+}
 
-cerrarMenuRegistros.addEventListener('click', () => {
-    agregarRegistro.style.display = 'none';
-});
+if (cerrarModal) {
+  cerrarModal.addEventListener("click", () => {
+    if (modal) modal.style.display = "none";
+  });
+}
 
-cancelarRegistro.addEventListener('click', (e) => {
+if (cancelarModal) {
+  cancelarModal.addEventListener("click", (e) => {
     e.preventDefault();
-    agregarRegistro.style.display = 'none';
-});
-
-abrirAsociarGasto.addEventListener('change', () => {
-    if (abrirAsociarGasto.checked) {
-        asociarGasto.style.display = 'flex';
-        containerRegistro.style.height = 'auto';
-    } else {
-        asociarGasto.style.display = 'none';
-        containerRegistro.style.height = '500px';
-    }
-});
+    if (modal) modal.style.display = "none";
+  });
+}
