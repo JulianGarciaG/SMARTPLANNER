@@ -20,13 +20,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await response.json();
 
-      // Guardar datos del usuario en localStorage (puedes guardar solo lo necesario)
+      // ✅ Construir URL completa de la foto
+      if (data.foto && !data.foto.startsWith('http')) {
+        data.foto = `http://localhost:8080${data.foto}`;
+      }
+
+      // Guardar datos del usuario en localStorage
       localStorage.setItem("usuario", JSON.stringify(data));
 
       alert("Inicio de sesión exitoso, Bienvenido ✅");
 
       // Redirigir a home.html
       window.location.href = "./views/home.html";
+
 
     } catch (error) {
       console.error("Error:", error);

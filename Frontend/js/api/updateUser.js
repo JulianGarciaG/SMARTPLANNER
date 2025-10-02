@@ -25,16 +25,22 @@ document.addEventListener("DOMContentLoaded", () => {
   let archivoFoto = null;
 
   // 🔹 Cargar datos del usuario logueado
-  function cargarDatosUsuario() {
-    if (usuario.foto) imgPerfil.src = usuario.foto;
-    if (usuario.nombre) {
-      nombreInput.value = usuario.nombre;
-      if (nameH2) nameH2.textContent = usuario.nombre;
+function cargarDatosUsuario() {
+  if (usuario.foto) {
+    if (!usuario.foto.startsWith('http')) {
+      usuario.foto = `http://localhost:8080${usuario.foto}`;
     }
-    if (usuario.correoElectronico && emailDiv) {
-      emailDiv.textContent = usuario.correoElectronico;
-    }
+    imgPerfil.src = usuario.foto;
   }
+  if (usuario.nombre) {
+    nombreInput.value = usuario.nombre;
+    if (nameH2) nameH2.textContent = usuario.nombre;
+  }
+  if (usuario.correoElectronico && emailDiv) {
+    emailDiv.textContent = usuario.correoElectronico;
+  }
+}
+
   cargarDatosUsuario();
 
   // 🔹 Cambiar foto
