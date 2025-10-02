@@ -42,6 +42,42 @@ class EmailService {
         });
     }
 
+    async sendRegistrationConfirmationEmail(email, userName, verificationLink = null) {
+    try {
+        await this.initPromise; // espera init
+
+        if (!this.isInitialized) throw new Error('EmailJS no está inicializado');
+        if (!window.EMAILJS_CONFIG) throw new Error('Configuración de EmailJS no encontrada');
+
+        const { serviceId, templateIdRegistration, publicKey } = window.EMAILJS_CONFIG;
+        if (!serviceId) throw new Error('Service ID no configurado correctamente');
+        if (!templateIdRegistration) throw new Error('Template ID (bienvenida) no configurado');
+        if (!publicKey) throw new Error('Public Key no configurado correctamente');
+
+        const templateParams = {
+        to_email: email,
+        user_name: userName || 'Usuario',
+        app_name: 'SmartPlanner',
+        from_name: 'SmartPlanner Team',
+        verification_link: verificationLink // puede ser null
+        };
+
+        const resp = await emailjs.send(serviceId, templateIdRegistration, templateParams);
+        console.log('Email de bienvenida enviado:', resp);
+        return { success: true, message: 'Email de bienvenida enviado correctamente' };
+
+    } catch (error) {
+        console.error('Error enviando email de bienvenida:', error);
+        let msg = 'Error enviando email de bienvenida: ';
+        if (error.status) msg += `Status ${error.status}: `;
+        if (error.text) msg += error.text;
+        else if (error.message) msg += error.message;
+        else msg += 'Error desconocido';
+        return { success: false, message: msg, error };
+    }
+    }
+
+
     async sendPasswordResetEmail(email, resetCode) {
         try {
             await this.initPromise; // Esperar a que EmailJS esté inicializado
