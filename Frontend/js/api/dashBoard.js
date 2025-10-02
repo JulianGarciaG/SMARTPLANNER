@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Balance mensual desde transacciones
   cargarBalanceMensualDesdeTransacciones(userId);
 
-  // Gastos del día desde tareas (solo pendientes)
+  // Gastos del día (tareas pendientes + transacciones NO asociadas)
   cargarGastosDelDiaDesdeTareas(userId);
 
   cargarPlanesAhorro(userId);
@@ -22,7 +22,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 // ================== Helpers comunes ==================
 const hoyStr = () => new Date().toISOString().slice(0, 10);
 const toCOP = (n) =>
-  new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(n || 0);
+  new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    maximumFractionDigits: 0,
+  }).format(n || 0);
 
 function escapeHtml(str) {
   if (str == null) return "";
@@ -46,7 +50,11 @@ function formatearRangoHora(inicio, fin) {
     const d1 = new Date(inicio);
     const d2 = fin ? new Date(fin) : null;
 
-    const fecha = d1.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    const fecha = d1.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
     const h1 = d1.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     const h2 = d2 ? d2.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : null;
 
@@ -54,6 +62,32 @@ function formatearRangoHora(inicio, fin) {
   } catch {
     return "";
   }
+}
+
+// ===== Helpers extra para robustecer IDs/fechas de transacciones =====
+
+// Normaliza a 'YYYY-MM-DD' desde string/Date o devuelve null
+function dateOnly(value) {
+  if (!value) return null;
+  try {
+    if (/^\d{4}-\d{2}-\d{2}$/.test(String(value))) return String(value); // ya viene normalizada
+    const d = new Date(value);
+    if (isNaN(d)) return null;
+    return d.toISOString().slice(0, 10);
+  } catch {
+    return null;
+  }
+}
+
+// Devuelve el ID único de la transacción que debería coincidir con tarea.id_transaccion
+function getTxId(tx) {
+  // prioridad: id_gasto (mapeo original), luego id, luego id_transaccion
+  return tx?.id_gasto ?? tx?.id ?? tx?.id_transaccion ?? null;
+}
+
+// Devuelve la fecha normalizada de la transacción buscando en varias propiedades
+function getTxDate(tx) {
+  return dateOnly(tx?.fecha ?? tx?.fecha_transaccion ?? tx?.created_at ?? tx?.fechaCreacion);
 }
 
 // ================== TAREAS ==================
@@ -142,7 +176,7 @@ async function cargarBalanceMensualDesdeTransacciones(userId) {
   }
 }
 
-// ================== GASTOS DEL DÍA — desde tareas asociadas (solo pendientes) ==================
+// ================== GASTOS TOTALES PENDIENTES — tareas pendientes + transacciones NO asociadas ==================
 async function cargarGastosDelDiaDesdeTareas(userId) {
   try {
     const [resT, resTx] = await Promise.all([
@@ -153,44 +187,62 @@ async function cargarGastosDelDiaDesdeTareas(userId) {
     if (!resT.ok) throw new Error(await resT.text());
     if (!resTx.ok) throw new Error(await resTx.text());
 
-    const tareas = await resT.json();
-    const transacciones = await resTx.json();
+    const tareas = (await resT.json()) || [];
+    const transacciones = (await resTx.json()) || [];
 
-    // id_transaccion (tarea) -> transacción (usa id_gasto en backend)
+    // Mapa de transacciones por ID
     const mapTx = {};
-    (transacciones || []).forEach((tx) => {
-      mapTx[tx.id_gasto] = tx;
-    });
+    for (const tx of transacciones) {
+      const txId = getTxId(tx);
+      if (txId != null) mapTx[txId] = tx;
+    }
+
+    // IDs de transacciones ya asociadas a tareas
+    const idsTransaccionReferenciados = new Set(
+      tareas.map((t) => t?.id_transaccion).filter((v) => v != null)
+    );
 
     const hoy = hoyStr();
-    let gastosHoy = 0;
+    let totalGastosPendientes = 0;
 
-    (tareas || []).forEach((t) => {
-      // ❗ Solo tareas PENDIENTES
-      if (t.estado_de_tarea) return;
+    // 1) EGRESOS de transacciones asociadas a TAREAS PENDIENTES con fecha >= hoy
+    for (const t of tareas) {
+      if (t?.estado_de_tarea) continue; // solo pendientes
 
-      // Necesita transacción asociada
-      if (!t.id_transaccion) return;
-      const tx = mapTx[t.id_transaccion];
-      if (!tx) return;
+      const tx = t?.id_transaccion != null ? mapTx[t.id_transaccion] : null;
+      if (!tx) continue;
 
-      // Solo egresos
-      const esEgreso = String(tx.tipo).toLowerCase() === "egreso";
-      if (!esEgreso) return;
+      const esEgreso = String(tx?.tipo || "").toLowerCase() === "egreso";
+      if (!esEgreso) continue;
 
-      // Cuenta si la fecha de la transacción es hoy;
-      // si no viene fecha en la transacción, usa la fecha límite de la tarea
-      const fechaTx = tx.fecha || null; // 'YYYY-MM-DD'
-      const fechaTarea = t.fecha_limite ? new Date(t.fecha_limite).toISOString().slice(0, 10) : null;
+      const fechaTx = getTxDate(tx);
+      const fechaTarea = dateOnly(t?.fecha_limite);
 
-      const cuentaHoy = (fechaTx && fechaTx === hoy) || (fechaTarea && fechaTarea === hoy);
-      if (cuentaHoy) gastosHoy += Number(tx.monto) || 0;
-    });
+      // ahora validamos >= hoy (no solo igual)
+      const cuentaPendiente =
+        (fechaTx && fechaTx >= hoy) || (fechaTarea && fechaTarea >= hoy);
 
+      if (cuentaPendiente) totalGastosPendientes += Number(tx?.monto) || 0;
+    }
+
+    // 2) EGRESOS con fecha >= hoy que NO están asociados a ninguna tarea
+    for (const tx of transacciones) {
+      const esEgreso = String(tx?.tipo || "").toLowerCase() === "egreso";
+      if (!esEgreso) continue;
+
+      const fechaTx = getTxDate(tx);
+      if (!fechaTx || fechaTx < hoy) continue; // solo de hoy hacia futuro
+
+      const txId = getTxId(tx);
+      const noAsociada = txId == null || !idsTransaccionReferenciados.has(txId);
+      if (noAsociada) totalGastosPendientes += Number(tx?.monto) || 0;
+    }
+
+    // Pintar en la tarjeta
     const el = document.querySelector(".tarjeta.gastos .cantidad");
-    if (el) el.textContent = toCOP(gastosHoy);
+    if (el) el.textContent = toCOP(totalGastosPendientes);
   } catch (err) {
-    console.error("Error calculando gastos del día desde tareas:", err);
+    console.error("Error calculando gastos pendientes:", err);
     const el = document.querySelector(".tarjeta.gastos .cantidad");
     if (el) el.textContent = toCOP(0);
   }
@@ -203,7 +255,9 @@ async function cargarPlanesAhorro(userId) {
     if (!resp.ok) throw new Error("Error al cargar planes de ahorro");
     const planes = await resp.json();
 
-    const completadosResp = await fetch(`http://localhost:8080/api/planes-ahorro/usuario/${userId}/completados`);
+    const completadosResp = await fetch(
+      `http://localhost:8080/api/planes-ahorro/usuario/${userId}/completados`
+    );
     const completados = completadosResp.ok ? await completadosResp.json() : [];
 
     document.getElementById("planesAhorro").textContent = `${completados.length}/${planes.length}`;
@@ -233,7 +287,9 @@ async function cargarCalendarios(userId) {
     for (const c of calendarios) {
       let totalEventos = 0;
       try {
-        const rCount = await fetch(`http://localhost:8080/api/eventos/calendario/${c.idCalendario}/count`);
+        const rCount = await fetch(
+          `http://localhost:8080/api/eventos/calendario/${c.idCalendario}/count`
+        );
         if (rCount.ok) totalEventos = await rCount.json();
       } catch (e) {
         console.warn("No se pudo obtener conteo de eventos para calendario", c.idCalendario, e);
