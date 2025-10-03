@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../styles/planes.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" href="img/Logo.png">
+    <link rel="icon" href="../img/Logo.png">
 </head>
 <body>
     <div class="container">
@@ -215,7 +215,8 @@ async function cargarSuscripcionActual() {
     }
     
     try {
-        const response = await fetch(`${API_URL}/planes/suscripcion/usuario/${usuarioActual.idUsuario}`, {
+        // ✅ Cambiar la URL del endpoint
+        const response = await fetch(`${API_URL}/suscripciones/usuario/${usuarioActual.idUsuario}/activa`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -245,6 +246,7 @@ function actualizarPlanActual(suscripcion) {
     const planCards = document.querySelectorAll('.plan-card');
     planCards.forEach((card, index) => {
         const boton = card.querySelector('.plan-button');
+        // ✅ Comparar con idTipoPlan de la suscripción
         if (index + 1 === suscripcion.idTipoPlan) {
             boton.textContent = 'Plan Actual';
             boton.disabled = true;

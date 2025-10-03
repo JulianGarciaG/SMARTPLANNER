@@ -157,7 +157,7 @@ localStorage.setItem("usuario", JSON.stringify(usuarioActualizado));
   // 🔹 Logout
   logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("usuario");
-    window.location.href = "../index.html";
+    window.location.href = "../inicio.html";
   });
 });
 
