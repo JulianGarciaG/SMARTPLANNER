@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 document.getElementById("listaEventosHoy").innerHTML = "";
                 e.target.textContent = "Mostrar";
-                if (tituloHeader) tituloHeader.textContent = "No hay calendarios seleccionados";
+                if (tituloHeader) tituloHeader.textContent = "Viendo: Todos los calendarios";
                 setHeaderColorByClassOrHex(null, "#cccccc");
                 if (typeof window.setCalendarioActivo === "function") {
                     window.setCalendarioActivo(null);
